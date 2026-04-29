@@ -1,0 +1,1229 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Biomes</title>
+<link rel="stylesheet" href="./css/style.css" />
+<style>
+td {
+  vertical-align: top;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+tbody:has(>.roomholder){
+  border: 2px solid black;
+}
+
+td[colspan="3"] {
+  border-collapse: collapse;
+  border: 0px solid black;
+}
+
+tr:has(>.descr) td{
+  border: 0px solid black;
+}
+
+.biome td:first-child{
+  width: 40%;
+}
+
+.biome td:last-child{
+  width: 20%;
+}
+
+.roomholder td:first-child{
+  width: 49%;
+  font-size: 30px;
+  height: 3em;
+}
+.roomholder td:last-child{
+  width: 27%;
+}
+
+.descr[colspan="2"]{
+  height: 7em;
+  vertical-align: middle;
+}
+
+.roomholder td{
+  vertical-align: middle;
+  text-align: center;
+}
+
+details table{
+  margin: 20px auto;
+  background-color: #DCDCDC;
+}
+
+.rooms{
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-row-gap: 10px;
+  align-self: center;
+}
+
+.leftcol{
+  display: block;
+  width: 90%;
+  margin: 10px 5% auto;
+  grid-column: 1;
+  position: relative;
+  align-self: center;
+}
+.rightcol{
+  display: block;
+  width: 90%;
+  margin: 10px 5% auto;
+  grid-column: 2;
+  position: relative;
+  align-self: center;
+}
+
+#basic details{
+  background-color: #999999;
+}
+#abominations details{
+  background-color: #7979D0;
+}
+#land_arthropods details{
+  background-color: #6F9E88;
+}
+#incorporeal_undead details{
+  background-color: #219487;
+}
+#trees details{
+  background-color: #5BCE61;
+}
+
+#heat details{
+  background-color: #EFA637;
+}
+#light details{
+  background-color: #EEDD00;
+}
+#sobek_oasis details{
+  background-color: #4D8F14;
+}
+#councilor details{
+  background-color: #0080FF;
+}
+
+p{
+  font-size: 16px;
+  text-align: left;
+}
+
+li {
+  padding: 10px 0 0 30px;
+}
+</style>
+<script src="./js/data.js" lang="javascript"></script>
+</head>
+
+<body>
+
+<div>
+<header>
+<table>
+<tr><th id="menu_1">Rules</th><th id="menu_2">Dungeon</th><th id="menu_3">World</th></tr>
+</table>
+</header>
+
+<h1>Biomes and Rooms</h1>
+<nav>
+<table><tr><td style="padding: 30px 5% 0 2%">
+<details><summary>Creature Family Biomes:</summary>
+	<li><a href="#abominations">Abominations Biome</a> (Completed)</li>
+	<li><a href="#beast_yokai">Beast Yokai Biome</a></li>
+	<li><a href="#carnivorous_plants">Carnivorous Plants Biome</a></li>
+	<li><a href="#flowers">Flower Biome</a> (0/8)</li>
+	<li><a href="#forgotten_terrors">Forgotten Terrors Biome</a></li>
+	<li><a href="#guardian_undead">Guardian Undead Biome</a></li>
+	<li><a href="#incorporeal_undead">Incorporeal Undead Biome</a> (Completed)</li>
+	<li><a href="#land_arthropods">Land-Based Arthropod Biome</a> (Completed)</li>
+	<li><a href="#large_reptiles">Large Reptiles Biome</a></li>
+	<li><a href="#small_mammals">Small Mammals Biome</a> (0/8)</li>
+	<li><a href="#small_reptiles">Small Reptiles Biome</a> (4/8)</li>
+	<li><a href="#trees">Tree Biome</a> (Completed)</li>
+</details>
+<details><summary>Elemental Biomes:</summary>
+	<li>Acid Elemental Biome (0/16)</li>
+	<li>Air Elemental Biome (2/3 families to unlock)</li>
+	<li>Cold Elemental Biome (0/16)</li>
+	<li>Corruption Elemental Biome (2/3 families to unlock)</li>
+	<li>Darkness Elemental Biome (2/3 families to unlock)</li>
+	<li>Earth Elemental Biome (2/3 families to unlock)</li>
+	<li>Electricity Elemental Biome (2/3 families to unlock)</li>
+	<li>Emotion Elemental Biome (2/3 families to unlock)</li>
+	<li>Fire Elemental Biome (0/16)</li>
+	<li><a href="#heart">Heart Elemental Biome</a></li>
+	<li><a href="#heat">Heat Elemental Biome</a> (Completed)</li>
+	<li>Life Elemental Biome (2/3 families to unlock)</li>
+	<li><a href="#light">Light Elemental Biome</a> (Completed)</li>
+	<li>Metal Elemental Biome (0/16)</li>
+	<li>Momentum Elemental Biome (2/3 families to unlock)</li>
+	<li>Plague Elemental Biome (2/3 families to unlock)</li>
+	<li>Purification Elemental Biome (2/3 families to unlock)</li>
+	<li>Sound Elemental Biome (0/16)</li>
+	<li>Spirit Elemental Biome (0/16)</li>
+	<li><a href="#water">Water Elemental Biome</a> (0/16)</li>
+	<li><a href="#wood">Wood Elemental Biome</a> (0/16)</li>
+</details>
+<details><summary>Other Biomes:</summary>
+	<li><a href="#councilor">The Councilor Biome</a> (Completed)</li>
+	<li><a href="#sobek_oasis">Sobek Oasis</a> (Completed)</li>
+	<li><a href="#questing_forest">Questing Forest Biome</a></li>
+</details>
+</td></tr></table>
+</nav>
+<main>
+<table><tr><td id="basic">
+<details><summary>Basic Rooms:</summary>
+<div class="rooms">
+
+<div class="leftcol"><table><tr class="roomholder"><td>Nexus Core</td><td>Cost: NA</td><td>Upkeep: NA</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+</td></tr>
+<tr><td colspan="3">
+<p>Special: Reduces upkeep of all adjacent rooms by 1. The heart and soul of the dungeon and where you must take creatures and people in order to contract them to you. If this is destroyed, the quest ends</p>
+<p>Restrictions: Must always be located on the lowest floor</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Empty Room</td><td>Cost: 5 Mana</td><td>Upkeep: 1 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+</td></tr>
+<tr><td colspan="3">
+<p>Special: Increases maximum mana by 4 points</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Boss Room</td><td>Cost: 25 Mana</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+</td></tr><tr><td colspan="3">
+<p>Special: Closed Room. A single minion can be attached to this room, which then becomes a Boss Monster. See Boss rules for details</p>
+<p>Bait: 1 Uncommon Standard Chest</p>
+<p>Restrictions: Limit of 3 Horde and/or Boss Rooms per floor</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Horde Room</td><td>Cost: 25 Mana</td><td>Upkeep: 5 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+</td></tr><tr><td colspan="3">
+<p>Special: Closed Room. Up to 3X minions can be attached to this room, where X is the floor number this room is located. One of the attached minions must be designated as a Queen. See Horde Rules for more details</p>
+<p>Bait: 1 Uncommon Standard Chest</p>
+<p>Restrictions: Limit of 3 Horde and/or Boss Rooms per floor</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Mana Collector</td><td>Cost: 10 Mana</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+</td></tr><tr><td colspan="3">
+<p>Special: Increases maximum mana by 7 points. Contains additional mana storage of 10 points that is strictly for mana from Invaders</p>
+<p>Restrictions: There can only be 1 opening into this room. Limit of 7 per floor</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Mana Beacon</td><td>Cost: 16 Mana and 6 Essence</td><td>Upkeep: Floor Number + 4 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A stream of pure energy-like mana erupting into the air circled by an array of ever-changing runes</td></tr><tr><td colspan="3">
+<p>Special: Attracts Xd2 more Invaders to your floor each week, where X is the floor this room is placed on</p>
+<p>Bait: A vigorous flow of pure mana</p>
+<p>Restrictions: Limit of 1 per floor</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Healing Crystal</td><td>Cost: 7 Mana</td><td>Upkeep: 1 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A large pulsating blue crystal</td></tr><tr><td colspan="3">
+<p>Bait: A creature can spend <span class="stat">1 MP</span> in this room to heal 1 minor wound or <span class="stat">1 MW</span> to fully heal. The dungeon gains anything spent here as Mana or Essence, respectively</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Sacrificial Rock</td><td>Cost: 10 Mana and 4 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A bloodstained stack of round rocks</td></tr><tr><td colspan="3">
+<p>Bait: Once an hour, an Invader can deal 1 moderate damage to themselves in this room in order to increase the rarity of all chests on the floor by one step. Damage taken to do this cannot be healed while the Invader is on the same floor</p>
+<p>Restrictions: Limit of 3 per floor</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Trap Room</td><td>Cost: 6 Mana</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A nearly empty room with a slowly spinning gear in the ceiling</td></tr><tr><td colspan="3">
+<p>Special: Increases the floor's number of trap slots by 1. A Mechanical trap placed will reset by itself after 30 minutes</p>
+<p>Restrictions: Limit 4 per floor</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Mechanism Room</td><td>Cost: 8 Mana and 2 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+Constantly spinning gears and cogs line every wall of this room. In the center is a big red lever</td></tr><tr><td colspan="3">
+<p>Special: Increases the floor's number of trap slots by 3. A Mechanical trap placed will reset by itself after 1 minute</p>
+<p>Bait: Pulling down the big red lever in this room deactivates all traps on this floor for the remainder of the day</p>
+<p>Restrictions: Limit 1 per floor</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Treasure Chamber</td><td>Cost: 7 Mana</td><td>Upkeep: 1 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+</td></tr><tr><td colspan="3">
+<p>Bait: 3 Common Standard Chests</p>
+</td></tr></table></div>
+
+</div>
+</details>
+</td></tr></table>
+
+<table class="biome" id="abominations"><tr><td colspan="3"><h2>Abominations Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">A massive hole-filled asteroid cluster floating in nearly empty space</td></tr>
+<tr><td colspan="3">Cost: 22 Essence</td></tr>
+
+<tr>
+<td rowspan="3"><h3>Local</h3>
+<p>The upkeep of all <a class="family" href="Families.html#abominations">Abomination</a> minions is reduced by 2 and the upkeep of all Abomination rooms is reduced by 1</p>
+<p>The <span class="stat">CBT</span> of all <a class="family" href="Families.html#abominations">Abominations</a> is increased by 2</p>
+<p>Generates holes throughout the floor and walls that lead to empty space. If a creature falls through one of these holes, they will be deposited out the nearest Gravity Well. If the floor does not have a Gravity Well, they will be deposited at the entrance to the floor</p>
+<p>Provides unlimited food for Geovores</p>
+<p>All Standard Chests become Cosmic Chests</p>
+</td>
+<td rowspan="3"><h3>Regional</h3>
+<p>Changes the Light Level to Night. Floors with open-sky rooms or effects will have their sky set to a night sky full of stars</p>
+<p>The Initial Cost and Respawn Cost of all minions with <span class="element">Divine</span> Basic Attacks is increased by 8 and cannot be reduced</p>
+</td>
+<td><span class="stat">+2 LRN</span><br><span class="trait">Mental Immunity</span><br>Contractee counts as Abomination while in the Dungeon</td></tr>
+<tr><td><span class="stat">+3 CBT</span><br><span class="stat">+1 LRN</span><br><span class="trait">Breathless</span><br><span class="trait">Critical Hit Immunity</span></td></tr>
+<tr><td><span class="stat">+1 MP</span><br><span class="stat">+1 MW</span><br><span class="stat">+1 CBT</span><br><span class="trait">Temporal Absorption</span><br>either Eyes of Infinity or Cosmic Aura<br>???</td></tr>
+
+<tr><td colspan="3"><details><summary>Abomination Rooms:</summary>
+<div class="rooms">
+
+<div class="leftcol"><table><tr class="roomholder"><td>Gravity Well</td><td>Cost: 12 Mana and 4 Essence</td><td>Upkeep: 5 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A dormant black hole hovering in the center of a room filled with holes</td></tr><tr><td colspan="3">
+<p>Special: Reduces the Upkeep of all <a class="family" href="Families.html#abominations">Abomination Minions</a> and Abomination evolutionary rooms on the floor by 1. If all three are placed, both <a class="character" href="Characters.html#Naru_Osaka">Naru</a> and the linked contractee gain <span class="stat">+1 MW</span></p>
+<p>Restrictions: Abomination Biome only. Limit of 3 per floor</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Brilliant Nebula</td><td>Cost: 9 Mana</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A room filled with a nebula of various colors bright enough to make most people squint</td></tr><tr><td colspan="3">
+<p>Special: At the start of each round, all non-Abominations in this room gain a stack of <span class="stack">Blind</span> if they do not have at least 3</p>
+<p>Bait: 1 Common Standard Chest</p>
+<p>Restrictions: Abomination Biome only</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Cosmic Altar</td><td>Cost: 10 Mana and 2 Essence</td><td>Upkeep: 4 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+In the center of this room is a tall thin mountain-like structure with a meandering stair-like path up to the top. At said top rests an unadorned bronze altar. A hole in the ceiling looks onto the accretion disk of a supermassive black hole</td></tr><tr><td colspan="3">
+<p>Special: All <a class="family" href="Families.html#abominations">Abominations</a> in this room gain <span class="stat">+3 CBT</span>. This bonus is increased to <span class="stat">+6 CBT</span> for 24 hours if a creature is killed and their blood spilled on the altar itself</p>
+<p>Bait: Crafting checks made at the altar gain a bonus equal to the <span class="stat">CBT</span> bonus the room is currently giving</p>
+<p>Restrictions: Abomination Biome only. Limit of 1 per floor</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Time Crystal Garden</td><td>Cost: 9 Mana and 1 Essence</td><td>Upkeep: 4 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A room filled with glowing clusters of cyan crystal</td></tr><tr><td colspan="3">
+<p>Special: All <a class="family" href="Families.html#abominations">Abominations</a> in this room gain the <span class="buff">Regeneration</span> buff</p>
+<p>Bait: 1 Common Standard Chest</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Monument to Madness</td><td>Cost: 9 Mana and 4 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A ring of stone arches with various non-euclidean diagrams</td></tr><tr><td colspan="3">
+<p>Special: All <a class="family" href="Families.html#abominations">Abominations</a> on this floor that are connected to Sigils gain <span class="stat">+1 CBT</span> and cost 1 less Upkeep</p>
+<p>Bait: 1 Common Cosmic Chest</p>
+<p>Restrictions: Limit of 1 per floor</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Oblivion Mirror</td><td>Cost: 9 Mana and 3 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A slowly rotating ovular pitch black mirror hovers above a pedestal engraved with eyes</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Stellar Eyes and all creatures that evolve from them. The mirror can hold up to three attacks from creatures from the Stellar Eye tree. It can use one of these attacks as a combat action</p>
+<p>Bait: 1 Common Cosmic Chest under the mirror</p>
+</td></tr></table></div>
+
+
+<div class="leftcol"><table><tr class="roomholder"><td>Sphere Hive</td><td>Cost: 8 Mana and 5 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A polished asteroid cavern filled with large spheres of various hues</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Conglomerations of Spheres and most creatures that evolve from them. If a Conglomeration or Cocoon of Spheres is killed here, it immediately respawns with a health track of 1 severe wound at a cost of 2 mana to the dungeon. Such a respawn only happens once per creature per day</p>
+<p>Bait: 1 Common Cosmic Chest in the center. If a Conglomeration or Cocoon of Spheres is killed here, as long as that creature has not been killed in the room previously that day, this room's chest increases in rarity one step</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Sealed Opal Door</td><td>Cost: 7 Mana and 3 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A circular door carved from solid opal and covered in red runes is embedded in the floor of this room</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Creeping Cacophonies and most creatures that evolve from them</p>
+<p>Bait: 1 Uncommon Cosmic Chest behind the door. If the door is opened, creatures from the Creeping Cacophony tree on the floor gain the <span class="trait">Aging</span> trait. The door cannot be opened if there are no more such creatures on the floor</p>
+</td></tr></table></div>
+
+
+<div class="leftcol"><table><tr class="roomholder"><td>Infinite Staircase</td><td>Cost: 10 Mana and 4 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+This room is a mass of bizarre staircases that turn and twist and loop around in impossible ways</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Young Escher Beasts and most creatures that evolve from them. The linked Contractee and creatures from the Escher Beast tree can move into this room from anywhere as a combat action that costs <span class="stat">1 MP</span> (Or <span class="stat">1 MW</span> if outside the dungeon). Escher Beasts can bring along anyone caught in their Distortion Traps. The linked Contractee can bring along any one willing creature he or she may be touching</p>
+<p>Restrictions: Limit 1 per floor. Cannot be on a floor that doesn't have Escher Beasts</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Spiral Tower</td><td>Cost: 9 Mana and 3 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A twisty black tower stretching up beyond the sky</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Living Spirals and all creatures that evolve from them. Mutation Source for the Spiral-Touched Mutation. Abomination bosses on this floor gain 2 extra <span class="stack">Age</span> stacks at the start of their final phase</p>
+<p>Restrictions: Limit 1 per floor. Cannot be on a floor that doesn't have Living Spirals</p>
+</td></tr></table></div>
+
+
+<div class="leftcol"><table><tr class="roomholder"><td>Blasted Heath</td><td>Cost: 8 Mana and 2 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A large circular area of heavy gray dust with a small meteorite embedded in the center</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Colours Out of Space and all creatures that evolve from them. Whenever a Colour or Colour-Touched creature in this room deals at least one moderate damage to an opponent, it gains one stack of <span class="stack">Age</span>. The damaged creature has an increased chance to gain the Colour-Touched Mutation from any Colours in the room</p>
+<p>Bait: 1 Uncommon Cosmic Chest buried underneath the meteorite</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Astral Windmill</td><td>Cost: 9 Mana and 2 Essence, Upkeep: 3</td><td>Upkeep:  Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A sideways windmill of prismatic glass slowly spinning over the open void of space</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Haunting Cacophonies and all creatures that evolve from them. The linked Contractee and creatures that evolve from Haunting Cacophonies gain Immunity to any effect that would negatively alter or restrict their Movement</p>
+<p>Restrictions: Cannot be on a floor that doesn't have Cacophonies</p>
+</td></tr></table></div>
+
+</div>
+</details></td></tr>
+</table>
+
+<table class="biome" id="beast_yokai"><tr><td colspan="3"><h2>Beast Yokai Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">An urban nature park with concrete paths, trees, and scattered benches</td></tr>
+<tr><td colspan="3">Cost: 19 Essence</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>The Upkeep of all  <a class="family" href="Families.html#beast_yokai">Beast Yokai</a> minions and rooms is reduced by 1</p>
+<p>The Upkeep of all non-Beast Yokai minions and rooms is increased by 1</p>
+<p><a class="family" href="Families.html#beast_yokai">Beast Yokai</a> apply 2 stacks of <span class="stack">Mirage</span> to creatures they damage</p>
+<p>Inner Walls removed (Open Floor)</p>
+<p>Ceiling removed and replaced with a partly cloudy sky (Open Sky)</p>
+<p>All Standard Chests become Laughing Chests</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>Grass and Bushes grow around the area, providing unlimited food for Herbivores</p>
+<p>Illusion effects are more subtle. Any Intrigue rolls made to notice them have their difficulty increased by 4</p>
+<p>All <a class="family" href="Families.html#small_birds">Small Bird</a>, <a class="family" href="Families.html#object_yokai">Object Yokai</a>, and <a class="family" href="Families.html#flowers">Flower</a> minions gain the <span class="debuff">Armor Break</span> and <span class="debuff">Weakness</span> debuffs. If removed, these debuffs are immediately reapplied</p></td>
+
+<td><span class="stat">+2 ING</span><br><span class="trait">Lucky</span><br>Contractee counts as a <a class="family" href="Families.html#beast_yokai">Beast Yokai</a> while in the dungeon</td>
+</tr>
+<tr>
+<td><span class="stat">+1 ING</span><br><span class="stat">+3 CBT</span><br>Vanishing Act<br><span class="trait">Illusion Immunity</span></td>
+</tr>
+<tr>
+<td><span class="stat">+2 MP</span><br><span class="stat">+1 CBT</span><br><span class="trait">Fast Healing (1 Severe Damage)</span><br>either Tanuki Shifting or Kitsune Tails<br>???</td>
+</tr>
+</table>
+
+<table class="biome" id="carnivorous_plants"><tr><td colspan="3"><h2>Carnivorous Plants Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">An ancient underground stone temple lit by shining green crystals and covered in moss and vines</td></tr>
+<tr><td colspan="3">Cost: 19 Essence</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>The upkeep of all <a class="family" href="Families.html#carnivorous_plants">Carnivorous Plant</a> minions is reduced by 2 and the upkeep of all Carnivorous Plant rooms is reduced by 1</p>
+<p>All <a class="family" href="Families.html#carnivorous_plants">Carnivorous Plants</a> start all scenes with 3 stacks of <span class="stack">Predation</span></p>
+<p>Arcane traps are harder for Invaders to notice</p>
+<p>All Standard chests become Forest Chests</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>The Upkeep and Respawn Costs of all minions with the <span class="trait">Tasty Morsel</span> trait is reduced by 1 each</p>
+<p>Odd green crystals grow throughout and light up the area. Rooted creatures in an area lit by these have their Movement changed to 'Creeping'</p>
+<p>All minions with Basic Attacks that have the <span class="element">Metal</span> sub-type gain the <span class="debuff">Weakness</span> and <span class="debuff">Armor Break</span> debuffs. If removed, these debuffs are immediately reapplied</p></td>
+<td><span class="stat">+2 MRT</span><br><span class="trait">Wood Immunity</span><br>Contractee counts as a <a class="family" href="Families.html#carnivorous_plants">Carnivorous Plant</a> while in the dungeon</td></tr>
+
+<tr><td><span class="stat">+2 MRT</span><br><span class="stat">+5 OCBT</span><br>Predatory<br><span class="trait">Preparation (Glory)</span></td></tr>
+
+<tr><td><span class="stat">+1 MP</span><br><span class="stat">+1 MW</span><br><span class="stat">+3 OCBT</span><br>Weaken<br>either Flytrap Growths or Sundew Skin<br>???</td></tr>
+</table>
+
+<table class="biome" id="flowers"><tr><td colspan="3"><h2>Flower Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">A beautiful field of flowers on top of a tall mesa</td></tr>
+<tr><td colspan="3">Cost: 25 Essence</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>The Upkeep of all <a class="family" href="Families.html#flowers">Flower</a> minions is reduced by 2 and the Upkeep of all Flower rooms is reduced by 1</p>
+<p>The Respawn Speed of all <a class="family" href="Families.html#flowers">Flowers</a> is reduced by 1 hour (To a minimum of 0 hours)</p>
+<p>Ceiling and Inner Walls removed (Open Sky and Open Floor)</p>
+<p>Outer walls removed and replaced with a drop off a steep cliff obscured by clouds (Boundless Floor)</p>
+<p>The Stairs to the lower floor are Sealed until all Boss and Horde rooms on this floor are beaten</p>
+<p>All Standard chests become Wood Chests</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>The upkeep of all Empty Rooms and Gardens is reduced by 1</p>
+<p>Rampant wildflowers of all shapes and colors bloom everywhere, providing unlimited food for Herbivores and energizing the atmosphere</p>
+<p>All minions with Basic Attacks that have the <span class="element">Earth</span> sub-type begin all scenes with 12 stacks of <span class="trait">Wither</span>. <span class="trait">Wither</span> stacks on these creatures will not be removed until the end of the scene</p></td>
+<td><span class="stat">+2 DPL</span><br><span class="trait">Wood Immunity</span><br>Contractee counts as a <a class="family" href="Families.html#flowers">Flower</a> while in the dungeon</td></tr>
+
+<tr><td><span class="stat">+3 DPL</span><br><span class="stat">+1 CBT</span><br><span class="trait">Solar Photosynthesis</span><br><span class="trait">Preparation (Channel)</span></td></tr>
+
+<tr><td><span class="stat">+2 MP</span><br><span class="stat">+1 CBT</span><br><span class="trait">Preparation (Invigorate)</span><br>either Blooming Transformation or Dreams of a Wild Meadow<br>???</td></tr>
+</table>
+
+<table class="biome" id="forgotten_terrors"><tr><td colspan="3"><h2>Forgotten Terrors Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">A spacious black fortress that carries an atmosphere of dread</td></tr>
+<tr><td colspan="3">Cost: 25 Essence</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>The upkeep of all <a class="family" href="Families.html#forgotten_terrors">Forgotten Terror</a> minions is reduced by 3 and the upkeep of all Forgotten Terror rooms is reduced by 2</p>
+<p><a class="family" href="Families.html#forgotten_terrors">Forgotten Terror</a> minions heal 1 moderate damage whenever they apply 1 or more <span class="stack">Peril</span> stacks on an Invader</p>
+<p>All Standard Chests become Cursed Chests</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>Minions with Territorial behavior can automatically sense when Invaders enter their claimed territory</p>
+<p>All <a class="family" href="Families.html#abominations">Abomination</a>, <a class="family" href="Families.html#dragons">Dragon</a>, and <a class="family" href="Families.html#dream_beasts">Dream Beast</a> minions gain the <span class="debuff">Doom</span> and <span class="debuff">Infection</span> debuffs. If removed, these debuffs are immediately reapplied</p>
+<h3>Global</h3>
+<p>Invaders gain 1 stack of <span class="stack">Peril</span> every time they enter a floor that they have not yet entered that day. Whenever this occurs, all light sources near the Invaders abruptly change colors to an eerie off-green and an ominous deep bell is heard. The bell sound gets louder the closer the Invaders get to this floor</p></td>
+<td><span class="stat">+2 LRN</span><br><span class="trait">Curse Immunity</span><br>Contractee counts as a <a class="family" href="Families.html#forgotten_terrors">Forgotten Terror</a> while in the dungeon</td></tr>
+
+<tr><td><span class="stat">+2 LRN</span><br><span class="stat">+2 CBT</span><br><span class="trait">Perilous Presence</span><br><span class="trait">Feather Fall</span></td></tr>
+
+<tr>
+<td><span class="stat">+2 MW</span><br><span class="stat">+1 CBT</span><br><span class="trait">Life Sense</span><br>either Rend the Soul or Hunger's Gaze<br>???</td></tr>
+</table>
+
+<table class="biome" id="guardian_undead"><tr><td colspan="3"><h2>Guardian Undead Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">The inside of a worn gray stone gothic castle</td></tr>
+<tr><td colspan="3">Cost: 23 Essence</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>The Upkeep of all <a class="family" href="Families.html#guardian_undead">Guardian Undead</a> minions and rooms is reduced by 1</p>
+<p>The Upkeep of all non-Guardian Undead minions and rooms is increased by 1</p>
+<p>All <a class="family" href="Families.html#guardian_undead">Guardian Undead</a> gain the <span class="trait">Mana Regeneration 2</span> trait</p>
+<p>All Standard chests become Grave Chests</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>Any minion in the same room as a Chest gains a <span class="stat">CBT</span> bonus equal to the highest rank of Chest in the room</p>
+<p>An eerie draft seems to chill even the most sheltered of areas</p>
+<p>The Respawn Speed of all minions with <span class="element">Life</span> Basic Attacks is increased by 2 days and cannot be reduced</p></td>
+<td><span class="stat">+2 LRN</span><br><span class="trait">Eidetic Memory</span><br>Contractee counts as a <a class="family" href="Families.html#guardian_undead">Guardian Undead</a> while in the dungeon</td></tr>
+
+<tr><td><span class="stat">+1 LRN</span><br><span class="stat">+3 CBT</span><br><span class="trait">Death Immunity</span><br><span class="trait">Defy Death</span></td></tr>
+
+<tr><td><span class="stat">+2 MW</span><br><span class="stat">+1 CBT</span><br><span class="trait">Curse Reflection</span><br>either Sarcophagus Link or Dhampir<br>???</td></tr>
+</table>
+
+<table class="biome" id="incorporeal_undead"><tr><td colspan="3"><h2>Incorporeal Undead Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">The inside of a rickety and falling apart wooden house</td></tr>
+<tr><td colspan="3">Cost: 22 Essence</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>The upkeep of all <a class="family" href="Families.html#incorporeal_undead">Incorporeal Undead</a> minions is reduced by 3 and the upkeep of all Incorporeal Undead rooms is reduced by 2</p>
+<p><a class="family" href="Families.html#incorporeal_undead">Incorporeal Undead</a> minions are immediately killed and respawned at no cost when first created</p>
+<p><span class="trait">Incorporeal</span> creatures can phase through the Inner Walls of this floor unimpeded</p>
+<p>All Standard chests become Spirit Chests</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>Creaky wooden doors are placed between each room. These doors slam shut at the most inconvenient times for Invaders</p>
+<p>A miasma of fear, hatred, sorrow, and loneliness pervades the floor and provides unlimited food for Emovores</p>
+<p>The Respawn Speed of all <a class="family" href="Families.html#nature_spirits">Nature Spirits</a>, <a class="family" href="Families.html#spirit_beasts">Spirit Beasts</a>, and <a class="family" href="Families.html#territory_spirits">Territory Spirits</a> is increased by 2 days and cannot be reduced</p></td>
+<td><span class="stat">+2 ING</span><br><span class="trait">Low-Light Vision</span><br>Contractee counts as an <a class="family" href="Families.html#incorporeal_undead">Incorporeal Undead</a> while in the Dungeon</td></tr>
+
+<tr><td><span class="stat">+3 CBT</span><br><span class="stat">+1 ING</span><br><span class="trait">Concealed</span><br><span class="trait">Defy Death</span></td></tr>
+
+<tr><td><span class="stat">+1 MP</span><br><span class="stat">+1 MW</span><br><span class="stat">+1 CBT</span><br><span class="trait">Phasing</span><br>either Spectre's Chains or Phantom's Mist<br>???</td></tr>
+
+
+<tr><td colspan="3"><details><summary>Incorporeal Undead Rooms:</summary>
+<div class="rooms">
+
+<div class="leftcol"><table><tr class="roomholder"><td>Monument to Penance</td><td>Cost: 10 Mana and 5 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A collection of holy symbols resting atop a covered table with bread, water, and lit candles</td></tr><tr><td colspan="3">
+<p>Special: All <a class="family" href="Families.html#incorporeal_undead">Incorporeal Undead</a> on this floor that are connected to Sigils gain 1 stack of <span class="stack">Age</span> for every 2 respawns they have gone through, rounded up, to a maximum of 6 <span class="stack">Age</span> stacks at 12 respawns</p>
+<p>Bait: 1 Common Spirit Chest. Note: The bread and water in this room can be eaten, but do not provide sustenance</p>
+<p>Restrictions: Limit of 1 per floor</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Dusty Fireplace</td><td>Cost: 13 Mana and 6 Essence</td><td>Upkeep: 4 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A dusty brick fireplace that lights up with a warm orange glow</td></tr><tr><td colspan="3">
+<p>Special: Reduces the Upkeep cost of all <a class="family" href="Families.html#incorporeal_undead">Incorporeal Undead</a> minions on this floor by 2</p>
+<p>Restrictions: Incorporeal Undead or Sobek Oasis Biomes only. Limit of 3 per floor</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Watchful Painting</td><td>Cost: 8 Mana and 3 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A large painting is on one side of this room, Its eyes follow those in the room</td></tr><tr><td colspan="3">
+<p>Special: <a class="family" href="Families.html#incorporeal_undead">Incorporeal Undead</a> on this floor not attached to Closed Rooms can teleport to this room from anywhere on the floor as a full-round action. If three are placed, Naru and the linked Contractee gain the <span class="trait">Spirit Resistance</span> trait. If all five are placed, both gain the <span class="trait">Ectoplasm Resistance</span> trait</p>
+<p>Restrictions: Incorporeal Undead or Sobek Oasis Biomes only. Limit of 5 per floor</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Bloody Parlor</td><td>Cost: 11 Mana and 3 Essence</td><td>Upkeep: 4 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A lounge with blood-stained furniture</td></tr><tr><td colspan="3">
+<p>Special: Living Invaders in this room must succed at a DC 13 <span class="stat">SRT</span> check each round or gain one stack of <span class="stack">Bleed</span>. The DC is increased by 2 for every <a class="family" href="Families.html#incorporeal_undead">Incorporeal Undead</a> creature in the room</p>
+<p>Bait: 1 Uncommon Standard Chest</p>
+<p>Restrictions: Incorporeal Undead or Sobek Oasis Biomes only. Limit of 1 per floor</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Temple of Ancestors</td><td>Cost: 12 Mana and 5 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+An ornate tree carved from petrified wood filled with shelves of journals and family documents</td></tr><tr><td colspan="3">
+<p>Bait: Gives a +3 bonus to any rolls required for a character's attempt to learn about one or more ancestors. If such a check is passed, the character also gains the knowledge of the <span class="spell">Channel Local Spirit</span> spell</p>
+<p>Restrictions: Incorporeal Undead or Sobek Oasis Biomes only. Limit of 1 per floor</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Window of Malice</td><td>Cost: 5 Mana and 5 Essence</td><td>Upkeep: 5 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A red stained-glass window on the far wall filled with angry eyes</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Echoes. Has a chance each day to evolve a random Echo on the Floor into a Malevolent Echo at no cost. It will not evolve any Echoes if doing so would cause Malevolent Echoes to outnumber regular Echoes. Malevolent Echoes who perish respawn as regular Echoes</p>
+<p>Bait: Breaking the window reveals all Malevolent Echoes on the floor but also gives them 7 stacks of <span class="stack">Age</span></p>
+<p>Restrictions: There can only be 1 opening into this room. Limit of 1 per floor</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Cold Lounge</td><td>Cost: 8 Mana and 3 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A lone worn chair faces a fireplace covered in frost and ice</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Dim Wraiths and most creatures that evolve from them. The first 3 Invaders to enter this room each day gain the <span class="debuff">Chill</span> debuff</p>
+<p>Bait: 1 Common Standard Chest. The first Legendary or higher Spirit Chest opened in this room gives <span class="item">Bloody Mary's Mirror</span></p>
+<p>Restrictions: Limit of 1 per floor. Cannot be on a floor that doesn't have wraiths</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>The Room With One White Clock</td><td>Cost: 10 Mana and 6 Essence</td><td>Upkeep: 5 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A room with moldy yellow walls and carpet, empty except for a ticking white grandfather clock in its center</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Whispering Banshees and all creatures that evolve from them</p>
+<p>Cognitohazard: Invaders that both see the clock and hear its ticking must succeed at a DC <span class="stat">16 SRT</span> check or gain the Visions of the White Clock Minor Insanity Drawback. If there is at least one banshee minion in this room, the DC of the check is increased by twice the Evolution Stage of the highest evolved banshee minion. This is a <span class="element">Magical (Sound, Prophecy, Death)</span> effect</p>
+<p>Restrictions: Limit of 1 per floor. Cannot be on a floor that doesn't have banshees</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Flooded Bathroom</td><td>Cost: 4 Mana and 2 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A somewhat damaged bathroom whose bathtub faucet is perpetually on</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Drowned Souls and all creatures that evolve from them. Tap water fills this room up to the height of an average adult's knees. Acts as a fully functioning bathroom otherwise. Minions will not attack creatures that enter this room unless they spend over an hour inside it</p>
+<p>Bait: 1 Common Standard Chest in the toilet tank. The first Legendary or higher Spirit Chest opened in this room gives <span class="item">Water of La Llorona</span></p>
+<p>Restrictions: There can only be 1 opening into this room. Limit of 1 per floor</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Temple of Redemption</td><td>Cost: 12 Mana and 5 Essence</td><td>Upkeep: 4 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A single-person confessional altar with unlit candles surrounded by mosaic depictions of deities</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Chained Phantoms and all creatures that evolve from them</p>
+<p>Bait: An intelligent creature who lights the candles and utters true regrets for past misdeeds in this room is granted knowledge of the <span class="spell">Rebuke Corruption</span> spell</p>
+</td></tr></table></div>
+
+</div>
+</details></td></tr>
+</table>
+
+<table class="biome" id="land_arthropods"><tr><td colspan="3"><h2>Land-Based Arthropod Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">A tall grassy field from the perspective of an insect</td></tr>
+<tr><td colspan="3">Cost: 16 Essence</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>The upkeep of all <a class="family" href="Families.html#land_arthropodes">Land-Based Arthropod</a> minions and Rooms is reduced by 1</p>
+<p>The upkeep of all non-Land-Based Arthropod minions and Rooms is increased by 1</p>
+<p>The Respawn cost of all <a class="family" href="Families.html#land_arthropodes">Land-Based Arthropods</a> is reduced by 4 (To a minimum of 0)</p>
+<p>Provides unlimited food for Herbivores</p>
+<p>Ceiling Removed (Open Sky)</p>
+<p>All Standard Chests become Swarm Chests</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>The number of minions that can be attached to Horde Rooms is increased by 3</p>
+<p>Invaders constantly have the eerie feeling of being watched</p>
+<p>All minions with Basic Attacks that have the <span class="element">Wood</span> sub-type gain the <span class="debuff">Weakness</span> and <span class="debuff">Armor Break</span> debuffs. If removed, these debuffs are immediately reapplied</p></td>
+<td><span class="stat">+3 MRT</span><br><span class="trait">Low-Light Vision</span><br>Contractee counts as a <a class="family" href="Families.html#land_arthropodes">Land-Based Arthropod</a> while in the dungeon</td></tr>
+
+<tr><td><span class="stat">+2 CBT</span><br><span class="stat">+2 MRT</span><br><span class="trait">Sticky</span><br><span class="trait">Shed Skin</span></td></tr>
+<tr><td><span class="stat">+2 MP</span><br><span class="stat">+2 DCBT</span><br><span class="trait">Hyper-Awareness</span><br>either Butterfly Wings or Scorpion Tail<br>???</td></tr>
+
+
+<tr><td colspan="3"><details><summary>Land-Based Arthropod Rooms:</summary>
+<div class="rooms">
+
+<div class="leftcol"><table><tr class="roomholder"><td>Hollow Log</td><td>Cost: 10 Mana and 5 Essence</td><td>Upkeep: 0 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+An old rotting hollow log big enough to walk through</td></tr><tr><td colspan="3">
+<p>Special: Reduces total upkeep of the floor by 4, plus 1 for every Swarm Sigil on the floor (To a maximum of -14 with ten Swarm Sigils)</p>
+<p>Restrictions: Land-Based Arthropod Biome only. Limit of 1 per floor</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Bug Hut</td><td>Cost: 10 Mana and 4 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A stack of log cobbled together that vaguely resembles a house</td></tr><tr><td colspan="3">
+<p>Special: Reduces the Respawn Cost of all <a class="family" href="Families.html#land_arthropods">Land-Based Arthropod</a> minions on this floor by 2. For every two placed, both <a class="character" href="Characters.html#Naru_Osaka">Naru</a> and the Linked Contractee gain <span class="stat">+1 ING</span></p>
+<p>Restrictions: Land-Based Arthropod Biome only. Limit of 4 per floor</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Hive Temple</td><td>Cost: 12 Mana and 5 Essence</td><td>Upkeep: 4 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A large sphere of honeycomb suspended in the air by four columns of wasp paper</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Lesser Wasp, Lesser Bee and all creatures that evolve from them</p>
+<p>Bait: Inside the temple are 3 golden orbs on pedestals. As a combat action, a creature can spend <span class="stat">1 MP</span> to attempt to activate one of these orbs. This requires a successful DC <span class="stat">8 LRN</span> check. A successful activation summons 3 <span class="familiar">Lesser Wasps</span> and/or <span class="familiar">Lesser Bees</span> (Requires <span class="familiar">Lesser Bee</span> to be unlocked) at no cost to the dungeon. If all of these summoned minions are defeated before all 3 orbs are activated, any active orbs are deactivated. If all 3 orbs are successfully activated, intelligent creatures in this room are granted knowledge of the <span class="spell">Honeycomb Shield</span> spell after all summoned minions are defeated</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Swarm Temple</td><td>Cost: 14 Mana and 6 Essence</td><td>Upkeep:4  Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A glowing red pit under a worn red roof bearing a carving of a locust</td></tr><tr><td colspan="3">
+<p>Bait: At the bottom of the (shallow) pit there is a red orb embedded in the ground. An Invader can spend <span class="stat">1 MP</span> in order to activate the orb. When activated, a random Horde Queen on this floor becomes able to use the <span class="spell">Red Locust Swarm</span> spell for one fight (The spell costs <span class="stat">2 MP</span> when used by the Queen instead of its normal cost and only lasts a maximum of 1 full round.). When that Queen is defeated, the creatures who beat it can return to this temple in order to gain knowledge of the <span class="spell">Red Locust Swarm</span> spell</p>
+<p>Restrictions: Land-Based Arthropod Biome only</p>
+</td></tr></table></div>
+
+
+<div class="leftcol"><table><tr class="roomholder"><td>Rope Course</td><td>Cost: 7 Mana and 3 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A woven jungle gym of wooden platforms and thick ropes</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Jumping Spiders and most creatures that evolve from them. The linked Contractee and creatures from the Jumping Spider tree may train here to gain the <span class="buff">Agility</span> buff for a week</p>
+<p>Bait: 1 Common Swarm Chest at the end of the rope course</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Pile of Dolls</td><td>Cost: 5 Mana and 2 Essence</td><td>Upkeep: 1 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A massive pile of dirt, grime, dead leaves, and broken decaying dolls</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Lesser Earwigs and all creatures that evolve from them. Creatures from the Lesser Earwig tree gain <span class="stat">+6 ING</span> in this room</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Broken Jar</td><td>Cost: 8 Mana and 3 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A giant glass jar shattered into multiple pieces</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Dim Fireflies and all creatures that evolve from them. Any <span class="element">Light</span> attack or effect that applies <span class="stack">Blind</span> stacks applies an additional stack in this room</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Lair of Detritus</td><td>Cost: 6 Mana and 2 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A depression in the ground containing a dark dirt cave</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Hunting Spiders and most creatures that evolve from them. Creatures from the Hunting Spider tree gain <span class="stat">+6 ING</span> in this room</p>
+<p>Bait: 1 Common Swarm Chest inside the lair</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Toy Plane Graveyard</td><td>Cost: 9 Mana and 3 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A collection of overgrown and faded toy planes the size of older children</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Sacrificial Mayflies and all creatures that evolve from them. If a Sacrificial Mayfly is eaten here, it gives an additional <span class="stat">+2 OCBT</span> to the consuming predator</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Rotting Violin</td><td>Cost: 8 Mana and 3 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+An enormous violin with one side crumbling away</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Noisy Crickets and all creatures that evolve from them. Creatures with <span class="element">Sound</span> basic attacks gain <span class="stat">+3 OCBT</span> while in this room</p>
+<p>Bait: 1 Common Swarm Chest inside the violin</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Old Stump</td><td>Cost: 7 Mana and 3 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A simple stump big enough to lay down on</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Black Beetles and most creatures that evolve from them. The linked Contractee and creatures from the Black Beetle tree may rest here to gain the <span class="buff">Channel</span> buff for a week</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Mess Pit</td><td>Cost: 6 Mana and 2 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A big pile of compost, trash, and other unmentionable things</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Lesser Cockroaches, Buzzing Flies, and all creatures that evolve from them. Provides unlimited food for scavengers and detrivores</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Abandoned Sandbox</td><td>Cost: 7 Mana and 2 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A large sandbox cracking and leaking at the seams</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Pseudoscorpions, Lesser Centipedes, Lesser Ant-Lions and most creatures that evolve from them. The <span class="trait">Digger</span> trait can be used extremely easily here</p>
+<p>Bait: 1 Uncommon Swarm Chest buried in the sandbox</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Stagnant Pond</td><td>Cost: 6 Mana and 1 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A murky pond full of still water</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Dragonfly Larva, Lesser Mosquitoes and most creatures that evolve from them. Provides freshwater</p>
+<p>Bait: 1 Common Swarm Chest at the bottom of the pond</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Anthill</td><td>Cost: 9 Mana and 3 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+An enormous gritty anthill</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Black Ants and most creatures that evolve from them. The <span class="stat">OCBT</span> bonus from the Swarm ability of creatures in the Black Ant tree is doubled in this room</p>
+<p>Bait: 1 Uncommon Swarm Chest hidden somewhere in the tunnels of the anthill</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Toy Crane</td><td>Cost: 8 Mana and 2 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A faded yellow plastic construction crane</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Sturdy Pillbugs and all creatures that evolve from them. Creatures from the Sturdy Pillbug tree can attach themselves to the crane in order to be able to attack. They use their <span class="stat">DCBT</span> as their <span class="stat">OCBT</span> when doing this</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Tree of Potential</td><td>Cost: 10 Mana and 4 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A shining tree with iridescent glowing flowers</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Hungry Caterpillars and all creatures that evolve from them. If a creature has an Elemental Infusion, this room acts as a Mutation Source for the Elemental Mutation that Infusion corresponds to</p>
+<p>Restrictions: Limit 1 per floor. Limit 3 in the whole dungeon</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Mound of Sticks</td><td>Cost: 9 Mana and 2 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A large multilayered pile of dry sticks</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Stealthy Walking Stick and all creatures that evolve from them. While in this room, the <span class="trait">Concealed</span> trait lasts for two rounds instead of one</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Abandoned Model Train</td><td>Cost: 8 Mana and 3 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A faded toy steam engine, coal car, box car, and caboose overgrown with grass and vines</td></tr><tr><td colspan="3">
+<p>Special: All <a class="family" href="Families.html#land_arthropods">Land-Based Arthropods</a> on this floor that are connected to Sigils gain <span class="stat">+2 ING</span> and start combat with 5 <span class="stack">Charge</span> stacks</p>
+<p>Bait: 1 Common Swarm Chest in the caboose</p>
+<p>Restrictions: Limit of 1 per floor</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Old Jousting Playset</td><td>Cost: 7 Mana and 3 Essence</td><td>Upkeep:  Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+An abandoned set of toys including faded model horses, broken plastic lances, and a crumbling fence</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Lesser Assassin Bugs and most creatures that evolve from them. The linked Contractee and creatures from the Lesser Assassin Bug tree can train here to gain the <span class="buff">Glory</span> buff for a week</p>
+</td></tr></table></div>
+
+</div>
+</details></td></tr>
+</table>
+
+<table class="biome" id="large_reptiles"><tr><td colspan="3"><h2>Large Reptiles Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">A shady forest of mangroves upon a foundation of packed sand</td></tr>
+<tr><td colspan="3">Cost: 16 Essence</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>The Upkeep of all <a class="family" href="Families.html#large-reptiles">Large Reptile</a> minions and rooms is reduced by 1</p>
+<p>The Upkeep of all non-Large Reptile minions and rooms is increased by 1</p>
+<p>The <span class="stat">CBT</span> of all <a class="family" href="Families.html#large_reptiles">Large Reptiles</a> is increased by 2</p>
+<p>All Standard Chests become Scale Chests</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>All depressions and pits are filled with brackish water</p>
+<p>Totem effects are doubled</p>
+<p>The Respawn Speed of all minions with <span class="element">Acid</span> basic attacks is increased by 2 days and cannot be reduced</p></td>
+<td><span class="stat">+2 STW</span><br><span class="trait">Reinforcement</span><br>Contractee counts as a <a class="family" href="Families.html#large_reptiles">Large Reptile</a> while in the dungeon</td></tr>
+<tr>
+<td><span class="stat">+1 STW</span><br><span class="stat">+3 CBT</span><br><span class="trait">Scales</span><br><span class="trait">Preparation (Barrier)</span></td></tr>
+<tr>
+
+<td><span class="stat">+2 MW</span><br><span class="stat">+1 CBT</span><br><span class="trait">Anti-Cascade</span><br>either Were-Crocodile or Turtle's Blessing<br>???</td>
+</tr>
+</table>
+
+<table class="biome" id="small_mammals"><tr><td colspan="3"><h2>Small Mammals Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">An underground burrow made of packed dirt</td></tr>
+<tr><td colspan="3">Cost: 15 Essence</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>The Respawn Cost of all <a class="family" href="Families.html#small_mammals">Small Mammals</a> is reduced by 4 (To a minimum of 0)</p>
+<p>Mechanical and Arcane traps can still activate even if covered in dirt</p>
+<p>The entire floor, including walls and ceiling, is considered dirt that <span class="trait">Diggers</span> can use</p>
+<p>All Standard Chests become Plague Chests</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>Dirt is easier to dig and somehow more stable</p>
+<p><span class="element">Earth</span> spells and attacks that originate from the ground can permanently reshape parts of rooms</p>
+<p>The <span class="stat">CBT</span> of all Birds is reduced by 8 and cannot be increased. Birds that have the <span class="trait">Digger</span> trait ignore this</p></td>
+<td><span class="stat">+2 ING</span><br><span class="trait">Scurry</span><br>Contractee counts as a <a class="family" href="Families.html#small_mammals">Small Mammal</a> while in the dungeon</td></tr>
+
+<tr><td><span class="stat">+3 ING</span><br><span class="stat">+1 CBT</span><br><span class="trait">Compression</span><br>Distractive</td></tr>
+
+<tr><td><span class="stat">+2 MP</span><br><span class="stat">+1 CBT</span><br>Withering Touch<br>either Wererat or Blood of Caerbannog<br>???</td></tr>
+</table>
+
+<table class="biome" id="small_reptiles"><tr><td colspan="3"><h2>Small Reptiles Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">A sandy gray shale cave with hot desert sunlight peaking in through cracks</td></tr>
+<tr><td colspan="3">Cost: 20 Essence</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>The upkeep of all <a class="family" href="Families.html#small_reptiles">Small Reptiles</a> minions and rooms is reduced by 1</p>
+<p>The upkeep of all non-reptile rooms is increased by 1</p>
+<p>The <span class="stat">MP</span> of all <a class="family" href="Families.html#small_mammals">Small Reptiles</a> is increased by 3</p>
+<p>Mechanical traps are harder for Invaders to notice</p>
+<p>All Standard Chests become Scale Chests</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>Patterns resembling Nazca lines cover the walls and floor. These patterns glow red near the Invader that would be most vulnerable to whatever is on that floor</p>
+<p>The maximum number of Sigils a floor can have is increased by 4</p>
+<p>All minions with Basic Attacks that have the <span class="element">Cold</span> sub-type gain the <span class="debuff">Weakness</span> and <span class="debuff">Armor Break</span> debuffs. If removed, these debuffs are immediately reapplied</p></td>
+<td><span class="stat">+2 STW</span><br><span class="trait">Sticky</span><br>Contractee counts as a <a class="family" href="Families.html#small_reptiles">Small Reptile</a> while in the dungeon</td></tr>
+
+<tr><td><span class="stat">+1 STW</span><br><span class="stat">+3 CBT</span><br><span class="trait">Scales</span><br><span class="trait">Heat Senses</span></td></tr>
+
+<tr><td><span class="stat">+1 MP</span><br><span class="stat">+1 MW</span><br><span class="stat">+1 CBT</span><br><span class="trait">Heat Absorption</span><br>either Lamia or Lizard Warrior<br>???</td></tr>
+</table>
+
+<table class="biome" id="trees"><tr><td colspan="3"><h2>Tree Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">A wide open forest secluded in the depths of an old steep crater</td></tr>
+<tr><td colspan="3">Cost: 17 Essence</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>The upkeep of all <a class="family" href="Families.html#trees">Tree</a> minions and Rooms is reduced by 1</p>
+<p>The upkeep of all non-Tree minions and Rooms is increased by 1</p>
+<p>The <span class="stat">DCBT</span> of all <a class="family" href="Families.html#trees">Trees</a> is increased by 4</p>
+<p>The Respawn Cost of all <a class="family" href="Families.html#trees">Trees</a> is reduced by 2</p>
+<p>Provides unlimited food for Herbivores</p>
+<p>Ceiling and inner walls removed (Open Sky and Open Floor)</p>
+<p>All Standard Chests become Forest Chests</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>The <span class="stat">DCBT</span> of all Totems is increased by 12</p>
+<p>A thick layer of leaves covers all walkways, severely hampering Invaders' stealth</p>
+<p>The Respawn Speed of all Undead minions is increased by 1 day and cannot be reduced</p></td>
+<td><span class="stat">+2 SRT</span><br><span class="trait">Wood Immunity</span><br>Contractee counts as a <a class="family" href="Families.html#trees">Tree</a> while in the dungeon</td></tr>
+
+<tr><td><span class="stat">+1 SRT</span><br><span class="stat">+5 DCBT</span><br><span class="trait">Solar Photosynthesis</span><br><span class="trait">Reinforcement</span></td></tr>
+
+<tr><td><span class="stat">+2 MW</span><br><span class="stat">+2 DCBT</span><br><span class="trait">Water Absorption</span><br>either Dryad or Oaken Skin<br>???</td></tr>
+
+
+<tr><td colspan="3"><details><summary>Tree Rooms:</summary>
+<div class="rooms">
+
+<div class="leftcol"><table><tr class="roomholder"><td>Cabin in the Woods</td><td>Cost: 14 Mana and 8 Essence</td><td>Upkeep: 10 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A shadowed cabin surrounded by scorched black grass with a single candle seen flickering through a mold-stained window</td></tr><tr><td colspan="3">
+<p>Special: Spawns the Axman of Inevitability unique Nightmare if any of the following conditions are met:<br>1. At least half of the <a class="family" href="Families.html#trees">Tree minions</a> on this floor are defeated within 24 hours<br>2. The Tallest Tree in the Forest is dealt enough damage to be cut down<br>3. The chest in this room is looted</p>
+<p>Bait: 1 Rare Standard Chest</p>
+<p>Restrictions: Tree Biome only. Limit of 1 in the Dungeon</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Druid's Circle</td><td>Cost: 12 Mana and 6 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A ring of small cylindrical stones around a flat irregular stone slab with markings of blood</td></tr><tr><td colspan="3">
+<p>Special: All <a class="family" href="Familes.html#trees">Trees</a> and minions with Druidic Mutations within Line of Sight range of this room gain <span class="stat">+3 DCBT</span></p>
+<p>Bait: Rituals performed here that involve plants or wildlife in some way gain a +10 bonus</p>
+<p>Restrictions: Tree or ??? Biomes only. Limit of 1 per floor</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Fire Rescue Station</td><td>Cost: 9 Mana and 3 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A red brick building with large tanks of water connected to it</td></tr><tr><td colspan="3">
+<p>Special: All <a class="family" href="Families.html#trees">Trees</a> on this floor that are connected to Sigils have their Respawn Cost reduced by 3. Additionally, those Trees also remove <span class="debuff">Burn</span> and <span class="debuff">Shock</span> debuffs after the first time they receive damage from them</p>
+<p>Bait: 1 Common Forest Chest</p>
+<p>Restrictions: Limit 1 per floor</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Tallest Tree in the Forest</td><td>Cost: 10 Mana and 6 Essence</td><td>Upkeep: 4 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A tall strong tree reaching up to the edge of the sky</td></tr><tr><td colspan="3">
+<p>Special: All <a class="family" href="Families.html#trees">Trees</a> on this floor gain the <span class="buff">Might</span> and <span class="buff">Sorcery</span> buffs. If these are removed, they are immediately reapplied. Additionally, all <a class="family" href="Families.html#trees">Trees</a> connected to Sigils on this floor have their Upkeep reduced by a number equal to the Evolution Stage of the highest evolved Tree on this floor</p>
+<p>Bait: 1 Uncommon Standard chest inside the tree. The Tree has a health track of 3 Lethal Wounds and a <span class="stat">16 DCBT</span>. If it is felled, the <a class="family" href="Families.html#trees">Tree minions</a> lose the above buffs and cannot gain them again until the Tallest Tree rebuilds itself 24 hours later</p>
+<p>Restrictions: Tree, Wonderous Plants, and Elemental Wood Biomes only. Limit of 1 per floor</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Acorn Hill</td><td>Cost: 9 Mana and 3 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A small hill dotted with large stone acorns</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Sturdy Oaks and all creatures that evolve from them. Creatures from the Sturdy Oak evolution tree in this room have the range of their Oaken Gift ability changed to Line of Sight</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Sunset Shrine</td><td>Cost: 5 Mana and 2 Essence</td><td>Upkeep: 1 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A shrine painted in various shades of red and orange</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Lesser Zelkovas and most creatures that evolve from them</p>
+<p>Bait: 1 Uncommon Forest Chest. If the chest is opened, all Invaders in the room gain the <span class="debuff">Armor Break</span> debuff</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Cherry Shrine</td><td>Cost: 5 Mana and 2 Essence</td><td>Upkeep: 1 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+An unassuming shrine bordered by small sakura trees</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Peaceful Cherries and all creatures that evolve from them</p>
+<p>Bait: 1 Uncommon Forest Chest. If the chest is opened, all Invaders in the room gain the <span class="debuff">Doom</span> debuff</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Windswept Hovel</td><td>Cost: 7 Mana and 2 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+An old empty hut where wind constantly blows through</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Breezy Ginkgoes and most creatures that evolve from them. Creatures with <span class="element">Air</span> basic attacks can spend <span class="stat">1 MP</span> to gain the <span class="buff">Sidekick</span> buff in this room</p>
+<p>Bait: 1 Common Forest Chest</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Crimson Outpost</td><td>Cost: 8 Mana and 3 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A small fort made of deep red logs</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Lobbing Yew, Lobbing Citrus, and most creatures that evolve from them. Rooted minions inside this room gain 1 stack of <span class="stack">Predation</span> for every evolution level they have</p>
+<p>Bait: 1 Common Forest Chest</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Christmas House</td><td>Cost: 8 Mana and 3 Essence</td><td>Upkeep:  Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A cheery log house with a shining Christmas tree in the window</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Lesser Firs and all creatures that evolve from them. When creatures in this room from the Lesser Fir evolution tree damage other creatures, they may give the target a random buff in order to deal them an additional moderate damage</p>
+<p>Bait: 1 Common Gift Chest</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Savannah Gate</td><td>Cost: 5 Mana and 1 Essence</td><td>Upkeep: 1 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A gate made from baobab wood with yellow savannah grass all around</td></tr><tr><td colspan="3">
+<p>Special: Evolutionary Room for Lesser Baobab and all creatures that evolve from them. The gate prevents creatures from moving through it, though it is possible to go around or over the gate. At the start of each day, a savannah key is given to a random <a class="family" href="Families.html#trees">tree minion</a> on the floor, with priority given to the highest evolved Baobab. A savannah key unlocks this gate. If the minion with such a key cannot be reached by Invaders, the gate is automatically unlocked</p>
+</td></tr></table></div>
+
+
+</div></details></td></tr>
+</table>
+
+<table class="biome" id="heat"><tr><td colspan="3"><h2>Heat Elemental Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">The inside of a terracotta kiln</td></tr>
+<tr><td colspan="3">Cost: 20 Essence</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>The Upkeep and Respawn costs of minions with <span class="element">Heat</span> basic attacks is reduced by 2 each</p>
+<p>The Upkeep and Respawn costs of minions with <span class="element">Cold</span> basic attacks is increased by 3 each and cannot be reduced</p>
+<p>All creatures take 1 minor damage every 5 minutes. The damage is a <span class="element">Heat</span> effect. Creatures with <span class="trait">Heat Resistance</span> are unaffected by this</p>
+<p>All Standard chests become Furnace Chests</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>The heated air causes Invaders to see frequent mirages</p>
+<p>Whenever a creature uses a <span class="element">Cold</span> attack, it rolls a critical fail die on 1-5 instead of just 1 during that attack</p></td>
+<td><span class="stat">+2 STW</span><br><span class="trait">Heat Absorption</span><br><span class="trait">Cold Vulnerability</span><br>Contractee gains the Scalding Infusion</td></tr>
+<tr><td><span class="stat">+2 STW</span><br><span class="stat">+2 CBT</span><br><span class="trait">Heat Senses</span><br><span class="trait">Critical Heat</span></td></tr>
+
+<tr><td><span class="stat">+2 MW</span><br><span class="stat">+2 CBT</span><br><span class="trait">Heat Affinity</span><br>Either Desert Warden or Seeping Heat<br>???</td></tr>
+
+<tr><td colspan="3"><details><summary>Heat Elemental Rooms:</summary>
+<div class="rooms">
+
+<div class="leftcol"><table><tr class="roomholder"><td>Ancient Furnace</td><td>Cost: 8 Mana and 2 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A black forge with glowing orange runes</td></tr><tr><td colspan="3">
+<p>Bait: Crafting checks made at an Ancient Furnace involving Ore or Ingots gain a +1 bonus for each ore or ingot used</p>
+<p>Restrictions: Elemental Heat or Sobek Oasis Biomes only</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Ancient Anvil</td><td>Cost: 8 Mana and 3 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A large anvil with a glowing orange diagram</td></tr><tr><td colspan="3">
+<p>Bait: The anvil can combine up to three Ores or up to three Ingots into a single crafting material. It takes 5 minutes and repeated hammering for this process to complete</p>
+<p>Restrictions: Elemental Heat or Sobek Oasis Biomes only</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Mirage Tower</td><td>Cost: 11 Mana and 5 Essence</td><td>Upkeep: 4 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A sandstone tower that seems to shimmer in and out of existence</td></tr><tr><td colspan="3">
+<p>Special: Whenever a chest on this floor is opened, all Heat minions on this floor connected to sigils gain 1 <span class="stack">Mirage</span> stack for every rarity tier of the opened chest</p>
+<p>Bait: 1 Common Standard Chest</p>
+<p>Restrictions: Elemental Heat Biome only. Limit of 1 per floor</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Brick Supply</td><td>Cost: 12 Mana and 4 Essence</td><td>Upkeep: 4 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+Five tall organized piles of bricks</td></tr><tr><td colspan="3">
+<p>Special: Reduces the Upkeep of Heat minions on this floor by 1 for every 5 chests on the floor, rounded up, to a maximum of 6 with 30 chests</p>
+<p>Bait: </p>
+<p>Restrictions: Elemental Heat Biome only. Limit of 1 per floor</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Brick Shaping Zone</td><td>Cost: 12 Mana and 4 Essence</td><td>Upkeep: 4 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A pit of clay with many brick molds around it</td></tr><tr><td colspan="3">
+<p>Special: Reduces the Respawn Cost of Heat minions on this floor by 1 for every 3 chests on the floor, rounded up, to a maximum of 10 with 30 chests</p>
+<p>Restrictions: Elemental Heat Biome only. Limit of 1 per floor</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Brick Oven</td><td>Cost: 10 Mana and 3 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+An angled chamber with a furnace in the center</td></tr><tr><td colspan="3">
+<p>Special: In this room, the frequency of the Heat Elemental Biome's environmental damage is every two rounds instead of every 5 minutes</p>
+<p>Bait: 1 Common Standard Chest</p>
+<p>Restrictions: Elemental Heat Biome only. Limit of 3 per floor</p>
+</td></tr></table></div>
+
+</div></details></td></tr>
+
+</table>
+
+<table class="biome" id="heart"><tr><td colspan="3"><h2>Heart Elemental Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">A cavern deep in the Earth seemingly made from solid magma</td></tr>
+<tr><td colspan="3">Cost: 25 Essence<br>This Biome can only be placed in the dungeon once</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>All minions not attached to Horde or Boss Rooms are dismissed at the end of the day</p>
+<p>The Respawn Cost of all minions is divided by 2 (Round up)</p>
+<p>Hot liquid magma seeps and drips from cracks in the ceiling</p>
+<p>All Standard chests become Hearth Chests</p>
+<h3>Special</h3><p>Placing this Biome counts as <span class="character">Naru</span> contracting with the <span class="heart">Heart of the Earth</span> and agreeing to become its Master and Senshi</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>All depressions and pits are filled with molten lava</p>
+<p>All minions and Contractees gain <span class="trait">Heat Immunity</span> and <span class='trait'>Earth Immunity</span> while in this area</p>
+<p>The upkeep of all rooms is reduced by 1</p>
+<h3>Global</h3><p>Mana Accumulation is increased by 4 times the number of floors you have</p></td>
+<td><span class="stat">+2 STW</span><br><span class="trait">Heat Absorption</span><br>Contractee counts as any and all creature types that would be beneficial while in the dungeon</td></tr>
+<tr><td><span class="stat">+3 CBT</span><br><span class="trait">Earth Absorption</span><br><span class="trait">Preparation (Invigorate)</span><br><span class="trait">Mana Regeneration 2</span></td></tr>
+
+<tr>
+<td><span class="stat">+1 MP</span><br><span class="stat">+1 MW</span><br><span class="stat">+2 STW</span><br><span class="trait">Heart Affinity</span><br>Either Blazing Heart or Dynamo Aura<br>???</td></tr>
+
+</table>
+
+<table class="biome" id="light"><tr><td colspan="3"><h2>Light Elemental Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">A bright temple of radiant crystal</td></tr>
+<tr><td colspan="3">Cost: 20 Essence</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>The Upkeep and Respawn costs of minions with <span class="element">Light</span> basic attacks is reduced by 2 each</p>
+<p>The Upkeep and Respawn costs of minions with <span class="element">Darkness</span> basic attacks is increased by 3 each and cannot be reduced</p>
+<p><span class="stack">Blind</span> stacks must be triggered twice before they remove themselves. This is a <span class="element">Light</span> effect. Creatures with <span class="trait">Light Resistance</span> are unaffected by this</p>
+<p>All Standard Chests become Shine Chests</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>Changes the Light level to Bright</p>
+<p>Whenever a creature uses a <span class="element">Darkness</span> attack, it gains either the <span class="debuff">Doom</span>, <span class="debuff">Weakness</span>, or <span class="debuff">Dread</span> debuff</p></td>
+<td><span class="stat">+2 DPL</span><br><span class="trait">Light Absorption</span><br><span class="trait">Darkness Vulnerability</span><br>Contractee gains the Beaming Infusion</td></tr>
+
+<tr><td><span class="stat">+2 DPL</span><br><span class="stat">+2 CBT</span><br><span class="trait">Cleanse</span><br><span class="trait">Critical Light</span></td></tr>
+
+<tr><td><span class="stat">+2 MP</span><br><span class="stat">+2 CBT</span><br><span class="trait">Light Affinity</span><br>either Light Warrior or Power of The Sun<br>???</td></tr>
+
+<tr><td colspan="3"><details><summary>Light Elemental Rooms:</summary>
+<div class="rooms">
+
+<div class="leftcol"><table><tr class="roomholder"><td>Sunrise Temple</td><td>Cost: 12 Mana and 4 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A white crystal dome with a slit down the middle that follows the sun</td></tr><tr><td colspan="3">
+<p>Bait: A creature who gets to this temple early enough to watch the full sunrise gains knowledge of the "First Light" spell</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Celestial Temple</td><td>Cost: 12 Mana and 4 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A large dark dome with a spherical diamond projecting the night sky onto it</td></tr><tr><td colspan="3">
+<p>Bait: Every day, the diamond highlights a different celestial body in the planetarium dome above it. A creature who identifies the highlighted object (Requiring a DC 30 <span class='stat'>LRN</span> check, with circumstance bonuses depending on how familiar the creature is with the celestial body) gains knowledge of the "Planetshine" spell. A creature can only attempt this challenged once per day</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Celestial Mirrors</td><td>Cost: 9 Mana and 3 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+Two polished quartz mirrors on either side reflect the eternities between them</td></tr><tr><td colspan="3">
+<p>Special: All Light minions on this floor connected to sigils gain <span class='stat'>+2 SRT</span> for each different Temple on this floor, to a maximum of <span class='stat'>+24 SRT</span> at 12 Temples</p>
+<p>Restrictions: Light Elemental Biome only. Limit of 1 per floor</p>
+<p>Restrictions: There can no more than two openings into this room. If this room has two openings, they must be on parallel sides</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Radiant Sundial</td><td>Cost: 8 Mana and 5 Essence</td><td>Upkeep: 5 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A large topaz sundial glowing with solar energy</td></tr><tr><td colspan="3">
+<p>Special: Reduces the Upkeep of Evolution Rooms on the floor by 2 and the Upkeep of Temples on the floor by 3. (If a room can be considered both, only the higher Upkeep reduction applies)</p>
+<p>Bait: 1 Common Standard Chest</p>
+<p>Restrictions: Light Elemental Biome only. Limit of 1 per floor</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Crystal Throne</td><td>Cost: 5 Mana and 4 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A large white throne of sharp jagged quartz</td></tr><tr><td colspan="3">
+<p>Special: Allows Bosses and Horde Queens on this floor to cast spells from Temples on this floor. Temple spells that cost Well can be cast by them for twice the spells's Well cost in Pool</p>
+<p>Bait: 1 Common Standard Chest</p>
+<p>Restrictions: Elemental Light and Elemental Heart Biomes only. Limit of 1 per floor</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Crystal Waterfall</td><td>Cost: 10 Mana and 3 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+Perfectly clear water cascading down a multitude of many different precious minerals</td></tr><tr><td colspan="3">
+<p>Special: All Light minions on this floor connected to sigils gain <span class='trait'>Mana Regeneration 1</span> for each different Temple on this floor, to a maximum of <span class='trait'>Mana Regeneration 12</span> at 12 Temples</p>
+<p>Restrictions: Light Elemental Biome only. Limit of 1 per floor</p>
+</td></tr></table></div>
+
+</div>
+</details>
+</td></tr>
+</table>
+
+<table class="biome" id="water"><tr><td colspan="3"><h2>Water Elemental Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">An ancient coral temple on an island covered in storms</td></tr>
+<tr><td colspan="3">Cost: 20 Essence</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>The Upkeep and Respawn costs of minions with <span class="element">Water</span> basic attacks is reduced by 2 each</p>
+<p>The Upkeep and Respawn costs of minions with <span class="element">Fire</span> basic attacks is increased by 3 each and cannot be reduced</p>
+<p>Minions and contractees gain 6 stacks of <span class="stack">Aura</span> every time they make a <span class="element">Water</span> attack. This is a <span class="element">Magical (Protection, Water)</span> effect</p>
+<p>Ceiling Removed (Open Sky)</p>
+<p>All Standard Chests become Storm Chests</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>A perpetual downpour of rain constantly falls in rooms that are open to the sky, impairing sight-based vision and dowsing all mundane fire. Minions and Contractees with <span class="element">Water</span> basic attacks are unimpaired by this</p>
+<p><span class="element">Fire</span> attacks and effects take a -6 penalty to any rolls and cannot last more than 1 round</p></td>
+<td><span class="stat">+2 ING</span><br><span class="trait">Water Absorption</span><br><span class="trait">Electricity Vulnerability</span><br>Contractee gains the Drenching Infusion</td></tr>
+<tr><td><span class="stat">+2 ING</span><br><span class="stat">+2 CBT</span><br><span class="trait">Water Breathing</span><br><span class="trait">Critical Water</span></td></tr>
+<tr><td><span class="stat">+1 MP</span><br><span class="stat">+1 MW</span><br><span class="stat">+2 CBT</span><br><span class="trait">Water Affinity</span><br>either Warrior of Atlantis or Hurricane Walker<br>???</td></tr>
+</table>
+
+<table class="biome" id="wood"><tr><td colspan="3"><h2>Wood Elemental Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">Twisting tunnels of roots overgrown by various kinds of greenery</td></tr>
+<tr><td colspan="3">Cost: 18 Essence</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>The Upkeep and Respawn costs of minions with <span class="element">Wood</span> basic attacks is reduced by 2 each</p>
+<p>The Upkeep and Respawn costs of minions with <span class="element">Metal</span> basic attacks is increased by 3 each and cannot be reduced</p>
+<p>Minions and contractees Heal 1 moderate damage whenever one of their <span class="element">Wood</span> attacks damages another creature. This is a <span class="element">Magical (Healing, Wood)</span> effect</p>
+<p>All Standard Chests become Wood Chests</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>Wild overgrowth spreads throughout the floor, providing unlimited food for Herbivores</p>
+<p>Whenever a minion or contractee uses a <span class="element">Wood</span> attack, it gains 2 stacks of <span class="stack">Courage</span></p>
+<p>Whenever a creature uses a <span class="element">Metal</span> attack, it gains 10 Stacks of <span class="stack">Wither</span></p></td>
+<td><span class="stat">+2 SRT</span><br><span class="trait">Wood Absorption</span><br><span class="trait">Metal Vulnerability</span><br>Contractee gains the Sprouting Infusion</td></tr>
+<tr><td><span class="stat">+2 SRT</span><br><span class="stat">+2 CBT</span><br><span class="trait">Water from the Well</span><br><span class="trait">Critical Wood</span></td></tr>
+<tr><td><span class="stat">+1 MP</span><br><span class="stat">+1 MW</span><br><span class="stat">+2 CBT</span><br><span class="trait">Wood Affinity</span><br>either Forest Keeper or Towering Roots<br>???</td></tr>
+</table>
+
+<table class="biome" id="councilor"><tr><td colspan="3"><h2>The Councilor Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">Smooth blue stone walls, torches with transparent blue flame, and a carpeted blue velvet floor</td></tr>
+<tr><td colspan="3">Cost: 25 Essence</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>All minions not attached to Horde or Boss Rooms are dismissed at the end of the day</p>
+<p>The Initial Costs and Evolution Costs of all minions are divided by 4 (Round up)</p>
+<p>The floor is treated as if it were part of the Cognitive Realm</p>
+<p>All Standard chests become Mind Chests</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>All creatures (Including Invaders) gain <span class="trait">Horror Resistance</span> while in this area</p>
+<p>Changes the color of all light sources, including those held by Invaders, to a hazy velvet blue</p>
+<h3>Global</h3>
+<p>Maximum Mana is increased by 5 times the number of floors you have</p>
+<p>Mana Accumulation is increased by 1 times the number of floors you have</p></td>
+<td><span class="stat">+3 SRT</span><br><span class="trait">Mind Palace</span><br>Contractee can still bond with a Persona despite having their Cognitive Soul in Naru's nexus</td></tr>
+<tr><td><span class="stat">+2 LRN</span><br><span class="stat">+2 STW</span><br>Calming Presence<br><span class="trait">Fast Healing (Moderate Sanity)</span></td></tr>
+<tr>
+<td><span class="stat">+1 MP</span><br><span class="stat">+1 MW</span><br><span class="stat">+2 SRT</span><br><span class="trait">Healing Affinity</span><br>Either Cognitive Door or Councilor's Domain<br>???</td></tr>
+
+<tr><td colspan="3"><details><summary>Councilor Rooms:</summary>
+<div class="rooms">
+
+<div class="leftcol"><table><tr class="roomholder"><td>Temple of Calm</td><td>Cost: 10 Mana and 4 Essence</td><td>Upkeep: 3 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A blue glass gazebo with a circular carpet</td></tr><tr><td colspan="3">
+<p>Bait: A creature can meditate here for two uninterrupted hours in order to gain knowledge of the <span class="spell">Moment of Respite</span> spell</p>
+<p>Restrictions: Councilor Biome only</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Self-Playing Piano</td><td>Cost: 5 mana and 1 Essence</td><td>Upkeep: 1 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A classic open black piano with keys that play themselves</td></tr><tr><td colspan="3">
+<p>Special: Fills the floor with ambient music. Any creature that listens to it heals 1 minor trauma every 5 minutes</p>
+<p>Restrictions: Councilor Biome only. Limit of 1 per floor</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Shadow Circle</td><td>Cost: 14 Mana and 7 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A stack of broken TVs sitting atop a blackened area of carpet</td></tr><tr><td colspan="3">
+<p>Bait: Rituals performed here to summon Cognitive Shadows gain a +10 bonus</p>
+<p>Restrictions: Councilor Biome only</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Velvet Quarters</td><td>Cost: 5 Mana and 1 Essence</td><td>Upkeep: 1 Mana for every 2 Velvet Quarters (Rounded up)</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A small blue house with four beds, a bathroom, and storage</td></tr><tr><td colspan="3">
+<p>Special: Characters who live and sleep here temporarily gain <span class="trait">Mental Resistance</span> and <span class="trait">Emotion Resistance</span> and are no longer considered Invaders by the dungeon unless they loot a chest, kill a minion, or enter one of the two lowest floors of the dungeon. Objects stored in this room do not get eaten by the dungeon</p>
+<p>Restrictions: Councilor Biome only</p>
+</td></tr></table></div>
+
+</div></details></td></tr>
+
+</table>
+
+<table class="biome" id="sobek_oasis"><tr><td colspan="3"><h2>Sobek Oasis</h2></td></tr>
+<tr><td colspan="3" class="descr">A swamp-like tomb with walls covered in Egyptian hieroglyphs</td></tr>
+<tr><td colspan="3">Cost: 25 Essence</td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>The upkeep and respawn costs of all Reptile and Undead minions is reduced by 4</p>
+<p>Any minion on this floor that does not belong to an Undead or Reptile family will be dismissed at the end of the day</p>
+<p>All Reptile and Undead minions gain the <span class="trait">Water Breathing</span> trait and are treated as if they had the Sustained Infusion</p>
+<p>All depressions and pits are filled with fresh oasis water</p>
+<p>Unlit braziers are scattered around the floor. If lit, these burn with swampy green fire</p>
+<p>All Standard chests become Tomb Chests. The first Mythic Tomb Chest opened on this floor gives Akar's Staff of Tides</p>
+<h3>Special</h3>
+<p>If <a class="character" href="Characters.html#Necreph">Necreph the Shadow</a> is linked to this floor, then this floor can support a second linked Contractee. <a class="character" href="Characters.html#Necreph">Necreph the Shadow</a> cannot gain any attunements from this Biome</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>Reptile and Undead minions are unaffected by the negative effects of Biomes</p>
+<p>Zealots of Akar that <a class="character" href="Characters.html#Necreph">Necreph</a> has converted or bound will wander the area and harass Invaders</p>
+<p>The roll results of all <span class="element">Cold</span> or <span class="element">Life</span> attacks and effects are divided by 2</p></td>
+<td><span class="stat">+2 ING</span><br><span class="trait">Water Breathing</span><br>Contractee can gain an additional Mutation. Said Mutation must be of the Mummified type</td></tr>
+<tr><td><span class="stat">+2 ING</span><br><span class="stat">+3 CBT</span><br><span class="trait">Scales</span><br><span class="trait">Death Immunity</span></td></tr>
+<tr>
+<td><span class="stat">+1 MP</span><br><span class="stat">+1 MW</span><br><span class="stat">+2 CBT</span><br>Dooming Touch<br>either Dreams of the Oasis or Burial Aura<br>???</td></tr>
+
+<tr><td colspan="3"><details><summary>Sobek Oasis Rooms:</summary>
+<div class="rooms">
+
+<div class="leftcol"><table><tr class="roomholder"><td>Inner Tomb of Necreph</td><td>Cost: 10 Mana and 3 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A flight of stone steps leads down to an area covered by a thin layer of water. On the far side, underneath an arch of five stone sphinxes, rests an elaborate rectangular sarcophagus</td></tr><tr><td colspan="3">
+<p>Special: <a class="character" href="Characters.html#Necreph">Necreph the Shadow</a> can teleport to this room from anywhere on the planet at will</p>
+<p>Bait: 1 Rare Tomb Chest. A lever in this room drains all the water on the floor into this room</p>
+<p>Restrictions: Sobek Oasis Biome only. Limit of 1</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Albino Crocadile Lair</td><td>Cost: 15 Mana and 5 Essence</td><td>Upkeep: 4 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A network of crisscrossing passages behind a rumbling waterfall where a giant albino crocadile patrols</td></tr><tr><td colspan="3">
+<p>Special: The albino crocadile has an effective <span class="stat">CBT</span> of 20 + two times the floor depth and cannot be damaged</p>
+<p>Bait: 3 Rare Tomb Chests</p>
+<p>Restrictions: Sobek Oasis Biome only. Limit of 1. There can only be 1 opening into this room</p>
+</td></tr></table></div>
+
+<div class="leftcol"><table><tr class="roomholder"><td>Flooded Corridor</td><td>Cost: 9 Mana</td><td>Upkeep: 1 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+Stone steps descend into a flooded room</td></tr><tr><td colspan="3">
+<p>Special: This room is completely filled with water</p>
+<p>Restrictions: Sobek Oasis Biome only. Flooded Corridors cannot be adjacent to each other</p>
+</td></tr></table></div>
+<div class="rightcol"><table><tr class="roomholder"><td>Oasis Monument</td><td>Cost: 6 Mana and 2 Essence</td><td>Upkeep: 2 Mana</td></tr>
+<tr><td></td><td class="descr" colspan="2">
+A flight of steps onto a platform with two sphinxes</td></tr><tr><td colspan="3">
+<p>Special: All Undead and Reptiles on this floor that are attached to sigils start combat with 6 stacks of <span class="stack">Aura</span> and <span class="stack">Courage</span>. Additionally, for every minor damage they deal to an Invader, they gain 2 more stacks of <span class="stack">Aura</span></p>
+<p>Restrictions: Sobek Oasis Biome only. Limit of 1. There can only be 1 opening into this room</p>
+</td></tr></table></div>
+
+</div></details></td></tr>
+
+</table>
+
+<table class="biome" id="questing_forest"><tr><td colspan="3"><h2>Questing Forest Biome</h2></td></tr>
+<tr><td colspan="3" class="descr">A bright yet shadowy forest ready for honorable challengers</td></tr>
+<tr><td colspan="3">Cost: 25 Essence
+<p>There must be at least two Boss Rooms on the floor</p>
+<p>There must be no minions on the floor except those attached to Boss Rooms</p></td></tr><tr>
+<td rowspan="3"><h3>Local</h3>
+<p>All minions not attached to Boss Rooms or Forest Lairs are dismissed at the end of the day</p>
+<p>The Upkeep cost of all minions is reduced by 3</p>
+<p>Creatures feel a little braver. The effects of <span class="stack">Courage</span> stacks are doubled</p>
+<p>All Treasure Chambers contain an extra Chest</p>
+<p>Inner walls removed (Open Floor)</p>
+<p>The Stairs to the lower floor are Sealed until at least two Bosses are beaten</p>
+<p>All Standard Chests become Avalon Chests</p></td>
+<td rowspan="3"><h3>Regional</h3>
+<p>All Bosses become Wandering Bosses</p>
+<p>The number of Boss Rooms that can be placed on a floor is increased by 2</p>
+<p>All Horde rooms are replaced by Empty Rooms at the end of the day</p>
+<h3>Global</h3>
+<p>The Upkeep of all Bosses is reduced by 3</p></td>
+<td><span class="stat">+2 CBT</span><br><span class="trait">Courage Generation 2</span><br>Contractee has increased chances to grow their stats</td></tr>
+
+<tr><td><span class="stat">+2 SRT</span><br><span class="stat">+3 CBT</span><br><span class="trait">Hope-Bringer</span><br><span class="trait">Preparation (Glory)</span></td></tr>
+
+<tr>
+<td><span class="stat">+1 MP</span><br><span class="stat">+1 MW</span><br><span class="trait">Double Action</span><br><span class="trait">Protection Affinity</span><br>either Round Table Knight or Blood of Morgana<br>???</td></tr>
+</table>
+
+
+</main>
+
+</div>
+
+<script>
+	arr = document.getElementsByClassName("biome");
+	for (const el of arr){
+		el.innerHTML = el.innerHTML.replaceAll("Special: ", "<b>Special</b>: ");
+		el.innerHTML = el.innerHTML.replaceAll("Bait: ", "<b>Bait</b>: ");
+		el.innerHTML = el.innerHTML.replaceAll("Restrictions: ", "<b>Restrictions</b>: ");
+		el.innerHTML = el.innerHTML.replaceAll("Cost: ", "<b>Cost</b>: ");
+		el.innerHTML = el.innerHTML.replaceAll("Upkeep: ", "<b>Upkeep</b>: ");
+	}
+</script>
+
+<script src="./js/main.js" lang="javascript"></script>
+
+</body>
+</html>

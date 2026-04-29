@@ -1,0 +1,2986 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Characters</title>
+<link rel="stylesheet" href="./css/style.css" />
+<style>
+td, th{
+  border: 2px solid black;
+  padding: 2px;
+}
+tr.invis td{
+  text-align: center;
+  min-width: 25px;
+}
+
+tr.invis >td{
+  border: 0px solid black;
+}
+
+th[rowspan="2"]:first-child{
+  width: 50%;
+}
+
+tr.invis >td:first-child{
+  vertical-align: top;
+  text-align: left;
+  padding: 0 0 0 5%;
+}
+
+td[colspan="3"]{
+  text-align: left;
+  padding: 0px;
+}
+
+
+td[rowspan="2"]:has(> span){
+  width: 25%;
+  padding: 20px 0;
+  vertical-align: top;
+}
+
+tr.invis >td:has(> table){	
+  width: 35%;
+  vertical-align: top;
+  padding: 20px 0;
+}
+
+h2 {
+  padding: 10px 0 0 0;
+  text-align: center;
+}
+h3 {
+  padding: 10px 0 0 0;
+  vertical-align: top;
+  text-align: left;
+}
+
+img{
+  width: 85%;
+  border: solid #000000;
+}
+div > hr{
+  border-top: 3px solid #999999;
+}
+
+</style>
+<script src="./js/data.js" lang="javascript"></script>
+<script>
+function character_params(name){
+	let html = '<tr><th class="stat">MP</th><th class="stat">MW</th><th>HP</th><th class="stat" rowspan="2">MRT</th><th class="stat" rowspan="2">DPL</th><th class="stat" rowspan="2">STW</th><th class="stat" rowspan="2">ING</th><th class="stat" rowspan="2">LRN</th><th class="stat" rowspan="2">SRT</th><th class="stat" colspan="2">CBT</th></tr><tr>';
+	
+	for (var cr of creatures) {
+		if (cr.name == name) {
+			if (Object.keys(cr).includes("mp")){
+				html += '<td>' + cr.mp + '</td>';
+			}else{
+				html += '<td></td>';
+			}
+			if (Object.keys(cr).includes("mw")){
+				html += '<td>' + cr.mw + '</td>';
+			}else{
+				html += '<td></td>';
+			}
+			if (Object.keys(cr).includes("hp")){
+				html += '<td>' + translate_hp(cr.hp) + '</td>';
+			}else{
+				html += '<td></td>';
+			}
+			html += '<th class="stat">O</th><th class="stat">D</th></tr>';
+			html += '<tr><th colspan="3">Base</th>';
+			if (Object.keys(cr).includes("mrt")){
+				html += '<td>' + cr.mrt + '</td>';
+			}else{
+				html += '<td></td>';
+			}
+			if (Object.keys(cr).includes("dpl")){
+				html += '<td>' + cr.dpl + '</td>';
+			}else{
+				html += '<td></td>';
+			}
+			if (Object.keys(cr).includes("stw")){
+				html += '<td>' + cr.stw + '</td>';
+			}else{
+				html += '<td></td>';
+			}
+			if (Object.keys(cr).includes("ing")){
+				html += '<td>' + cr.ing + '</td>';
+			}else{
+				html += '<td></td>';
+			}
+			if (Object.keys(cr).includes("lrn")){
+				html += '<td>' + cr.lrn + '</td>';
+			}else{
+				html += '<td></td>';
+			}
+			if (Object.keys(cr).includes("srt")){
+				html += '<td>' + cr.srt + '</td>';
+			}else{
+				html += '<td></td>';
+			}
+			if (Object.keys(cr).includes("cbt")){
+				html += '<td colspan="2">' + cr.cbt + '</td>';
+			}else{
+				html += '<td colspan="2"></td>';
+			}
+			html += '</tr>';
+		}
+	}
+	return html;
+}
+function spellbook_copy(name){
+	const header = ["Spell Name", "Cost", "Bobus", "Type", "Metaphysical Weight", "Range", "Duration", "Effect"];
+
+	let tarr = Array();
+	
+	for (var sp of spells){
+		if (sp.user.includes(name)){
+			tarr.push(sp);
+		}
+	}
+	if (tarr.length == 0){
+		return "";
+	}
+	
+	const sp_details = document.createElement('details');
+	const sp_summary = document.createElement('summary');
+	sp_summary.appendChild(document.createTextNode("Spells"));
+	sp_details.appendChild(sp_summary);
+	
+	const table = document.createElement('table');
+	const headerRow = document.createElement('tr');
+	
+	for (var h of header){
+		const th = document.createElement('th');
+        th.appendChild(document.createTextNode(h));
+		headerRow.appendChild(th);
+	}
+	table.appendChild(headerRow);
+	
+	document.body.appendChild(sp_details);
+}
+function ch_spellbook(name){
+	let tarr = Array();
+	
+	for (var sp of spells){
+		if (sp.user.includes(name)){
+			tarr.push(sp);
+		}
+	}
+	if (tarr.length == 0){
+		return "";
+	}
+	
+	let html = "<details><summary>Spells</summary><table><thead><tr><th>Spell Name</th><th>Cost</th>	<th>Bonus</th>	<th>Type</th> <th>Metaphysical Weight</th>	<th>Range</th>	<th>Duration</th>	<th>Effect</th></tr></thead>";
+	
+	let tname = sorting_param(tarr, "name");
+	for (var n of tname){
+		let gr_sp = Array();
+		for (var sp of tarr){
+			if (sp["name"] == n){
+				gr_sp.push(sp);
+			}
+		}
+			
+		for (var sp of gr_sp){
+			html += "<tr>";
+			if (Object.keys(sp).includes("name")){
+				html += "<td>" + sp.name;
+				if (Object.keys(sp).includes("aff")){
+					html += " - <span class='element'>" + sp.aff + "</span> Affinity";
+				}
+				if (Object.keys(sp).includes("over")){
+					if (sp.over){
+						html += " (Overcast: " + sp.over + ")";
+					}else{
+						html += " (Overcast)";
+					}
+				}
+				html += "</td>";
+			}else{
+				html += "<td></td>";
+			}
+			if (Object.keys(sp).includes("cost")){
+				html += "<td>";
+							
+				if (["MP", "MW", "HP"].includes(sp.cost.split(" ")[1])){
+					if (sp.cost.slice(-2) == "HP"){
+						html += "<span>" + translate_hp(sp.cost.slice(0, -3), 2) + "</span></td>";
+					}else{
+						html += "<span class='stat'>" + sp.cost + "</span></td>";
+					}
+				}else{
+					html += sp.cost + "</td>";
+				}
+			}else{
+				html += "<td></td>";
+			}
+			if (Object.keys(sp).includes("bonus")){
+				html += "<td>";
+				if (["MRT", "DPL", "STW", "ING", "LRN", "SRT", "CBT", "OCBT", "DCBT"].includes(sp.bonus.split(" ")[1])){
+					html += "<span class='stat'>" + sp.bonus + "</span></td>";
+				}else{
+					html += sp.bonus + "</td>";
+				}
+			}else{
+				html += "<td></td>";
+			}
+			if (Object.keys(sp).includes("elem")){
+				if (sp.elem.length > 0){
+					html += "<td class='element'>" + basic_elements[sp.elem[0]];
+					if (sp.elem.length > 1){
+						html += " (" + sp.elem.slice(1).map((el) => basic_elements[el]).join(", ") + ")";
+					}
+					html += "</td>"
+				}else{
+					html += "<td></td>";
+				}
+			}else{
+				html += "<td></td>";
+			}
+			if (Object.keys(sp).includes("weight")){
+				html += "<td class='weight'>" + sp.weight + "</td>";
+			}else{
+				html += "<td></td>";
+			}
+			if (Object.keys(sp).includes("range")){
+				html += "<td>" + sp.range + "</td>";
+			}else{
+				html += "<td></td>";
+			}
+			if (Object.keys(sp).includes("time")){
+				html += "<td>" + sp.time + "</td>";
+			}else{
+				html += "<td></td>";
+			}
+			if (Object.keys(sp).includes("effect")){
+				html += "<td>" + sp.effect + "</td>";
+			}else{
+				html += "<td></td>";
+			}
+			html+= "</tr>"
+		}
+	}
+	html += "</table></details>";
+	return html;
+}
+
+function ch_traits(name){
+	let tarr = traits2[name];
+	if (tarr.length == 0){
+		return "";
+	}
+	let html = "<details><summary>Traits</summary><ul>";
+	
+	for  (var t_tr of tarr){
+		if (t_tr[0] < 5){
+			html += "<li>";
+			if (t_tr[1]){
+			}else{
+				html += basic_elements[t_tr[1]];
+			}
+		}
+	}
+}
+</script>
+</head>
+<body>
+
+<div>
+<header>
+<table>
+<tr><th id="menu_1">Rules</th><th id="menu_2">Dungeon</th><th id="menu_3">World</th></tr>
+</table>
+</header>
+
+<nav>
+<h1>Characters</h1>
+<table><tr>
+<td style="width:50%; vertical-align: top; padding: 1% 5%;"><h3>Organisations</h3>
+<details><summary>Celestial Custodian Clan</summary><ul>
+	<li><span class="rank">Clan Leader</span> - <a class="character" href="#Naru_Osaka">Naru Osaka</a></li>
+	<li><span class="rank">Lieutenant</span> - <a class="character" href="#Nene_Yashiro">Nene Yashiro</a>, <a class="character" href="#Tomoyo_Daidouji">Tomoyo Daidouji</a></li>
+	<li><span class="rank">Secretary</span> - <a class="character" href="#Rui_Saionji">Rui Saionji</a></li>
+	<li><span class="rank">Trainer</span> - <a class="character" href="#Meiling_Li">Meiling Li</a></li>
+	<li><span class="rank">Tactician</span> - <a class="character" href="#Hanako-kun">Hanako-kun</a></li>
+	<li><span class="rank">Seer</span> - <a class="character" href="#Sakura_Mamiya">Sakura Mamiya</a></li>
+	<li><span class="rank">Public Relations</span> - <a class="character" href="#Sakura_Kinomoto">Sakura Kinomoto</a></li>
+	<li><span class="rank">Chief Investigator</span> - <a class="character" href="#Rinne_Rokudo">Rinne Rokudo</a></li>
+	<li><span class="rank">Assitant Investigator</span> - <a class="character" href="#Nene_Yashiro">Nene Yashiro</a></li>
+	<li><span class="rank">Archmage</span> - <a class="character" href="#Syaoran_Li">Syaoran Li</a></li>
+	<li><span class="rank">Head Researcher</span> - <a class="character" href="#Kerberos">Kerberos</a></li>
+	<li><span class="rank">Gatherer</span> - <a class="character" href="#Rokumon">Rokumon</a></li>
+	<li><span class="rank">Outfitter</span> - <a class="character" href="#Tomoyo_Daidouji">Tomoyo Daidouji</a></li>
+	<li><span class="rank">Warden of Necreph</span> - <a class="character" href="#Kaede_Honjo">Kaede Honjo</a></li>
+</ul></details>
+
+<details><summary>Inner Senshi</summary><ul>
+	<li><a class="character" href="#Usagi_Tsukino">Usagi Tsukino</a></li>
+	<li><a class="character" href="#Ami_Mizuno">Ami Mizuno</a></li>
+	<li><a class="character" href="#Rey_Hino">Rey Hino</a></li>
+	<li><a class="character" href="#Makoto_Kino">Makoto Kino</a></li>
+	<li><a class="character" href="#Minako_Aino">Minako Aino</a></li>
+	<li><a class="character" href="#Luna">Luna</a></li>
+	<li><a class="character" href="#Artemis">Artemis</a></li>
+</ul></details>
+
+<details><summary>Phantasm Seekers</summary><ul>
+	<li><span class="rank">Clan Leader</span> - <a class="character" href="#Nanako_Dojima">Nanako Dojima</a></li>
+	<li><span class="rank">Trainer</span> - <a class="character" href="#Tsukasa_Shishio">Tsukasa Shishio</a></li>
+	<li><a class="character" href="#Morgana">Morgana</a></li>
+</ul></details>
+
+<details><summary>Direct Attack</summary><ul>
+	<li><a class="character" href="#Chiaki">Chiaki</a></li>
+</ul></details>
+
+<details><summary>The Phantom Thieves of Hearts</summary><ul>
+	<li><a class="character" href="#Morgana">Morgana</a></li>
+</ul></details>
+
+<details><summary>Monster Sanctuary</summary><ul>
+	<li><a class="character" href="#Julia_Thiazi">Julia Thiazi</a></li>
+</ul></details>
+
+<details><summary>Future Senshi</summary><ul>
+	<li>Senshi <span class="weight heart">Heart</span> - <a class="character" href="#Naru_Osaka">Naru Osaka</a></li>
+	<li>Senshi <span class="weight mind">Mind</span> - <a class="character" href="#Nanako_Dojima">Nanako Dojima</a></li>
+	<li>Senshi <span class="weight soul">Soul</span> - <a class="character" href="#Madeline">Madeline Robin</a></li>
+	<li>Senshi <span class="weight body">Body</span> - <a class="character" href="#Julia_Thiazi">Julia Thiazi</a></li>
+	<li>Senshi <span class="weight">Saturn</span> - <a class="character" href="#Hotaru_Tomoe">Hotaru Tomoe</a></li>
+	<li><span class="spoiler">Senshi <span class="weight">Nemesis</span> - <a class="character spoiler" href="#Yumiko_Yumi">Yumiko Yumi</a></span></li>
+</ul></details>
+</td>
+<td style="width:50%; vertical-align: top; padding: 1% 5%;"><h3>Sources</h3>
+<details><summary>Sailor Moon</summary>
+<ul>
+	<li><a class="character" href="#Naru_Osaka">Naru Osaka</a></li>
+	<li><a class="character" href="#Usagi_Tsukino">Usagi Tsukino</a></li>
+	<li><a class="character" href="#Ami_Mizuno">Ami Mizuno</a></li>
+	<li><a class="character" href="#Rey_Hino">Rey Hino</a></li>
+	<li><a class="character" href="#Makoto_Kino">Makoto Kino</a></li>
+	<li><a class="character" href="#Minako_Aino">Minako Aino</a></li>
+	<li><a class="character" href="#Luna">Luna</a></li>
+	<li><a class="character" href="#Artemis">Artemis</a></li>
+	<li><a class="character" href="#Rui_Saionji">Rui Saionji</a></li>
+	<li><a class="character" href="#Yumiko_Yumi">Yumiko Yumi</a></li>
+	<li><a class="character" href="#Kuri_Kumiko">Kuri Kumiko</a></li>
+	<li><a class="character" href="#Shingo_Tsukino">Shingo Tsukino</a></li>
+	<li><a class="character" href="#Gurio_Umino">Gurio Umino</a></li>
+	<li><a class="character" href="#Jadeite">Jadeite</a></li>
+</ul>
+</details>
+<details><summary>Cardcaptor Sakura</summary><ul>
+	<li><a class="character" href="#Tomoyo_Daidouji">Tomoyo Daidouji</a></li>
+	<li><a class="character" href="#Sakura_Kinomoto">Sakura Kinomoto</a></li>
+	<li><a class="character" href="#Syaoran_Li">Syaoran Li</a></li>
+	<li><a class="character" href="#Meiling_Li">Meiling Li</a></li>
+	<li><a class="character" href="#Kerberos">Kerberos</a></li>
+</ul></details>
+<details><summary>Rin-ne</summary><ul>
+	<li><a class="character" href="#Rinne_Rokudo">Rinne Rokudo</a></li>
+	<li><a class="character" href="#Sakura_Mamiya">Sakura Mamiya</a></li>
+	<li><a class="character" href="#Rokumon">Rokumon</a></li>
+</ul></details>
+<details><summary>Dr. Stone</summary><ul>
+	<li><a class="character" href="#Senku_Ishigami">Senku Ishigami</a></li>
+	<li><a class="character" href="#Tsukasa_Shishio">Tsukasa Shishio</a></li>
+	<li><a class="character" href="#Ryusui_Nanami">Ryusui Nanami</a></li>
+</ul></details>
+<details><summary>Toilet-Bound Hanako-kun</summary><ul>
+	<li><a class="character" href="#Nene_Yashiro">Nene Yashiro</a></li>
+	<li><a class="character" href="#Hanako-kun">Hanako-kun</a></li>
+</ul></details>
+<details><summary>Persona 4/5</summary><ul>
+	<li><a class="character" href="#Nanako_Dojima">Nanako Dojima</a></li>
+	<li><a class="character" href="#Morgana">Morgana</a></li>
+</ul></details>
+<details><summary>Monster Sanctuary</summary><ul>
+	<li><a class="character" href="#Julia_Thiazi">Julia Thiazi</a></li>
+</ul></details>
+<details><summary>Winnie the Pooh</summary><ul>
+	<li><a class="character" href="#Madeline">Madeline Robin</a></li>
+	<li><a class="character" href="#Pooh_Bear">Pooh Bear</a></li>
+	<li><a class="character" href="#Piglet">Piglet</a></li>
+</ul></details>
+</td></tr></table>
+</nav>
+
+
+<main>
+<div>
+<table>		<!--Naru_Osaka-->
+<tr class="invis"><td><h2 id="Naru_Osaka">Naru Osaka</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Naru Osaka"));
+</script>
+
+<tr><td colspan="3">Partial Chaos Form</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+4</td>
+</tr>
+<tr><td colspan="3">Chaos Form</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+9</td>
+</tr>
+<tr><td colspan="3">Knarlstone</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+5</td>
+</tr>
+<tr ><td colspan="3">Celestial Custodian Uniform</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+3</td>
+</tr>
+<tr><td colspan="3">Quartz Eye</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+3</td>	<td colspan="2"></td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span ><img src="img/Naru_Osaka.jpg" alt="image of Naru"></span>
+</td>
+</tr>
+
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/#post-92402040">Source</a></p>
+	<p>Age: 15</p>
+	<p>Favoured by: <span class="nexus heart">Earth's Heart</span></p>
+	<p>Affiliations: Celestial Custodian Clan (<span class="rank">Clan Leader</span>)</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Decent)</li>
+	<li>Latin (Decent)</li>
+	<li>Aklo (Passable)</li>
+	<li>Egyptian (Poor)</li>	
+</ul>
+</details>
+<details><summary>Reputations</summary>
+	<ul>
+		<li>Gatherer of Heroes (Active)</li>
+		<li>Commander on the Battlefield (Active)</li>
+	</ul>
+</details>
+
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Breathless</span></li>
+	<li><span class="trait">Critical Hit Immunity</span></li>
+	<li><span class="trait">Mental Immunity</span></li>
+	<li><span class="trait">Earth Absorption</span></li>
+	<li><span class="trait">Drain Resistance</span></li>
+	<li><span class="trait">Energy Resistance</span></li>
+	<li><span class="trait">Physical Resistance</span></li>
+	<li><span class="trait">Silence Resistance</span></li>
+	<li><span class="trait">Spacial Resistance</span></li>
+	<li><span class="trait">Temporal Resistance</span></li>
+</ul>
+</details>
+</td>
+</tr>
+<tr class="invis"><td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Chaos Form
+		<ul>
+			<li>Naru can shift into Chaos Form at will. While in Chaos form, Naru gains the following:
+				<ul>
+					<li>50% of <span class="stat">LRN</span> to <span class="stat">CBT</span></li>
+					<li>The <span class="trait">Hover</span>, <span class="trait">Compression</span>, and <span class="trait">Decompression</span> traits</li>
+					<li>Basic attack changes to <span class="element">Eldritch (Bludgeoning)</span></li>
+					<li>Their melee attacks become short range</li>
+					<li>Cognitohazard: Anyone who sees them in chaos form must succeed at increasingly difficult <span class="stat">SRT</span> checks (Starts at DC 6 and increases by 6 each round spent in chaos form.) or be dealt 1 moderate horror. This is a <span class="element">Mental</span> effect.</li>
+				</ul>
+			</li>
+			<li>Naru can enter a lesser version of their Chaos Form by only partially transforming. While in partial chaos form, Naru gains the following:
+				<ul>
+					<li>25% of your <span class="stat">LRN</span> to <span class="stat">CBT</span></li>
+					<li>Cognitohazard: Anyone who sees them in partial chaos form must succeed at increasingly difficult <span class="stat">SRT</span> checks (Starts at DC 3 and increases by 3 each round spent in partial chaos form.) or be dealt 1 minor horror. This is a <span class="element">Mental</span> effect.</li>
+				</ul>
+			</li>
+			<li>While in full or partial Chaos Form, Naru can take a <span class="stat">-3 CBT</span> penalty for 1 full round in order to gain the <span class="trait">Double Attack</span> trait for 1 round</li>
+			<li>While in full Chaos Form, Naru can take a <span class="stat">-6 CBT</span> penalty for 1 full round in order to gain the <span class="trait">Triple Attack</span> trait for 1 round</li>
+			<li>While in full Chaos Form, Naru can spend <span class="stat">5 MP</span> in order to gain the <span class="trait">Double Action</span> trait for 1 full round</li>
+		</ul>
+	</li>
+	<li>Dungeon Nexus Master
+		<ul>
+			<li>Naru constantly knows everything that goes on in and around her dungeon (This trumps all forms of stealth and illusion)</li>
+			<li><span class="stat">+1 MP</span> and <span class="stat">+1 MW</span> for every floor in the dungeon</li>
+			<li>Her Mana Well refills completely after a good night's rest</li>
+			<li>If she dies, she will be respawned at Naru's Nexus after one week</li>
+			<li>Granted <span class="trait">Drain Resistance</span></li>
+			<li>Granted immunity to any effect that would target her material or cognitive souls</li>
+		</ul>
+	</li>
+	<li>Soul Storage Technique
+		<ul>
+			<li>Naru can store anything in your soul that can fit through the size and shape of a star seed (i.e. material soul)</li>
+		</ul>
+	</li>
+	<li>Overcasting Technique
+		<ul>
+			<li>Naru can use points from her Well in order to fuel spells that normally cost points from her Pool. The effects vary by spell and are unknown until Naru first Overcasts a spell</li>
+		</ul>
+	</li>
+	<li>Infohazard Training
+		<ul>
+			<li>Naru gets a <span class="stat">+6 LRN</span> bonus when attempting to avoid Infohazards</li>
+			<li>If such a check comes up during Research, Naru rolls twice and takes the higher result</li>
+		</ul>
+	</li>
+	<li>Cognitohazard Training
+		<ul>
+			<li>Naru gets a <span class="stat">+6 SRT</span> bonus when trying to resist Cognitohazards</li>
+			<li>If such a check comes up during Research, Naru rolls twice and takes the higher result</li>
+		</ul>
+	</li>
+	<li>Warping Manifestation - The Upside-Down Lighthouse (Tier 1):
+		<ul>
+			<li>While using the <span class="trait">Decompression</span> trait in full Chaos Form, Naru may take up the same space as other creatures and objects (but not structures)</li>
+			<li>Other creatures are not hindered when moving through Naru</li>
+			<li>This ability is disabled if Naru is in the presence of a creature that has a higher tier Warping Manifestation ability</li>
+			<li>Primary Aspect: The Upside-Down Lighthouse (Rank 1)
+				<ul>
+					<li>Elements: <span class="element">Light</span>, <span class="element">Emotion</span></li>
+					<li>Imposition: The area is bathed in golden-yellow light. Those touched by this light begin to emit glowing particles of either gold, silver, blue, or red. Rotating twin beams of light shine forth from the center of Naru. (Understandings 2/3)
+						<ul>
+							<li>Brilliant Defiance:
+								<ul>
+									<li>Light originating from Naru's central mass provides enough illumination to see clearly throughout the entire area in the scene, though shadows cast by objects that block this light are darker than usual</li>
+									<li>At the beginning of each round, all creatures in the scene gain a number of <span class="stack">Courage</span> stacks equal to Naru's Warping Manifestation Tier. This counts as the <span class="trait">Courage Generation</span> trait</li>
+									<li>Whenever <span class="stack">Courage</span> stacks would be removed from any creature due to succeeding at a <span class="stat">SRT</span> check, remove only half of the stacks instead of all (rounded up)</li>
+									<li>Whenever an ally would use <span class="stack">Courage</span> stacks to pay for the cost of a spell or innate ability, halve the number of <span class="stack">Courage</span> stacks required to pay the cost (rounded up)</li>
+									<li>This is an <span class="element">Eldritch (Light, Emotion)</span> effect</li>
+								</ul>
+							</li>
+							<li>Hope's Touch:
+								<ul>
+									<li>When any ally is illuminated by light from your Imposition, they have a high chance to gain one of the following special Buffs at random. (Gold Lights being the most rare, Blue Lights being the most common.) Each ally can only benefit from this ability once per Scene. This is an <span class="element">Eldritch (Light, Emotion)</span> effect
+										<ul>
+											<li>Golden Lights of the Champion: This creature's <span class="stat">OCBT</span> rolls have their results multiplied by 1.1 This buff can be expended as a Brief Action in order to spend all <span class="stack">Courage</span> stacks and gain 1 <span class="stack">Age</span> stack for every 2 spent (rounded down)</li>
+											<li>Silver Lights of the Defender: This creature's <span class="stat">DCBT</span> rolls have their results multiplied by 1.2 This buff can be expended as a Reaction to an enemy's attack against at least one ally within Short range. If used this way, this creature spends all <span class="stack">Courage</span> stacks and, for every 5 <span class="stack">Courage</span> spent, can have an ally within Short range ignore the attack entirely.</li>
+											<li>Blue Lights of the Healer: This creature's <span class="stat">SRT</span> rolls have their results multiplied by 1.2 This buff can be expended as a Combat Action in order to spend all <span class="stack">Courage</span> stacks and heal 1 minor damage from an ally in Short range for every 3 spent.</li>
+										</ul>
+									</li>
+									<li>When any enemy is illuminated by light from your Imposition, they have a slight chance to gain the following Debuff. Each enemy can only be affected by this ability once per scene. This is an <span class="element">Eldritch (Light, Emotion)</span> effect.
+										<ul>
+											<li>Red Lights of the Hunted: This creature gets <span class="stat">-1 DCBT</span> for every <span class="stack">Courage</span> stack it has. If this creature has had this Debuff for at least one full round, it can dismiss it to deal 1 moderate damage to itself and exchange all <span class="stack">Courage</span> stacks for <span class="stack">Wither</span> stacks. The damage is an <span class="element">Emotion</span> effect.</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+	<li>Stance Change II:
+		<ul>
+			<li>Twice per round as a brief action, Naru can decrease either her <span class="stat">OCBT</span> or <span class="stat">DCBT</span> by up to 2 to increase the other <span class="stat">CBT</span> stat by the same amount.</li>
+		</ul>
+	</li>
+	<li>White Dwarf Style I:
+		<ul>
+			<li>If in Chaos Form, while Stance Change has boosted Naru's <span class="stat">DCBT</span> 5 or more above its base, she gains the <span class="trait">Aura Generation 3</span> trait.</li>
+			<li>If in Chaos Form, while Stance Change has boosted Naru's <span class="stat">DCBT</span> 12 or more above its base, Naru is considered to have the <span class="trait">Counterattack</span> trait against enemies that hit her with Melee attacks.</li>
+		</ul>
+	</li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Naru Osaka"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Tomoyo_Daidouji-->
+<tr class="invis"><td><h2 id="Tomoyo_Daidouji">Tomoyo Daidouji</h2></td>
+<td rowspan="2">
+	<table>
+	<script>
+		document.write(character_params("Tomoyo Daidouji"));
+	</script>
+	<tr>
+		<td colspan="3">Sparkling Riptide</td>
+		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+5</td>
+	</tr>
+	<tr >
+		<td colspan="3">Celestial Custodian Uniform</td>
+		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+3</td>
+	</tr>
+	</table>
+</td>
+<td rowspan="2">
+<span>
+	<img src="img/Tomoyo_Daidouji.jpg" alt="image of Tomoyo">
+</span>
+</td>
+</tr>
+
+<tr class="invis"><td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/#post-92402055">Source</a></p>
+	<p>Age: 11</p>
+	<p>Soul bound up in Contracts: 5/12</p>
+	<p>Favoured by: Halley's Comet</p>
+	<p>Affiliations: Celestial Custodian Clan (<span class="rank">Lieutenant</span>, <span class="rank">Outfitter</span>)</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Decent)</li>
+	<li>Latin (Passable)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Breathless</span></li>
+	<li><span class="trait">Critical Hit Immunity</span></li>
+	<li><span class="trait">Mental Immunity</span></li>
+	<li><span class="trait">Temporal Absorption</span></li>
+	<li><span class="trait">Death Resistance</span></li>
+	<li><span class="trait">Weird Resistance</span></li>
+	<li><span class="trait">Preparation (Warp)</span></li>
+	<li><span class="trait">Preparation (Ward)</span></li>
+	<li><span class="trait">Mana Regeneration I</span></li>
+	<li><span class="trait">Specialty (Casting Implements)</span></li>
+	<li><span class="trait">Specialty (Costumes)</span></li>
+	<li><span class="trait">Specialty (Life Energy Storage)</span></li>
+	<li><span class="trait">Specialty (Singing)</span></li>
+	<li><span class="trait">Specialty (Trinkets)</span></li>
+</ul>
+</details>
+</td></tr>
+<tr class="invis"><td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Mark of the Comet
+		<ul>
+			<li>Tomoyo and any creatures she summons, manifests, or bonds to can add any of the following sub-types to their attacks: <span class="element">Heat</span>, <span class="element">Cold</span>, <span class="element">Water</span>, and <span class="element">Death</span></li>
+			<li>As a combat action, Tomoyo can give any ally in Medium range 6 stacks of <span class="stack">Aura</span>. This is a <span class="element">Death</span> and <span class="element">Cold</span> effect</li>
+		</ul>
+	</li>
+	<li>Contracted of [Nexus currently unnamed]
+		<ul>
+			<li>This contract was Tomoyo's awakening</li>
+			<li><span class="stat">+1 MP</span> and <span class="stat">+1 MW</span></li>
+			<li>Her Mana Well refills completely after a good night's rest</li>
+			<li>If she dies, she will be respawned at Naru's Nexus after one week</li>
+			<li>Granted immunity to any effect that would target her material or cognitive souls</li>
+			<li>Linked Floor: Floor 1 (Unnamed), Abomination Theme
+			<ul>
+				<li>Tier 1 Attunement: <span class="trait">Mental Immunity</span>, <span class="stat">+2 LRN</span>, Contractee counts as an Abomination while in the dungeon</li>
+				<li>Tier 2 Attunement: <span class="stat">+1 LRN</span>, <span class="stat">+3 CBT</span>, <span class="trait">Breathless</span>, <span class="trait">Critical Hit Immunity</span></li>
+				<li>Tier 3 Attunement: 5/5 Weeks, 2/3 Floors Drilled</li>
+			</ul>
+			</li>
+		</ul>
+	</li>
+	<li>Soul Storage Technique
+		<ul>
+			<li>Tomoyo can store anything in your soul that can fit through the size and shape of a Star Seed (i.e. material soul)</li>
+		</ul>
+	</li>
+	<li>Overcasting Technique
+		<ul>
+			<li>Tomoyo can use points from her Well in order to fuel spells that normally cost points from your Pool. The effects vary by spell and are unknown until she first Overcasts a spell</li>
+		</ul>
+	</li>
+	<li>Infohazard Training
+		<ul>
+			<li>Tomoyo gets a <span class="stat">+6 LRN</span> bonus when attempting to avoid Infohazards</li>
+			<li>If such a check comes up during Research, Tomoyo rolls twice and takes the higher result</li>
+		</ul>
+	</li>
+	<li>Cognitohazard Training
+		<ul>
+			<li>Tomoyo gets a <span class="stat">+6 SRT</span> bonus when trying to resist Cognitohazards</li>
+			<li>If such a check comes up during Research, Tomoyo rolls twice and takes the higher result</li>
+		</ul>
+	</li>
+	<li>Element Elimination
+		<ul>
+			<li>While crafting, Tomoyo can eliminate any unwanted elemental properties of materials she uses. Eliminated properties will not show up in the final product</li>
+		</ul>
+	</li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Tomoyo Daidouji"));</script>
+<details><summary>Claw Cards</summary>
+<table>
+<tr>
+</tr>
+</table>
+</details>
+</td></tr>
+</table>
+
+<hr><table>		<!--Nene_Yashiro-->
+<tr class="invis"><td><h2 id="Nene_Yashiro">Nene Yashiro</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Nene Yashiro"));
+</script>
+<tr >
+	<td colspan="3">Serpent's Fury</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+8</td>	<td></td>
+</tr>
+<tr>
+	<td colspan="3">Ring of Seafoam Bonds</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+1</td>	<td colspan="2"></td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Nene_Yashiro.jpeg" alt="image of Nene"></span>
+</td>
+</tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/#post-92402055">Source</a></p>
+	<p>Age: 15</p>
+	<p>Affiliations: Celestial Custodian Clan (<span class="rank">Lieutenant</span>, <span class="rank">Assistant Investigator</span>)</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Passable)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Low-Light Vision</span></li>
+	<li><span class="trait">Death Vulnerability</span></li>
+	<li><span class="trait">Specialty (Gardening)</span></li>
+	<li><span class="trait">Specialty (Solving Rumors)</span></li>
+</ul>
+</details>
+</td>
+</tr>
+<tr class="invis" >
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Rumor Solver<ul>
+		<li>Nene gains +5 to any roll made to investigate a Rumor. This bonus is added before her Specialty multiplier is applied</li>
+	</ul></li>
+	<li>Mermaid's Curse<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul></li>
+	<li>Kannagi<ul>
+		<li>Nene is treated as having Affinity for any spell she pays for with damage</li>
+		<li>The bonuses for any Crafting Materials made from Nene's blood or flesh are tripled</li>
+	</ul></li>
+	<li>Fated to die<ul>
+		<li>Nene gains the <span class="trait">Death Vulnerability</span> trait due to this drawback. If this drawback is ever removed, the trait is also removed</li>
+		<li>Whenever Nene is defending against an effect that would instantly kill her, she roll twice and takes the lower result</li>
+		<li>The Narrative will occasionally conspire to kill Nene off</li>
+	</ul></li>
+	<li>Infohazard training<ul>
+		<li></li>
+		<li>If such a check comes up during Research, she rolls twice and takes the higher result</li>
+	</ul></li>
+	<li>Cognitohazard training<ul>
+		<li></li>
+		<li>If such a check comes up during Research, she rolls twice and takes the higher result</li>
+	</ul></li>
+	<li>Battle Couple II (Hanako-kun)<ul>
+		<li>When fighting beside Hanako-kun, Nene adds 20% of his <span class="stat">MRT</span> to her <span class="stat">CBT</span></li>
+	</ul></li>
+	<li>Disaster Mitigation<ul>
+		<li>When casting a <span class="element">Calamity</span> spell, Nene can exclude one creature from the spell's effects for every <span class="stat">3 LRN</span> she has</li>
+	</ul></li>
+	<li>Contracted of [Nexus currently unnamed]<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul></li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Nene Yashiro"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Sakura_Mamiya-->
+<tr class="invis"><td><h2 id="Sakura_Mamiya">Sakura Mamiya</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Sakura Mamiya"));
+</script>
+<tr>
+	<td colspan="3">Cloak of Psychpomp</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+1</td>
+</tr>
+<tr>
+	<td colspan="3">Celestial Custodian Uniform</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+3</td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Sakura_Mamiya.jpg" alt="image of Sakura Mamiya"></span>
+</td>
+</tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-19#post-93342921">Source</a></p>
+	<p>Age: 15</p>
+	<p>Favoured by: Saturn</p>
+	<p>Affiliations: Celestial Custodian Clan (<span class="rank">Seer</span>)</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Decent)</li>
+</ul>
+</details>
+<details><summary>Reputations</summary>
+<ul>
+	<li>Steady Rock (Active)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Seer</span></li>
+	<li><span class="trait">Silence Affinity</span></li>
+	<li><span class="trait">Silence Immunity</span></li>
+	<li><span class="trait">Poker Face</span></li>
+	<li><span class="trait">Specialty (Spirits)</span></li>
+	<li><span class="trait">Specialty (Stillnes Reading)</span></li>
+</ul>
+</details>
+</td>
+</tr>
+<tr class="invis"><td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Unfazed</li>
+	<li>Soul-Storage Technique</li>
+	<li>Reaper of Curses</li>
+	<li>Overcasting Technique</li>
+	<li>Tethered to the Near Shore (DIVINE BOON: Ame-No-Uzume)</li>
+	<li>Stilness Reading</li>
+	<li>Cognitohazard Training</li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Sakura Mamiya"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Sakura_Kinomoto-->
+<tr class="invis"><td><h2 id="Sakura_Kinomoto">Sakura Kinomoto</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Sakura Kinomoto"));
+</script>
+<tr>
+	<td colspan="3">Sealing Stuff</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+2</td>	<td>+3</td>	<td></td>
+</tr>
+<tr>
+	<td colspan="3">Lesser Deranged Athame</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+1</td>	<td></td>
+</tr>
+<tr>
+	<td colspan="3">Celestial Custodian Uniform</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+3</td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Sakura_Kinomoto.png" alt="image of Sakura_Kinomoto" ></span>
+</td>
+</tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-44#post-94723570">Source</a></p>
+	<p>Age: 12</p>
+	<p>Favoured by: <span class="sun">The Sun</span> and <span class="moon">the Moon</span></p>
+	<p>Affiliations: Celestial Custodian Clan (<span class="rank">Public Relations</span>)</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Passable)</li>
+	<li>Mandarin (Poor)</li>
+</ul>
+</details>
+
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Solar Photosynthesis</span></li>
+	<li><span class="trait">Lunar Photosynthesis</span></li>
+	<li><span class="trait">Seer</span></li>
+	<li><span class="trait">Poker Face</span></li>
+	<li><span class="trait">Dream Walker</span></li>
+</ul>
+</details>
+</td>
+</tr>
+<tr class="invis"><td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Keeper of the Clow</li>
+	<li>Celestial Eyes</li>
+	<li>Rookie Inscryber</li>
+	<li>Soul Storage Technique</li>
+	<li>Overcasting Technique</li>
+	<li>Expanded Summon I</li>
+	<li>Vision Overstimulation (Minor Insanity Drawback)</li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Sakura Kinomoto"));</script>
+<details><summary>Clow Cards</summary>
+<table>
+<tr>
+	<th rowspan="5">Summon Cost</th> <th>1-2 MP</th>	<td class="familiar">Jump</td>	<td class="familiar">Glow</td>	<td class="familiar">Move</td>	<td class="familiar">Song</td>	<td class="familiar">Fly</td>	<td class="familiar">Rain</td>	<td class="familiar">Flower</td>	<td class="familiar">Sweet</td>	<td class="familiar">Voice</td>	<td class="familiar">Dash</td>	<td class="familiar">Libra</td>
+</tr>
+<tr>
+	<th>3 MP</th>	<td class="familiar">Shadow</td>	<td class="familiar">Wood</td>	<td class="familiar">Mist</td>	<td class="familiar">Float</td>	<td class="familiar">Sleep</td>	<td class="familiar">Shot</td>	<td class="familiar">Wave</td>	<td class="familiar">Snow</td>	<td class="familiar">Cloud</td>	<td class="familiar">Sword</td>	<td class="familiar">Shield</td>	<td class="familiar">Bubbles</td>
+</tr>
+<tr>
+	<th>4-5 MP</th>	<td class="familiar">Thunder</td>	<td class="familiar">Power</td>	<td class="familiar">Fight</td>	<td class="familiar">Arrow</td>	<td class="familiar">Storm</td>	<td class="familiar">Freeze</td>	<td class="familiar">Windy</td>	<td class="familiar">Watery</td>	<td class="familiar">Firey</td>
+</tr>
+<tr>
+	<th>1 MW</th>	<td class="familiar">Silent</td>	<td class="familiar">Little</td>	<td class="familiar">Mirror</td>	<td class="familiar">Big</td>	<td class="familiar">Lock</td>	<td class="familiar">Illusion</td>	<td class="familiar">Libra</td>	<td class="familiar">Sword</td>	<td class="familiar">Shield</td>	<td class="familiar">Bubbles</td>
+</tr>
+<tr>
+	<th>2-5 MW</th>	<td class="familiar">Erase</td>	<td class="familiar">Change</td>	<td class="familiar">Through</td>	<td class="familiar">Create</td>	<td class="familiar">Maze</td>	<td class="familiar">Time</td>	<td class="familiar">Loop</td>	<td class="familiar">Return</td>
+</tr>
+</table>
+</details>
+</td></tr>
+</table>
+
+<hr><table>		<!--Rinne_Rokudo-->
+<tr class="invis"><td><h2 id="Rinne_Rokudo">Rinne Rokudo</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Rinne Rokudo"));
+</script>
+<tr>
+	<td colspan="3">Haori of Underworld</td>
+	<td></td>	<td></td>	<td></td>	<td>+2</td>	<td></td>	<td></td>	<td colspan="2"></td>
+</tr>
+<tr>
+	<td colspan="3">Shinigami Scythe</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+7</td>	<td>+5</td>
+</tr>
+<tr>
+	<td colspan="3">Celestial Custodian Uniform</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+3</td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span></span>
+</td>
+</tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-54#post-95319373">Source</a></p>
+	<p>Age: 14</p>
+	<p>Affiliations: Celestial Custodian Clan (<span class="rank">Chief Investigator</span>)</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Passable)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Shinigami</span></li>
+	<li><span class="trait">Death Resistance</span></li>
+	<li><span class="trait">Ectoplasm Resistance</span></li>
+	<li><span class="trait">Dowsing Training</span></li>
+	<li><span class="trait">Specialty (Spirits)</span></li>
+</ul>
+</details>
+</td>
+</tr>
+
+<tr class="invis"><td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Soul Storage Technique</li>
+	<li>Countdown Deduction Tactics</li>
+	<li>Infohazard Training</li>
+	<li>Cognitohazard Training</li>
+	<li>Reaping Wind Technique I</li>
+	<li>Flash Step I</li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Rinne Rokudo"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Syaoran_Li-->
+<tr class="invis"><td><h2 id="Syaoran_Li">Syaoran Li</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Syaoran Li"));
+</script>
+<tr>
+	<td colspan="3">Old Family Jian</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+1</td>	<td colspan="2">+2</td>
+</tr>
+<tr>
+	<td colspan="3">Celestial Custodian Uniform</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+3</td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Syaoran_Li.jpg" alt="image of Syaoran Li" ></span>
+</td>
+</tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-54#post-95320588">Source</a></p>
+	<p>Age: 11</p>
+	<p>Affiliations: Celestial Custodian Clan (<span class="rank">Archmage</span>)</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>Mandarin (Fluent)</li>
+	<li>English (Passable)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Low-Light Vision</span></li>
+	<li><span class="trait">Heat Senses</span></li>
+	<li><span class="trait">Specialty (Exploding Glyphs))</span></li>
+	<li><span class="trait">Specialty (Ofuda)</span></li>
+</ul>
+</details>
+</td>
+
+</tr>
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Soul Storage Technique</li>
+	<li>Infohazard Training</li>
+	<li>Cognitohazard Training</li>
+	<li>Burst of Inspiration</li>
+	<li>Connections of Magic</li>
+	<li>Rainbow Serpent's Eye (DIVINE BOON: Quetzalcoatl)</li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Syaoran Li"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Kerberos-->
+<tr class="invis"><td><h2 id="Kerberos">Kerberos</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Kerberos"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span></span>
+</td>
+</tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-69#post-96731255">Source</a></p>
+	<p>Age: ???</p>
+	<p>Movement: Fluttering Flight</p>
+	<p>Affiliations: Celestial Custodian Clan (<span class="rank">Head Researcher</span>)</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Fluent)</li>
+	<li>Mandarin (Fluent)</li>
+	<li>Latin (Fluent)</li>
+	<li>Russian (Decent)</li>
+	<li>Korean (Decent)</li>
+	<li>Egyptian (Decent)</li>
+	<li>Sanskrit (Decent)</li>
+	<li>Aklo (Passable)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Full of Fluff</span></li>
+	<li><span class="trait">Magical Sensing</span></li>
+	<li><span class="trait">Earth Absorption</span></li>
+	<li><span class="trait">Fire Absorption</span></li>
+	<li><span class="trait">Light Reflection</span></li>
+	<li><span class="trait">Magical Resistance</span></li>
+	<li><span class="trait">Physical Resistance</span></li>
+	<li><span class="trait">Linguist</span></li>
+	<li><span class="trait">Specialty (Knowledge of Clow)</span></li>
+</ul>
+</details>
+</td></tr>
+
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Sun Lion Form</li>
+	<li>Solar Guardian of the Clow</li>
+	<li>Soul Storage Technique</li>
+	<li>Infohazard Training</li>
+	<li>Cognitohazard Training</li>
+	<li>Burst of Inspiration</li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Kerberos"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Rokumon-->
+<tr class="invis"><td><h2 id="Rokumon">Rokumon</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Rokumon"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Rokumon.png" alt="image of Rokumon" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-69#post-96732212">Source</a></p>
+	<p>Age: 9 (First Life)</p>
+	<p>Affiliations: Celestial Custodian Clan (<span class="rank">Gatherer</span>)</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Nine Lives</span></li>
+	<li><span class="trait">Mobile</span></li>
+	<li><span class="trait">Curse Resistance</span></li>
+	<li><span class="trait">Temporal Resistance</span></li>
+	<li><span class="trait">Specialty (Fetch Quests)</span></li>
+</ul>
+</details>
+</td></tr>
+
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Black Cat</li>
+	<li>Cursed Demon Cat Head</li>
+	<li>Soul Storage Technique</li>
+	<li>Cognitohazard Training</li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Rokumon"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Meiling_Li-->
+<tr class="invis"><td><h2 id="Meiling_Li">Meiling Li</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Meiling Li"));
+</script>
+<tr>
+	<td colspan="3">Celestial Custodian Uniform</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+3</td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Meiling_Li.png" alt="image of Meiling Li" ></span>
+</td>
+</tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-75#post-97401904">Source</a></p>
+	<p>Age: 12</p>
+	<p>Affiliations: Celestial Custodian Clan (<span class="rank">Trainer</span>)</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>Mandarin (Fluent)</li>
+	<li>English (Passable)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Hyper-Awareness</span></li>
+</ul>
+</details>
+
+</td></tr>
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Stance Change III</li>
+	<li>Soul Storage Technique</li>
+	<li>Apprenticeship Bond (The Supreme Dojo Master of Eternal Darkness)</li>
+	<li>Overcasting Technique</li>
+	<li>Cognitohazard Training</li>
+	<li>Flash Step I</li>
+	<li>Setting Twilight Style I</li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Meiling Li"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Rui_Saionji-->
+<tr class="invis"><td><h2 id="Rui_Saionji">Rui Saionji</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Rui Saionji"));
+</script>
+<tr>
+	<td colspan="3">Celestial Dreamer Uniform</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+2</td>	<td colspan="2"></td>
+</tr>
+<tr>
+	<td colspan="3">Basic Wand</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+2</td>	<td></td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Rui_Saionji.jpeg" alt="image of Rui Saionji" ></span>
+</td>
+</tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-125#post-102135228">Source</a></p>
+	<p>Age: 16</p>
+	<p>Favoured by: Altjira</p>
+	<p>Affiliations: Selestial Custodian Clan (<span class="rank">Secretary</span>)</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>Ulthar (Esoteric)</li>
+	<li>English (Decent)</li>
+	<li>Aklo (Poor)</li>
+	<li>French (Poor)</li>
+	<li>Russian (Poor)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Lucid Dreamer</span></li>
+	<li><span class="trait">Mind Palace</span></li>
+	<li><span class="trait">Dream Resistance</span></li>
+	<li><span class="trait">Silence Resistance</span></li>
+	<li><span class="trait">Specialty (Tennis)</span></li>
+</ul>
+</details>
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Cleric of Altjira II</li>
+	<li>Thalassophobia (Mild Insanity Drawback)</li>
+	<li>Soul Storage Technique</li>
+	<li>Cognitohazard Training</li>
+	<li>Ritual Boosting</li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Rui Saionji"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Kaede_Honjo-->
+<tr class="invis"><td><h2 id="Kaede_Honjo">Kaede Honjo</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Kaede Honjo"));
+</script>
+<tr>
+	<td colspan="3">Flight Cap of the Southern Aurora</td>
+	<td>+1</td>	<td></td>	<td></td>	<td>+4</td>	<td></td>	<td>+2</td>	<td colspan="2"></td>
+</tr>
+<tr>
+	<td colspan="3">Cavern Aegis (Tower Shield)</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+10</td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-156#post-105745640">Source</a></p>
+	<p>Age: 14</p>
+	<p>Affiliations: Celestial Custodian Clan (<span class="rank">Warden of Necreph</span>)</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Poor)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Lucky</span></li>
+	<li><span class="trait">Air Resistance</span></li>
+	<li><span class="trait">Light Resistance</span></li>
+	<li><span class="trait">Energetic</span></li>
+	<li><span class="trait">Klutz</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Algophobia (Mild Insanity Drawback)</li>
+	<li>Contractor</li>
+	<li>Cognitohazard Training</li>
+	<li>Steady Position</li>
+	<li>Brace for Impact</li>
+	<li>Seven-Colored Wings (DIVINE BOON: Quetzalcoatl)</li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Kaede Honjo"));</script>
+
+</td></tr>
+</table>
+
+<hr><table>		<!--Hanako-kun-->
+<tr class="invis"><td><h2 id="Hanako-kun">Hanako-kun (Amane Yugi)</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Hanako-kun"));
+</script>
+<tr>
+	<td colspan="3">Lesser Spiral Knife</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+3</td>	<td></td>
+</tr>
+<tr>
+	<td colspan="3">Ring of Seafoam Bonds</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+1</td>	<td colspan="2"></td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Hanako-kun.jpg" alt="image of Hanako-kun" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-189#post-107763074">Source</a></p>
+	<p>Age: Chronologically 57, Physically and Mentally 16</p>
+	<p>Affiliations: Celestial Custodian Clan (<span class="rank">Tactician</span>)</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>Necril (Esoteric)</li>
+	<li>English (Passable)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Undead</span></li>
+	<li><span class="trait">Incorporeal</span></li>
+	<li><span class="trait">Low-Light Vision</span></li>
+	<li><span class="trait">Hyper-Awareness</span></li>
+	<li><span class="trait">Hover</span></li>
+	<li><span class="trait">Death Immunity</span></li>
+	<li><span class="trait">Mental Immunity</span></li>
+	<li><span class="trait">Plague Immunity</span></li>
+	<li><span class="trait">Poison Immunity</span></li>
+	<li><span class="trait">Curse Resistance</span></li>
+	<li><span class="trait">Darkness Resistance</span></li>
+	<li><span class="trait">Ectoplasm Resistance</span></li>
+	<li><span class="trait">Gravity Resistance</span></li>
+	<li><span class="trait">Purification Vulnerability</span></li>
+	<li><span class="trait">Specialty (Astronomy)</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Tethered</li>
+	<li>Mystery No. 7</li>
+	<li>Mermaid's "Curse" (Marriage Bond between Nene and "Hanako-kun")</li>
+	<li>Battle Couple II (Nene Yashiro)</li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Hanako-kun"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Necreph-->
+<tr class="invis"><td><h2 id="Necreph">Necreph the Shadow</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Necreph"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-191#post-108446339">Source</a></p>
+	<p>Age: ???</p>
+	<p>Attack Type: <span class="element">Physical (Slashing)</span></p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Egyptian (Fluent)</li>
+	<li>Necril (Esoteric)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Undead</span></li>
+	<li><span class="trait">All-Around Vision</span></li>
+	<li><span class="trait">Concealed</span></li>
+	<li><span class="trait">Magical Immunity</span></li>
+	<li><span class="trait">Plague Immunity</span></li>
+	<li><span class="trait">Poison Immunity</span></li>
+	<li><span class="trait">Darkness Reflection</span></li>
+	<li><span class="trait">Mental Reflection</span></li>
+	<li><span class="trait">Metal Resistance</span></li>
+	<li><span class="trait">Physical Resistance</span></li>
+	<li><span class="trait">Radiation Resistance</span></li>
+	<li><span class="trait">Light Vulnerability</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Tethered</li>
+	<li>Sah Form</li>
+	<li>Blind Sense</li>
+	<li>Mejai's Strike</li>
+	<li>The Shadow</li>
+	<li>Don't Look at Me</li>
+	<li>Severe Apathy (Moderate Insanity Drawback)</li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Necreph"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Julia Thiazi-->
+<tr class="invis"><td><h2 id="Julia_Thiazi">Julia Thiazi</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Julia Thiazi"));
+</script>
+<tr>
+	<th colspan="3">Standard Keeper Uniform</th>
+	<td></td>	<td>+2</td>	<td>+2</td>	<td></td>	<td></td>	<td></td>	<td colspan="2"></td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-269#post-117229100">Source</a></p>
+	<p>Age: 17</p>
+	<p>Favoured by: <span class="body">Earth's Body (The World Tree)</span></p>
+	<p>Affiliations: Monster Sanctuary</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Sanctuary (Fluent)</li>
+	<li>Draconic (Passable)</li>
+	<li>Aklo (Poor)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">High Jump</span></li>
+	<li><span class="trait">Double Jump</span></li>
+	<li><span class="trait">Wood Resistance</span></li>
+	<li><span class="trait">Specialty (Bartering)</span></li>
+	<li><span class="trait">Specialty (Communication)</span></li>
+	<li><span class="trait">Specialty (Survival)</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Monster Keeper</li>
+	<li>Future: Senshi of Earth's Body I</li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Julia Thiazi"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Usagi_Tsukino-->
+<tr class="invis"><td><h2 id="Usagi_Tsukino">Usagi Tsukino</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Usagi Tsukino"));
+</script>
+<tr>
+	<td colspan="3">Senshi Form</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+12</td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Usagi_Tsukino.jpg" alt="image of Usagi Tsukino" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-63#post-96207524">Source</a></p>
+	<p>Age: 14</p>
+	<p>Favoured by: <span class="moon">The Moon</span></p>
+	<p>Affiliations: Inner Senshi</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Poor)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Purification Resistance</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Senshi of Moon I</li>
+	<li>Nexus Master of The Moon</li>
+	<li>Medical Training I</li>
+	<li>Cognitohazard Training</li>
+	<li>Healing Transformation</li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Usagi Tsukino"));</script>
+
+</td></tr>
+</table>
+
+<hr><table>		<!--Ami_Mizuno-->
+<tr class="invis"><td><h2 id="Ami_Mizuno">Ami Mizuno</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Ami Mizuno"));
+</script>
+<tr>
+	<td colspan="3">Senshi Form</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+7</td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Ami_Mizuno.jpg" alt="image of Ami Mizuno" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-121#post-101732049">Source</a></p>
+	<p>Age: 14</p>
+	<p>Favoured by: <span class="mercury">Mercury</span></p>
+	<p>Affiliations: Inner Senshi</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Fluent)</li>
+	<li>Latin (Decent)</li>
+	<li>Mandarin (Passable)</li>
+	<li>Sanskrit (Poor)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Cold Resistance</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Senshi of Mercury</li>
+	<li>Nexus Master of Mercury</li>
+	<li>Infohazard Training</li>
+	<li>Cognitohazard Training</li>
+	<li>Chilling Transformation</li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Ami Mizuno"));</script>
+
+</td></tr>
+</table>
+
+<hr><table>		<!--Rey_Hino-->
+<tr class="invis"><td><h2 id="Rey_Hino">Rey Hino</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Rey Hino"));
+</script>
+<tr>
+	<td colspan="3">Senshi Form</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+11</td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Rey_Hino.jpg" alt="image of Rey Hino" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-80#post-97773586">Source</a></p>
+	<p>Age: 15</p>
+	<p>Favoured by: <span class="mars">Mars</span></p>
+	<p>Affiliations: Inner Senshi</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Decent)</li>
+	<li>Sanskrit (Decent)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Seer</span></li>
+	<li><span class="trait">Magical Sensing</span></li>
+	<li><span class="trait">Divine Sensing</span></li>
+	<li><span class="trait">Eldritch Sensing</span></li>
+	<li><span class="trait">Fire Resistance</span></li>
+	<li><span class="trait">Specialty (Archery)</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Fire Reading</li>
+	<li>Senshi of Mars I</li>
+	<li>Nexus Master of Mars</li>
+	<li>Infohazard Training</li>
+	<li>Cognitohazard Training</li>
+	<li>Ritual Boosting</li>
+	<li>Burning Transformation</li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Rey Hino"));</script>
+
+</td></tr>
+</table>
+
+<hr><table>		<!--Makoto_Kino-->
+<tr class="invis"><td><h2 id="Makoto_Kino">Makoto Kino</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Makoto Kino"));
+</script>
+<tr>
+	<td colspan="3">Senshi Form</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+14</td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Makoto_Kino.jpg" alt="image of Makoto Kino" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-154#post-105339626">Source</a></p>
+	<p>Age: 14</p>
+	<p>Favoured by: <span class="jupiter">Jupiter</span></p>
+	<p>Affiliations: Inner Senshi</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Passable)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Electricity Resistance</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Senshi of Jupiter I</li>
+	<li>Nexus Master of Jupiter</li>
+	<li>Intimidation</li>
+	<li>Cognitohazard Training</li>
+	<li>Flash Step I</li>
+	<li>Stance Change I</li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Makoto Kino"));</script>
+
+</td></tr>
+</table>
+
+<hr><table>		<!--Minako Aino-->
+<tr class="invis"><td><h2 id="Minako_Aino">Minako Aino</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Minako Aino"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p>Age: 14</p>
+	<p>Favoured by: <span class="venus">Venus</span></p>
+	<p>Affiliations: Inner Senshi</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait"></span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Senshi of Venus I</li>
+	<li>Nexus Master of Venus</li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Minako Aino"));</script>
+
+</td></tr>
+</table>
+
+<hr><table>		<!--Luna-->
+<tr class="invis"><td><h2 id="Luna">Luna</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Luna"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p>Age: </p>
+	<p>Affiliations: Inner Senshi</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait"></span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li></li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Luna"));</script>
+
+</td></tr>
+</table>
+
+<hr><table>		<!--Artemis-->
+<tr class="invis"><td><h2 id="Artemis">Artemis</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Artemis"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p>Age: </p>
+	<p>Affiliations: Inner Senshi</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait"></span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li></li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Artemis"));</script>
+
+</td></tr>
+</table>
+
+<hr><table>		<!--Yumiko_Yumi-->
+<tr class="invis"><td><h2 id="Yumiko_Yumi">Yumiko Yumi</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Yumiko Yumi"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Yumiko_Yumi.jpg" alt="image of Yumiko Yumi" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-94#post-99067919">Source</a></p>
+	<p>Age: 14</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Decent)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Specialty (Gossip)</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li></li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Yumiko Yumi"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Kuri Kumiko-->
+<tr class="invis"><td><h2 id="Kuri_Kumiko">Kuri Kumiko</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Kuri Kumiko"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Kuri_Kumiko.jpg" alt="image of Kuri Kumiko"></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-270#post-117273350">Source</a></p>
+	<p>Age: 14</p>
+	<p>Favoured by: Eris</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Poor)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Energetic</span></li>
+	<li><span class="trait">Preparation (Glory)</span></li>
+	<li><span class="trait">Malediction (Doom)</span></li>
+	<li><span class="trait">Specialty (Finding Rumors)</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Followed by Chaos</li>
+	<li>Two-Faced Luck</li>
+	<li>Smuggling Training</li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Kuri Kumiko"));</script>
+
+</td></tr>
+</table>
+
+<hr><table>		<!--Shingo_Tsukino-->
+<tr class="invis"><td><h2 id="Shingo_Tsukino">Shingo Tsukino</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Shingo Tsukino"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Shingo_Tsukino.jpg" alt="image of Shingo Tsukino" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-72#post-96982301">Source</a></p>
+	<p>Age: 10</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Yokai Magnet</span></li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Shingo Tsukino"));</script>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+</td></tr>
+</table>
+
+<hr><table>		<!--Gurio_Umino-->
+<tr class="invis"><td><h2 id="Gurio_Umino">Gurio Umino</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Gurio Umino"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Gurio_Umino.jpg" alt="image of Gurio Umino"></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-72#post-96981785">Source</a></p>
+	<p>Age: 14</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Decent)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait"></span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Unexpected Entrance</li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Gurio Umino"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Chiaki-->
+<tr class="invis"><td><h2 id="Chiaki">Chiaki</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Chiaki"));
+</script>
+<tr>
+	<td colspan="3">Standard Issue Handgun</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+5</td>	<td></td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Chiaki.png" alt="image of Chiaki" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-72#post-96983348">Source</a></p>
+	<p>Age: 12</p>
+	<p>Affiliations: Direct Attack</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Passable)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Specialty (Guns)</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Line it Up</li>
+	<li>Lycoris Training I</li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Chiaki"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Nanako_Dojima-->
+<tr class="invis"><td><h2 id="Nanako_Dojima">Nanako Dojima</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Nanako Dojima"));
+</script>
+<tr>
+	<td colspan="3">Ribbons of Justice</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+4</td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-91#post-98932180">Source</a></p>
+	<p>Age: 15</p>
+	<p>Favoured by: <span class="mind">Earth's Mind (Velvet Room)</span></p>
+	<p>Affiliations: Phantasm Seekers (<span class="rank">Clan Leader</span>)</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Decent)</li>
+</ul>
+</details>
+<details><summary>Reputations</summary>
+	<ul>
+		<li>Commander on the Battlefield (Active)</li>
+	</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Persona User</span></li>
+	<li><span class="trait">Cognitive Dissonance</span></li>
+	<li><span class="trait">Mobile</span></li>
+	<li><span class="trait">Mental Resistance</span></li>
+	<li><span class="trait">Specialty (Performing)</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Jury-Rigged Wildcard (The Warden)</li>
+	<li>Future: Senshi of Earth's Mind I</li>
+	<li>Infohazard Training</li>
+	<li>Cognitohazard Training</li>
+	<li>Cognitive Enhancement I</li>
+	<li>Quick Summon</li>
+	<li>Cognintive Catch</li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Nanako Dojima"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Morgana-->
+<tr class="invis"><td><h2 id="Morgana">Morgana</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Morgana"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Morgana.jpg" alt="image of Morgana" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-103#post-99711224">Source</a></p>
+	<p>Age: Complicated (Second Life)</p>
+	<p>Affiliations: Phantasm Seekers, The Phantom Thieves of Hearts</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Fluent)</li>
+	<li>Necril (Esoteric)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Angel</span></li>
+	<li><span class="trait">Nine Lives</span></li>
+	<li><span class="trait">Persona User</span></li>
+	<li><span class="trait">Hope-Bringer</span></li>
+	<li><span class="trait">Specialty (Thieving)</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Being of Hope</li>
+	<li>Cognitive Form</li>
+	<li>Not my Journey</li>
+	<li>Infohazard Training</li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Morgana"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Tsukasa Shishio-->
+<tr class="invis"><td><h2 id="Tsukasa Shishio">Tsukasa Shishio</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Tsukasa Shishio"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Tsukasa_Shishio.jpg" alt="image of Tsukasa Shishio" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-270#post-117277574">Source</a></p>
+	<p>Age: 17</p>
+	<p>Affiliations: Phantasm Seekers (<span class="rank">Trainer</span>)</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Decent)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Magic Piercer</span></li>
+	<li><span class="trait">Persona User</span></li>
+	<li><span class="trait">Hyper-Awareness</span></li>
+	<li><span class="trait">Mobile</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Mind over Pain</li>
+	<li>Stance Change IV</li>
+	<li>Infohazard Training</li>
+	<li>Cognitohazard Training</li>
+	<li>Wood Boost II</li>
+	<li>Caged Beast Style I</li>
+	<li>Quick Summon</li>
+	<li>Cognitive Catch</li>
+	<li>Flash Step I</li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Tsukasa Shishio"));</script>
+
+</td></tr>
+</table>
+
+<hr><table>		<!--Ryusui_Nanami-->
+<tr class="invis"><td><h2 id="Ryusui_Nanami">Ryusui Nanami</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Ryusui Nanami"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-175#post-106929968">Source</a></p>
+	<p>Age: 15</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Decent)</li>
+</ul>
+</details>
+<details><summary>Reputations</summary>
+	<ul>
+		<li>The Greediest Man in the World! (Active)</li>
+		<li>Greed is Justice! (Active)</li>
+		<li>Can't Give Up (Active)</li>
+	</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Hope-Bringer</span></li>
+	<li><span class="trait">Defy Death</span></li>
+	<li><span class="trait">Specialty (Meteorology)</span></li>
+	<li><span class="trait">Specialty (Money)</span></li>
+	<li><span class="trait">Specialty (Navigation)</span></li>
+	<li><span class="trait">Specialty (Sailing/Piloting)</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+<script>document.write(ch_spellbook("Ryusui Nanami"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Senku_Ishigami-->
+<tr class="invis"><td><h2 id="Senku_Ishigami">Senku Ishigami</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Senku Ishigami"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Senku_Ishigami.jpg" alt="image of Senku Ishigami" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-175#post-106930256">Source</a></p>
+	<p>Age: 15</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Fluent)</li>
+	<li>Latin (Passable)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Eidetic Memory</span></li>
+	<li><span class="trait">Hope-Bringer</span></li>
+	<li><span class="trait">Linguist</span></li>
+	<li><span class="trait">Horror Resistance</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Head for Numbers</li>
+	<li>Scientific Progress</li>
+	<li>Fragile (Drawback)</li>
+	<li>Abysmal Luck (Drawback)</li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Senku Ishigami"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Madeline Robin-->
+<tr class="invis"><td><h2 id="Madeline_Robin">Madeline Robin</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Madeline Robin"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Madeline_Robin.jpg" alt="image of Madeline Robin" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-175#post-106929578">Source</a></p>
+	<p>Age: 11</p>
+	<p>Favoured by: <span class="soul">Earth's Soul (The Hundred Acre Wood)</span></p><hr>
+	
+<details><summary>Known languages</summary>
+<ul>
+	<li>English (Fluent)</li>
+	<li>Soulspeech (Esoteric)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Spirit Resistance</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Future: Senshi of Earth's Soul I</li>
+	<li>Nexus Master of Hundred Acre Wood</li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Madeline Robin"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Pooh Bear-->
+<tr class="invis"><td><h2 id="Pooh_Bear">Pooh Bear</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Pooh Bear"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Pooh_Bear.jpg" alt="image of Pooh Bear" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-175#post-106946594">Source</a></p>
+	<p>Age: Uhhh...</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Soulspeech (Esoteric)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Damage Immunity</span></li>
+	<li><span class="trait">Death Immunity</span></li>
+	<li><span class="trait">Mental Immunity</span></li>
+	<li><span class="trait">Silence Immunity</span></li>
+	<li><span class="trait">Transmutation Immunity</span></li>
+	<li><span class="trait">Full of Fluff</span></li>
+	<li><span class="trait">Hope-Bringer</span></li>
+	<li><span class="trait">Specialty (Poetry)</span></li>
+	<li><span class="trait">Specialty (Social Problems)</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Think Think Think</li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Pooh Bear"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Piglet-->
+<tr class="invis"><td><h2 id="Piglet">Piglet</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Piglet"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Piglet.jpg" alt="image of Piglet" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-176#post-106947323">Source</a></p>
+	<p>Age: I'm afraid I don't remember</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Soulspeech (Esoteric)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Mobile</span></li>
+	<li><span class="trait">Damage Immunity</span></li>
+	<li><span class="trait">Death Immunity</span></li>
+	<li><span class="trait">Mental Immunity</span></li>
+	<li><span class="trait">Silence Immunity</span></li>
+	<li><span class="trait">Transmutation Immunity</span></li>
+	<li><span class="trait">Full of Fluff</span></li>
+	<li><span class="trait">Hope-Bringer</span></li>
+	<li><span class="trait">Specialty (Jury-Rigging)</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Braver Than you Believe</li>
+	<li>Jury-Rigger</li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Piglet"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Atoning Tragedy-->
+<tr class="invis"><td><h2 id="Atoning_Tragedy">Atoning Tragedy</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Atoning Tragedy"));
+</script>
+<tr><td colspan="3">Bronze Tragedy Mask</td>
+	<td></td>	<td></td>	<td></td>	<td>+6</td>	<td></td>	<td></td>	<td colspan="2"></td></tr>
+<tr><td colspan="3">Timeless Blade</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+8</td>	<td>+4</td></tr>
+<tr><td colspan="3">Additional Timeless Blade (for each) x3</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+2</td>	<td>+1</td></tr>
+<tr><td colspan="3">Fated Stave</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+8</td></tr>
+<tr><td colspan="3">Additional Fated Stave (for each) x1</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+2</td></tr>
+</table>
+</td>
+<td rowspan="2">
+	<span></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-287#post-119582378">Source</a></p>
+	<p>Age: He was old when the Moon Kingdom fell</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Youma</span></li>
+	<li><span class="trait">Life Stealer</span></li>
+	<li><span class="trait">Darkness Immunity</span></li>
+	<li><span class="trait">Curse Immunity</span></li>
+	<li><span class="trait">Silence Resistance</span></li>
+	<li><span class="trait">Temporal Resistance</span></li>
+	<li><span class="trait">Purification Vulnerability</span></li>
+	<li><span class="trait">Triple Action</span></li>
+	<li><span class="trait">Quadruple Attack</span></li>
+	<li><span class="trait">Double Spell</span></li>
+	<li><span class="trait">Hyper-Awareness</span></li>
+	<li><span class="trait">Mobile</span></li>
+	<li><span class="trait">High Jump</span></li>
+	<li><span class="trait">Water from the Well</span></li>
+	<li><span class="trait">Mana Regeneration 6</span></li>
+	<li><span class="trait">Double Staff Training</span></li>
+	<li><span class="trait">Multi-Sword Training</span></li>
+	<li><span class="trait">Dual Weight Caster</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li></li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Atoning Tragedy"));</script>
+
+</td></tr>
+</table>
+
+<hr><table>		<!--Dojo Master-->
+<tr class="invis"><td><h2 id="Dojo_Master">Supreme Dojo Master of Eternal Darkness</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Dojo Master"));
+</script>
+<tr><td colspan="3">Gloves of the Night</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+1</td>	<td></td>
+</tr>
+<tr><td colspan="3">Light Chainmail Vest</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+4</td>
+</tr>
+</table>
+</td>
+<td rowspan="2">
+	<span></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-293#post-120326556">Source</a></p>
+	<p>Age: 37</p>
+	<p>Favored by: Sedna</p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+	<li>English (Fluent)</li>
+	<li>Aklo (Fluent)</li>
+	<li>Mandarin (Passable)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Energetic</span></li>
+	<li><span class="trait">Internalized Void</span></li>
+	<li><span class="trait">Defy Death</span></li>
+	<li><span class="trait">Mind Palace</span></li>
+	<li><span class="trait">Lucky</span></li>
+	<li><span class="trait">Iron Will</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li></li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Dojo Master"));</script>
+
+</td></tr>
+</table>
+
+<hr><table>		<!--Jiemba-->
+<tr class="invis"><td><h2 id="Jiemba">Jiemba</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Jiemba"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p>Age: </p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait"></span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li></li>
+</ul>
+</details>
+<script>document.write(ch_spellbook("Jiemba"));</script>
+
+</td></tr>
+</table>
+
+<hr><table>		<!--Jadeite-->
+<tr class="invis"><td><h2 id="Jadeite">Jadeite</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Jadeite"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Jadeite.jpg" alt="image of Jadeite" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-114#post-101071647">Source</a></p>
+	<p>Age: Unknown</p><hr>
+<details><summary>Reputations</summary>
+<ul>
+	<li>Father to His Youma (Active)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Force Affinity</span></li>
+	<li><span class="trait">Internalized Force</span></li>
+	<li><span class="trait">Force Reflection</span></li>
+	<li><span class="trait">Pressure Vulnerability</span></li>
+	<li><span class="trait">Water from the Well</span></li>
+	<li><span class="trait">Double Action</span></li>
+	<li><span class="trait">Double Spell</span></li>
+	<li><span class="trait">Specialty (Object Animation)</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Blessing of Metalia</li>
+	<li>Soul Storage Technique</li>
+	<li>Overcasting Technique</li>
+	<li>Natural Telekinetic</li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Jadeite"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--The Organist of Notre Dame-->
+<tr class="invis"><td><h2 id="The_Organist">The Organist of Notre Dame</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("The Organist of Notre Dame"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/Organist.jpg" alt="image of the Organist of Notre Dame" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-270#post-117301337">Source</a></p><hr>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Cerebus Knight</span></li>
+	<li><span class="trait">Still Stance</span></li>
+	<li><span class="trait">Double Action</span></li>
+	<li><span class="trait">Damage Immunity</span></li>
+	<li><span class="trait">Horror Immunity</span></li>
+	<li><span class="trait">Divine Vulnerability</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Hopeless, I Defied Him</li>
+	<li>Torturous Chords</li>
+	<li>Rage Against the Heavens</li>
+	<li>Draped in Mistery</li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("The Organist of Notre Dame"));</script>
+</td></tr>
+</table>
+
+<hr><table>		<!--Jeeves-->
+<tr class="invis"><td><h2 id="Jeeves">Jeeves</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Jeeves"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="">Source</a></p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait">Death Throes (Static Nova)</span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li></li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Jeeves"));</script>
+
+</td></tr>
+</table>
+
+<hr><table> <!--The Smiling Fog-->
+<tr class="invis"><td><h2 id="The_Smiling_Fog">The Smiling Fog</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("The Smiling Fog"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/" alt="" ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-298#post-121206216">Source</a></p>
+	<p>Age: </p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait"></span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Fog of Death</li>
+	<li>Animate Corpse</li>
+	<li>Tethered Corpses</li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook(""));</script>
+
+
+</td></tr>
+</table>
+
+<hr><table>
+<tr class="invis"><td><h2 id=""></h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params(""));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/" alt="image of " ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="">Source</a></p>
+	<p>Age: </p><hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+</ul>
+</details>
+<details><summary>Traits</summary>
+<ul>
+	<li><span class="trait"></span></li>
+</ul>
+</details>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li></li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook(""));</script>
+
+
+</td></tr>
+</table>
+
+</div>
+</main>
+
+</div>
+
+<script>
+	arr = document.getElementsByClassName("invis");
+	for (const el of arr){
+		el.innerHTML = el.innerHTML.replaceAll("Age: ", "<b>Age</b>: ");
+		el.innerHTML = el.innerHTML.replaceAll("Favoured by: ", "<b>Favoured by</b>: ");
+		el.innerHTML = el.innerHTML.replaceAll("Affiliations: ", "<b>Affiliations</b>: ");
+		el.innerHTML = el.innerHTML.replaceAll("Movement: ", "<b>Movement</b>: ");
+		el.innerHTML = el.innerHTML.replaceAll("Attack Type: ", "<b>Attack Type</b>: ");
+		el.innerHTML = el.innerHTML.replaceAll("Soul bound up in Contracts: ", "<b>Soul bound up in Contracts</b>: ");
+	}
+</script>
+<script src="./js/main.js" lang="javascript"></script>
+
+</body>
+</html>

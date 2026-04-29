@@ -1,0 +1,288 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Spellbook</title>
+<link rel="stylesheet" href="./css/style.css" />
+<style>
+  
+  
+td, th{
+  text-align: center;
+  padding: 10px 0;
+}
+
+td:last-child{
+  min-width: 120px;
+}
+.prime{
+  position: sticky;
+  z-index: 3;
+  top: 75px;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+</style>
+<script src="./js/data.js" lang="javascript"></script>
+<script>
+header = ["name", "Cost", "bonus", "elem", "weight", "time", "effect", "user"];
+
+function spellbook_copy(){
+	const root = document.querySelector("tbody");
+	
+	let page = sorting_param(spells, "weight");
+	for (var p of page){
+		let tarr = Array();
+		
+		for (var sp of spells){
+			if (sp["weight"] == p){
+				tarr.push(sp);
+			}
+		}
+		let tname = sorting_param(tarr, "name");
+		for (var n of tname){
+			let gr_sp = Array();
+			for (var sp of tarr){
+				if (sp["name"] == n){
+					gr_sp.push(sp);
+				}
+			}
+			
+			for (var sp of gr_sp){
+				const row = document.createElement('tr');
+				header.forEach((h) => {
+					const cell = document.createElement('td');
+					if (Object.keys(sp).includes(h)){
+						let text = "";
+						if (h == "name"){
+							text = sp.name;
+							if (Object.keys(sp).includes("aff")){
+								text += " - <span class='element'>" + sp.aff + "</span> Affinity";
+							}
+							if (Object.keys(sp).includes("over")){
+								if (sp.over){
+									text += " (Overcast: " + sp.over + ")";
+								}else{
+									text += " (Overcast)";
+								}
+							}
+							
+						}else if (h == "cost"){
+							if (["MP", "MW", "HP"].includes(sp.cost.split(" ")[1])){
+								if (sp.cost.slice(-2) == "HP"){
+									text = "<span>" + translate_hp(sp.cost.slice(0, -3), 2) + "</span>";
+								}else{
+									text = "<span class='stat'>" + sp.cost + "</span>";
+								}
+							}
+						}else if (h == "bonus"){
+							if (["MRT", "DPL", "STW", "ING", "LRN", "SRT", "CBT", "OCBT", "DCBT"].includes(sp.bonus.split(" ")[1])){
+								text = "<span class='stat'>" + sp.bonus + "</span>";
+							}else{
+								text = sp.bonus;
+							}
+						}else if (h == "elem"){
+							if (sp.elem.length > 0){
+								text = "<span class='element'>" + basic_elements[sp.elem[0]];
+								if (sp.elem.length > 1){
+									text += " (" + sp.elem.slice(1).map((el) => basic_elements[el]).join(", ") + ")";
+								}
+								text += "</span>";
+							}
+						}else if (h == "weight"){
+							text = "<span class='weight'>" + sp.weight + "</span>";
+						}else if ((h == "range")|(h == "time")|(h == "effect")){
+							text = sp[h];
+						}else if (h == "user"){
+							text = sp.user.map((us) => "<a href='Characters.html#" + us.replaceAll(" ", "_") + "' class='character'>" + us + "</a>").join("<br>");
+						}
+						cell.appendChild(document.createTextNode(text));
+					}
+					row.appendChild(cell);
+				})
+				root.appendChild(row);
+			}
+		}
+	}
+}
+
+		
+
+function spellbook(){
+	
+	let html = "";
+	let page = sorting_param(spells, "weight");
+	
+	for (var p of page){
+		let tarr = Array();
+		
+		for (var sp of spells){
+			if (sp["weight"] == p){
+				tarr.push(sp);
+			}
+		}
+		let tname = sorting_param(tarr, "name");
+		for (var n of tname){
+			let gr_sp = Array();
+			for (var sp of tarr){
+				if (sp["name"] == n){
+					gr_sp.push(sp);
+				}
+			}
+			
+			for (var sp of gr_sp){
+				html += "<tr>";
+				if (Object.keys(sp).includes("name")){
+					html += "<td>" + sp.name;
+					if (Object.keys(sp).includes("aff")){
+						html += " - <span class='element'>" + sp.aff + "</span> Affinity";
+					}
+					if (Object.keys(sp).includes("over")){
+						if (sp.over){
+							html += " (Overcast: " + sp.over + ")";
+						}else{
+							html += " (Overcast)";
+						}
+					}
+					html += "</td>";
+				}else{
+					html += "<td></td>";
+				}
+				if (Object.keys(sp).includes("cost")){
+					html += "<td>";
+							
+					if (["MP", "MW", "HP"].includes(sp.cost.split(" ")[1])){
+						if (sp.cost.slice(-2) == "HP"){
+							html += "<span>" + translate_hp(sp.cost.slice(0, -3), 2) + "</span></td>";
+						}else{
+							html += "<span class='stat'>" + sp.cost + "</span></td>";
+						}
+					}else{
+						html += sp.cost + "</td>";
+					}
+				}else{
+					html += "<td></td>";
+				}
+				if (Object.keys(sp).includes("bonus")){
+					if (similar(gr_sp, "bonus") == 0){
+						if (!Object.keys(sp).includes("aff")&!Object.keys(sp).includes("over")){
+							html += "<td rowspan='" + gr_sp.length + "'>";
+							
+							if (["MRT", "DPL", "STW", "ING", "LRN", "SRT", "CBT", "OCBT", "DCBT"].includes(sp.bonus.split(" ")[1])){
+								html += "<span class='stat'>" + sp.bonus + "</span></td>";
+							}else{
+								html += sp.bonus + "</td>";
+							}
+						}
+					}else{
+						html += "<td>";
+						if (["MRT", "DPL", "STW", "ING", "LRN", "SRT", "CBT", "OCBT", "DCBT"].includes(sp.bonus.split(" ")[1])){
+							html += "<span class='stat'>" + sp.bonus + "</span></td>";
+						}else{
+							html += sp.bonus + "</td>";
+						}
+					}
+				}else{
+					html += "<td></td>";
+				}
+				if (Object.keys(sp).includes("elem")){
+					if (!Object.keys(sp).includes("aff")&!Object.keys(sp).includes("over")){
+						if (sp.elem.length > 0){
+							html += "<td rowspan='" + gr_sp.length + "' class='element'>" + basic_elements[sp.elem[0]];
+							if (sp.elem.length > 1){
+								html += " (" + sp.elem.slice(1).map((el) => basic_elements[el]).join(", ") + ")";
+							}
+							html += "</td>"
+						}else{
+							html += "<td></td>";
+						}
+					}
+				}else{
+					html += "<td></td>";
+				}
+				if (Object.keys(sp).includes("weight")){
+					if (!Object.keys(sp).includes("aff")&!Object.keys(sp).includes("over")){
+						html += "<td rowspan='" + gr_sp.length + "' class='weight'>" + sp.weight + "</td>";
+					}
+				}else{
+					html += "<td></td>";
+				}
+				if (Object.keys(sp).includes("range")){
+					if (similar(gr_sp, "range") == 0){
+						if (!Object.keys(sp).includes("aff")&!Object.keys(sp).includes("over")){
+							html += "<td rowspan='" + gr_sp.length + "'>" + sp.range + "</td>";
+						}
+					}else{
+						html += "<td>" + sp.range + "</td>";
+					}
+				}else{
+					html += "<td></td>";
+				}
+				if (Object.keys(sp).includes("time")){
+					if (similar(gr_sp, "time") == 0){
+						if (!Object.keys(sp).includes("aff")&!Object.keys(sp).includes("over")){
+							html += "<td rowspan='" + gr_sp.length + "'>" + sp.time + "</td>";
+						}
+					}else{
+						html += "<td>" + sp.time + "</td>";
+					}
+				}else{
+					html += "<td></td>";
+				}
+				if (Object.keys(sp).includes("effect")){
+					if (similar(gr_sp, "effect") == 0){
+						if (!Object.keys(sp).includes("aff")&!Object.keys(sp).includes("over")){
+							html += "<td rowspan='" + gr_sp.length + "'>" + sp.effect + "</td>";
+						}
+					}else{
+						html += "<td>" + sp.effect + "</td>";
+					}
+				}else{
+					html += "<td></td>";
+				}
+				if (Object.keys(sp).includes("user")){
+					html += "<td>" + sp.user.map((us) => "<a href='Characters.html#" + us.replaceAll(" ", "_") + "' class='character'>" + us + "</a>").join("<br>") + "</td>";
+				}else{
+					html += "<td></td>";
+				}
+				html+= "</tr>"
+			}
+		}
+	}
+	return html;
+}
+</script>
+</head>
+<body>
+
+
+<div>
+<header>
+<table><thead>
+<tr><th id="menu_1">Rules</th><th id="menu_2">Dungeon</th><th id="menu_3">World</th></tr>
+</thead></table>
+</header>
+
+<h1>Spellbook</h1>
+
+<main>
+<div>
+<table>
+<thead class="prime">
+<tr><th>Spell Name</th>	
+	<th>Cost</th>	<th>Bonus</th>	<th>Type</th> <th><button onclick="">Metaphysical Weight</button></th>	<th>Range</th>	<th>Duration</th>	<th>Effect</th>	<th>User</th>
+</tr>
+</thead>
+<tbody>
+<script>document.write(spellbook());</script>
+</tbody>
+</table>
+
+</div>
+</main>
+</div>
+
+<script src="./js/main.js" lang="javascript"></script>
+
+</body>
+</html>

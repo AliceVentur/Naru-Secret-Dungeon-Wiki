@@ -1,0 +1,1146 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Creature Families</title>
+<link rel="stylesheet" href="./css/style.css" />
+<style>
+table:has(> .prime) {
+  border-collapse: separate;
+}
+
+td{
+  border: 1px solid black;
+}
+td:has(> table){
+  padding: 0;
+  border: 0px solid black;
+}
+
+td:first-of-type [id]{
+  vertical-align: middle;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+details{
+  font-size: 16px;
+}
+tr.minions ul {
+  list-style-type: none;
+  padding: 0 50px;
+}
+li {
+  padding: 15px 0 0 0;
+}
+
+.prime{
+  position: sticky;
+  z-index: 3;
+  top: 75px;
+  border: 1px solid black;
+  border-collapse: separate;
+}
+
+
+#abominations{
+  background-color: #7979D0;
+}
+#land_arthropods{
+  background-color: #6F9E88;
+}
+#incorporeal_undead{
+  background-color: #219487;
+}
+#trees{
+  background-color: #5BCE61;
+}
+
+
+</style>
+<script src="./js/data.js" lang="javascript"></script>
+</head>
+
+<body>
+
+<div>
+<header>
+<table>
+<tr><th id="menu_1">Rules</th><th id="menu_2">Dungeon</th><th id="menu_3">World</th></tr>
+</table>
+</header>
+
+<h1>Creature Families</h1>
+<nav>
+<table>
+<tr><td style="padding: 30px 5% 0 5%">
+<details><summary>Officially Researched Families</summary>
+<ul>
+	<li><a href="#abominations">Abominations</a></li>
+	<li><a href="#flowers">Flowers</a> (<span>Progress: Stage II Minions - 0/8</span>)</li>
+	<li><a href="#incorporeal_undead">Incorporeal Undead</a> </li>
+	<li><a href="#land_arthropods">Land-Based Arthropods</a> (<span>Progress: Stage III Minions - 0/16</span>)</li>
+	<li><a href="#small_mammals">Small Mammals</a> (<span>Progress: Stage II Minions - 0/8</span>)</li>
+	<li><a href="#small_reptiles">Small Reptiles</a> (<span>Progress: Stage II Minions - 0/8</span>)</li>
+	<li><a href="#trees">Trees</a> (<span>Progress: Stage III Minions - 0/??</span>)</li>
+</ul>
+</details>
+<details><summary>Unofficially Researched Families</summary>
+<ul>
+	<li><a href="#amphibians">Amphibians</a> (<span>Progress: Stage I Minions - 0/5</span>)</li>
+	<li><a href="#ancient_dark_beasts">Ancient Dark Beasts</a> (<span>Progress: Stage I Minions - 18/39</span>)</li>
+	<li><a href="#leng_beasts">Beasts of Leng</a></li>
+	<li><a href="#beast_yokai">Beast Yokai</a> (<span>Progress: Stage I Minions - 0/27</span>)</li>
+	<li><a href="#cnidarians">Cnidarians</a> (<span>Progress: Stage I Minions - 0/14</span>)</li>
+	<li><a href="#crustaceans">Crustaceans</a> (<span>Progress: Stage I Minions - 0/23</span>)</li>
+	<li><a href="#dragons">Dragons</a> (<span>Progress: Stage I Minions - 0/55</span>)</li>
+	<li><a href="#fey">Fey</a></li>
+	<li><a href="#forgotten_terrors">Forgotten Terrors</a> (<span>Progress: Stage I Minions - 0/65</span>)</li>
+	<li><a href="#guardian_beasts">Guardian Beasts</a></li>
+	<li><a href="#guardian_undead">Guardian Undead</a> (<span>Progress: Stage I Minions - 0/30</span>)</li>
+	<li><a href="#humanoid_yokai">Humanoid Yokai</a> (<span>Progress: Stage I Minions - 0/32</span>)</li>
+	<li><a href="#large_reptiles">Large Reptiles</a></li>
+	<li><a href="#nature_spirits">Nature Spirits</a> (<span>Progress: Stage I Minions - 0/50</span>)</li>
+	<li><a href="#object_yokai">Object Yokai</a></li>
+</ul>
+</details>
+<details><summary>Not Researched Families</summary>
+<ul>
+	<li><a href="#altered_beasts">Altered Beasts</a> (<span>Progress: Stage I Minions - 1/36</span>)</li>
+	<li><a href="#blighted_creatures">Blighted Creatures</a> </li>
+	<li><a href="#carnivorous_plants">Carnivorous Plants</a> (<span>Progress: Stage I Minions - 0/25</span>)</li>
+	<li><a href="#deep_sea_beasts">Deep Sea Beasts</a> (<span>Progress: Stage I Minions - 0/42</span>)</li>
+	<li><a href="#dream_beasts">Dream Beasts</a></li>
+	<li><a href="#freshwater_fish">Freshwater Fish</a> (<span>Progress: Stage I Minions - 0/10</span>)</li>
+	<li><a href="#fungi">Fungi</a> (<span>Progress: Stage I Minions - 0/27</span>)</li>
+	<li><a href="#grasses">Grasses, Bushes and Ferns</a> (<span>Progress: Stage I Minions - 0/22</span>)</li>
+	<li><a href="#large_ancient_reptiles">Large Ancient Reptiles</a> (<span>Progress: Stage I Minions - 0/45</span>)</li>
+	<li><a href="#medium_mammals">Medium Mammals</a> (<span>Progress: Stage I Minions - 0/25</span>)</li>
+	<li><a href="#mindless_undead">Mindless Undead</a> (<span>Progress: Stage I Minions - 0/15</span>)</li>
+	<li><a href="#mollusks">Mollusks</a> (<span>Progress: Stage I Minions - 0/3</span>)</li>
+	<li><a href="#saltwater_fish">Saltwater Fish</a> (<span>Progress: Stage I Minions - 0/30</span>)</li>
+	<li><a href="#small_birds">Small Birds</a> (<span>Progress: Stage I Minions - 0/30</span>)</li>
+	<li><a href="#spirit_beasts">Spirit Beasts</a></li>
+	<li><a href="#territory_spirits">Territory Spirits</a></li>
+</ul>
+</details>
+</td></tr></table>
+</nav>
+<main>
+<table>
+<tr><td>
+<table>
+<thead class="prime">
+<tr>	<th>Family</th>	<th>Rarity</th>	<th>Power</th>	<th>Initial Cost</th>	<th>Upkeep Cost</th>	<th>Respawn Cost</th>	<th>Respawn Speed</th>	<th>Basic Minion</th>	<th>Other Strengths</th>	<th>Other Weaknesses</th>
+</tr>
+</thead>
+<tr><td id="abominations">Abominations</td>
+<td>Mythic</td>	<td>High</td>	<td>Very High</td>	<td>Low</td>	<td>High</td>	<td>Fast</td>	<td><span class="familiar">Stellar Eye</span></td>	<td>Have more infusion spots than normal<br>Respawn naturally</td>	<td><span class="trait">Strange Minds</span><br>Not found naturally<br>Very low chance for mutating<br>They all respawn naturally</td>	</tr>
+<tr class="minions"><td colspan="10">
+<details><summary>Known Minions</summary>
+<ul>
+	<li><details><summary><span class="familiar">Stellar Eye</span></summary>
+	<span class="descr">An eye with an iris that shimmers in a cascade of colors and lids that seem as tears in reality</span>
+	<p>Traits: <span class="trait">Strange Minds</span>, <span>Hover</span></p>
+	<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+	<p>Open and Shut: When a Stellar Eye is open, it is completely immobile. When a Stellar Eye is shut, it gains instantaneous movement, loses the ability to attack, and effectively counts as not existing</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Double Eye</span></summary>
+		<span class="descr">Two Stellar Eyes grafted together</span>
+		<p>Traits: <span class="trait">Strange Minds</span>, <span>Hover</span>, <span>Double Attack</span></p>
+		<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+		<p>Open and Shut: When a Double Eye is open, it is completely immobile. When a Double Eye is shut, it gains instantaneous movement, loses the ability to attack, and effectively counts as not existing</p>
+		<p>Double Up: A Double Eye can have two copies of the same Infusion</p>
+		</details><ul>
+			<li><details><summary><span class="familiar">Triple Eye</span></summary>
+			<span class="descr">Three Stellar Eyes grafted together</span>
+			<p>Traits: <span class="trait">Strange Minds</span>, <span>Hover</span>, <span>Triple Attack</span></p>
+			<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+			<p>Open and Shut: When a Triple Eye is open, it is completely immobile. When a Triple Eye is shut, it gains instantaneous movement, loses the ability to attack, and effectively counts as not existing</p>
+			<p>Triple Up: A Triple Eye can have up to three copies of the same Infusion</p>
+			</details></li></ul></li>
+		<li><details><summary><span class="familiar">Void Blinker</span></summary>
+		<span class="descr">An ovular singularity that eerily resembles an eye</span>
+		<p>Traits: <span class="trait">Strange Minds</span>, <span>Hover</span>, <span>Death Throes (Basic Attack)</span>, <span>Hyper-Awareness</span></p>
+		<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+		<p>Open and Shut: When a Void Blinker is open, it is completely immobile. When a Void Blinker is shut, it gains instantaneous movement, loses the ability to attack, and effectively counts as not existing</p>
+		<p>Void Afterimage: Whenever a Void Blinker shuts its eye, it may spend <span class="stat">1 MP</span> to use its Basic Attack as a brief action</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Cosmic Eye</span></summary>
+		<span class="descr">An eye-shaped tear in reality whose iris shows the most beautiful parts of the universe</span>
+		<p>Traits: <span class="trait">Strange Minds</span>, <span>Hover</span>, <span>Total Defense 1</span></p>
+		<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+		<p>Open and Shut: When a Cosmic Eye is open, it is completely immobile. When a Cosmic Eye is shut, it gains instantaneous movement, loses the ability to attack, and effectively counts as not existing</p>
+		<p>Behold the Cosmos: </p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Conglomeration of Spheres</span></summary>
+	<span class="descr">A mass of sticky spheres that slowly consumes whatever it touches</span>
+	<p>Traits: <span class="trait">Strange Minds</span>, <span>Physical Resistance</span>, <span>Magical Resistance</span></p>
+	<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+	<p>Dissolution: A Conglomeration of Spheres dissolves any mundane non-living material it touches. No roll can protect against this</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Cocoon of Spheres</span></summary>
+		<span class="descr">A hardened globe of sticky spheres that slowly pulses in size</span>
+		<p>Traits: <span class="trait">Strange Minds</span>, <span>Physical Resistance</span>, <span>Magical Resistance</span>, <span>Hover</span>, <span>Preparation (Barrier)</span>, <span>Aura Generation 4</span></p>
+		<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+		<p>Dissolution: A Cocoon of Spheres dissolves any mundane non-living material it touches. No roll can protect against this</p>
+		<p>Harden: As a Combat Action that costs <span class="stat">1 MP</span>, a Cocoon of Spheres can either remove the <span class="debuff">Armor Break</span> debuff from itself or gain the <span class="buff">Barrier</span> buff</p>
+		</details><ul>
+			<li><details><summary><span class="familiar">Star Servant of Spheres</span></summary>
+			<span class="descr">This creature's wings, face, and claws all seem to be made of shining yellow and white spheres. An atmosphere of fire and light surrounds it</span>
+			<p>Traits: <span class="trait">Strange Minds</span>, <span>Hover</span>, <span>Physical Resistance</span>, <span>Magical Resistance</span>, <span>Water Vulnerability</span>, <span>Mana Regeneration 3</span></p>
+			<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+			<p>Radiant Flash: </p>
+			<p>Solar Flare: </p>
+			<p>Gamma Burst: </p>
+			<p>Power of the Spheres: While a Star Servant of Spheres has less than half of its Health, it gains the <span class="trait">Double Spell</span> trait</p>
+			</details></li>
+			<li><details><summary><span class="familiar">Rocky Servant of Spheres</span></summary>
+			<span class="descr">This creature's wings, face, and claws all seem to be made of rocky brown and dark red spheres. An atmosphere of leaves and petals surrounds it</span>
+			<p>Traits: <span class="trait">Strange Minds</span>, <span>Hover</span>, <span>Physical Resistance</span>, <span>Magical Resistance</span>, <span>Electricity Vulnerability</span>, <span>Mana Regeneration 2</span></p>
+			<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+			<p>Greenhouse Effect: </p>
+			<p>Plate Tectonics: </p>
+			<p>Nature's Fury: </p>
+			<p>Power of the Spheres: While a Rocky Servant of Spheres has less than half of its Health, it gains the <span class="trait">Double Spell</span> trait</p>
+			</details></li>
+			<li><details><summary><span class="familiar">Gaseous Servant of Spheres</span></summary>
+			<span class="descr">This creature's wings, face, and claws all seem to be made of swirling orange and gray spheres. An atmosphere of gas and static electricity surrounds it</span>
+			<p>Traits: <span class="trait">Strange Minds</span>, <span>Hover</span>, <span>Physical Resistance</span>, <span>Magical Resistance</span>, <span>Fire Vulnerability</span>, <span>Mana Regeneration 2</span></p>
+			<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+			<p>Great Storm: </p>
+			<p>Roche Limit: </p>
+			<p>Orbital Lightning: </p>
+			<p>Power of the Spheres: While a Gaseous Servant of Spheres has less than half of its Health, it gains the <span class="trait">Double Spell</span> trait</p>
+			</details></li>
+			<li><details><summary><span class="familiar">Icy Servant of Spheres</span></summary>
+			<span class="descr">This creature's wings, face, and claws all seem to be made of frozen blue and dirty white spheres. An atmosphere of hail and darkness surrounds it</span>
+			<p>Traits: <span class="trait">Strange Minds</span>, <span>Hover</span>, <span>Physical Resistance</span>, <span>Magical Resistance</span>, <span>Heat Vulnerability</span>, <span>Mana Regeneration 2</span>, <span>Congeal Aura</span></p>
+			<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+			<p>High Tide: </p>
+			<p>Hills Cloud: </p>
+			<p>Deep Black: </p>
+			<p>Power of the Spheres: While a Icy Servant of Spheres has less than half of its Health, it gains the <span class="trait">Double Spell</span> trait</p>		</details></li></ul></li></ul></li>
+	<li><details><summary><span class="familiar">Creeping Cacophony</span></summary>
+	<span class="descr">A slow-moving maelstrom of colored sounds, ear-splitting smells, and nauseous textures. Completely undetectable... until you're in the thick of it</span>
+	<p>Traits: <span class="trait">Strange Minds</span>, <span>Incorporeal</span>, <span>Invisible</span></p>
+	<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+	<p>Scrambled Inputs: </p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Screaming Cacophony</span></summary>
+		<span class="descr">A flowing reverberation of abnormal and tear-inducing sounds</span>
+		<p>Traits: <span class="trait">Strange Minds</span>, <span>Incorporeal</span>, <span>Invisible</span>, <span>Sound Absorption</span>, <span>Silence Vulnerability</span></p>
+		<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+		<p>Scrambled Scream: </p>
+		</details><ul>
+			<li><details><summary><span class="familiar">Resonating Screamer</span></summary>
+			<span class="descr">A clashing reverberation of abnormal and tear-inducing sounds</span>
+			<p>Traits: <span class="trait">Strange Minds</span>, <span>Incorporeal</span>, <span>Invisible</span>, <span>Sound Absorption</span>, <span>Air Resistance</span>, <span>Electricity Resistance</span>, <span>Silence Vulnerability</span>, <span>Mana Donor</span></p>
+			<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+			<p>Restricted Donation: <span class="trait">Mana Donor</span> trait of Resonating Screamer can only be triggered by allies with <span class="element">Sound</span> basic attacks</p>
+			<p>Resonating Scream: </p>
+			</details></li></ul></li>
+		<li><details><summary><span class="familiar">Haunting Cacophony</span></summary>
+		<span class="descr">A swirling cloud of detached negative emotions</span>
+		<p>Traits: <span class="trait">Strange Minds</span>, <span>Incorporeal</span>, <span>Invisible</span>, <span>Hover</span>, <span>Compression</span>, <span>Decompression</span>, <span>Emotion Reflection</span>, <span>Silence Vulnerability</span></p>
+		<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+		<p>Scrambled Haunt: </p>
+		</details><ul>
+			<li><details><summary><span class="familiar">Spirit Wind</span></summary>
+			<span class="descr">A billowing pale wind of detached negative emotions</span>
+			<p>Traits: <span class="trait">Strange Minds</span>, <span>Incorporeal</span>, <span>Life Sense</span>, <span>Hover</span>, <span>Compression</span>, <span>Decompression</span>, <span>Emotion Reflection</span>, <span>Ectoplasm Reflection</span>, <span>Air Absorption</span>, <span>Spirit Immunity</span>, <span>Silence Vulnerability</span>, <span>Preparation (Spellshield)</span>, <span>Specialty (Initiative)</span>, <span>Congeal Aura</span></p>
+			<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+			<p>Haunting Gale: </p>
+			</details></li></ul></li></ul></li>
+	<li><details><summary><span class="familiar">Young Escher Beast</span></summary>
+	<span class="descr">A tiny beast that vaguely resembled a crustacean inside a glowing spherical distortion</span>
+	<p>Traits: <span class="trait">Strange Minds</span>, <span>Hover</span>, <span>Spacial Resistance</span>, <span>Void Vulnerability</span></p>
+	<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+	<p>Distortion Trap: </p>
+	<p>Limited Double Attack: A Young Escher Beast can spend <span class="stat">2 MP</span> to gain the <span class="trait">Double Attack</span> trait for 1 round</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Juvenile Escher Beast</span></summary>
+		<span class="descr">A shimmering blue crustacean-like beast inside a spherical distortion</span>
+		<p>Traits: <span class="trait">Strange Minds</span>, <span>Hover</span>, <span>Spacial Resistance</span>, <span>Void Vulnerability</span>, <span>Double Attack</span></p>
+		<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+		<p>Distortion Trap: </p>
+		<p>Spacial Master: A Juvenile Escher Beast automatically takes control of any <span class="element">Spacial</span> attack or effect used or cast within its Distortion. It can manipulate or redirect such in any way. Any attacks it makes or takes control of ignore Miss Chances</p>
+		</details><ul>
+			<li><details><summary><span class="familiar">Adult Escher Beast</span></summary>
+			<span class="descr">A shimmering dark blue crustacean-like beast inside a dim spherical distortion</span>
+			<p>Traits: <span class="trait">Strange Minds</span>, <span>Hover</span>, <span>Spacial Resistance</span>, <span>Void Vulnerability</span>, <span>Double Attack</span>, <span>Magic Piercer</span>, <span>Scales</span>, <span>Death Throes (Distortion Quake)</span></p>
+			<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+			<p>Distortion Trap: </p>
+			<p>Spacial Master: </p>
+			<p>Distortion Quake: </p>
+			</details></li></ul></li></ul></li>
+	<li><details><summary><span class="familiar">Living Spiral</span></summary>
+	<span class="descr">A spiraling black tear in reality</span>
+	<p>Traits: <span class="trait">Strange Minds</span>, <span>Hover,</span>, <span>Incorporeal</span>, <span>Compression</span>, <span>Evasion 1</span>, <span>Debuff Immunity</span>, <span>Poison Immunity</span>, <span>Plague Immunity</span>, <span>Drain Immunity</span>, <span>Emotion Reflection</span>, <span>Mental Reflection</span>, <span>Light Absorption</span>, <span>Void Absorption</span>, <span>Radiation Absorption</span>, <span>Silence Vulnerability</span></p>
+	<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+	<p>Spiral Gift: As a Combat Action costing <span class="stat">3 MP</span>, a Living Spiral can choose an ally that can currently see it and apply <span class="buff">Spiral Blessing</span> buff to it</p>
+	<p>SEE ME!: While a Living Spiral is in the scene, any creature that does not have the Spiral in its field of vision takes a <span class="stat">-3 SRT</span> penalty. This is an <span class="element">Eldritch</span> effect</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Menacing Spiral</span></summary>
+		<span class="descr">A spiraling black and white tear in reality</span>
+		<p>Traits: <span class="trait">Strange Minds, Hover, Incorporeal, Compression, Evasion 1, Debuff Immunity, Poison Immunity, Plague Immunity, Drain Immunity, Corruption Immunity, Emotion Reflection, Mental Reflection, Light Absorption, Darkness Absorption, Void Absorption, Radiation Absorption, Curse Absorption, Silence Vulnerability</span></p>
+		<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+		<p>Spiral Gift: As a Combat Action costing <span class="stat">3 MP</span>, a Menacing Spiral can choose an ally that can currently see it and apply <span class="buff">Spiral Blessing</span> buff to it</p>
+		<p>Spiral Doom: After a Menacing Spiral or any allied creature with the <span class="buff">Spiral Blessing</span> buff deals damage to an opponent, a Menacing Spiral can spend <span class="stat">2 MP</span> to give <span class="debuff">Spiral Curse</span> debuff to the damaged creature. This requires a successful Contested <span class="stat">SRT</span> check</p>
+		<p>SEE ME!: While a Menacing Spiral is in the scene, any creature that does not have the Spiral in its field of vision takes a <span class="stat">-5 SRT</span> penalty. Whenever a creature looks away from a Menacing Spiral, it gains 2 stacks of <span class="stack">Wither</span>. This is an <span class="element">Eldritch</span> effect</p>
+		</details><ul>
+			<li><details><summary><span class="familiar">Towering Spiral</span></summary>
+			<span class="descr">A spiraling spherical black and white tear in reality</span>
+			<p>Traits: <span class="trait">Strange Minds, Hover, Incorporeal, Evasion 2, Debuff Immunity, Poison Immunity, Plague Immunity, Drain Immunity, Corruption Immunity, Emotion Reflection, Mental Reflection, Light Absorption, Darkness Absorption, Void Absorption, Radiation Absorption, Curse Absorption, Silence Vulnerability, Divine Vulnerability, Mana Regeneration 1</span></p>
+			<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+			<p>Spiral Gift: </p>
+			<p>Spiral Doom: </p>
+			<p>SEE ME!: </p>
+			<p>Seen Everywhere: A Towering Spiral can enter any Scene that takes place on its floor at will by temporarily removing parts of walls and scenery that would prevent a creature from seeing it. (This includes the walls of Closed Rooms.) It will tend to do this at the most inconvenient times for Invaders. The removed parts repair themselves after about 5 minutes. This is an <span class="element">Eldritch (Void)</span> effect</p>
+			<p>There Can Be Only One: Only one Towering Spiral or <span class="familiar">Grand Spiral</span> can exist on a floor</p>
+			<p>Tower Dependent: </p>
+			</details></li></ul></li></ul></li>
+	<li><details><summary><span class="familiar">Colour Out of Space</span></summary>
+	<span class="descr">An eerie radiance of undefinable color</span>
+	<p>Traits: <span class="trait">Compression, Decompression, Digger, Mana Donor, Life Sense, Phasing, Poison Immunity, Plague Immunity, Mental Immunity, Transmutation Immunity, Heat Immunity, Cold Immunity, Critical Hit Immunity, Weird Absorption, Debuff Reflection, Force Vulnerability, Order Vulnerability</span></p>
+	<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+	<p>Living Colour: A Colour is a Mutation Source for the Colour-Touched Mutation. As a Brief Action costing 1 Pool, a Colour can give a Colour-Touched creature within Medium range 1 stack of <span class="stack">Age</span></p>
+	<p>Precise Incorporeality: A Colour Out of Space does not need to spend <span class="stat">MP</span> to activate its <span class="trait">Phasing</span> trait. A Colour can have different parts of itself be corporeal or incorporeal simultaneously</p>
+	<p>Dust to Dust: If a Colour Out of Space would defeat a creature, that creature dies and crumbles to heavy dust. This is an <span class="element">Eldritch (Matter)</span> effect</p>
+	<p>Ally Exclusion: A Colour Out of Space can freely pick and choose which creatures within its Range are hit by its Basic Attack</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Greater Colour</span></summary>
+		<span class="descr">An eerie choking radiance of bright undefinable color</span>
+		<p>Traits: <span class="trait">Compression, Decompression, Digger, Mana Donor, Life Sense, Phasing, Poison Immunity, Plague Immunity, Mental Immunity, Transmutation Immunity, Heat Immunity, Cold Immunity, Critical Hit Immunity, Weird Absorption, Debuff Reflection, Force Vulnerability, Order Vulnerability, Cleanse, Anti-Cascade</span></p>
+		<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+		<p>Living Colour: A Colour is a Mutation Source for the Colour-Touched Mutation. As a Brief Action costing <span class="stat">1 MP</span>, a Colour can give a Colour-Touched creature within Medium range 1 stack of <span class="stack">Age</span>. A creature that takes at least 1 moderate damage from a Greater Colour must succeed at a Contested <span class="stat">SRT</span> check or gain <span class="debuff">Chroma Blight</span> debuff</p>
+		<p>Precise Incorporeality: A Colour does not need to spend <span class="stat">MP</span> to activate its <span class="trait">Phasing</span> trait. A Greater Colour can have different parts of itself be corporeal or incorporeal simultaneously</p>
+		<p>Dust to Dust: If a Greater Colour would defeat a creature, that creature dies and crumbles to heavy dust. This is an <span class="element">Eldritch (Matter)</span> effect</p>
+		<p>Ally Exclusion: A Greater Colour can freely pick and choose which creatures within its Range are hit by its Basic Attack</p>
+		</details><ul>
+			<li><details><summary><span class="familiar">Redshifted Colour</span></summary>
+			<span class="descr">A choking radiance of bright undefinable color surrounded by an eerie red glow</span>
+			<p>Traits: <span class="trait">Compression, Decompression, Digger, Mana Donor, Life Sense, Phasing, Poison Immunity, Plague Immunity, Mental Immunity, Transmutation Immunity, Heat Immunity, Cold Immunity, Critical Hit Immunity, Weird Absorption, Debuff Reflection, Force Vulnerability, Order Vulnerability, Cleanse, Anti-Cascade, Aura Generation 2, Aging</span></p>
+			<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+			<p>Living Colour: A Redshifted Colour is a Mutation Source for the Colour-Touched Mutation. As a Brief Action costing <span class="stat">1 MP</span>, a Colour can give a Colour-Touched creature within Medium range 1 stack of <span class="stack">Age</span>. A creature damaged by a Shifted Colour must succeed at a Contested <span class="stat">SRT</span> check or gain <span class="debuff">Prismatic Chroma Blight</span> debuff</p>
+			<p>Precise Incorporeality: A Redshifted Colour does not need to spend <span class="stat">MP</span> to activate its <span class="trait">Phasing</span> trait. A Redshifted Colour can have different parts of itself be corporeal or incorporeal simultaneously</p>
+			<p>Dust to Dust: If a Redshifted Colour would defeat a creature, that creature dies and crumbles to heavy dust. This is an <span class="element">Eldritch (Matter)</span> effect</p>
+			<p>Ally Exclusion: A Redshifted Colour can freely pick and choose which creatures within its Range are hit by its Basic Attack</p>
+			<p>Feed on Mind: Whenever a creature takes at least 1 moderate damage from a basic attack of Redshifted Colour, the creature's <span class="stat">LRN</span> score is decreased by 1 until it gets a good night's sleep. This also grants the Redshifted Colour 1 stack of <span class="stack">Age</span>. This is an <span class="element">Eldritch (Light, Drain)</span> effect</p>
+			</details></li>
+			<li><details><summary><span class="familiar">Blueshifted Colour</span></summary>
+			<span class="descr">A choking radiance of bright undefinable color surrounded by an eerie blue glow</span>
+			<p>Traits: <span class="trait">Compression, Decompression, Digger, Mana Donor, Life Sense, Phasing, Poison Immunity, Plague Immunity, Mental Immunity, Transmutation Immunity, Heat Immunity, Cold Immunity, Critical Hit Immunity, Weird Absorption, Debuff Reflection, Force Vulnerability, Order Vulnerability, Cleanse, Anti-Cascade, Courage Generation 2, Aging</span></p>
+			<p>That is not Dead Which can Eternal Lie: Abominations do not need to be assigned to a spawner to respawn. If they are assigned to a spawner, their Respawn Cost is lowered by 1</p>
+			<p>Living Colour: A Blueshifted Colour is a Mutation Source for the Colour-Touched Mutation. As a Brief Action costing <span class="stat">1 MP</span>, a Blueshifted Colour can give a Colour-Touched creature within Medium range 1 stack of <span class="stack">Age</span>. A creature damaged by a Shifted Colour must succeed at a Contested <span class="stat">SRT</span> check or gain <span class="debuff">Prismatic Chroma Blight</span> debuff</p>
+			<p>Precise Incorporeality: A Blueshifted Colour does not need to spend <span class="stat">MP</span> to activate its <span class="trait">Phasing</span> trait. A Blueshifted Colour can have different parts of itself be corporeal or incorporeal simultaneously</p>
+			<p>Dust to Dust: If a Blueshifted Colour would defeat a creature, that creature dies and crumbles to heavy dust. This is an <span class="element">Eldritch (Matter)</span> effect</p>
+			<p>Ally Exclusion: A Blueshifted Colour can freely pick and choose which creatures within its Range are hit by its Basic Attack</p>
+			<p>Feed on Soul: Whenever a creature takes at least 1 moderate damage from a basic attack of Blueshifted Colour, the creature's <span class="stat">SRT</span> score is decreased by 1 until it gets a good night's sleep. This also heals 1 moderate damage from the Blueshifted Colour. This is an <span class="element">Eldritch (Light, Drain)</span> effect</p>
+			</details></li></ul></li></ul></li>
+</ul>
+</details></td></tr>
+<tr><td id="flowers">Flowers</td>
+<td>Common</td>	<td>Low</td>	<td>Average</td>	<td>Low</td>	<td>Average</td>	<td>Fast</td>	<td><span class="familiar">Dim Sunflower</span></td>	<td>Immense variety</td>	<td>Rooted</td>	</tr>
+<tr class="minions"><td colspan="10">
+<details><summary>Known Minions</summary>
+<ul>
+	<li><details><summary><span class="familiar">Dim Sunflower</span></summary>
+	<span class="descr">A short and dull sunflower with an abnormally large blossom</span>
+	<p>Traits: <span class="trait">Fire Vulnerability</span>, <span class="trait">Light Absorption</span></p>
+	<p>Solar Power: As a Combat Action once every two rounds, a Dim Sunflower can gain 6 stacks of <span class="stack">Charge</span>. This ability can only be used under direct sunlight</p>
+	<p>Solar Energy: Once per round as a Brief Action, a Dim Sunflower can give any number of its <span class="stack">Charge</span> stacks to an ally in Medium Range that has a <span class="element">Wood</span> basic attack</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Maddening Azalea</span></summary>
+	<span class="descr">A small bush full of deep purple five-petaled flowers</span>
+	<p>Traits: <span class="trait">Fire Vulnerability</span>, <span class="trait">Emotion Reflection</span></p>
+	<p>Madness: A basic attack of Maddening Azalea deals Horror instead of Damage</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Shady Chameleon Plant</span></summary>
+	<span class="descr">A mass of heart-shaped leaves with the occasional four-petaled white flower</span>
+	<p>Traits: <span class="trait">Concealed</span>, <span class="trait">Fire Vulnerability</span>, <span class="trait">Light Resistance</span>, <span class="trait">Darkness Immunity</span>, <span class="trait">Moisture Dependent</span></p>
+	<p>Stream Shot: A Shady Chameleon Plant can spend <span class="stat">2 MP</span> to change the Range of its basic attack to Long for one attack</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Shining Iris</span></summary>
+	<span class="descr">A tall light-purple flower with three large petals</span>
+	<p>Traits: <span class="trait">Fire Vulnerability</span>, <span class="trait">Light Absorption</span>, <span class="trait">Darkness Reflection</span>, <span class="trait">Water Resistance</span>, <span class="trait">Specialty (Initiative)</span></p>
+	<p>Little Light: A Shining Iris provides enough light for creatures to see clearly within Short range. This is a <span class="element">Magical (Wood, Light)</span> effect</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Waning Moon Flower</span></summary>
+	<span class="descr">A small shrub with white trumpet-like flowers that only bloom at night</span>
+	<p>Traits: <span class="trait">Fire Vulnerability</span>, <span class="trait">Debuff Immunity</span>, <span class="trait">Mana Regeneration 1</span></p>
+	<p>Lunar Restoration: As a Combat Action costing <span class="stat">2 MP</span>, a Waning Moon Flower can remove a random debuff from an ally within Medium range and heal 1 moderate damage from that ally. This is a <span class="element">Magical (Healing, Light, Purification)</span> effect</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Lesser Myoga</span></summary>
+	<span class="descr">A single small shoot bearing a one-petaled yellow flower</span>
+	<p>Traits: <span class="trait">Tasty Morsel</span>, <span class="trait">Fire Vulnerability</span></p>
+	<p>Medicinal Herb: A minion who eats a Lesser Myoga gains the <span class="trait">Debuff Resistance</span> trait for the duration of the Myoga's Respawn Speed</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Warding Wisteria</span></summary>
+	<span class="descr">A long vine full of droopy lavender flowers willing to climb up any surface as it grows</span>
+	<p>Traits: <span class="trait">Fire Vulnerability</span>, <span class="trait">Ectoplasm Immunity</span>, <span class="trait">Spirit Resistance</span>, <span class="trait">Corruption Immunity</span>, <span class="trait">Specialty (Warding)</span></p>
+	<p>Warding: A <span class="trait">Demon</span> or <span class="trait">Undead</span> creature must succeed at a Contested <span class="stat">SRT</span> check to move withing Short range of a Warding Wisteria. If they fail the check, they cannot attempt any similar checks for 1 hour. This is a <span class="element">Magical (Protection, Order)</span> effect</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Red Tulip</span></summary>
+	<span class="descr">A typical red tulip</span>
+	<p>Traits: <span class="trait">Fire Vulnerability</span>, <span class="trait">Curse Resistance</span>, <span class="trait">Wood Immunity</span>, <span class="trait">Preparation (Spellshield)</span></p>
+	<p>Tulip's Gift: As a Combat Action costing <span class="stat">1 MP</span>, a Red Tulip can give any ally within Short range the <span class="buff">Spellshield</span> buff. This is a <span class="element">Magical (Wood, Protection)</span> effect</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Swaying Lavender</span></summary>
+	<span class="descr">A tall stem filled with tiny purple flowers swaying in the breeze</span>
+	<p>Traits: <span class="trait">Fire Vulnerability</span></p>
+	<p>Sleep Pollen: All enemies within Medium range of a Swaying Lavender gain 3 stacks of <span class="stack">Wither</span> at the start of their turn. This is a <span class="element">Magical (Wood, Poison, Dream)</span> effect</p>
+	</details></li>
+	<li><details><summary><span class="familiar">White Orchid</span></summary>
+	<span class="descr">A single three-petaled white flower with purple specks</span>
+	<p>Traits: <span class="trait">Fire Vulnerability</span>, <span class="trait">Wood Immunity</span>, <span class="trait">Temporal Resistance</span></p>
+	<p>Exotic Evolution: White Orchid have increased chances to gain mutations of the Beyond, Primordial, or Necril types.</p>
+	</details></li>
+</ul>
+</details></td></tr>
+<tr><td id="incorporeal_undead">Incorporeal Undead</td>
+<td>Rare</td>	<td>Low</td>	<td>Average</td>	<td>Very Low</td>	<td>Low</td>	<td>Very Slow</td>	<td><span class="familiar">Echo</span></td>	<td>Grow in power with each respawn</td>	<td>Can be killed by most forms of exorcism<br> Cannot be mutated</td>	</tr>
+<tr class="minions"><td colspan="10">
+<details><summary>Known Minions</summary>
+<ul>
+	<li><details><summary><span class="familiar">Echo</span></summary>
+	<span class="descr">A faded memory of a person's existence</span>
+	<table><tr><td>
+	<p>Traits: <span class="trait">Undead</span>, <span class="trait">Incorporeal</span>, <span class="trait">Hover</span>, <span class="trait">Plague Immunity</span>, <span class="trait">Poison Immunity</span>, <span class="trait">Death Immunity</span>, <span class="trait">Debuff Immunity</span>, <span class="trait">Silence Vulnerability</span>, <span class="trait">Total Defense 1</span></p></td></tr><tr><td>
+	<p>Echo of Memory: If an Echo is attached to a spawner, the Respawn Speeds of all other Incorporeal Undead attached to the same spawner are reduced by 1 day each (To a minimum of 2 Days.). No more than 3 Echoes can be attached to a given spawner</p></td></tr></table>
+	</details><ul>
+		<li><details><summary><span class="familiar">Malevolent Echo</span></summary>
+		<span class="descr">A memory of a person's existence, with all but the worst parts faded away</span>
+		<p>Traits: <span class="trait">Undead</span>, <span class="trait">Incorporeal</span>, <span class="trait">Hover</span>, <span class="trait">Plague Immunity</span>, <span class="trait">Poison Immunity</span>, <span class="trait">Death Immunity</span>, <span class="trait">Debuff Immunity</span>, <span class="trait">Silence Vulnerability</span>, <span class="trait">Total Defense 2</span>, <span class="trait">Sneak Attack</span></p>
+		<p>Echo of Memory: </p>
+		<p>False Memory: A Malevolent Echo can make an <span class="stat">ING</span> check to appear as a normal <span class="familiar">Echo</span>. It gains a <span class="stat">+10 ING</span> bonus on its roll to do so</p>
+		<p>Feral Speed: A Malevolent Echo always gets to attack before its target. This is a <span class="element">Momentum</span> effect</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Dim Wraith</span></summary>
+	<span class="descr">A subtly glowing spirit that looks to be starting to rot</span>
+	<p>Traits: <span class="trait">Undead</span>, <span class="trait">Incorporeal</span>, <span class="trait">Life Sense</span>, <span class="trait">Hover</span>, <span class="trait">Plague Immunity</span>, <span class="trait">Poison Immunity</span>, <span class="trait">Cold Immunity</span>, <span class="trait">Mental Immunity</span>, <span class="trait">Death Immunity</span>, <span class="trait">Life Vulnerability</span>, <span class="trait">Fire Vulnerability</span></p>
+	<p>Cold Spot: When a Dim Wraith enters the scene, one random enemy gains the <span class="debuff">Chill</span> debuff. This is an <span class="element">Ectoplasm</span> effect</p>
+	<p>Focused Haunting: Against creatures with the <span class="debuff">Chill</span> debuff, a Dim Wraith gains <span class="stat">+1 CBT</span> for every time it has respawned, to a maximum of <span class="stat">+8 CBT</span> at eight or more respawns</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Pyre Wraith</span></summary>
+		<span class="descr">A charred glowing spirit that seems constantly on fire</span>
+		<p>Traits: <span class="trait">Undead</span>, <span class="trait">Incorporeal</span>, <span class="trait">Life Sense</span>, <span class="trait">Hover</span>, <span class="trait">Purification Absorption</span>, <span class="trait">Plague Immunity</span>, <span class="trait">Poison Immunity</span>, <span class="trait">Light Immunity</span>, <span class="trait">Mental Immunity</span>, <span class="trait">Fire Immunity</span>, <span class="trait">Death Immunity</span>, <span class="trait">Life Resistance</span>, <span class="trait">Void Vulnerability</span>, <span class="trait">Silence Vulnerability</span>, <span class="trait">Emotion Vulnerability</span></p>
+		<p>Focused Haunting: Against creatures with the <span class="debuff">Burn</span> debuff, a Pyre Wraith gains <span class="stat">+1 CBT</span> for every time it has respawned, to a maximum of <span class="stat">+8 CBT</span> at eight or more respawns</p>
+		<p>Calmed by Water: When doused with or hit by water or a <span class="element">Water</span> attack/effect, a Pyre Wraith loses its Firey Aura and Immolation abilities for one round. The <span class="element">Fire</span> sub-type is also removed from its basic attack during this period</p>
+		<p>Firey Aura: Anyone who gets touched by a pyre wraith or hits one with a melee attack must succeed at a contested <span class="stat">SRT</span> check or gain the <span class="debuff">Burn</span> debuff. <span class="debuff">Burn</span> debuffs from Pyre Wraiths are <span class="element">Fire</span> effects</p>
+		<p>Immolation: All creatures adjacent to a Pyre Wraith when it dies gain the <span class="debuff">Burn</span> debuff</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Crooked Wraith</span></summary>
+		<span class="descr">A glowing spirit whose bones are broken in multiple places</span>
+		<p>Traits: <span class="trait">Undead</span>, <span class="trait">Incorporeal</span>, <span class="trait">Life Sense</span>, <span class="trait">Hover</span>, <span class="trait">Momentum Absorption</span>, <span class="trait">Plague Immunity</span>, <span class="trait">Poison Immunity</span>, <span class="trait">Cold Immunity</span>, <span class="trait">Mental Immunity</span>, <span class="trait">Death Immunity</span>, <span class="trait">Metal Resistance</span>, <span class="trait">Wood Resistance</span>, <span class="trait">Life Vulnerability</span>, <span class="trait">Pressure Vulnerability</span>, <span class="trait">Force Vulnerability</span>, <span class="trait">Preparation (Sidekick)</span></p>
+		<p>Broken Aura: Anyone who gets touched by a Crooked Wraith or hits one with a melee attack must succeed at a contested <span class="stat">SRT</span> check or gain the <span class="debuff">Armor Break</span> debuff</p>
+		<p>Focused Haunting: Against creatures with the <span class="debuff">Armor Break</span> debuff, a Crooked Wraith gains <span class="stat">+1 CBT</span> for every time it has respawned, to a maximum of <span class="stat">+10 CBT</span> at ten or more respawns</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Rotting Wraith</span></summary>
+		<span class="descr">A glowing spirit whose flesh looks to be literally rotting off</span>
+		<p>Traits: <span class="trait">Undead</span>, <span class="trait">Incorporeal</span>, <span class="trait">Life Sense</span>, <span class="trait">Hover</span>, <span class="trait">Plague Absorption</span>, <span class="trait">Poison Absorption</span>, <span class="trait">Acid Immunity</span>, <span class="trait">Mental Immunity</span>, <span class="trait">Death Immunity</span>, <span class="trait">Wood Immunity</span>, <span class="trait">Life Vulnerability</span>, <span class="trait">Water Vulnerability</span>, <span class="trait">Earth Vulnerability</span></p>
+		<p>Plague Spot: When a Rotting Wraith enters the scene, one random enemy gains 8 stacks of <span class="stack">Wither</span>. This is a <span class="element">Plague</span> effect</p>
+		<p>Perpetual Plague: Creatures within Medium range of a Rotting Wraith cannot lose <span class="stack">Wither</span> stacks. This is a <span class="element">Magical (Curse, Plague)</span> effect</p>
+		<p>Focused Haunting: Against creatures with at least 1 stack of <span class="stack">Wither</span>, a Rotting Wraith gains <span class="stat">+1 CBT</span> for every time it has respawned, to a maximum of <span class="stat">+10 CBT</span> at ten or more respawns</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Frozen Wraith</span></summary>
+		<span class="descr">A glowing spirit covered in frost</span>
+		<p>Traits: <span class="trait">Undead</span>, <span class="trait">Incorporeal</span>, <span class="trait">Life Sense</span>, <span class="trait">Hover</span>, <span class="trait">Plague Immunity</span>, <span class="trait">Poison Immunity</span>, <span class="trait">Cold Absorption</span>, <span class="trait">Mental Immunity</span>, <span class="trait">Water Immunity</span>, <span class="trait">Death Immunity</span>, <span class="trait">Life Vulnerability</span>, <span class="trait">Fire Vulnerability</span>, <span class="trait">Heat Vulnerability</span></p>
+		<p>Cold Spot: When a <span class="famililar">Frozen Wraith</span> enters the scene, one random enemy gains the <span class="debuff">Chill</span> debuff. This is an <span class="element">Ectoplasm</span> effect</p>
+		<p>Freezing Cold: A Creature with the <span class="debuff">Chill</span> debuff within Extended Melee range of a Frozen Wraith is instantly frozen in ice. This is a <span class="element">Magical (Ectoplasm, Cold)</span> effect. A <span class="element">Heat</span> effect occurring within Medium range of the frozen creature will thaw them just as instantly</p>
+		<p>Focused Haunting: Against creatures with the <span class="debuff">Chill</span> debuff, a Frozen Wraith gains <span class="stat">+1 CBT</span> for every time it has respawned, to a maximum of <span class="stat">+12 CBT</span> at twelve or more respawns</p>
+		</details></li>
+	</ul></li>
+	<li><details><summary><span class="familiar">Whispering Banshee</span></summary>
+	<span class="descr">A hooded gaunt woman in pale white</span>
+	<p>Traits: <span class="trait">Undead</span>, <span class="trait">Incorporeal</span>, <span class="trait">Hover</span>, <span class="trait">Life Sense</span>, <span class="trait">Plague Immunity</span>, <span class="trait">Poison Immunity</span>, <span class="trait">Prophecy Immunity</span>, <span class="trait">Death Immunity</span>, <span class="trait">Sound Immunity</span>, <span class="trait">Ectoplasm Resistance</span>, <span class="trait">Purification Vulnerability</span>, <span class="trait">Silence Vulnerability</span>, <span class="trait">Life Vulnerability</span>, <span class="trait">Mana Regeneration 0</span></p>
+	<p>Renewed Regret: A <span class="trait">Mana Regeneration</span> trait of Whispering Banshee increases by 1 for every 2 times it has respawned. To a maximum of <span class="trait">Mana Regeneration 3</span> after 6 or more respawns</p>
+	<p>Deathly Keen: </p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Murmuring Banshee</span></summary>
+		<span class="descr">A hooded gaunt woman in dappled pale white</span>
+		<p>Traits: <span class="trait">Undead</span>, <span class="trait">Incorporeal</span>, <span class="trait">Hover</span>, <span class="trait">Life Sense</span>, <span class="trait">Plague Immunity</span>, <span class="trait">Poison Immunity</span>, <span class="trait">Prophecy Immunity</span>, <span class="trait">Death Reflection</span>, <span class="trait">Sound Absorption</span>, <span class="trait">Ectoplasm Resistance</span>, <span class="trait">Purification Vulnerability</span>, <span class="trait">Silence Vulnerability</span>, <span class="trait">Life Vulnerability</span>, <span class="trait">Mana Regeneration 1</span></p>
+		<p>Renewed Regret: A <span class="trait">Mana Regeneration</span> trait of Murmuring Banshee increases by 1 for every 2 times it has respawned. To a maximum of <span class="trait">Mana Regeneration 6</span> after 10 or more respawns</p>
+		<p>Deathly Keen: </p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Drowned Soul</span></summary>
+	<span class="descr">An ethereal transparent skeleton wearing scraps of soaked clothing</span>
+	<p>Traits: <span class="trait">Incorporeal</span>, <span class="trait">Undead</span>, <span class="trait">Hover</span>, <span class="trait">Perilous Presence</span>, <span class="trait">Water Reflection</span>, <span class="trait">Poison Immunity</span>, <span class="trait">Plague Immunity</span>, <span class="trait">Pressure Immunity</span>, <span class="trait">Death Immunity</span>, <span class="trait">Mental Immunity</span>, <span class="trait">Emotion Immunity</span>, <span class="trait">Fire Resistance</span>, <span class="trait">Darkness Resistance</span>, <span class="trait">Air Resistance</span>, <span class="trait">Purification Vulnerability</span>, <span class="trait">Electricity Vulnerability</span>, <span class="trait">Wood Vulnerability</span></p>
+	<p>Drown: As a Combat Action, a Drowned Soul can deal 1 minor damage to any creature within Medium range that has 10 or more <span class="stack">Peril</span> stacks. Creatures that don't need to breathe are immune to this ability. This is a <span class="element">Magical (Water, Spirit)</span> effect</p>
+	<p>Drown Faster: The minimum number of <span class="stack">Peril</span> stacks a creature needs before a Drowned Soul can use its Drown ability on it is reduced by 1 for each time the Drowned Soul has respawned, to a limit of 4 <span class="stack">Peril</span> required after 6 respawns</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Drowned Sailor</span></summary>
+		<span class="descr">An ethereal transparent skeleton wearing tattered sailor garb</span>
+		<p>Traits: <span class="trait">Incorporeal</span>, <span class="trait">Undead</span>, <span class="trait">Hover</span>, <span class="trait">Perilous Presence</span>, <span class="trait">Water Reflection</span>, <span class="trait">Poison Immunity</span>, <span class="trait">Plague Immunity</span>, <span class="trait">Pressure Immunity</span>, <span class="trait">Death Immunity</span>, <span class="trait">Mental Immunity</span>, <span class="trait">Emotion Immunity</span>, <span class="trait">Fire Resistance</span>, <span class="trait">Darkness Resistance</span>, <span class="trait">Air Resistance</span>, <span class="trait">Purification Vulnerability</span>, <span class="trait">Electricity Vulnerability</span>, <span class="trait">Wood Vulnerability</span></p>
+		<p>Drown: As a Combat Action, a Drowned Sailor can deal 1 minor damage to any creature within Medium range that has 10 or more <span class="stack">Peril</span> stacks. Creatures that don't need to breathe are immune to this ability. This is a <span class="element">Magical (Water, Spirit)</span> effect</p>
+		<p>Drown Faster: The minimum number of <span class="stack">Peril</span> stacks a creature needs before a Drowned Soul can use its Drown ability on it is reduced by 1 for each time the Drowned Soul has respawned, to a limit of 4 <span class="stack">Peril</span> required after 6 respawns</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Drowned Maiden</span></summary>
+		<span class="descr">An ethereal transparent maiden in soaked white garb</span>
+		<p>Traits: <span class="trait">Incorporeal</span>, <span class="trait">Undead</span>, <span class="trait">Hover</span>, <span class="trait">Perilous Presence</span>, <span class="trait">Water Reflection</span>, <span class="trait">Poison Immunity</span>, <span class="trait">Plague Immunity</span>, <span class="trait">Pressure Immunity</span>, <span class="trait">Death Immunity</span>, <span class="trait">Mental Immunity</span>, <span class="trait">Emotion Immunity</span>, <span class="trait">Fire Resistance</span>, <span class="trait">Darkness Resistance</span>, <span class="trait">Air Resistance</span>, <span class="trait">Gravity Resistance</span>, <span class="trait">Purification Vulnerability</span>, <span class="trait">Electricity Vulnerability</span>, <span class="trait">Wood Vulnerability</span></p>
+		<p>Sink: Once per round as a Brief Action, a Drowned Maiden can deal 1 minor horror to up to three different creatures within Medium range that have 10 or more <span class="stack">Peril</span> stacks. This is a <span class="element">Magical (Water, Spirit, Gravity)</span> effect</p>
+		<p>Sink Faster: The minimum number of <span class="stack">Peril</span> stacks a creature needs before a Drowned Maiden can use its Sink ability on it is reduced by 1 for each time the Drowned Maiden has respawned, to a limit of 4 <span class="stack">Peril</span> required after 6 respawns</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Chained Phantom</span></summary>
+	<span class="descr">A dark translucent figure covered in chains</span>
+	<p>Traits: <span class="trait">Incorporeal</span>, <span class="trait">Undead</span>, <span class="trait">Hover</span>, <span class="trait">Life Sense</span>, <span class="trait">Concealed</span>, <span class="trait">Corruption Reflection</span>, <span class="trait">Poison Immunity</span>, <span class="trait">Plague Immunity</span>, <span class="trait">Death Immunity</span>, <span class="trait">Mental Immunity</span>, <span class="trait">Ectoplasm Immunity</span>, <span class="trait">Metal Resistance</span>, <span class="trait">Divine Vulnerability</span></p>
+	<p>Link by Link and Yard by Yard: The Range of a Chained Phantom's basic attack is increased to Extended Melee if the Chained Phantom has respawned at least once, Short if it has respawned at least 3 times, and Medium if it has respawned at least 5 times</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Shackled Phantom</span></summary>
+		<span class="descr">A dark translucent figure covered in chains</span>
+		<p>Traits: <span class="trait">Incorporeal</span>, <span class="trait">Undead</span>, <span class="trait">Hover</span>, <span class="trait">Life Sense</span>, <span class="trait">Death Sense</span>, <span class="trait">Concealed</span>, <span class="trait">Corruption Reflection</span>, <span class="trait">Poison Immunity</span>, <span class="trait">Plague Immunity</span>, <span class="trait">Death Immunity</span>, <span class="trait">Mental Immunity</span>, <span class="trait">Ectoplasm Immunity</span>, <span class="trait">Metal Resistance</span>, <span class="trait">Chaos Resistance</span>, <span class="trait">Divine Vulnerability</span></p>
+		<p>Link by Link and Yard by Yard: The Range of a Shackled Phantom's basic attack is increased to Short if it has respawned at least twice and Medium if it has respawned at least 4 times. A Shackled Phantom gains the <span class="trait">Double Attack</span> trait if it has respawned at least 3 times</p>
+		<p>Mankind Was My Business: A Shackled Phantom gains 1 stack of <span class="stack">Age</span> after dealing damage to an Evil creature</p>
+		</details></li></ul></li>
+</ul></details></td></tr>
+<tr><td id="land-based_arthropods">Land-Based Arthropods</td>
+<td>Common</td>	<td>Low</td>	<td>Low</td>	<td>Average</td>	<td>Low</td>	<td>Average</td>	<td><span class="familiar">Tasty Aphid</span></td>	<td>Immense variety</td>	<td>Lower health<br> Frequently eat each other</td>	</tr>
+<tr class="minions"><td colspan="10">
+<details><summary>Known Minions</summary>
+<ul>
+	<li><details><summary><span class="familiar">Tasty Aphid</span></summary>
+	<span class="descr">Your typical green aphid</span>
+	<p>Traits: <span class="trait">Tasty Morsel</span></p></details></li>
+	<li><details><summary><span class="familiar">Jumping Spider</span></summary>
+	<span class="descr">Curious and fuzzy brown, gray, or white spiders</span>
+	<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">All-Around Vision</span>, <span class="trait">Compression</span></p>
+	<p>Anchored Leap: Jumping Spiders can leap any distance in short range as a brief action or as part of an attack. If a spider misses its target, it may reel itself back to the jump's starting point during its next turn</p>
+	<p>Paralytic Venom: Anyone damaged by a Jumping Spider's basic attack must succeed at a contested <span class="stat">SRT</span> check or gain the <span class="debuff">Paralysis</span> debuff for 1 round</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Greater Jumper</span></summary>
+		<span class="descr">A slightly larger gray jumping spider with black stripes</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">All-Around Vision</span>, <span class="trait">Compression​</span></p>
+		<p>Anchored Leap: Greater Jumpers can leap any distance in Medium range as a brief action or as part of an attack. If a spider misses its target, it may reel itself back to the jump's starting point during its next turn</p>
+		<p>Paralytic Venom: Anyone damaged by a Greater Jumper's basic attack must succeed at a contested <span class="stat">SRT</span> check or gain the <span class="debuff">Paralysis</span> debuff for 2 rounds</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Peacock Spider</span></summary>
+		<span class="descr">A jumping spider with a flap on its abdomen that can be unfurled to reveal a pattern of color</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">All-Around Vision</span>, <span class="trait">Compression​</span></p>
+		<p>Anchored Leap: Peacock Spiders can leap any distance in Short range as a brief action or as part of an attack. If a spider misses its target, it may reel itself back to the jump's starting point during its next turn</p>
+		<p>Paralytic Venom: Anyone damaged by a Peacock Spider's basic attack must succeed at a contested <span class="stat">SRT</span> check or gain the <span class="debuff">Paralysis</span> debuff for 1 round</p>
+		<p>Hypnotic Dance: As a combat action, a Peacock Spider can dance. Any enemy that sees it must succeed at a Contested <span class="stat">SRT</span> check or become distracted and take a <span class="stat">-6 MRT</span> and <span class="stat">-6 CBT</span> penalties for 1 round. This penalty does not stack with other instances of Hypnotic Dance</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Portia Spider</span></summary>
+		<span class="descr">A brownish jumping spider with oddly-shaped legs that mimic leaf litter</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">All-Around Vision</span>, <span class="trait">Compression</span>, <span class="trait">Hyper-Awareness​</span></p>
+		<p>Anchored Leap: Portia Spiders can leap any distance in Short range as a brief action or as part of an attack. If a spider misses its target, it may reel itself back to the jump's starting point during its next turn</p>
+		<p>Paralytic Venom: Anyone damaged by a Portia Spider's basic attack must succeed at a contested <span class="stat">SRT</span> check or gain the <span class="debuff">Paralysis</span> debuff for 1 round</p>
+		<p>Observe and Calculate: For every round a Portia Spider spends observing any creatures, it gains +1 to its <span class="stat">CBT</span> stat against those creatures, to a maximum of <span class="stat">+10 CBT</span>. This bonus is permanent, and persists even if the creatures leave the dungeon or the Portia Spider dies and respawns</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Lesser Earwig</span></summary>
+	<span class="descr">A brown elongated insect with a pair of pincers at its rear</span>
+	<p>Traits: <span class="trait">Bludgeoning Resistance, Compression, Low-Light Vision</span></p></details><ul>
+		<li><details><summary><span class="familiar">Greater Earwig</span></summary>
+		<span class="descr">A large dark brown elongated insect with a pair of jagged pincers at its rear</span>
+		<p>Traits: <span class="trait">Bludgeoning Resistance</span>, <span class="trait">Compression</span>, <span class="trait">Low-Light Vision</span>, <span class="trait">Shed Skin</span></p>
+		<p>Pincer Grab: A Greater Earwig can latch onto an opponent after a successful attack. While attached, it gains <span class="stat">+5 OCBT</span> against that opponent and applies 1 stack of <span class="stack">Bleed</span> to them at the start of the round</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Dim Firefly</span></summary>
+	<span class="descr">A black and red beatle that glows periodically</span>
+	<p>Traits: <span class="trait">Light Resistance</span>, <span class="trait">Low-Light Vision</span></p>
+	<p>Glow Power: A successful basic attack from a Dim Firefly does not deal damage. Instead, it applies 1 stack of <span class="stack">Blind</span></p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Bright Firefly</span></summary>
+		<span class="descr">A black, yellow, and red beetle that glows periodically</span>
+		<p>Traits: <span class="trait">Light Resistance</span>, <span class="trait">Low-Light Vision</span></p>
+		<p>Glow Power: A successful basic attack from a Bright Firefly does not deal damage. Instead, it applies 2 stacks of <span class="stack">Blind</span> (3 on a Critical Hit)</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Hunting Spider</span></summary>
+	<span class="descr">A large brown spider with two black stripes down its back</span>
+	<p>Traits: <span class="trait">Compression</span>, <span class="trait">Low-Light Vision</span></p>
+	<p>Cytotoxic Bite: Anyone damaged by a Hunting Spider's basic attack gains <span class="debuff">Cytotoxic Poison</span> for 3 rounds:</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Tarantula</span></summary>
+		<span class="descr">A large brown spider covered in fur-like hairs</span>
+		<p>Traits: <span class="trait">Compression</span>, <span class="trait">Low-Light Vision</span>, <span class="trait">Shed Skin</span>, <span class="trait">Digger</span></p>
+		<p>Cytotoxic Bite: </p>
+		<p>Urticating Bristles: Once per scene, a Tarantula can eject hairs from its rear in a Short-ranged Cone. All living creatures caught in this gain the <span class="debuff">Weakness</span> debuff. This ability recharges if the Tarantula uses its <span class="trait">Shed Skin</span> trait</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Greater Hunting Spider</span></summary>
+		<span class="descr">A large dark gray spider with a thick black stripe down its back</span>
+		<p>Traits: <span class="trait">Compression</span>, <span class="trait">Low-Light Vision</span>, <span class="trait">Shed Skin</span>, <span class="trait">Digger</span>, <span class="trait">Heat Resistance</span>, <span class="trait">Cold Resistance</span></p>
+		<p>Cytotoxic Bite: Anyone damaged by a Greater Hunting Spider's basic attack gains <span class="debuff">Cytotoxic Poison</span> debuff for 5 rounds</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Recluse Spider</span></summary>
+		<span class="descr">A brown spider with violin-like mark on its back</span>
+		<p>Traits: <span class="trait">Compression</span>, <span class="trait">Low-Light Vision</span>, <span class="trait">Shed Skin</span>, <span class="trait">Darkness Resistance</span></p>
+		<p>Necrotic Bite: Anyone damaged by a Recluse Spider's basic attack gains <span class="debuff">Necrotic Poison</span> debuff for 4 rounds</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Sacrificial Mayfly</span></summary>
+	<span class="descr">A large-winged yellow insect</span>
+	<p>Traits: <span class="trait">Tasty Morsel</span></p>
+	<p>Sacrificial Meal: A minion who eats a Sacrificial Mayfly gains <span class="stat">+4 CBT</span> for the duration of the Mayfly's Respawn Speed</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Kamikaze Mayfly</span></summary>
+		<span class="descr">A large red-winged yellow insect with faint embers trailing behind it</span>
+		<p>Traits: <span class="trait">Brittle</span></p>
+		<p>Kamikaze Strike: If a Kamikaze Mayfly dies due to the effect of its <span class="trait">Brittle</span> trait, it explodes and deals 1 Moderate Damage to all creatures in Extended Melee range. This is a <span class="element">Magical (Heat, Fire, Spirit)</span> effect</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Noisy Cricket</span></summary>
+	<span class="descr">Your typical black cricket</span>
+	<p>Traits: <span class="trait">Sound Resistance</span>, <span class="trait">Low-Light Vision</span></p></details><ul>
+		<li><details><summary><span class="familiar">Melodious Cricket</span></summary>
+		<span class="descr">A black cricket with elegantly shaped legs</span>
+		<p>Traits: <span class="trait">Sound Resistance</span>, <span class="trait">Low-Light Vision</span>, <span class="trait">Hope-Bringer</span></p>
+		<p>Inspire Courage: As a Combat Action costing <span class="stat">1 MP</span>, a Melodious Cricket may grant all allies in Earshot range 3 stacks of <span class="stack">Courage</span>. This is a <span class="element">Magical (Sound)</span> effect</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Screeching Cricket</span></summary>
+		<span class="descr">A pale black cricket with jagged joints</span>
+		<p>Traits: <span class="trait">Sound Resistance</span>, <span class="trait">Low-Light Vision</span></p>
+		<p>Resonance: While there is at least one other minion with a <span class="element">Sound</span> basic attack within Short range of a Screeching Cricket, the Screeching Cricket gains the <span class="trait">Charge Generation 2</span> trait. This is a <span class="element">Sound</span> effect</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Black Beetle</span></summary>
+	<span class="descr">A simple black beetle</span>
+	<p>Traits: <span class="trait">Tasty Morsel</span>, <span class="trait">Physical Resistance</span></p></details><ul>
+		<li><details><summary><span class="familiar">Dung Beetle</span></summary>
+		<span class="descr">A large black armored beetle rolling up ball of dung</span>
+		<p>Traits: <span class="trait">Physical Resistance</span>, <span class="trait">Plague Immunity</span>, <span class="trait">Digger</span></p>
+		<p>Keep on Rolling: As a Combat Action, a Dung Beetle can materialize some dung and roll it into a ball, gaining one instance of the <span class="stack">Dung Layer</span> stack</p>
+		<p>Ball of Dung: </p>
+		</details></li>
+		<li><details><summary><span class="familiar">Golden Beetle</span></summary>
+		<span class="descr">A shiny gold beetle with near-transparent elytra</span>
+		<p>Traits: <span class="trait">Tasty Morsel</span>, <span class="trait">Physical Resistance</span>, <span class="trait">Energy Resistance</span>, <span class="trait">Light Reflection</span>, <span class="trait">Preparation (Barrier)</span></p></details></li>
+		<li><details><summary><span class="familiar">Long-Horned Beetle</span></summary>
+		<span class="descr">A black and orange beetle with long whip-like antenna</span>
+		<p>Traits: <span class="trait">Physical Resistance, Wood Resistance</span></p></details></li></ul></li>
+	<li><details><summary><span class="familiar">Lesser Cockroach</span></summary>
+	<span class="descr">A large dark brown and black beatle</span>
+	<p>Traits: <span class="trait">Critical Hit Immunity, Physical Resistance, Radiation Resistance, Compression, Low-Light Vision</span></p>
+	<p>Disease Carrier: Anyone damaged by a Lesser Cockroach's basic attack must succeed at a contested <span class="stat">SRT</span> check or gain the <span class="debuff">Infection</span> debuff for 5 rounds</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Greater Cockroach</span></summary>
+		<span class="descr">A large reddish cockroach</span>
+		<p>Traits: <span class="trait">Critical Hit Immunity</span>, <span class="trait">Plague Immunity</span>, <span class="trait">Physical Resistance</span>, <span class="trait">Radiation Resistance</span>, <span class="trait">Compression</span>, <span class="trait">Low-Light Vision</span></p>
+		<p>Disease Carrier: Anyone damaged by a Greater Cockroach's basic attack must succeed at a contested <span class="stat">SRT</span> check or gain the <span class="debuff">Infection</span> debuff for 7 rounds. This is a <span class="element">Plague</span> effect</p>
+		<p>Live With No Head: A Greater Cockroach who loses all its health continues to live for 1 more full round unless reduced to dust or pulp</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Buzzing Fly</span></summary>
+	<span class="descr">Your typical annoying house fly</span>
+	<p>Traits: <span class="trait">Tasty Morsel</span>, <span class="trait">Low-Light Vision</span>, <span class="trait">All-Around Vision</span></p>
+	<p>Annoying Distractions: If a Buzzing Fly is in range of an Invader's basic attack, the Invader must succeed at a contested <span class="stat">SRT</span> check or be forced to attack a Buzzing Fly</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Ominous Fly</span></summary>
+		<span class="descr">A blue-gray fly that is difficult to see clearly</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">All-Around Vision</span>, <span class="trait">Air Resistance,</span>, <span class="trait">Spirit Resistance</span>, <span class="trait">Perilous Presence</span>, <span class="trait">Concealed</span></p>
+		<p>Annoying Distractions: If an Ominous Fly is in range of an Invader's basic attack, the Invader must succeed at a contested <span class="stat">SRT</span> check or be forced to attack the Ominous Fly</p>
+		<p>Bad Omen: If a creature with 3 or more <span class="stack">Peril</span> stacks kills another creature within Medium range of an Ominous Fly, the Ominous Fly can remove 3 stacks of <span class="stack">Peril</span> from that creature in order to give them a <span class="stat">-3 CBT</span> penalty on their next roll</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Horsefly</span></summary>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">All-Around Vision</span>, <span class="trait">Plague Immunity</span></p>
+		<span class="descr">A large big-eyed fly with gray and white patterns</span>
+		<p>Bloodletter: A Horsefly's basic attack deals no damage. It instead applies <span class="stack">Bleed</span> stacks equal to the amount of minor damage it would have dealt</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Pseudoscorpion</span></summary>
+	<span class="descr">A small segmented arachnid with long red pedipalps ending in pincers</span>
+	<p>Traits: <span class="trait">Double Attack</span>, <span class="trait">Compression</span>, <span class="trait">Acid Resistance</span>, <span class="trait">Physical Resistance</span>, <span class="trait">Low-Light Vision</span></p></details><ul>
+		<li><details><summary><span class="familiar">Lesser Scorpion</span></summary>
+		<span class="descr">A yellow-orange arachnid with grasping pincers and a segmented tail ending in a stinger</span>
+		<p>Traits: <span class="trait">Triple Attack</span>, <span class="trait">Compression</span>, <span class="trait">Radiation Resistance</span>, <span class="trait">Physical Resistance</span>, <span class="trait">Low-Light Vision</span></p>
+		<p>Stinger Tail: A Scorpion's third basic attack gains <span class="stat">+4 OCBT</span> and does not have the <span class="element">Slashing</span> sub-type. A creature damaged by a Scorpion's third basic attack gains <span class="debuff">Neurotoxic Poison</span> debuff</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Vinegarroon</span></summary>
+		<span class="descr">A black segmented arachnid with large claws and a whiplike tail</span>
+		<p>Traits: <span class="trait">Double Attack</span>, <span class="trait">Compression</span>, <span class="trait">Acid Resistance</span>, <span class="trait">Physical Resistance</span>, <span class="trait">Low-Light Vision</span></p>
+		<p>Acetic Spray: </p>
+		</details></li>
+		<li><details><summary><span class="familiar">Greater Pseudoscorpion</span></summary>
+		<span class="descr">A large segmented arachnid with red pedipalps ending in pincers</span>
+		<p>Traits: <span class="trait">Double Attack</span>, <span class="trait">Compression</span>, <span class="trait">Acid Resistance</span>, <span class="trait">Physical Resistance</span>, <span class="trait">Low-Light Vision</span></p>
+		<p>Paralytic Stab: Anyone damaged by either of a Greater Pseudoscorpion's basic attacks must succeed at a Contested <span class="stat">SRT</span> check or gain the <span class="debuff">Paralysis</span> debuff for 2 rounds. Subsequent failures add to the duration of the debuff. This is a <span class="element">Poison</span> effect</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Dragonfly Larva</span></summary>
+	<span class="descr">A brown aquatic insect with the face of a dragonfly</span>
+	<p>Traits: <span class="trait">Freshwater Dependant</span></p>
+	<p>Jet Rush: Once every 2 rounds, if a Dragonfly Larva is underwater, it can change its Movement to "Water-Propelled" for 1 round</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Lesser Dragonfly</span></summary>
+		<span class="descr">A long green insect with two sets of wings and large compound eyes</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">All-Around Vision</span></p>
+		<p>Keen Eyes: Dragonflies ignore miss chances</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Black Ant</span></summary>
+	<span class="descr">Your typical black ant</span>
+	<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Tasty Morsel</span>, <span class="trait">Digger</span></p>
+	<p>Swarm: Black Ants gain <span class="stat">+1 OCBT</span> against an enemy for each other Ant engaged with that enemy</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Crazy Ant</span></summary>
+		<span class="descr">An erratic yellow ant</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Digger</span></p>
+		<p>Swarm: Crazy Ants gain <span class="stat">+2 OCBT</span> against an enemy for each other Ant engaged with that enemy</p>
+		<p>Spray Acid: A Crazy Ant can change the Range of its Basic Attack to Extended Melee. If it does, it removes the <span class="element">Piercing</span> sub-type</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Red Ant</span></summary>
+		<span class="descr">A simple red ant</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Tasty Morsel</span>, <span class="trait">Digger</span></p>
+		<p>Swarm: Red Ants gain <span class="stat">+1 OCBT</span> against an enemy for each other Ant engaged with that enemy</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Blue Ant</span></summary>
+		<span class="descr">A shiny blue ant that sparkles in the light</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Tasty Morsel</span>, <span class="trait">Digger</span></p>
+		<p>Swarm: Blue Ants gain <span class="stat">+1 OCBT</span> against an enemy for each other Ant engaged with that enemy</p>
+		<p>Light Scatter: A creature who kills a Blue Ant gains 1 stack of <span class="stack">Blind</span>. This is a <span class="element">Light</span> effect</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Bullet Ant</span></summary>
+		<span class="descr">A large black ant with intimidating jaws</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Digger</span></p>
+		<p>Swarm: Bullet Ants gain <span class="stat">+1 OCBT</span> against an enemy for each other Ant engaged with that enemy</p>
+		<p>Painful Bite: A creature that takes damage from a Bullet Ant's basic attack gains 1 stack of <span class="stack">Agony</span>. This is a <span class="element">Poison</span> effect</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Weaver Ant</span></summary>
+		<span class="descr">An elongated pale brown ant</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Tasty Morsel</span>, <span class="trait">Digger</span></p>
+		<p>Swarm: Weaver Ants gain <span class="stat">+1 OCBT</span> against an enemy for each other Ant engaged with that enemy and <span class="stat">+3 CBT</span> for each Tree engaged with that enemy</p>
+		<p>Tree Nester: Weaver Ants care for and build nests in trees. A Tree minion that has a Weaver Ant nest in it gains <span class="stat">+4 SRT</span> and <span class="stat">+4 DCBT</span>. Weaver Ants are immune to any harmful effects from Tree minions and ignore any negative effects of the Tree biome that might impact them</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Carpenter Ant</span></summary>
+		<span class="descr">A bulky dark brown ant</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Tasty Morsel</span>, <span class="trait">Digger</span></p>
+		<p>Swarm: Carpenter Ants gain <span class="stat">+1 OCBT</span> against an enemy for each other Ant engaged with that enemy</p>
+		<p>Gnaw on Wood: Carpenter Ants may use their <span class="trait">Digger</span> trait on wooden structures and objects. They also gain <span class="stat">+12 OCBT</span> against enemies made mostly out of wood</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Honeypot Ant</span></summary>
+		<span class="descr">A golden ant with a swelled abdomen filled with sparkling fluid</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Tasty Morsel</span>, <span class="trait">Mana Regeneration 1</span></p>
+		<p>Swarm: Honeypot Ants gain <span class="stat">+1 DCBT</span> against an enemy for each other Ant engaged with that enemy</p>
+		<p>Living Storage: As a Brief Action that costs <span class="stat">2 MP</span>, a Honeypot Ant may heal 1 minor damage from an adjacent ally. This is a <span class="element">Healing</span> effect. As a Combat Action, a Honeypot Ant may spend any amount of <span class="stat">MP</span> to heal an equal number of minor damage from an ally in Short range. This is a <span class="element">Magical (Healing)</span> effect</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Leafcutter Ant</span></summary>
+		<span class="descr">An orange tinged ant with large jaws</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Tasty Morsel</span>, <span class="trait">Digger</span></p>
+		<p>Swarm: Leafcutter Ants gain <span class="stat">+1 OCBT</span> against an enemy for each other Ant or Fungus engaged with that enemy</p>
+		<p>Fungal Gardener: Leafcutter Ants can feed and care for minions of the Fungus and Blighted Creature families and are immune to any harmful effects of said minions. Leafcutter Ants can move rooted Fungi minions over a period of a few hours. Fungi and Blighted Creatures consistently cared for by Leafcutter Ants gain <span class="stat">+6 MRT</span> and <span class="stat">+6 SRT</span></p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Lesser Mantis</span></summary>
+	<span class="descr">A brown or green praying mantis</span>
+	<p>Traits: <span class="trait">Low-Light Vision</span></p>
+	<p>Sudden Lunge: A Lesser Mantis gets <span class="stat">+3 OCBT</span> during a Surprise Round</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Orchid Mantis</span></summary>
+		<span class="descr">A white praying mantis bearing resemblance to an orchid</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span></p>
+		<p>Sudden Spell: An Orchid Mantis adds +3 to the spell bonus when casting a spell during a Surprise Round</p>
+		<p>Camouflage: An Orchid Mantis gains <span class="stat">+4 ING</span> while within Short range of a Flower minion</p>
+		<p>Temple Prayers: An Orchid Mantis is able to cast the Temples Spells of any Temples placed on its floor so long as those spells only cost <span class="stat">MP</span></p>
+		</details></li>
+		<li><details><summary><span class="familiar">Greater Mantis</span></summary>
+		<span class="descr">A large deep green praying mantis</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Concealed</span>, <span class="trait">Hyper-Awareness</span></p>
+		<p>Sudden Lunge: A Greater Mantis gets <span class="stat">+6 OCBT</span> when performing a Basic Attack during a Surprise Round</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Sturdy Pillbug</span></summary>
+	<span class="descr">A segmented grey isopod that can curl up into a ball</span>
+	<p>Traits: <span class="trait">Reinforcement</span>, <span class="trait">Debuff Resistance</span></p>
+	<p>Curl Up: A Sturdy Pillbug can curl up into ball form as a brief action. While curled, it cannot move on its own but gains the <span class="buff">Barrier</span> buff</p>
+	<p>Wrecking Ball: A curled-up Sturdy Pillbug can be used as a <span class="element">Physical (Bludgeoning)</span> weapon by any Intelligent or Tool-Using creature. The creature wielding it gains a bonus to <span class="stat">OCBT</span> equal to half the Pillbug's <span class="stat">DCBT</span>. During an attack made with the Pillbug, it may choose to spend its <span class="stack">Aura</span> stacks as <span class="stack">Charge</span> stacks</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Flail Pillbug</span></summary>
+		<span class="descr">A plated grey isopod that can curl up into a spikey ball</span>
+		<p>Traits: <span class="trait">Reinforcement</span>, <span class="trait">Debuff Resistance</span></p>
+		<p>Curl Up: A Flail Pillbug can curl up into ball form as a brief action. While curled, it cannot move on its own but gains the <span class="buff">Barrier</span> buff</p>
+		<p>Spiked Ball: A curled-up Flail Pillbug can be used as a <span class="element">Physical (Bludgeoning, Piercing)</span> weapon by any Intelligent or Tool-Using creature. The creature wielding it gains a bonus to <span class="stat">OCBT</span> equal to the Pillbug's <span class="stat">DCBT</span>. During an attack made with the Pillbug, it may choose to spend its <span class="stack">Aura</span> stacks as <span class="stack">Charge</span> stacks</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Rolling Pillbug</span></summary>
+		<span class="descr">A faceted gray isopod that can curl up into a gritty ball</span>
+		<p>Traits: <span class="trait">Reinforcement</span>, <span class="trait">Debuff Resistance</span></p>
+		<p>Curl Up: A Rolling Pillbug can curl up into ball form as a brief action. While curled, it gains the <span class="buff">Barrier</span> buff, its Movement changes to 'Rolling,' and it may choose to spend its <span class="stack">Aura</span> stacks as <span class="stack">Charge</span> stacks</p>
+		<p>Rollout: A Rolling Pillbug automatically attacks any creature runs over while Rolling. It gains a bonus to <span class="stat">OCBT</span> equal to half of its <span class="stat">DCBT</span></p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Lesser Centipede</span></summary>
+	<span class="descr">A brownish centipede with many yellow legs</span>
+	<p>Traits: <span class="trait">Slashing Resistance</span>, <span class="trait">Compression</span>, <span class="trait">Low-Light Vision</span></p>
+	<p>Myotoxic Bite: Anyone damaged by a Lesser Centipede's basic attack gains the <span class="debuff">Weakness</span> debuff. This is a <span class="element">Poison</span> effect</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Greater Centipede</span></summary>
+		<span class="descr">A large orange centipede with many black legs</span>
+		<p>Traits: <span class="trait">Slashing Resistance</span>, <span class="trait">Compression</span>, <span class="trait">Low-Light Vision</span>, <span class="trait">Digger</span>, <span class="trait">Heat Resistance</span>, <span class="trait">Light Resistance</span>, <span class="trait">Shed Skin</span></p>
+		<p>Myotoxic Bite: </p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Hungry Caterpillar</span></summary>
+	<span class="descr">A juicy green caterpillar</span>
+	<p>Traits: <span class="trait">Tasty Morsel</span></p>
+	<p>Mutation Prone: Has a 100% chance of mutating if it comes into contact with a mutation source. Any mutations it gains heavily influence any Stage III and higher evolutions it may have</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Chrysalis</span></summary>
+		<span class="descr">A brilliant green chrysalis</span>
+		<p>Traits: <span class="trait">Preparation (Barrier)</span>, <span class="trait">Physical Resistance</span>, <span class="trait">Reinforcement</span></p>
+		<p>Mutation Prone: Has a 100% chance of mutating if it comes into contact with a mutation source. Any mutations it gains heavily influence any Stage III and higher evolutions it may have</p>
+		<p>Mutation Dependent: A Chrysalis cannot evolve if it has not mutated. Its evolution varies wildly depending on the mutation gained</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Cocooned Caterpillar</span></summary>
+		<span class="descr">A white silky cocoon</span>
+		<p>Traits: <span class="trait">Preparation (Barrier)</span>, <span class="trait">Magical Resistance</span>, <span class="trait">Reinforcement</span></p>
+		<p>Mutation Prone: Has a 100% chance of mutating if it comes into contact with a mutation source. Any mutations it gains heavily influence any Stage III and higher evolutions it may have</p>
+		<p>Mutation Dependent: A Cocooned Caterpillar cannot evolve if it has not mutated. Its evolution varies wildly depending on the mutation gained</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Stealthy Walking Stick</span></summary>
+	<span class="descr">A swaying log-like stick insect</span>
+	<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Concealed</span>, <span class="trait">Specialty (Stealth)</span>, <span class="trait">Wood Resistance</span></p>
+	<p>Camouflage Aura: All minions within Medium range (including the Stealthy Walking Stick) gain <span class="stat">+2 ING</span>. This bonus is doubled if a minion is a Tree or a Land-Based Arthropod</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Shaded Walking Stick</span></summary>
+		<span class="descr">A swaying mottled gray stick insect</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Concealed</span>, <span class="trait">Specialty (Stealth)</span>, <span class="trait">Wood Resistance</span>, <span class="trait">Darkness Resistance</span>, <span class="trait">Preparation (Spellshield)</span>, <span class="trait">Reinforcement</span></p>
+		<p>Camouflage Aura: All minions within Medium range (including the Shaded Walking Stick) gain +<span class="stat">3 ING</span>. This bonus is doubled if a minion is a Tree or a Land-Based Arthropod</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Lesser Wasp</span></summary>
+	<span class="descr">A black and yellow wasp</span>
+	<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Air Resistance</span></p>
+	<p>Neurotoxic Sting: Anyone damaged by a Lesser Wasp's basic attack gains <span class="debuff">Neurotoxic Poison</span> for 3 rounds</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Greater Wasp</span></summary>
+		<span class="descr">A black and gold wasp</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Air Resistance</span>, <span class="trait">Revenge</span></p>
+		<p>Neurotoxic Sting: Anyone damaged by a Greater Wasp's basic attack gains <span class="debuff">Neurotoxic Poison</span> debuff for 3 rounds</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Hover Wasp</span></summary>
+		<span class="descr">An elongated black wasp with an extended stinger</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Air Resistance</span>, <span class="trait">Preparation (Agility)</span></p>
+		<p>Neurotoxic Sting: Anyone damaged by a Hover Wasp's basic attack gains <span class="debuff">Neurotoxic Poison</span> debuff for 3 rounds</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Lesser Assassin Bug</span></summary>
+	<span class="descr">A long black insect with an elongated head and spear-like proboscis</span>
+	<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Compression</span></p>
+	<p>Syphon Jab: Anyone damaged by a Lesser Assassin Bug's basic attack is considered to be siphoned. While siphoned, a creature has the Paralysis debuff and takes 1 moderate damage each round. This damage is a Poison and Acid effect. A Lesser Assassin Bug cannot attack while it is siphoning a creature. It can choose to stop siphoning a creature at will</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Wheel Bug</span></summary>
+		<span class="descr">A long gray insect with a spear-like proboscis and wheel-like markings</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Compression</span>, <span class="trait">Concealed</span></p>
+		<p>Syphon Jab: Anyone damaged by a Wheel Bug's basic attack is considered to be siphoned. While siphoned, a creature gains the Paralysis debuff and takes 1 moderate damage each round. This damage is a Poison and Acid effect. A Wheel Bug cannot attack while it is siphoning a creature. It can choose to stop siphoning a creature at will</p>
+		<p>Clumsy Flier: As a Brief Action, a Wheel Bug can change its Movement to 'Slow Buzzing Flight' for 1 round. Its Intrigue is halved while doing this</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Greater Assassin Bug</span></summary>
+		<span class="descr">A large long dark brown insect with an elongated head and lance-like proboscis</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Compression</span>, <span class="trait">Revenge</span>, <span class="trait">Heat Resistance</span>, <span class="trait">Still Stance</span></p>
+		<p>Syphon Jab: Anyone damaged by a Greater Assassin Bug's basic attack is considered to be siphoned. While siphoned, a creature gains the Paralysis debuff and takes 1 moderate damage each round. This damage is a Poison and Acid effect. A Greater Assassin Bug cannot attack while it is siphoning a creature. It can choose to stop siphoning a creature at will</p>
+		<p>Painful Siphon: A creature being siphoned by a Greater Assassin Bug takes 1 minor horror each round it is being siphoned</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Golden Assassin Bug</span></summary>
+		<span class="descr">A long golden-orange insect with black stripes and a spear-like proboscis</span>
+		<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Compression</span>, <span class="trait">Magic Piercer</span>, <span class="trait">Shed Skin</span></p>
+		<p>Syphon Jab: Anyone damaged by a Golden Assassin Bug's basic attack is considered to be siphoned. While siphoned, a creature gains the Paralysis debuff and takes 1 moderate damage each round. This damage is a Poison and Acid effect. A Golden Assassin Bug cannot attack while it is siphoning a creature. It can choose to stop siphoning a creature at will</p>
+		</details></li></ul></li>
+</ul>
+</details></td></tr>
+<tr><td id="small_mammals">Small Mammals</td>
+<td>Common</td>	<td>Low</td>	<td>Average</td>	<td>Average</td>	<td>Low</td>	<td>Fast</td>	<td><span class="familiar">Lesser Squirell</span></td>	<td>None</td>	<td>Lower health</td>	</tr>
+<tr class="minions"><td colspan="10">
+<details><summary>Known Minions</summary>
+<ul>
+	<li><details><summary><span class="familiar">Lesser Squirell</span></summary>
+	<span class="descr">A small brown-orange squirrel</span>
+	<p>Traits: <span class="trait">Digger</span>, <span class="trait">Feather Fall</span>, <span class="trait">Scurry</span></p>
+	</details></li>
+	<li><details><summary><span class="familiar">Lesser Rat</span></summary>
+	<span class="descr">A dark brown rat</span>
+	<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Digger</span>, <span class="trait">Scurry</span></p>
+	<p>Dirty Rat: A Lesser Rat gains <span class="stat">+6 ING</span> when attempting to steal an object from a creature</p>
+	</details></li>
+	<li><details><summary><span class="familiar">White Mouse</span></summary>
+	<span class="descr">A small white mouse</span>
+	<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Digger</span>, <span class="trait">Scurry</span>, <span class="trait">Hyper-Awareness</span>, <span class="trait">Preparation (Agility)</span></p>
+	<p>Scurry More: A White Mouse can use its <span class="trait">Scurry</span> trait up to three times per scene instead of just once</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Lesser Rabbit</span></summary>
+	<span class="descr">A fuzzy grey rabbit</span>
+	<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Scurry</span>, <span class="trait">Sneak Attack</span>, <span class="trait">Digger</span></p>
+	<p>Mostly Harmless: A Lesser Rabbit gains <span class="stat">+8 ING</span> when attempting to convince a creature that it is not a threat</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Lesser Racoon</span></summary>
+	<span class="descr">A typical banded raccoon</span>
+	<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Digger</span>, <span class="trait">Still Stance</span></p>
+	<p>Always Wash Your Hands: If a Lesser Raccoon has access to freshwater, it is considered to be immune to <span class="debuff">Plague</span> debuffs</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Cranky Badger</span></summary>
+	<span class="descr">A white and black striped badger</span>
+	<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Digger</span>, <span class="trait">Revenge</span>, <span class="trait">Scurry</span></p>
+	<p>Giant Killer: A Cranky Badger gains <span class="stat">+3 CBT</span> against creatures that are larger than it</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Lesser Fox</span></summary>
+	<span class="descr">A dusky red fox</span>
+	<p>Traits: <span class="trait">Low-Light Vision</span>, <span class="trait">Digger</span>, <span class="trait">Scurry</span></p>
+	<p>Pounce: Once per scene, a Lesser Fox may make a Basic Attack as a Brief Action. The target of this attack must be a creature that has not noticed it</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Lesser Mongoose</span></summary>
+	<span class="descr">A dark orange mongoose</span>
+	<p>Traits: <span class="trait">Digger</span>, <span class="trait">Preparation (Agility)</span>, <span class="trait">Piercing Resistance</span>, <span class="trait">Scurry</span></p>
+	<p>Antivenom: A Lesser Mongoose is immune to all Poison debuffs that come from Snakes, Serpents, or Dragons. It gains <span class="stat">+6 OCBT</span> against Snakes and Serpents (but not Dragons)</p>
+	</details></li>
+</ul>
+</details></td></tr>
+<tr><td id="small_reptiles">Small Reptiles</td>
+<td>Uncommon</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td><span class="familiar">Lesser Skink</span></td>	<td><span class="trait">Scales</span><br><span class="trait">Heat Absorption</span><br>Gets power from certain sigils</td>	<td>Lower health<br><span class="trait">Cold Vulnerability</span><br>Reliant on certain Sigils</td>	</tr>
+<tr class="minions"><td colspan="10">
+<details><summary>Known Minions</summary>
+<ul>
+	<li><details><summary><span class="familiar">Lesser Skink</span></summary>
+	<span class="descr">A brown lizard with a blue tongue</span>
+	<p>Traits: <span class="trait">Scales</span>, <span class="trait">Heat Absorption</span>, <span class="trait">Cold Vulnerability</span></p>
+	<p>Lizard Healing: As a Brief Action costing <span class="stat">1 MP</span>, a Lesser Skink can heal 1 minor damage for every two Lizard Signs on the floor (rounded up)</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Lesser Gecko</span></summary>
+	<span class="descr">Large eyed blue, yellow, or green lizards with orange splotches</span>
+	<p>Traits: <span class="trait">Scales</span>, <span class="trait">Low-Light Vision</span>, <span class="trait">Sticky</span>, <span class="trait">Heat Absorption</span>, <span class="trait">Cold Vulnerability</span></p>
+	<p>Lizard Sight and Stealth: When making an <span class="stack">ING</span> check, a Lesser Gecko can spend <span class="stat">1 MP</span> in order to gain a bonus on that check equal to the number of Lizard Signs on the floor</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Lesser Viper</span></summary>
+	<span class="descr">A brown and grey striped snake with a triangular head</span>
+	<p>Traits: <span class="trait">Scales</span>, <span class="trait">Compression</span>, <span class="trait">Heat Senses</span>, <span class="trait">Heat Absorption</span>, <span class="trait">Cold Vulnerability</span></p>
+	<p>Hemotoxic Venom: A creature damaged by a Lesser Viper's attack must succeed at a Contested <span class="stat">SRT</span> check or gain <span class="debuff">Hemotoxic Poison</span></p>
+	<p>Snake Toxicity: When on the Offensive during a Contested <span class="stat">SRT</span> check, a Lesser Viper can spend <span class="stat">1 MP</span> in order to gain a bonus on that check equal to the number of Snake Signs on the floor</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Lesser Constrictor</span></summary>
+	<span class="descr">A bright yellow snake with gray splotches</span>
+	<p>Traits: <span class="trait">Scales</span>, <span class="trait">Compression</span>, <span class="trait">Heat Senses</span>, <span class="trait">Heat Absorption</span>, <span class="trait">Cold Vulnerability</span></p>
+	<p>Constrict: If a Lesser Constrictor hits a creature, it automatically binds that creature. A creature bound by a Lesser Constrictor rolls twice and takes the lower result when defending against a Constrictor's attacks. A Lesser Constrictor can release a creature at will</p>
+	<p>Snake Binding: When making any check to keep a creature bound, a Lesser Constrictor can spend <span class="stat">1 MP</span> in order to gain a bonus on that check equal to the number of Snake Signs on the floor</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Box Turtle</span></summary>
+	<span class="descr">A small black and orange turtle with a domed shell</span>
+	<p>Traits: <span class="trait">Scales</span>, <span class="trait">Heat Absorption</span>, <span class="trait">Energy Resistance</span>, <span class="trait">Piercing Resistance</span>, <span class="trait">Slashing Resistance</span>, <span class="trait">Cold Vulnerability</span></p>
+	<p>Turtle Steadiness: When defending on a Contested <span class="stat">SRT</span> check, a Box Turtle can spend <span class="stat">1 MP</span> in order to gain a bonus on that check equal to the number of Turtle Signs on the floor</p>
+	</details></li>
+	<li><details><summary><span class="familiar">Lesser Anole</span></summary>
+	<span class="descr">A green lizard with a rather pointed head</span>
+	<p>Traits: <span class="trait">Scales</span>, <span class="trait">Heat Absorption</span>, <span class="trait">Cold Vulnerability</span>, <span class="trait">Sticky</span></p>
+	<p>Lizard Resilience: If a Lesser Anole would gain a debuff as a result of a failed check, the Anole may spend <span class="stat">1 MP</span> to attempt the check again with a bonus equal to half the number of Lizard Signs on the floor</p>
+	</details></li>
+</ul>
+</details></td></tr>
+<tr><td id="trees">Trees</td>
+<td>Uncommon</td>	<td>Average</td>	<td>Low</td>	<td>Average</td>	<td>Low</td>	<td>Slow</td>	<td><span class="familiar">Sturdy Oak</span></td>	<td>Immense variety</td>	<td>Rooted</td>	</tr>
+<tr class="minions"><td colspan="10">
+<details><summary>Known Minions</summary>
+<ul>
+	<li><details><summary><span class="familiar">Sturdy Oak</span></summary>
+	<span class="descr">A tall oak tree</span>
+	<p>Traits: <span class="trait">Physical Resistance</span>, <span class="trait">Preparation (Barrier)</span></p>
+	<p>Oaken Gift: As a combat action that costs <span class="stat">1 MP</span>, a Sturdy Oak can give any ally in short range the <span class="buff">Barrier</span> buff. This is a <span class="element">Magical (Wood)</span> effect</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Iron Oak</span></summary>
+		<span class="descr">A tall oak tree with shiny branches</span>
+		<p>Traits: <span class="trait">Physical Resistance</span>, <span class="trait">Preparation (Barrier)</span>, <span class="trait">Reinforcement</span></p>
+		<p>Oaken Gift: As a combat action that costs <span class="stat">1 MP</span>, an Iron Oak can give any ally in medium range the <span class="buff">Barrier</span> buff. This is a <span class="element">Magical (Wood, Metal)</span> effect</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Lesser Zelkova</span></summary>
+	<span class="descr">A smaller bush-like tree whose leaves dance through the air like blades</span>
+	<p>Traits: <span class="trait">Double Attack</span>, <span class="trait">Magic Piercer</span></p></details><ul>
+		<li><details><summary><span class="familiar">Greater Zelkova</span></summary>
+		<span class="descr">A tall bush-like tree whose leaves fly through the air like blades</span>
+		<p>Traits: <span class="trait">Double Attack</span>, <span class="trait">Magic Piercer</span>, <span class="trait">Plague Resistance</span>, <span class="trait">Cold Vulnerability</span></p></details></li>
+		<li><details><summary><span class="familiar">Dancing Zelkova</span></summary>
+		<span class="descr">A smaller bush-like tree whose leaves waltz through the air like blades</span>
+		<p>Traits: <span class="trait">Double Attack</span>, <span class="trait">Magic Piercer</span></p>
+		<p>Stance Change I: Once per round as a brief action, a Dancing Zelkova can decrease its <span class="stack">OCBT</span> or <span class="stack">DCBT</span> by 1 to increase the other Combat stat by the same amount</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Peaceful Cherry</span></summary>
+	<span class="descr">A short tree covered in pink blossoms</span>
+	<p>Traits: <span class="trait">Purification Absorption</span>, <span class="trait">Curse Reflection</span></p>
+	<p>Warding Blossoms: As a combat action that costs <span class="stat">1 MP</span>, a Peaceful Cherry can give an ally in medium range 7 stacks of <span class="stack">Aura</span>. This is a <span class="element">Magical (Wood, Purification)</span> effect</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Warding Cherry</span></summary>
+		<span class="descr">A short tree covered in pink and white blossoms</span>
+		<p>Traits: <span class="trait">Purification Absorption</span>, <span class="trait">Curse Reflection</span>, <span class="trait">Mana Regeneration 1</span></p>
+		<p>Warding Blossoms: As a brief action that costs <span class="stat">1 MP</span>, a Peaceful Cherry can give an ally in medium range 7 stacks of <span class="stack">Aura</span>. This is a <span class="element">Magical (Wood, Purification)</span> effect</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Exorcist Cherry</span></summary>
+		<span class="descr">A short tree covered in shimmering pink blossoms</span>
+		<p>Traits: <span class="trait">Purification Absorption</span>, <span class="trait">Curse Reflection</span>, <span class="trait">Ectoplasm Resistance</span>, <span class="trait">Spirit Resistance</span>, <span class="trait">Void Vulnerability</span></p>
+		<p>Exorcism: An Exorcist Cherry ignores the <span class="trait">Incorporeal</span> trait. An Exorcist Cherry gains <span class="stat">+12 CBT</span> against creatures who have either the <span class="trait">Incorporeal</span> or <span class="trait">Phasing</span> traits. Whenever it defeats such a creature, an Exorcist Cherry gains 2 <span class="stack">Age</span> stacks</p></details></li>
+		<li><details><summary><span class="familiar">Tainted Cherry</span></summary>
+		<span class="descr">A short tree covered in thorns and black blossoms leaking an ominous red sap</span>
+		<p>Traits: <span class="trait">Corruption Absorption</span>, <span class="trait">Curse Reflection</span>, <span class="trait">Purification Resistance</span>, <span class="trait">Spirit Vulnerability</span>, <span class="trait">Fire Vulnerability</span>, <span class="trait">Revenge</span>, <span class="trait">Mana Regeneration 1</span></p>
+		<p>Spread the Taint: As a brief action costing <span class="stat">2 MP</span>, a Tainted Cherry can give any Rooted creature in Medium range <span class="buff">Taint Blight</span>. When a Tainted Cherry bestows this buff, it gains 2 <span class="stack">Age</span> stacks</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Breezy Ginkgo</span></summary>
+	<span class="descr">A tall tree with fan-shaped leaves</span>
+	<p>Traits: <span class="trait">Air Resistance</span>, <span class="trait">Cold Resistance</span>, <span class="trait">Radiation Resistance</span></p>
+	<p>Breeze Barrier: After making a basic attack, a Breezy Ginkgo gains 3 stacks of <span class="stack">Aura</span>. This is an <span class="element">Air</span> effect</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Windy Ginkgo</span></summary>
+		<span class="descr">A tall tree with fan-shaped leaves. Wind seems to whip continuously around it</span>
+		<p>Traits: <span class="trait">Air Reflection</span>, <span class="trait">Cold Resistance</span>, <span class="trait">Radiation Resistance</span></p>
+		<p>Wind Barrier: After making a basic attack, a Windy Ginkgo gains 5 stacks of <span class="stack">Aura</span>. This is an <span class="element">Air</span> effect. As a brief action costing 3 <span class="stack">Aura</span> stacks, a Windy Ginkgo can push a creature within Short range of it out to Medium range. This is a <span class="element">Physical (Air)</span> effect</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Stormy Ginkgo</span></summary>
+		<span class="descr">A tall tree with fan-shaped leaves. Clouds seem to orbit slowly around it</span>
+		<p>Traits: <span class="trait">Air Absorption</span>, <span class="trait">Cold Resistance</span>, <span class="trait">Radiation Resistance</span>, <span class="trait">Electricity Resistance</span></p>
+		<p>Storm Barrier: After making a basic attack, a Stormy Ginkgo gains 5 stacks of <span class="stack">Aura</span>. This is an <span class="element">Air</span> effect. While a Stormy Ginkgo has any number of <span class="stack">Aura</span> stacks, it can choose to add either the <span class="element">Electricity</span> or <span class="element">Water</span> sub-types to any of its attacks</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Lobbing Yew</span></summary>
+	<span class="descr">A thin medium-sized evergreen with a multitude of small white berries</span>
+	<p>Traits: <span class="trait">Cold Resistance</span></p>
+	<p>Yew Poison: A creature damaged by a Lobbing Yew's basic attack gains the <span class="debuff">Weakness</span> debuff and 2 stacks of <span class="stack">Agony</span></p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Toxic Yew</span></summary>
+		<span class="descr">A thin medium-sized evergreen with a multitude of eerie white berries</span>
+		<p>Traits: <span class="trait">Cold Resistance</span></p>
+		<p>Yew Poison: A creature damaged by a Toxic Yew's basic attack gains the <span class="debuff">Weakness</span> debuff and 4 stacks of <span class="stack">Agony</span>. If a Toxic Yew is damaged by a Melee attack, the attacker gains 2 stacks of <span class="stack">Agony</span>. This is a <span class="element">Poison</span> effect</p>
+		</details></li>
+		<li><details><summary><span class="familiar">Trebuchet Yew</span></summary>
+		<span class="descr">A thin medium-sized evergreen winding back to throw a plump white berry</span>
+		<p>Traits: <span class="trait">Cold Resistance</span>, <span class="trait">Charge Generation 3</span></p>
+		<p>Yew Poison: A creature damaged by a Yew's basic attack gains the Weakness debuff and 2 stacks of <span class="stack">Agony</span>. This is a <span class="element">Poison</span> effect</p>
+		<p>Lob High: A Trebuchet Yew ignores cover if the area it is in does not have a ceiling of any sort</p>
+		</details></li></ul></li>
+	<li><details><summary><span class="familiar">Lesser Fir</span></summary>
+	<span class="descr">A small fir tree with an abundance of cones</span>
+	<p>Traits: <span class="trait">Cold Resistance</span></p></details><ul>
+		<li><details><summary><span class="familiar">Greater Fir</span></summary>
+		<span class="descr">A tall fir tree with many heavy cones</span>
+		<p>Traits: <span class="trait">Cold Resistance</span>, <span class="trait">Reinforcement</span></p></details></li>
+		<li><details><summary><span class="familiar">Snowy Fir</span></summary>
+		<span class="descr">A tall fir tree covered in snow</span>
+		<p>Traits: <span class="trait">Cold Immunity</span></p></details></li></ul></li>
+	<li><details><summary><span class="familiar">Lobbing Citrus</span></summary>
+	<span class="descr">A short fruit tree with many yellow-orange spheres growing from it</span>
+	<p>Traits: <span class="trait">Acid Resistance</span>, <span class="trait">Cold Vulnerability</span>, <span class="trait">Revenge</span></p></details><ul>
+		<li><details><summary><span class="familiar">Bitter Lemon</span></summary>
+		<span class="descr">A short fruit tree with many oblong yellow fruits</span>
+		<p>Traits: <span class="trait">Acid Resistance</span>, <span class="trait">Cold Vulnerability</span>, <span class="trait">Revenge</span></p></details></li>
+		<li><details><summary><span class="familiar">Mandarin Orange</span></summary>
+		<span class="descr">A short fruit tree with bunches of orange spheres growing from it</span>
+		<p>Traits: <span class="trait">Acid Resistance</span>, <span class="trait">Cold Vulnerability</span>, <span class="trait">Revenge</span>, <span class="trait">Triple Attack</span></p></details></li></ul></li>
+	<li><details><summary><span class="familiar">Lesser Baobab</span></summary>
+	<span class="descr">A tree that looks as if it had been planted upside-down</span>
+	<p>Traits: <span class="trait">Heat Resistance</span>, <span class="trait">Fire Resistance</span>, <span class="trait">Temporal Resistance</span>, <span class="trait">Water Absorption</span>, <span class="trait">Chaos Vulnerability</span></p>
+	<p>Imprison: A Lesser Baobab gains <span class="stat">+6 OCBT</span> against enemies within Extended Melee range</p>
+	</details><ul>
+		<li><details><summary><span class="familiar">Greater Baobab</span></summary>
+		<span class="descr">A very tall and stout tree that looks as if it had been planted upside-down</span>
+		<p>Traits: <span class="trait">Heat Resistance</span>, <span class="trait">Fire Resistance</span>, <span class="trait">Temporal Resistance</span>, <span class="trait">Air Resistance</span>, <span class="trait">Water Absorption</span>, <span class="trait">Chaos Vulnerability</span></p>
+		<p>Imprison: A Greater Baobab gains <span class="stat">+8 OCBT</span> against enemies within Extended Melee range. If it damages a creature within that range, the creature is Rooted for 1 round. This is a <span class="element">Magical (Wood, Order)</span> effect</p>
+		</details></li></ul></li>
+</ul></details></td></tr>
+<tr class="minions"><td colspan="10">Outer Entities:<br><br>
+<details><summary>Known Minions</summary>
+<ul>
+	<li><details><summary><span class="familiar">Appendage of Fungqch-Nyl</span></summary>
+	<span class="descr">A writhing rope of green and orange leafy vines twisted together</span>
+		
+	</details></li>
+</ul></details></td></tr>
+<tr class="minions"><td colspan="10">Without families:<br><br>
+<details><summary>Known Minions</summary>
+<ul>
+	<li><details><summary><span class="familiar">Lesser Mimic</span></summary>
+	<span class="descr">An old-fashioned treasure chest with a cloudy purple spirit trapped inside</span>
+	<p>Traits: <span class="trait">Blank Slate</span>, <span class="trait">Bludgeoning Resistance</span>, <span class="trait">Piercing Resistance</span>, <span class="trait">Slashing Resistance</span>, <span class="trait">Earth Resistance</span>, <span class="trait">Wood Resistance</span>, <span class="trait">Life Resistance</span>, <span class="trait">Metal Resistance</span>, <span class="trait">Spirit Resistance</span>, <span class="trait">Energy Resistance</span>, <span class="trait">Darkness Resistance</span>, <span class="trait">Poison Resistance</span>, <span class="trait">Sound Resistance</span>, <span class="trait">Void Resistance</span>, <span class="trait">Plague Immunity</span>, <span class="trait">Magical Vulnerability</span>, <span class="trait">Mana Regeneration 1</span></p>
+	<p>Elemental Mimicry: If assigned to a floor that has an Elemental Biome, a Lesser Mimic gains the Tier 1 Attunements of that Biome</p>
+	<p>Treasure Mimicry: A Lesser Mimic gains <span class="stat">+2 ING</span> for every treasure chest in the same room as it</p>
+	<p>Elemental Piercing Shots: </p>
+	</details></li>
+	<li><details><summary><span class="familiar">Lesser Changeling</span></summary>
+	<span class="descr">A mass of silver slime constantly shifting into new forms</span>
+	<p>Traits: <span class="trait">Blank Slate</span>, <span class="trait">Angel</span>, <span class="trait">Demon</span>, <span class="trait">Undead</span>, <span class="trait">Construct</span>, <span class="trait">Shinigami</span>, <span class="trait">Dragon</span>, <span class="trait">Fey</span>, <span class="trait">Primordial</span>, <span class="trait">Debuff Resistance</span>, <span class="trait">Sound Vulnerability</span>, <span class="trait">Energy Vulnerability</span>, <span class="trait">Darkness Vulnerability</span>, <span class="trait">Spirit Vulnerability</span>, <span class="trait">Void Vulnerability</span>, <span class="trait">Mana Regeneration 1</span>, <span class="trait">Hover</span>, <span class="trait">Mobile</span>, <span class="trait">Digger</span>, <span class="trait">Low-Light Vision</span>, <span class="trait">Feather Fall</span>, <span class="trait">Compression</span></p>
+	<p>Unstable Shifter: A Changeling constantly counts as belonging to all creature families</p>
+	<p>Restoring Shield: As a Combat Action costing <span class="stat">2 MP</span>, a Lesser Changeling can target either itself or an ally within Short range. The target Shields for 1d3+1 minor damage and loses 1 random debuff. This is a <span class="element">Healing</span> and <span class="element">Protection</span> effect</p>
+	</details></li>
+</ul></details></td></tr>
+
+
+
+<tr><td id="amphibians">Amphibians</td>
+<td>Common</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td></td>	<td>Prone to mutations</td>	<td>Require freshwater for moisture<br>Mostly Carnivores</td>	</tr>
+<tr><td id="ancient_dark_beasts">Ancient Dark Beasts</td>
+<td>Mythic</td>	<td>High</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Slow</td>	<td><span class="familiar">Lesser Nox Serpent</span></td>	<td>Very Stealthy</td>	<td><span class="trait">Purification Vulnerability</span> and/or <span class="trait">Light Vulnerability</span><br>Not found in the wild</td>	</tr>
+<tr><td id="leng_beasts">Beasts of Leng</td>
+<td>Mythic</td>	<td>Very High</td>	<td>Average</td>	<td>Average</td>	<td>High</td>	<td>Slow</td>	<td></td>	<td><span class="trait">Mental Immunity</span><br><span class="trait">Poison Immunity</span><br><span class="trait">Cold Immunity</span></td>	<td><span class="trait">Order Vulnerability</span></td>	</tr>
+<tr><td id="beast_yokai">Beast Yokai</td>
+<td>Rare</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td></td>	<td>Immense variety</td>	<td>None</td>
+</tr>
+<tr><td id="cnidarians">Cnidarians</td>
+<td>Uncommon</td>	<td>Low</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Fast</td>	<td><span class="familiar">Sturdy Coral</span></td>	<td>Counterattacks<br>Higher <span class="stat">DCBT</span><br>Regeneration</td>	<td>Unaware<br>Saltwater dependent</td>
+</tr>
+<tr><td id="crustaceans">Crustaceans</td>
+<td>Uncommon</td>	<td>Average</td>	<td>Average</td>	<td>Low</td>	<td>Average</td>	<td>Slow</td>	<td></td>	<td>Higher defenses</td>	<td>Require moisture to survive</td>
+</tr>
+<tr><td id="dragons">Dragons</td>
+	<td>Legendary</td>	<td>Extremely High</td>	<td>High</td>	<td>High</td>	<td>High</td>	<td>Slow</td>	<td><span class="familiar">Wyrmling</span></td>	<td>Breath weapons and/or magic</td>	<td>Many are Carnivores</td>
+</tr>
+<tr><td id="fey">Fey</td>
+	<td>Very Rare</td>	<td>Average</td>	<td>Average</td>	<td>Low</td>	<td>Average</td>	<td>Slow</td>	<td></td>	<td>Order Magic</td>	<td><span class="trait">Order Vulnerability</span></td>
+</tr>
+<tr><td id="forgotten_terrors">Forgotten Terrors</td>
+	<td>Mythic</td>	<td>High</td>	<td>Extremely High</td>	<td>Very Low</td>	<td>Low</td>	<td>Slow</td>	<td></td>	<td>Apply lots of <span class="stack">Peril</span> Stacks</td>	<td>Rely on <span class="stack">Peril</span> Stacks to actually harm things<br>No basic attacks</td>
+</tr>
+<tr><td id="guardian_beasts">Guardian Beasts</td>
+	<td>Legendary</td>	<td>High</td>	<td>High</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td></td>	<td>Difficult to distract</td>	<td>Tendency to stay in a small area<br>Territorial</td>
+</tr>
+<tr><td id="guardian_undead">Guardian Undead</td>
+	<td>Legendary</td>	<td>Very high</td>	<td>High</td>	<td>Average</td>	<td>Average</td>	<td>Slow</td>	<td></td>	<td>Magic Abilities and/or Curses<br>Difficult to distract</td>	<td>Tendency to stay in small area<br>Cannot be mutated</td>
+</tr>
+<tr><td id="humanoid_yokai">Humanoid Yokai</td>
+	<td>Rare</td>	<td>Average</td>	<td>High</td>	<td>High</td>	<td>Very Low</td>	<td>Average</td>	<td><span class="familiar">Nopperabo</span></td>	<td>Smarter than most families</td>	<td>Many are emovores<br>Many only scare their targets</td>
+</tr>
+<tr><td id="large_reptiles">Large Reptiles</td>
+	<td>Very Rare</td>	<td>High</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Slow</td>	<td></td>	<td><span class="trait">Scales</span></td>	<td>Big targets</td>
+</tr>
+<tr><td id="nature_spirits">Nature Spirits</td>
+	<td>Legendary</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td></td>	<td>Increased power when near a spource of their element</td>	<td>All will have Vulnerability traits</td>
+</tr>
+<tr><td id="object_yokai">Object Yokai</td>
+	<td>Rare</td>	<td>Average</td>	<td>Low</td>	<td>Average</td>	<td>Average</td>	<td>Slow</td>	<td></td>	<td><span class="trait">Breathless</span><br>Immense variety</td>	<td>None</td>
+</tr>
+
+
+<tr><td id="altered_beasts">Altered Beasts</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="blighted_creatures">Blighted Creatures</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="carnivorous_plants">Carnivorous Plants</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="deep_sea_beasts">Deep Sea Beasts</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="dream_beasts">Dream Beasts</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="freshwater_fish">Freshwater Fish</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="fungi">Fungi</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="grasses">Grasses, Bushes and Ferns</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="large_ancient_reptiles">Large Ancient Reptiles</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="medium_mammals">Medium Mammals</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="mindless_undead">Mindless Undead</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="mollusks">Mollusks</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="saltwater_fish">Saltwater Fish</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="small_birds">Small Birds</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="spirit_beasts">Spirit Beasts</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="territory_spirits">Territory Spirits</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+
+<tr></tr>
+<tr><td colspan="10">
+<script>
+	document.write("<ul>");
+	for (let i = 7; i < basic_elements.length; i++){
+		el = basic_elements[i];
+		let li = Array();
+		for (var cr of creatures){
+			if (!["Clow Cards", "Dinosaur Cards", "Familiars", "Nightmares", "Characters", "Other"].includes(cr.type)){
+				if (Object.keys(cr).includes("elem")){
+					let arr = cr.elem;
+					if (arr.includes(i)){
+						li.push(cr);
+					}
+				}
+			}
+		}
+		if (li.length > 0){
+			document.write("<li><span class='element'>" + el  + "</span> Elemental Biome:<ul>");
+			let arr = sorting_param(li, "type");
+			for (var t of arr){
+				let tarr = Array();
+				for (var minion of li){
+					if (minion.type == t){
+						tarr.push(minion.name);
+					}
+				}
+				document.write("<li>" + t + ": <span class='familiar'>" + tarr.join("</span>, <span class='familiar'>") + "</span></li>");
+			}
+			document.write("</ul></li>");
+		}
+	}
+	document.write("</ul>");
+</script>
+</td></tr>
+</table>
+</td></tr></table>
+</main>
+</div>
+
+<script src="./js/main.js" lang="javascript"></script>
+
+</body>
+</html>

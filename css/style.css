@@ -1,12 +1,36 @@
+:root {
+  --background: #92D68B;
+  --ground: #E7EFF2;
+  --header: #ACACAC;
+  
+  --abominations: #7979D0;
+  --land_arthropods: #6F9E88;
+  --incorporeal_undead: #219487;
+  --trees: #5BCE61;
+  --heat: #EFA637;
+  --light: #EEDD00;
+  --sobek: #4D8F14;
+  
+  --mind: #0080FF;
+  --heart: #ff8000;
+  --soul: #80ff00;
+  --body: #8000ff;
+  
+  --sun: #EEDD00;
+  --moon: #AAAA44;
+  --mercury: #0000DD;
+  --mars: #BB0000;
+  --jupiter: #CC8800;
+}
 body {
   background-image: none;
-  background-color: #92D68B;
+  background-color: var(--background);
 }
 
 body> div{
   margin: auto;
   width: 85%;
-  background-color: #E7EFF2;
+  background-color: var(--ground);
 }
 
 nav > table{
@@ -33,7 +57,7 @@ table {
 }
 
 thead{
-  background-color: #ACACAC;
+  background-color: var(--header);
 }
 
 td , th{
@@ -113,39 +137,39 @@ a.family {
 }
 
 .heart{
-  color: #ff8000;
+  color: var(--heart);
 }
 
 .mind{
-  color: #0080ff;
+  color: var(--mind);
 }
 
 .soul{
-  color: #80ff00;
+  color: var(--soul);
 }
 
 .body{
-  color: #8000ff;
+  color: var(--body);
 }
 
 .sun{
-  color: #EEDD00;
+  color: var(--sun);
 }
 
 .moon{
-  color: #AAAA44;
+  color: var(--moon);
 }
 
 .mercury{
-  color: #0000DD;
+  color: var(--mercury);
 }
 
 .mars{
-  color: #BB0000;
+  color: var(--mars);
 }
 
 .jupiter{
-  color: #CC8800;
+  color: var(--jupiter);
 }
 
 .character {
@@ -244,17 +268,17 @@ a.family {
 
 
 .spoiler {
-  color: #E7EFF2;
-  background-color: #E7EFF2;
+  color: var(--ground);
+  background-color: var(--ground);
 }
 a.spoiler {
-  color: #E7EFF2;
-  background-color: #E7EFF2;
+  color: var(--ground);
+  background-color: var(--ground);
 }
 
 .spoiler :focus {
   color: #222222;
-  background-color: #E7EFF2;
+  background-color: var(--ground);
 }
 
 

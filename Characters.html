@@ -273,14 +273,49 @@ function ch_traits(name){
 	let html = "<details><summary>Traits</summary><ul>";
 	
 	for  (var t_tr of tarr){
-		if (t_tr[0] < 5){
-			html += "<li>";
-			if (t_tr[1]){
-			}else{
+		html += "<li><span class='trait'>";
+		if (!Number.isInteger(t_tr[0])){
+			html += t_tr[0];
+			if (t_tr.length > 1){
+				html += " (" + t_tr[1] + ")";
+			}
+		}else if (t_tr[0] == 0){
+			html += "Specialty (" + t_tr[1] + ")";
+		}else if (t_tr[0] < 7){
+			if (Number.isInteger(t_tr[1])){
 				html += basic_elements[t_tr[1]];
+			}else{
+				html += t_tr[1];
+			}
+			if (t_tr[0] == 1){
+				html += " Vulnerability";
+			}else if(t_tr[0] == 2){
+				html += " Reflection";
+			}else if(t_tr[0] == 3){
+				html += " Absorption";
+			}else if(t_tr[0] == 4){
+				html += " Immunity";
+			}else if(t_tr[0] == 5){
+				html += " Resistance";
+			}else if(t_tr[0] == 6){
+				html += " Affinity";
+			}
+		}else if(t_tr[0] < 9){
+			if (t_tr[0] == 7){
+				html += "Critical "
+			}else if (t_tr[0] == 8){
+				html += "Internalized "
+			}
+			if (Number.isInteger(t_tr[1])){
+				html += basic_elements[t_tr[1]];
+			}else{
+				html += t_tr[1];
 			}
 		}
+		html += "</span></li>";
 	}
+	html += "</ul></details>";
+	return html;
 }
 </script>
 </head>
@@ -319,9 +354,6 @@ function ch_traits(name){
 	<li><a class="character" href="#Ami_Mizuno">Ami Mizuno</a></li>
 	<li><a class="character" href="#Rey_Hino">Rey Hino</a></li>
 	<li><a class="character" href="#Makoto_Kino">Makoto Kino</a></li>
-	<li><a class="character" href="#Minako_Aino">Minako Aino</a></li>
-	<li><a class="character" href="#Luna">Luna</a></li>
-	<li><a class="character" href="#Artemis">Artemis</a></li>
 </ul></details>
 
 <details><summary>Phantasm Seekers</summary><ul>
@@ -347,7 +379,6 @@ function ch_traits(name){
 	<li>Senshi <span class="weight mind">Mind</span> - <a class="character" href="#Nanako_Dojima">Nanako Dojima</a></li>
 	<li>Senshi <span class="weight soul">Soul</span> - <a class="character" href="#Madeline">Madeline Robin</a></li>
 	<li>Senshi <span class="weight body">Body</span> - <a class="character" href="#Julia_Thiazi">Julia Thiazi</a></li>
-	<li>Senshi <span class="weight">Saturn</span> - <a class="character" href="#Hotaru_Tomoe">Hotaru Tomoe</a></li>
 	<li><span class="spoiler">Senshi <span class="weight">Nemesis</span> - <a class="character spoiler" href="#Yumiko_Yumi">Yumiko Yumi</a></span></li>
 </ul></details>
 </td>
@@ -359,9 +390,6 @@ function ch_traits(name){
 	<li><a class="character" href="#Ami_Mizuno">Ami Mizuno</a></li>
 	<li><a class="character" href="#Rey_Hino">Rey Hino</a></li>
 	<li><a class="character" href="#Makoto_Kino">Makoto Kino</a></li>
-	<li><a class="character" href="#Minako_Aino">Minako Aino</a></li>
-	<li><a class="character" href="#Luna">Luna</a></li>
-	<li><a class="character" href="#Artemis">Artemis</a></li>
 	<li><a class="character" href="#Rui_Saionji">Rui Saionji</a></li>
 	<li><a class="character" href="#Yumiko_Yumi">Yumiko Yumi</a></li>
 	<li><a class="character" href="#Kuri_Kumiko">Kuri Kumiko</a></li>
@@ -460,21 +488,7 @@ function ch_traits(name){
 		<li>Commander on the Battlefield (Active)</li>
 	</ul>
 </details>
-
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Breathless</span></li>
-	<li><span class="trait">Critical Hit Immunity</span></li>
-	<li><span class="trait">Mental Immunity</span></li>
-	<li><span class="trait">Earth Absorption</span></li>
-	<li><span class="trait">Drain Resistance</span></li>
-	<li><span class="trait">Energy Resistance</span></li>
-	<li><span class="trait">Physical Resistance</span></li>
-	<li><span class="trait">Silence Resistance</span></li>
-	<li><span class="trait">Spacial Resistance</span></li>
-	<li><span class="trait">Temporal Resistance</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Naru Osaka"));</script>
 </td>
 </tr>
 <tr class="invis"><td colspan="3">
@@ -630,24 +644,7 @@ function ch_traits(name){
 	<li>Latin (Passable)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Breathless</span></li>
-	<li><span class="trait">Critical Hit Immunity</span></li>
-	<li><span class="trait">Mental Immunity</span></li>
-	<li><span class="trait">Temporal Absorption</span></li>
-	<li><span class="trait">Death Resistance</span></li>
-	<li><span class="trait">Weird Resistance</span></li>
-	<li><span class="trait">Preparation (Warp)</span></li>
-	<li><span class="trait">Preparation (Ward)</span></li>
-	<li><span class="trait">Mana Regeneration I</span></li>
-	<li><span class="trait">Specialty (Casting Implements)</span></li>
-	<li><span class="trait">Specialty (Costumes)</span></li>
-	<li><span class="trait">Specialty (Life Energy Storage)</span></li>
-	<li><span class="trait">Specialty (Singing)</span></li>
-	<li><span class="trait">Specialty (Trinkets)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Tomoyo Daidouji"));</script>
 </td></tr>
 <tr class="invis"><td colspan="3">
 
@@ -747,14 +744,7 @@ function ch_traits(name){
 	<li>English (Passable)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Low-Light Vision</span></li>
-	<li><span class="trait">Death Vulnerability</span></li>
-	<li><span class="trait">Specialty (Gardening)</span></li>
-	<li><span class="trait">Specialty (Solving Rumors)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Nene Yashiro"));</script>
 </td>
 </tr>
 <tr class="invis" >
@@ -819,6 +809,10 @@ function ch_traits(name){
 	document.write(character_params("Sakura Mamiya"));
 </script>
 <tr>
+	<td colspan="3">Shinigami Scythe (Tipping Point)</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan='2'>+4</td>
+</tr>
+<tr>
 	<td colspan="3">Cloak of Psychpomp</td>
 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+1</td>
 </tr>
@@ -849,28 +843,48 @@ function ch_traits(name){
 	<li>Steady Rock (Active)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Seer</span></li>
-	<li><span class="trait">Silence Affinity</span></li>
-	<li><span class="trait">Silence Immunity</span></li>
-	<li><span class="trait">Poker Face</span></li>
-	<li><span class="trait">Specialty (Spirits)</span></li>
-	<li><span class="trait">Specialty (Stillnes Reading)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Sakura Mamiya"));</script>
 </td>
 </tr>
 <tr class="invis"><td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Unfazed</li>
-	<li>Soul-Storage Technique</li>
-	<li>Reaper of Curses</li>
-	<li>Overcasting Technique</li>
-	<li>Tethered to the Near Shore (DIVINE BOON: Ame-No-Uzume)</li>
-	<li>Stilness Reading</li>
-	<li>Cognitohazard Training</li>
+	<li>Unfazed<ul>
+		<li>Sakura is immune to mundane mental effects and cannot be intimidated, demoralized, or inspired​</li>
+		<li>Additionally, she can ignore up to one stack of Death-Shock</li>
+	</ul></li>
+	<li>Soul-Storage Technique<ul>
+		<li>Sakura can store anything in her soul that fits through the size and shape of a Star Seed (i.e. material soul)</li>
+	</ul></li>
+	<li>Reaper of Curses<ul>
+		<li>Sakura can automactically dispel any Curse effect she touches. This costs 2 Well</li>
+	</ul></li>
+	<li>Overcasting Technique<ul>
+		<li>You can use points from your Well in order to fuel spells that normally cost points from your Pool. The effects vary by spell and are unknown until you first Overcast a spell</li>
+	</ul></li>
+	<li>Tethered to the Near Shore (DIVINE BOON: Ame-No-Uzume)<ul>
+		<li>Whenever Sakura takes damage (Even if she just loses Shields.), she heals 1 Minor Wound immediately after. This is a Divine (Spirit, Healing) effect</li>
+		<li>Whenever Sakura damages an Undead creature, she immediately deals 1 extra Minor Damage to it. This is a Divine (Spirit, Life) effect</li>
+	</ul></li>
+	<li>Stilness Reading<ul>
+		<li>Mamiya can make herself Fatigued (-4 to all rolls) for the rest of a scene in order to attempt a Stillness Reading. This requires a few minutes of uninterrupted concentration</li>
+		<li>If these requirements are met, Mamiya then makes a Spirituality check. The higher the result, the better she'll be able to see the image given to her by Stillness. It should be noted that visions given by this ability are focused solely on things that are Ending in some way. This is a Magical (Silence) effect</li>
+	</ul></li>
+	<li>Cognitohazard Training<ul>
+		<li>Mamiya gets a +6 bonus to Spirituality when trying to resist Cognitohazards</li>
+		<li>If such a check comes up during Research, she rolls twice and takes the higher result</li>
+	</ul></li>
+	<li>Contracted to [Nexus curently unnamed]<ul>
+		<li>+1 to Mana Pool and Well</li>
+		<li>Her Mana Well refills completely after a good night's rest.</li>
+		<li>If she dies, she will be respawned at Naru's Nexus after one week</li>
+		<li>She is immune to any effect that would target her material or cognitive souls</li>
+		<li>Linked Floor:<ul>
+			<li>Tier 1 Attunement: Heat Absorption, Cold Vulnerability, +2 Stewardship, Contractee gains the Scalding Infusion</li>
+			<li>Tier 2 Attunement: 0/3 Weeks, 1/1 Floors Drilled</li>
+			<li>Tier 2 Attunement: 0/5 Weeks, 1/3 Floors Drilled</li>
+		</ul></li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Sakura Mamiya"));</script>
@@ -916,27 +930,56 @@ function ch_traits(name){
 </ul>
 </details>
 
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Solar Photosynthesis</span></li>
-	<li><span class="trait">Lunar Photosynthesis</span></li>
-	<li><span class="trait">Seer</span></li>
-	<li><span class="trait">Poker Face</span></li>
-	<li><span class="trait">Dream Walker</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Sakura Kinomoto"));</script>
 </td>
 </tr>
 <tr class="invis"><td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Keeper of the Clow</li>
-	<li>Celestial Eyes</li>
-	<li>Rookie Inscryber</li>
-	<li>Soul Storage Technique</li>
-	<li>Overcasting Technique</li>
-	<li>Expanded Summon I</li>
-	<li>Vision Overstimulation (Minor Insanity Drawback)</li>
+	<li>Keeper of the Clow<ul>
+		<li>Sakura has unprecedented command and respect of any Clow Cards she owns</li>
+		<li>She can Delegate cards to others or Manifest cards to perform a task elsewhere and they will still be considered under her ownership and contracted to her</li>
+		<li>Clow Cards under her ownership have +1 to all stats</li>
+		<li>The total contract cost for all Clow Cards bound to Sakura is equal to the largest soul cost among her bound cards</li>
+	</ul></li>
+	<li>Celestial Eyes<ul>
+		<li>As a combat action with a cost of 2 Pool, Sakura can determine the Vulnerability, Resistance, Immunity, Absorption, and Reflection traits of one target she can see. This ability does not work if neither the Sun or Moon are currently in the sky or while Sakura has at least 1 stack of Blind</li>
+	</ul></li>
+	<li>Rookie Inscryber<ul>
+		<li>Sakura has the ability to Craft cards. She currently requires an empty/blank card in order to do so</li>
+	</ul></li>
+	<li>Soul Storage Technique<ul>
+		<li>Sakura can store anything in her soul that fits through the size and shape of a Star Seed (i.e. material soul)</li>
+	</ul></li>
+	<li>Overcasting Technique<ul>
+		<li>You can use points from your Well in order to fuel spells that normally cost points from your Pool. The effects vary by spell and are unknown until you first Overcast a spell</li>
+	</ul></li>
+	<li>Cognitohazard Training<ul>
+		<li>Sakura gets a +6 bonus to Spirituality when trying to resist Cognitohazards</li>
+		<li>If such a check comes up during Research, she rolls twice and takes the higher result</li>
+	</ul></li>
+	<li>Expanded Summon I<ul>
+		<li>Sakura can manifest up to 2 creatures with one casting of the 'Manifest Card' spell. Said creatures are summoned one after another in rapid sequence</li>
+	</ul></li>
+	<li>Contracted of [Nexus currently unnamed]<ul>
+		<li>+1 to Mana Pool and Well</li>
+		<li>Her Mana Well refills completely after a good night's rest</li>
+		<li>If she dies, she will be respawned at Naru's Nexus after one week</li>
+		<li>She is immune to any effect that would target her material or cognitive souls</li>
+		<li>Linked Floor:<ul>
+			<li>Tier 1 Attunement: Water Breathing, +2 Intrigue, Contractee can gain an additional Mutation. Said Mutation must be of the Mummified type</li>
+			<li>Tier 2 Attunement: 0/3 Weeks, 0/1 Floors Drilled</li>
+			<li>Tier 3 Attunement: 0/5 Weeks, 0/3 Floors Drilled.</li>
+		</ul></li>
+	</ul></li>
+	<li>Vision Overstimulation (Minor Insanity Drawback)<ul>
+		<li>Sakura Saw too much at once. She now catches Sight of impossible obscurities at the slightest trigger</li>
+		<li>-6 penalty to Initiative and Perception checks</li>
+		<li>-1 to all other rolls</li>
+		<li>Additional -1 to all rolls for each moderate sanity she is missing</li>
+		<li>These maluses are doubled if Sakura was not able to get a good night's sleep the night before or if she has 1 or more stacks of Agony</li>
+		<li>If Sakura loses all of her sanity, she does not gain another Insanity Drawback. Instead, this Drawback progresses to Moderate stage</li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Sakura Kinomoto"));</script>
@@ -998,27 +1041,38 @@ function ch_traits(name){
 	<li>English (Passable)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Shinigami</span></li>
-	<li><span class="trait">Death Resistance</span></li>
-	<li><span class="trait">Ectoplasm Resistance</span></li>
-	<li><span class="trait">Dowsing Training</span></li>
-	<li><span class="trait">Specialty (Spirits)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Rinne Rokudo"));</script>
 </td>
 </tr>
 
 <tr class="invis"><td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Soul Storage Technique</li>
-	<li>Countdown Deduction Tactics</li>
-	<li>Infohazard Training</li>
-	<li>Cognitohazard Training</li>
-	<li>Reaping Wind Technique I</li>
-	<li>Flash Step I</li>
+	<li>Soul Storage Technique<ul>
+		<li>Rinne can store anything in his soul that fits through the size and shape of a Star Seed (i.e. material soul)</li>
+	</ul></li>
+	<li>Countdown Deduction Tactics<ul>
+		<li>While investigating a Festering Rumor, Rinne can multiply the roll result by 1.2. If he does, the roll result of his next attempt investigating a Rumor is multiplied by 0.8.</li>
+	</ul></li>
+	<li>Infohazard Training<ul>
+		<li>Rinne gets a +6 bonus to Learning when attempting to avoid Infohazards</li>
+		<li>If such a check comes up during Research, Rinne rolls twice and takes the higher result</li>
+	</ul></li>
+	<li>Cognitohazard Training<ul>
+		<li>Rinne gets a +6 bonus to Spirituality when trying to resist Cognitohazards</li>
+		<li>If such a check comes up during Research, he rolls twice and takes the higher result</li>
+	</ul></li>
+	<li>Reaping Wind Technique I<ul>
+		<li>While weilding a Shinigami Scythe, Rinne can spend 1 Pool in order to change the range of an attack he makes with it to Short. If he does, he add the Air sub-type to the attack</li>
+	</ul></li>
+	<li>Flash Step I<ul>
+		<li>As a Brief Action, Rinne can become Fatigued (-4 to all rolls) for 1 full round in order to move any unobstructed distance in Short range</li>
+	</ul></li>
+	<li>Phantom Stabs (Minor Injury Drawback)<ul>
+		<li>-3 Diplomacy</li>
+		<li>The first time in a scene that Rinne takes damage, he gains 2 stacks 1 stack of Bleed. This is an Ectoplasm effect</li>
+		<li>This Drawback will remove itself if Rinne does not gain another Injury Drawback for 1 week</li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Rinne Rokudo"));</script>
@@ -1058,14 +1112,7 @@ function ch_traits(name){
 	<li>English (Passable)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Low-Light Vision</span></li>
-	<li><span class="trait">Heat Senses</span></li>
-	<li><span class="trait">Specialty (Exploding Glyphs))</span></li>
-	<li><span class="trait">Specialty (Ofuda)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Syaoran Li"));</script>
 </td>
 
 </tr>
@@ -1073,12 +1120,28 @@ function ch_traits(name){
 <td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Soul Storage Technique</li>
-	<li>Infohazard Training</li>
-	<li>Cognitohazard Training</li>
-	<li>Burst of Inspiration</li>
-	<li>Connections of Magic</li>
-	<li>Rainbow Serpent's Eye (DIVINE BOON: Quetzalcoatl)</li>
+	<li>Soul Storage Technique<ul>
+		<li>Syaoran can store anything in his soul that fits through the size and shape of a Star Seed (i.e. material soul)</li>
+	</ul></li>
+	<li>Infohazard Training<ul>
+		<li>Syaoran gets a +6 bonus to Learning when attempting to avoid Infohazards</li>
+		<li>If such a check comes up during Research, Syaoran rolls twice and takes the higher result</li>
+	</ul></li>
+	<li>Cognitohazard Training<ul>
+		<li>Syoaran gets a +6 bonus to Spirituality when trying to resist Cognitohazards</li>
+		<li>If such a check comes up during Research, he rolls twice and takes the higher result</li>
+	</ul></li>
+	<li>Burst of Inspiration<ul>
+		<li>If Syaoran rolls a natural 12 while Researching, he adds a crit bonus d20 to the roll. The extra progress from the d20 cannot Overflow into other research topics</li>
+	</ul></li>
+	<li>Connections of Magic<ul>
+		<li>When Researching a spellbook, whenever Syaoran learns a new spell, he add 1d6 research progress to another random spellbook topic that has not benefited from this ability this turn</li>
+	</ul></li>
+	<li>Rainbow Serpent's Eye (DIVINE BOON: Quetzalcoatl)<ul>
+		<li>Syaoran gains the Heat Senses and Low-Light Vision traits</li>
+		<li>Syaoran's left eye is notably changed into that of a snake's whose iris contains all seven colors of the rainbow. When seeing with this eye, he automatically knows if any creature seen has any Vulnerability, Resistance, Immunity, Absorption, Reflection, Affinity, or Internalized Element traits relating to Fire, Acid, Electricity, Wood, Water, Air, or Light. He also knows if any of those elements are present in any seen spells or environmental effects. If Syaoran sees a spell cast that has at least two sub-types of Fire, Acid, Electricity, Wood, Water, Air, or Light and no sub-types that don't match any of those elements, he can spend 2 Well to immediately learn the seen spell as a Reaction. If the spell is a Divine spell, the Metaphysical Weight is changed to Quetzalcoatl. This is a Divine (Information) effect</li>
+		<li>This Boon can be inherited</li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Syaoran Li"));</script>
@@ -1117,31 +1180,31 @@ function ch_traits(name){
 	<li>Aklo (Passable)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Full of Fluff</span></li>
-	<li><span class="trait">Magical Sensing</span></li>
-	<li><span class="trait">Earth Absorption</span></li>
-	<li><span class="trait">Fire Absorption</span></li>
-	<li><span class="trait">Light Reflection</span></li>
-	<li><span class="trait">Magical Resistance</span></li>
-	<li><span class="trait">Physical Resistance</span></li>
-	<li><span class="trait">Linguist</span></li>
-	<li><span class="trait">Specialty (Knowledge of Clow)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Kerberos"));</script>
 </td></tr>
 
 <tr class="invis">
 <td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Sun Lion Form</li>
-	<li>Solar Guardian of the Clow</li>
-	<li>Soul Storage Technique</li>
-	<li>Infohazard Training</li>
-	<li>Cognitohazard Training</li>
-	<li>Burst of Inspiration</li>
+	<li>Sun Lion Form<ul>
+		<li></li>
+	</ul></li>
+	<li>Solar Guardian of the Clow<ul>
+		<li></li>
+	</ul></li>
+	<li>Soul Storage Technique<ul>
+		<li></li>
+	</ul></li>
+	<li>Infohazard Training<ul>
+		<li></li>
+	</ul></li>
+	<li>Cognitohazard Training<ul>
+		<li></li>
+	</ul></li>
+	<li>Burst of Inspiration<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Kerberos"));</script>
@@ -1170,25 +1233,25 @@ function ch_traits(name){
 	<li>Japanese (Fluent)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Nine Lives</span></li>
-	<li><span class="trait">Mobile</span></li>
-	<li><span class="trait">Curse Resistance</span></li>
-	<li><span class="trait">Temporal Resistance</span></li>
-	<li><span class="trait">Specialty (Fetch Quests)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Rokumon"));</script>
 </td></tr>
 
 <tr class="invis">
 <td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Black Cat</li>
-	<li>Cursed Demon Cat Head</li>
-	<li>Soul Storage Technique</li>
-	<li>Cognitohazard Training</li>
+	<li>Black Cat<ul>
+		<li></li>
+	</ul></li>
+	<li>Cursed Demon Cat Head<ul>
+		<li></li>
+	</ul></li>
+	<li>Soul Storage Technique<ul>
+		<li></li>
+	</ul></li>
+	<li>Cognitohazard Training<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Rokumon"));</script>
@@ -1224,24 +1287,34 @@ function ch_traits(name){
 	<li>English (Passable)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Hyper-Awareness</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Meiling Li"));</script>
 
 </td></tr>
 <tr class="invis">
 <td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Stance Change III</li>
-	<li>Soul Storage Technique</li>
-	<li>Apprenticeship Bond (The Supreme Dojo Master of Eternal Darkness)</li>
-	<li>Overcasting Technique</li>
-	<li>Cognitohazard Training</li>
-	<li>Flash Step I</li>
-	<li>Setting Twilight Style I</li>
+	<li>Stance Change III<ul>
+		<li></li>
+	</ul></li>
+	<li>Soul Storage Technique<ul>
+		<li></li>
+	</ul></li>
+	<li>Apprenticeship Bond (The Supreme Dojo Master of Eternal Darkness)<ul>
+		<li></li>
+	</ul></li>
+	<li>Overcasting Technique<ul>
+		<li></li>
+	</ul></li>
+	<li>Cognitohazard Training<ul>
+		<li></li>
+	</ul></li>
+	<li>Flash Step I<ul>
+		<li></li>
+	</ul></li>
+	<li>Setting Twilight Style I<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 
@@ -1286,15 +1359,7 @@ function ch_traits(name){
 	<li>Russian (Poor)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Lucid Dreamer</span></li>
-	<li><span class="trait">Mind Palace</span></li>
-	<li><span class="trait">Dream Resistance</span></li>
-	<li><span class="trait">Silence Resistance</span></li>
-	<li><span class="trait">Specialty (Tennis)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Rui Saionji"));</script>
 </td>
 </tr>
 
@@ -1302,11 +1367,21 @@ function ch_traits(name){
 <td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Cleric of Altjira II</li>
-	<li>Thalassophobia (Mild Insanity Drawback)</li>
-	<li>Soul Storage Technique</li>
-	<li>Cognitohazard Training</li>
-	<li>Ritual Boosting</li>
+	<li>Cleric of Altjira II<ul>
+		<li></li>
+	</ul></li>
+	<li>Thalassophobia (Mild Insanity Drawback)<ul>
+		<li></li>
+	</ul></li>
+	<li>Soul Storage Technique<ul>
+		<li></li>
+	</ul></li>
+	<li>Cognitohazard Training<ul>
+		<li></li>
+	</ul></li>
+	<li>Ritual Boosting<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Rui Saionji"));</script>
@@ -1344,15 +1419,7 @@ function ch_traits(name){
 	<li>English (Poor)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Lucky</span></li>
-	<li><span class="trait">Air Resistance</span></li>
-	<li><span class="trait">Light Resistance</span></li>
-	<li><span class="trait">Energetic</span></li>
-	<li><span class="trait">Klutz</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Kaede Honjo"));</script>
 
 </td>
 </tr>
@@ -1361,12 +1428,24 @@ function ch_traits(name){
 <td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Algophobia (Mild Insanity Drawback)</li>
-	<li>Contractor</li>
-	<li>Cognitohazard Training</li>
-	<li>Steady Position</li>
-	<li>Brace for Impact</li>
-	<li>Seven-Colored Wings (DIVINE BOON: Quetzalcoatl)</li>
+	<li>Algophobia (Mild Insanity Drawback)<ul>
+		<li></li>
+	</ul></li>
+	<li>Contractor<ul>
+		<li></li>
+	</ul></li>
+	<li>Cognitohazard Training<ul>
+		<li></li>
+	</ul></li>
+	<li>Steady Position<ul>
+		<li></li>
+	</ul></li>
+	<li>Brace for Impact<ul>
+		<li></li>
+	</ul></li>
+	<li>Seven-Colored Wings (DIVINE BOON: Quetzalcoatl)<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Kaede Honjo"));</script>
@@ -1406,25 +1485,7 @@ function ch_traits(name){
 	<li>English (Passable)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Undead</span></li>
-	<li><span class="trait">Incorporeal</span></li>
-	<li><span class="trait">Low-Light Vision</span></li>
-	<li><span class="trait">Hyper-Awareness</span></li>
-	<li><span class="trait">Hover</span></li>
-	<li><span class="trait">Death Immunity</span></li>
-	<li><span class="trait">Mental Immunity</span></li>
-	<li><span class="trait">Plague Immunity</span></li>
-	<li><span class="trait">Poison Immunity</span></li>
-	<li><span class="trait">Curse Resistance</span></li>
-	<li><span class="trait">Darkness Resistance</span></li>
-	<li><span class="trait">Ectoplasm Resistance</span></li>
-	<li><span class="trait">Gravity Resistance</span></li>
-	<li><span class="trait">Purification Vulnerability</span></li>
-	<li><span class="trait">Specialty (Astronomy)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Hanako-kun"));</script>
 
 </td>
 </tr>
@@ -1433,10 +1494,18 @@ function ch_traits(name){
 <td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Tethered</li>
-	<li>Mystery No. 7</li>
-	<li>Mermaid's "Curse" (Marriage Bond between Nene and "Hanako-kun")</li>
-	<li>Battle Couple II (Nene Yashiro)</li>
+	<li>Tethered<ul>
+		<li></li>
+	</ul></li>
+	<li>Mystery No. 7<ul>
+		<li></li>
+	</ul></li>
+	<li>Mermaid's "Curse" (Marriage Bond between Nene and "Hanako-kun")<ul>
+		<li></li>
+	</ul></li>
+	<li>Battle Couple II (Nene Yashiro<ul>
+		<li></li>
+	</ul>)</li>
 </ul>
 </details>
 
@@ -1467,22 +1536,7 @@ function ch_traits(name){
 	<li>Necril (Esoteric)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Undead</span></li>
-	<li><span class="trait">All-Around Vision</span></li>
-	<li><span class="trait">Concealed</span></li>
-	<li><span class="trait">Magical Immunity</span></li>
-	<li><span class="trait">Plague Immunity</span></li>
-	<li><span class="trait">Poison Immunity</span></li>
-	<li><span class="trait">Darkness Reflection</span></li>
-	<li><span class="trait">Mental Reflection</span></li>
-	<li><span class="trait">Metal Resistance</span></li>
-	<li><span class="trait">Physical Resistance</span></li>
-	<li><span class="trait">Radiation Resistance</span></li>
-	<li><span class="trait">Light Vulnerability</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Necreph"));</script>
 
 </td>
 </tr>
@@ -1491,13 +1545,27 @@ function ch_traits(name){
 <td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Tethered</li>
-	<li>Sah Form</li>
-	<li>Blind Sense</li>
-	<li>Mejai's Strike</li>
-	<li>The Shadow</li>
-	<li>Don't Look at Me</li>
-	<li>Severe Apathy (Moderate Insanity Drawback)</li>
+	<li>Tethered<ul>
+		<li></li>
+	</ul></li>
+	<li>Sah Form<ul>
+		<li></li>
+	</ul></li>
+	<li>Blind Sense<ul>
+		<li></li>
+	</ul></li>
+	<li>Mejai's Strike<ul>
+		<li></li>
+	</ul></li>
+	<li>The Shadow<ul>
+		<li></li>
+	</ul></li>
+	<li>Don't Look at Me<ul>
+		<li></li>
+	</ul></li>
+	<li>Severe Apathy (Moderate Insanity Drawback)<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 
@@ -1534,16 +1602,7 @@ function ch_traits(name){
 	<li>Aklo (Poor)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">High Jump</span></li>
-	<li><span class="trait">Double Jump</span></li>
-	<li><span class="trait">Wood Resistance</span></li>
-	<li><span class="trait">Specialty (Bartering)</span></li>
-	<li><span class="trait">Specialty (Communication)</span></li>
-	<li><span class="trait">Specialty (Survival)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Julia Thiazi"));</script>
 
 </td>
 </tr>
@@ -1553,8 +1612,12 @@ function ch_traits(name){
 
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Monster Keeper</li>
-	<li>Future: Senshi of Earth's Body I</li>
+	<li>Monster Keeper<ul>
+		<li></li>
+	</ul></li>
+	<li>Future: Senshi of Earth's Body I<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 
@@ -1590,12 +1653,7 @@ function ch_traits(name){
 	<li>English (Poor)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Purification Resistance</span></li>
-</ul>
-</details>
-
+<script>document.write(ch_traits("Usagi Tsukino"));</script>
 </td>
 </tr>
 
@@ -1603,11 +1661,21 @@ function ch_traits(name){
 <td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Senshi of Moon I</li>
-	<li>Nexus Master of The Moon</li>
-	<li>Medical Training I</li>
-	<li>Cognitohazard Training</li>
-	<li>Healing Transformation</li>
+	<li>Senshi of Moon I<ul>
+		<li></li>
+	</ul></li>
+	<li>Nexus Master of The Moon<ul>
+		<li></li>
+	</ul></li>
+	<li>Medical Training I<ul>
+		<li></li>
+	</ul></li>
+	<li>Cognitohazard Training<ul>
+		<li></li>
+	</ul></li>
+	<li>Healing Transformation<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Usagi Tsukino"));</script>
@@ -1646,11 +1714,7 @@ function ch_traits(name){
 	<li>Sanskrit (Poor)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Cold Resistance</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Ami Mizuno"));</script>
 
 </td>
 </tr>
@@ -1659,11 +1723,21 @@ function ch_traits(name){
 <td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Senshi of Mercury</li>
-	<li>Nexus Master of Mercury</li>
-	<li>Infohazard Training</li>
-	<li>Cognitohazard Training</li>
-	<li>Chilling Transformation</li>
+	<li>Senshi of Mercury<ul>
+		<li></li>
+	</ul></li>
+	<li>Nexus Master of Mercury<ul>
+		<li></li>
+	</ul></li>
+	<li>Infohazard Training<ul>
+		<li></li>
+	</ul></li>
+	<li>Cognitohazard Training<ul>
+		<li></li>
+	</ul></li>
+	<li>Chilling Transformation<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Ami Mizuno"));</script>
@@ -1700,17 +1774,7 @@ function ch_traits(name){
 	<li>Sanskrit (Decent)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Seer</span></li>
-	<li><span class="trait">Magical Sensing</span></li>
-	<li><span class="trait">Divine Sensing</span></li>
-	<li><span class="trait">Eldritch Sensing</span></li>
-	<li><span class="trait">Fire Resistance</span></li>
-	<li><span class="trait">Specialty (Archery)</span></li>
-</ul>
-</details>
-
+<script>document.write(ch_traits("Rey Hino"));</script>
 </td>
 </tr>
 
@@ -1718,13 +1782,27 @@ function ch_traits(name){
 <td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Fire Reading</li>
-	<li>Senshi of Mars I</li>
-	<li>Nexus Master of Mars</li>
-	<li>Infohazard Training</li>
-	<li>Cognitohazard Training</li>
-	<li>Ritual Boosting</li>
-	<li>Burning Transformation</li>
+	<li>Fire Reading<ul>
+		<li></li>
+	</ul></li>
+	<li>Senshi of Mars I<ul>
+		<li></li>
+	</ul></li>
+	<li>Nexus Master of Mars<ul>
+		<li></li>
+	</ul></li>
+	<li>Infohazard Training<ul>
+		<li></li>
+	</ul></li>
+	<li>Cognitohazard Training<ul>
+		<li></li>
+	</ul></li>
+	<li>Ritual Boosting<ul>
+		<li></li>
+	</ul></li>
+	<li>Burning Transformation<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Rey Hino"));</script>
@@ -1760,11 +1838,7 @@ function ch_traits(name){
 	<li>English (Passable)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Electricity Resistance</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Makoto Kino"));</script>
 
 </td>
 </tr>
@@ -1773,149 +1847,27 @@ function ch_traits(name){
 <td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Senshi of Jupiter I</li>
-	<li>Nexus Master of Jupiter</li>
-	<li>Intimidation</li>
-	<li>Cognitohazard Training</li>
-	<li>Flash Step I</li>
-	<li>Stance Change I</li>
+	<li>Senshi of Jupiter I<ul>
+		<li></li>
+	</ul></li>
+	<li>Nexus Master of Jupiter<ul>
+		<li></li>
+	</ul></li>
+	<li>Intimidation<ul>
+		<li></li>
+	</ul></li>
+	<li>Cognitohazard Training<ul>
+		<li></li>
+	</ul></li>
+	<li>Flash Step I<ul>
+		<li></li>
+	</ul></li>
+	<li>Stance Change I<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Makoto Kino"));</script>
-
-</td></tr>
-</table>
-
-<hr><table>		<!--Minako Aino-->
-<tr class="invis"><td><h2 id="Minako_Aino">Minako Aino</h2></td>
-<td rowspan="2">
-<table>
-<script>
-	document.write(character_params("Minako Aino"));
-</script>
-</table>
-</td>
-<td rowspan="2">
-	<span></span>
-</td></tr>
-<tr class="invis">
-<td>
-	<p>Age: 14</p>
-	<p>Favoured by: <span class="venus">Venus</span></p>
-	<p>Affiliations: Inner Senshi</p><hr>
-<details><summary>Known languages</summary>
-<ul>
-	<li>Japanese (Fluent)</li>
-</ul>
-</details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait"></span></li>
-</ul>
-</details>
-
-</td>
-</tr>
-
-<tr class="invis">
-<td colspan="3">
-
-<details><summary>Special Abilities</summary>
-<ul>
-	<li>Senshi of Venus I</li>
-	<li>Nexus Master of Venus</li>
-</ul>
-</details>
-
-<script>document.write(ch_spellbook("Minako Aino"));</script>
-
-</td></tr>
-</table>
-
-<hr><table>		<!--Luna-->
-<tr class="invis"><td><h2 id="Luna">Luna</h2></td>
-<td rowspan="2">
-<table>
-<script>
-	document.write(character_params("Luna"));
-</script>
-</table>
-</td>
-<td rowspan="2">
-	<span></span>
-</td></tr>
-<tr class="invis">
-<td>
-	<p>Age: </p>
-	<p>Affiliations: Inner Senshi</p><hr>
-<details><summary>Known languages</summary>
-<ul>
-	<li>Japanese (Fluent)</li>
-</ul>
-</details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait"></span></li>
-</ul>
-</details>
-
-</td>
-</tr>
-
-<tr class="invis">
-<td colspan="3">
-
-<details><summary>Special Abilities</summary>
-<ul>
-	<li></li>
-</ul>
-</details>
-
-<script>document.write(ch_spellbook("Luna"));</script>
-
-</td></tr>
-</table>
-
-<hr><table>		<!--Artemis-->
-<tr class="invis"><td><h2 id="Artemis">Artemis</h2></td>
-<td rowspan="2">
-<table>
-<script>
-	document.write(character_params("Artemis"));
-</script>
-</table>
-</td>
-<td rowspan="2">
-	<span></span>
-</td></tr>
-<tr class="invis">
-<td>
-	<p>Age: </p>
-	<p>Affiliations: Inner Senshi</p><hr>
-<details><summary>Known languages</summary>
-<ul>
-	<li>Japanese (Fluent)</li>
-</ul>
-</details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait"></span></li>
-</ul>
-</details>
-
-</td>
-</tr>
-
-<tr class="invis">
-<td colspan="3">
-
-<details><summary>Special Abilities</summary>
-<ul>
-	<li></li>
-</ul>
-</details>
-
-<script>document.write(ch_spellbook("Artemis"));</script>
 
 </td></tr>
 </table>
@@ -1942,11 +1894,7 @@ function ch_traits(name){
 	<li>English (Decent)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Specialty (Gossip)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Yumiko Yumi"));</script>
 
 </td>
 </tr>
@@ -1986,14 +1934,7 @@ function ch_traits(name){
 	<li>English (Poor)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Energetic</span></li>
-	<li><span class="trait">Preparation (Glory)</span></li>
-	<li><span class="trait">Malediction (Doom)</span></li>
-	<li><span class="trait">Specialty (Finding Rumors)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Kuri Kumiko"));</script>
 
 </td>
 </tr>
@@ -2003,9 +1944,15 @@ function ch_traits(name){
 
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Followed by Chaos</li>
-	<li>Two-Faced Luck</li>
-	<li>Smuggling Training</li>
+	<li>Followed by Chaos<ul>
+		<li></li>
+	</ul></li>
+	<li>Two-Faced Luck<ul>
+		<li></li>
+	</ul></li>
+	<li>Smuggling Training<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Kuri Kumiko"));</script>
@@ -2034,11 +1981,12 @@ function ch_traits(name){
 	<li>Japanese (Fluent)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Yokai Magnet</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Shingo Tsukino"));</script>
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
 <script>document.write(ch_spellbook("Shingo Tsukino"));</script>
 
 </td>
@@ -2072,11 +2020,7 @@ function ch_traits(name){
 	<li>English (Decent)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait"></span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Gurio Umino"));</script>
 
 </td>
 </tr>
@@ -2086,7 +2030,9 @@ function ch_traits(name){
 
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Unexpected Entrance</li>
+	<li>Unexpected Entrance<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Gurio Umino"));</script>
@@ -2120,11 +2066,7 @@ function ch_traits(name){
 	<li>English (Passable)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Specialty (Guns)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Chiaki"));</script>
 
 </td>
 </tr>
@@ -2133,8 +2075,12 @@ function ch_traits(name){
 <td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Line it Up</li>
-	<li>Lycoris Training I</li>
+	<li>Line it Up<ul>
+		<li></li>
+	</ul></li>
+	<li>Lycoris Training I<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 
@@ -2175,15 +2121,7 @@ function ch_traits(name){
 		<li>Commander on the Battlefield (Active)</li>
 	</ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Persona User</span></li>
-	<li><span class="trait">Cognitive Dissonance</span></li>
-	<li><span class="trait">Mobile</span></li>
-	<li><span class="trait">Mental Resistance</span></li>
-	<li><span class="trait">Specialty (Performing)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Nanako Dojima"));</script>
 
 </td>
 </tr>
@@ -2192,13 +2130,27 @@ function ch_traits(name){
 <td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Jury-Rigged Wildcard (The Warden)</li>
-	<li>Future: Senshi of Earth's Mind I</li>
-	<li>Infohazard Training</li>
-	<li>Cognitohazard Training</li>
-	<li>Cognitive Enhancement I</li>
-	<li>Quick Summon</li>
-	<li>Cognintive Catch</li>
+	<li>Jury-Rigged Wildcard (The Warden)<ul>
+		<li></li>
+	</ul></li>
+	<li>Future: Senshi of Earth's Mind I<ul>
+		<li></li>
+	</ul></li>
+	<li>Infohazard Training<ul>
+		<li></li>
+	</ul></li>
+	<li>Cognitohazard Training<ul>
+		<li></li>
+	</ul></li>
+	<li>Cognitive Enhancement I<ul>
+		<li></li>
+	</ul></li>
+	<li>Quick Summon<ul>
+		<li></li>
+	</ul></li>
+	<li>Cognintive Catch<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 
@@ -2230,15 +2182,8 @@ function ch_traits(name){
 	<li>Necril (Esoteric)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Angel</span></li>
-	<li><span class="trait">Nine Lives</span></li>
-	<li><span class="trait">Persona User</span></li>
-	<li><span class="trait">Hope-Bringer</span></li>
-	<li><span class="trait">Specialty (Thieving)</span></li>
-</ul>
-</details>
+
+<script>document.write(ch_traits("Morgana"));</script>
 
 </td>
 </tr>
@@ -2247,10 +2192,18 @@ function ch_traits(name){
 <td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Being of Hope</li>
-	<li>Cognitive Form</li>
-	<li>Not my Journey</li>
-	<li>Infohazard Training</li>
+	<li>Being of Hope<ul>
+		<li></li>
+	</ul></li>
+	<li>Cognitive Form<ul>
+		<li></li>
+	</ul></li>
+	<li>Not my Journey<ul>
+		<li></li>
+	</ul></li>
+	<li>Infohazard Training<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 
@@ -2281,14 +2234,7 @@ function ch_traits(name){
 	<li>English (Decent)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Magic Piercer</span></li>
-	<li><span class="trait">Persona User</span></li>
-	<li><span class="trait">Hyper-Awareness</span></li>
-	<li><span class="trait">Mobile</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Tsukasa Shishio"));</script>
 
 </td>
 </tr>
@@ -2298,15 +2244,33 @@ function ch_traits(name){
 
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Mind over Pain</li>
-	<li>Stance Change IV</li>
-	<li>Infohazard Training</li>
-	<li>Cognitohazard Training</li>
-	<li>Wood Boost II</li>
-	<li>Caged Beast Style I</li>
-	<li>Quick Summon</li>
-	<li>Cognitive Catch</li>
-	<li>Flash Step I</li>
+	<li>Mind over Pain<ul>
+		<li></li>
+	</ul></li>
+	<li>Stance Change IV<ul>
+		<li></li>
+	</ul></li>
+	<li>Infohazard Training<ul>
+		<li></li>
+	</ul></li>
+	<li>Cognitohazard Training<ul>
+		<li></li>
+	</ul></li>
+	<li>Wood Boost II<ul>
+		<li></li>
+	</ul></li>
+	<li>Caged Beast Style I<ul>
+		<li></li>
+	</ul></li>
+	<li>Quick Summon<ul>
+		<li></li>
+	</ul></li>
+	<li>Cognitive Catch<ul>
+		<li></li>
+	</ul></li>
+	<li>Flash Step I<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Tsukasa Shishio"));</script>
@@ -2343,16 +2307,7 @@ function ch_traits(name){
 		<li>Can't Give Up (Active)</li>
 	</ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Hope-Bringer</span></li>
-	<li><span class="trait">Defy Death</span></li>
-	<li><span class="trait">Specialty (Meteorology)</span></li>
-	<li><span class="trait">Specialty (Money)</span></li>
-	<li><span class="trait">Specialty (Navigation)</span></li>
-	<li><span class="trait">Specialty (Sailing/Piloting)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Ryusui Nanami"));</script>
 
 </td>
 </tr>
@@ -2386,15 +2341,7 @@ function ch_traits(name){
 	<li>Latin (Passable)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Eidetic Memory</span></li>
-	<li><span class="trait">Hope-Bringer</span></li>
-	<li><span class="trait">Linguist</span></li>
-	<li><span class="trait">Horror Resistance</span></li>
-</ul>
-</details>
-
+<script>document.write(ch_traits("Senku Ishigami"));</script>
 </td>
 </tr>
 
@@ -2402,10 +2349,18 @@ function ch_traits(name){
 <td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Head for Numbers</li>
-	<li>Scientific Progress</li>
-	<li>Fragile (Drawback)</li>
-	<li>Abysmal Luck (Drawback)</li>
+	<li>Head for Numbers<ul>
+		<li></li>
+	</ul></li>
+	<li>Scientific Progress<ul>
+		<li></li>
+	</ul></li>
+	<li>Fragile (Drawback)<ul>
+		<li></li>
+	</ul></li>
+	<li>Abysmal Luck (Drawback)<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Senku Ishigami"));</script>
@@ -2436,11 +2391,7 @@ function ch_traits(name){
 	<li>Soulspeech (Esoteric)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Spirit Resistance</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Madeline Robin"));</script>
 
 </td>
 </tr>
@@ -2449,8 +2400,12 @@ function ch_traits(name){
 <td colspan="3">
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Future: Senshi of Earth's Soul I</li>
-	<li>Nexus Master of Hundred Acre Wood</li>
+	<li>Future: Senshi of Earth's Soul I<ul>
+		<li></li>
+	</ul></li>
+	<li>Nexus Master of Hundred Acre Wood<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 
@@ -2479,19 +2434,7 @@ function ch_traits(name){
 	<li>Soulspeech (Esoteric)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Damage Immunity</span></li>
-	<li><span class="trait">Death Immunity</span></li>
-	<li><span class="trait">Mental Immunity</span></li>
-	<li><span class="trait">Silence Immunity</span></li>
-	<li><span class="trait">Transmutation Immunity</span></li>
-	<li><span class="trait">Full of Fluff</span></li>
-	<li><span class="trait">Hope-Bringer</span></li>
-	<li><span class="trait">Specialty (Poetry)</span></li>
-	<li><span class="trait">Specialty (Social Problems)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Pooh Bear"));</script>
 
 </td>
 </tr>
@@ -2501,7 +2444,9 @@ function ch_traits(name){
 
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Think Think Think</li>
+	<li>Think Think Think<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 
@@ -2530,19 +2475,7 @@ function ch_traits(name){
 	<li>Soulspeech (Esoteric)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Mobile</span></li>
-	<li><span class="trait">Damage Immunity</span></li>
-	<li><span class="trait">Death Immunity</span></li>
-	<li><span class="trait">Mental Immunity</span></li>
-	<li><span class="trait">Silence Immunity</span></li>
-	<li><span class="trait">Transmutation Immunity</span></li>
-	<li><span class="trait">Full of Fluff</span></li>
-	<li><span class="trait">Hope-Bringer</span></li>
-	<li><span class="trait">Specialty (Jury-Rigging)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Piglet"));</script>
 
 </td>
 </tr>
@@ -2552,83 +2485,16 @@ function ch_traits(name){
 
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Braver Than you Believe</li>
-	<li>Jury-Rigger</li>
+	<li>Braver Than you Believe<ul>
+		<li></li>
+	</ul></li>
+	<li>Jury-Rigger<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 
 <script>document.write(ch_spellbook("Piglet"));</script>
-</td></tr>
-</table>
-
-<hr><table>		<!--Atoning Tragedy-->
-<tr class="invis"><td><h2 id="Atoning_Tragedy">Atoning Tragedy</h2></td>
-<td rowspan="2">
-<table>
-<script>
-	document.write(character_params("Atoning Tragedy"));
-</script>
-<tr><td colspan="3">Bronze Tragedy Mask</td>
-	<td></td>	<td></td>	<td></td>	<td>+6</td>	<td></td>	<td></td>	<td colspan="2"></td></tr>
-<tr><td colspan="3">Timeless Blade</td>
-	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+8</td>	<td>+4</td></tr>
-<tr><td colspan="3">Additional Timeless Blade (for each) x3</td>
-	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+2</td>	<td>+1</td></tr>
-<tr><td colspan="3">Fated Stave</td>
-	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+8</td></tr>
-<tr><td colspan="3">Additional Fated Stave (for each) x1</td>
-	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+2</td></tr>
-</table>
-</td>
-<td rowspan="2">
-	<span></span>
-</td></tr>
-<tr class="invis">
-<td>
-	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-287#post-119582378">Source</a></p>
-	<p>Age: He was old when the Moon Kingdom fell</p><hr>
-<details><summary>Known languages</summary>
-<ul>
-	<li>Japanese (Fluent)</li>
-</ul>
-</details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Youma</span></li>
-	<li><span class="trait">Life Stealer</span></li>
-	<li><span class="trait">Darkness Immunity</span></li>
-	<li><span class="trait">Curse Immunity</span></li>
-	<li><span class="trait">Silence Resistance</span></li>
-	<li><span class="trait">Temporal Resistance</span></li>
-	<li><span class="trait">Purification Vulnerability</span></li>
-	<li><span class="trait">Triple Action</span></li>
-	<li><span class="trait">Quadruple Attack</span></li>
-	<li><span class="trait">Double Spell</span></li>
-	<li><span class="trait">Hyper-Awareness</span></li>
-	<li><span class="trait">Mobile</span></li>
-	<li><span class="trait">High Jump</span></li>
-	<li><span class="trait">Water from the Well</span></li>
-	<li><span class="trait">Mana Regeneration 6</span></li>
-	<li><span class="trait">Double Staff Training</span></li>
-	<li><span class="trait">Multi-Sword Training</span></li>
-	<li><span class="trait">Dual Weight Caster</span></li>
-</ul>
-</details>
-
-</td>
-</tr>
-
-<tr class="invis">
-<td colspan="3">
-
-<details><summary>Special Abilities</summary>
-<ul>
-	<li></li>
-</ul>
-</details>
-
-<script>document.write(ch_spellbook("Atoning Tragedy"));</script>
-
 </td></tr>
 </table>
 
@@ -2663,16 +2529,7 @@ function ch_traits(name){
 	<li>Mandarin (Passable)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Energetic</span></li>
-	<li><span class="trait">Internalized Void</span></li>
-	<li><span class="trait">Defy Death</span></li>
-	<li><span class="trait">Mind Palace</span></li>
-	<li><span class="trait">Lucky</span></li>
-	<li><span class="trait">Iron Will</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Dojo Master"));</script>
 
 </td>
 </tr>
@@ -2682,7 +2539,24 @@ function ch_traits(name){
 
 <details><summary>Special Abilities</summary>
 <ul>
-	<li></li>
+	<li>Stance Change II<ul>
+		<li></li>
+	</ul></li>
+	<li>Hungry Void Style II<ul>
+		<li></li>
+	</ul></li>
+	<li>Sucker Punch<ul>
+		<li></li>
+	</ul></li>
+	<li>Magic Misdirection<ul>
+		<li></li>
+	</ul></li>
+	<li>Living on the Edge<ul>
+		<li></li>
+	</ul></li>
+	<li>Apprenticeship Bond (Meiling Li)<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Dojo Master"));</script>
@@ -2690,13 +2564,23 @@ function ch_traits(name){
 </td></tr>
 </table>
 
-<hr><table>		<!--Jiemba-->
-<tr class="invis"><td><h2 id="Jiemba">Jiemba</h2></td>
+<hr><table>		<!--Atoning Tragedy-->
+<tr class="invis"><td><h2 id="Atoning_Tragedy">Atoning Tragedy</h2></td>
 <td rowspan="2">
 <table>
 <script>
-	document.write(character_params("Jiemba"));
+	document.write(character_params("Atoning Tragedy"));
 </script>
+<tr><td colspan="3">Bronze Tragedy Mask</td>
+	<td></td>	<td></td>	<td></td>	<td>+6</td>	<td></td>	<td></td>	<td colspan="2"></td></tr>
+<tr><td colspan="3">Timeless Blade</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+8</td>	<td>+4</td></tr>
+<tr><td colspan="3">Additional Timeless Blade (for each) x3</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+2</td>	<td>+1</td></tr>
+<tr><td colspan="3">Fated Stave</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+8</td></tr>
+<tr><td colspan="3">Additional Fated Stave (for each) x1</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+2</td></tr>
 </table>
 </td>
 <td rowspan="2">
@@ -2704,17 +2588,14 @@ function ch_traits(name){
 </td></tr>
 <tr class="invis">
 <td>
-	<p>Age: </p><hr>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-287#post-119582378">Source</a></p>
+	<p>Age: He was old when the Moon Kingdom fell</p><hr>
 <details><summary>Known languages</summary>
 <ul>
 	<li>Japanese (Fluent)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait"></span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Atoning Tragedy"));</script>
 
 </td>
 </tr>
@@ -2724,10 +2605,16 @@ function ch_traits(name){
 
 <details><summary>Special Abilities</summary>
 <ul>
-	<li></li>
+	<li>Six-Armed<ul>
+		<li></li>
+	</ul></li>
+	<li>The Road Best Traveled (Divine Boon: Vertraag)<ul>
+		<li></li>
+	</ul></li>
 </ul>
 </details>
-<script>document.write(ch_spellbook("Jiemba"));</script>
+
+<script>document.write(ch_spellbook("Atoning Tragedy"));</script>
 
 </td></tr>
 </table>
@@ -2753,18 +2640,7 @@ function ch_traits(name){
 	<li>Father to His Youma (Active)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Force Affinity</span></li>
-	<li><span class="trait">Internalized Force</span></li>
-	<li><span class="trait">Force Reflection</span></li>
-	<li><span class="trait">Pressure Vulnerability</span></li>
-	<li><span class="trait">Water from the Well</span></li>
-	<li><span class="trait">Double Action</span></li>
-	<li><span class="trait">Double Spell</span></li>
-	<li><span class="trait">Specialty (Object Animation)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Jadeite"));</script>
 
 </td>
 </tr>
@@ -2799,16 +2675,8 @@ function ch_traits(name){
 <tr class="invis">
 <td>
 	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-270#post-117301337">Source</a></p><hr>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Cerebus Knight</span></li>
-	<li><span class="trait">Still Stance</span></li>
-	<li><span class="trait">Double Action</span></li>
-	<li><span class="trait">Damage Immunity</span></li>
-	<li><span class="trait">Horror Immunity</span></li>
-	<li><span class="trait">Divine Vulnerability</span></li>
-</ul>
-</details>
+
+<script>document.write(ch_traits("The Organist of Notre Dame"));</script>
 
 </td>
 </tr>
@@ -2849,11 +2717,7 @@ function ch_traits(name){
 	<li>Japanese (Fluent)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait">Death Throes (Static Nova)</span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("Jeeves"));</script>
 
 </td>
 </tr>
@@ -2872,7 +2736,7 @@ function ch_traits(name){
 </td></tr>
 </table>
 
-<hr><table> <!--The Smiling Fog-->
+<hr><table> 	<!--The Smiling Fog-->
 <tr class="invis"><td><h2 id="The_Smiling_Fog">The Smiling Fog</h2></td>
 <td rowspan="2">
 <table>
@@ -2887,17 +2751,13 @@ function ch_traits(name){
 <tr class="invis">
 <td>
 	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-298#post-121206216">Source</a></p>
-	<p>Age: </p><hr>
+	<hr>
 <details><summary>Known languages</summary>
 <ul>
 	<li>Japanese (Fluent)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait"></span></li>
-</ul>
-</details>
+<script>document.write(ch_traits("The Smiling Fog"));</script>
 
 </td>
 </tr>
@@ -2907,18 +2767,217 @@ function ch_traits(name){
 
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Fog of Death</li>
-	<li>Animate Corpse</li>
-	<li>Tethered Corpses</li>
+	<li>Fog of Death<ul>
+		<li>Creatures that breathe in The Smiling Fog must succeed at a Contested <span class='stat'>SRT</span> check or die immediately. If they continue to breathe in the fog, they must reattempt the check every round. The Smiling Fog gets a +4 bonus to this check for every round the creature has spent breathing him in. This is an <span class='element'>Eldritch (Air, Water, Death)</span> effect</li>
+		<li>Creatures with the <span class='trait'>Shinigami</span> trait are immune to this effect</li>
+	</ul></li>
+	<li>Animate Corpse<ul>
+		<li>The Smiling Fog can animate any human he has killed. The creature becomes a <span class='familiar'>Fog-Filled Human</span>. This is an <span class='element'>Eldritch (Air, Water, Death)</span> effect</li>
+	</ul></li>
+	<li>Tethered Corpses<ul>
+		<li>The Smiling Fog is naturally connected to all corpses he has ever animated, no matter the distance between them. He can choose to sever his link to a corpse at will</li>
+		<li>At will, The Smiling Fog can choose to overwrite a connected <span class='familiar'>Fog-Filled Human</span>'s character sheet with that of his own. He can only do this to one <span class='familiar'>Fog-Filled Human</span> at a time</li>
+		<li>While The Smiling Fog is connected to at least one puppeted corpse, he cannot be killed</li>
+		<li>If all of his puppeted corpses are gone, The Smiling Fog immediately dies</li>
+	</ul></li>
 </ul>
 </details>
 
-<script>document.write(ch_spellbook(""));</script>
+<script>document.write(ch_spellbook("The Smiling Fog"));</script>
 
 
 </td></tr>
 </table>
 
+<hr><table> 	<!--Fossilized Mob Member-->
+<tr class="invis"><td><h2 id="Fossilized_Mob_Member">Fossilized Mob Member</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Fossilized Mob Member"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/"></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-298#post-121206216">Source</a></p>
+	<hr>
+
+<script>document.write(ch_traits("Fossilized Mob Member"));</script>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Don't Blink<ul>
+		<li>While an intelligent creature is observing a member of the Fossilized Mob, that member cannot move. Other members of the Fossilized Mob do not trigger this effect</li>
+		<li>While unobserved, members of the Fossilized Mob can move at up to three times the speed of sound. They only produce shockwaves from this movement if they wish to</li>
+	</ul></li>
+	<li>Hollow Statues<ul>
+		<li>If a member of the Fossilized Mob has one of their Vulnerability traits triggered, they lose all Health and shatter immediately</li>
+		<li>If a member's shattered pieces are all pieced back together, that member is immediately Revived at full Health</li>
+	</ul></li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Fossilized Mob Member"));</script>
+
+
+</td></tr>
+</table>
+
+<hr><table> 	<!--The Playful Ball-->
+<tr class="invis"><td><h2 id="The_Playful_Ball">The Playful Ball</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("The Playful Ball"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/" alt="image of " ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-306#post-121482567">Source</a></p>
+	<hr>
+<details><summary>Known languages</summary>
+<ul>
+	<li>Japanese (Fluent)</li>
+</ul>
+</details>
+<script>document.write(ch_traits("The Playful Ball"));</script>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>The Ball is Harmless<ul>
+		<li>Cognitohazard: Creatures who see the ball or [Redacted] must succeed at a Contested <span class='stat'>SRT</span> Check or be convinced the ball is harmless. Anyone convinced the ball is harmless who gets within Medium range of the ball or [Redacted] must succeed at another Contested <span class='stat'>SRT</span> check or become enthralled by the ball. Those enthralled can receive mental nudges from the ball to do things, which frequently includes playing with the ball. This is an <span class='element'>Eldritch (Mental, Dream)</span> effect</li>
+	</ul></li>
+	<li>[Redacted]<ul>
+		<li>At will, the ball or [Redacted] can [Redacted], causing an enthralled creature to vanish [Redacted]. This is a [Redacted] effect</li>
+		<li>Anyone who has memories of an enthralled who vanishes must succeed at a DC 38 <span class='stat'>SRT</span> check or forget the vanished creature ever existed. This is an <span class='element'>Eldritch (Mental, Dream)</span> effect</li>
+	</ul></li>
+	<li>[Redacted]<ul>
+		<li>[Redacted due to The Playful Ball's status as a puzzle boss]</li>
+	</ul></li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("The Playful Ball"));</script>
+
+
+</td></tr>
+</table>
+
+<hr><table> 	<!--The Duelling Beast-->
+<tr class="invis"><td><h2 id="The_Duelling_Beast">The Duelling Beast</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("The Duelling Beast"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/" alt="image of " ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-308#post-121656921">Source</a></p>
+	<hr>
+<script>document.write(ch_traits("The Duelling Beast"));</script>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Shadow Realm<ul>
+		<li>The Dueling Beast has access to a shadowy pocket realm that travels with him wherever he moves in the real world. Outside of this shadow realm, he cannot be harmed or harm others in any way. Inside of the shadow realm, his <span class='trait'>Incorporeal</span> and <span class='trait'>Invisible</span> traits are disabled</li>
+		<li>Once per scene as a Brief Action, The Dueling Beast can pull both himself and a chosen opponent into his shadow realm. This requires a successful Contested <span class='stat'>SRT</span> Check. If he succeeds, neither the Dueling Beast nor his opponent can leave until one or the other is defeated</li>
+		<li>This is an <span class='element'>Eldritch (Darkness, Weird)</span> effect</li>
+	</ul></li>
+	<li>Fair Fight<ul>
+		<li>The Dueling Beast's base <span class='stat'>CBT</span> is equal to that of his opponent's base <span class='stat'>CBT</span> plus the <span class='stat'>CBT</span> bonuses of any Equipment they might have + 4</li>
+		<li>When the Dueling Beast visibly enters the scene, he gains copies of all buffs and positive stacks on his opponent</li>
+		<li>Whenever the Dueling Beast's opponent gains any number of positive stacks or buffs, the Dueling Beast gains the same stacks and buffs</li>
+		<li>Whenever the Dueling Beast gains any number of negative stacks or debuffs, his opponent gains the same stacks and debuffs</li>
+		<li>This is a <span class='element'>Magical (Order)</span> effect</li>
+	</ul></li>
+	<li>Respawn<ul>
+		<li>The Dueling Beast sometimes returns to life even if killed. The Narrative decides when this triggers</li>
+	</ul></li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("The Duelling Beast"));</script>
+
+
+</td></tr>
+</table>
+
+<hr><table>		<!--Elder Nightgaunt-->
+<tr class="invis"><td><h2 id="Elder_Nightgaunt">Elder Nightgaunt</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("Elder Nightgaunt"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/" alt="image of " ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-231#post-112962302">Source</a></p>
+	<hr>
+<script>document.write(ch_traits("Elder Nightgaunt"));</script>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary>
+<ul>
+	<li>Eyeless<ul>
+		<li>Nightgaunts ignore Gaze Attacks</li>
+	</ul></li>
+	<li>Shrouding Blood<ul>
+		<li>Whenever an Elder Nightgaunt takes any amount of direct damage to its health, it Shields for that same amount. This is an <span class="element">Eldritch (Darkness)</span> effect</li>
+	</ul></li>
+	<li>Carry Off<ul>
+		<li>A Nightgaunt can carry anything that is equal to or smaller than it in size. It does not need to worry about weight or mass. This is an <span class='element'>Eldritch (Momentum)</span> effect</li>
+	</ul></li>
+</ul>
+</details>
+
+<script>document.write(ch_spellbook("Elder Nightgaunt"));</script>
+
+
+</td></tr>
+</table>
+
+<!--
 <hr><table>
 <tr class="invis"><td><h2 id=""></h2></td>
 <td rowspan="2">
@@ -2940,11 +2999,7 @@ function ch_traits(name){
 	<li>Japanese (Fluent)</li>
 </ul>
 </details>
-<details><summary>Traits</summary>
-<ul>
-	<li><span class="trait"></span></li>
-</ul>
-</details>
+<script>document.write(ch_traits(""));</script>
 
 </td>
 </tr>
@@ -2963,7 +3018,7 @@ function ch_traits(name){
 
 </td></tr>
 </table>
-
+-->
 </div>
 </main>
 

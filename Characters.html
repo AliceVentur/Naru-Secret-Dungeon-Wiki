@@ -67,7 +67,7 @@ div > hr{
 <script src="./js/data.js" lang="javascript"></script>
 <script>
 function character_params(name){
-	let html = '<tr><th class="stat">MP</th><th class="stat">MW</th><th>HP</th><th class="stat" rowspan="2">MRT</th><th class="stat" rowspan="2">DPL</th><th class="stat" rowspan="2">STW</th><th class="stat" rowspan="2">ING</th><th class="stat" rowspan="2">LRN</th><th class="stat" rowspan="2">SRT</th><th class="stat" colspan="2">CBT</th></tr><tr>';
+	let html = "<tr><th class='stat'>MP</th><th class='stat'>MW</th><th>HP</th><th class='stat' rowspan='2'>MRT</th><th class='stat' rowspan='2'>DPL</th><th class='stat' rowspan='2'>STW</th><th class='stat' rowspan='2'>ING</th><th class='stat' rowspan='2'>LRN</th><th class='stat' rowspan='2'>SRT</th><th class='stat' colspan='2'>CBT</th></tr><tr>";
 	
 	for (var cr of creatures) {
 		if (cr.name == name) {
@@ -86,7 +86,7 @@ function character_params(name){
 			}else{
 				html += '<td></td>';
 			}
-			html += '<th class="stat">O</th><th class="stat">D</th></tr>';
+			html += "<th class='stat'>O</th><th class='stat'>D</th></tr>";
 			html += '<tr><th colspan="3">Base</th>';
 			if (Object.keys(cr).includes("mrt")){
 				html += '<td>' + cr.mrt + '</td>';
@@ -274,7 +274,7 @@ function ch_traits(name){
 	
 	for  (var t_tr of tarr){
 		html += "<li><span class='trait'>";
-		if (!Number.isInteger(t_tr[0])){
+		if (!Number.isSafeInteger(t_tr[0])){
 			html += t_tr[0];
 			if (t_tr.length > 1){
 				html += " (" + t_tr[1] + ")";
@@ -282,7 +282,7 @@ function ch_traits(name){
 		}else if (t_tr[0] == 0){
 			html += "Specialty (" + t_tr[1] + ")";
 		}else if (t_tr[0] < 7){
-			if (Number.isInteger(t_tr[1])){
+			if (Number.isSafeInteger(t_tr[1])){
 				html += basic_elements[t_tr[1]];
 			}else{
 				html += t_tr[1];
@@ -306,7 +306,7 @@ function ch_traits(name){
 			}else if (t_tr[0] == 8){
 				html += "Internalized "
 			}
-			if (Number.isInteger(t_tr[1])){
+			if (Number.isSafeInteger(t_tr[1])){
 				html += basic_elements[t_tr[1]];
 			}else{
 				html += t_tr[1];
@@ -495,112 +495,83 @@ function ch_traits(name){
 
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Chaos Form
-		<ul>
-			<li>Naru can shift into Chaos Form at will. While in Chaos form, Naru gains the following:
-				<ul>
-					<li>50% of <span class="stat">LRN</span> to <span class="stat">CBT</span></li>
-					<li>The <span class="trait">Hover</span>, <span class="trait">Compression</span>, and <span class="trait">Decompression</span> traits</li>
-					<li>Basic attack changes to <span class="element">Eldritch (Bludgeoning)</span></li>
-					<li>Their melee attacks become short range</li>
-					<li>Cognitohazard: Anyone who sees them in chaos form must succeed at increasingly difficult <span class="stat">SRT</span> checks (Starts at DC 6 and increases by 6 each round spent in chaos form.) or be dealt 1 moderate horror. This is a <span class="element">Mental</span> effect.</li>
-				</ul>
-			</li>
-			<li>Naru can enter a lesser version of their Chaos Form by only partially transforming. While in partial chaos form, Naru gains the following:
-				<ul>
-					<li>25% of your <span class="stat">LRN</span> to <span class="stat">CBT</span></li>
-					<li>Cognitohazard: Anyone who sees them in partial chaos form must succeed at increasingly difficult <span class="stat">SRT</span> checks (Starts at DC 3 and increases by 3 each round spent in partial chaos form.) or be dealt 1 minor horror. This is a <span class="element">Mental</span> effect.</li>
-				</ul>
-			</li>
-			<li>While in full or partial Chaos Form, Naru can take a <span class="stat">-3 CBT</span> penalty for 1 full round in order to gain the <span class="trait">Double Attack</span> trait for 1 round</li>
-			<li>While in full Chaos Form, Naru can take a <span class="stat">-6 CBT</span> penalty for 1 full round in order to gain the <span class="trait">Triple Attack</span> trait for 1 round</li>
-			<li>While in full Chaos Form, Naru can spend <span class="stat">5 MP</span> in order to gain the <span class="trait">Double Action</span> trait for 1 full round</li>
-		</ul>
-	</li>
-	<li>Dungeon Nexus Master
-		<ul>
-			<li>Naru constantly knows everything that goes on in and around her dungeon (This trumps all forms of stealth and illusion)</li>
-			<li><span class="stat">+1 MP</span> and <span class="stat">+1 MW</span> for every floor in the dungeon</li>
-			<li>Her Mana Well refills completely after a good night's rest</li>
-			<li>If she dies, she will be respawned at Naru's Nexus after one week</li>
-			<li>Granted <span class="trait">Drain Resistance</span></li>
-			<li>Granted immunity to any effect that would target her material or cognitive souls</li>
-		</ul>
-	</li>
-	<li>Soul Storage Technique
-		<ul>
-			<li>Naru can store anything in your soul that can fit through the size and shape of a star seed (i.e. material soul)</li>
-		</ul>
-	</li>
-	<li>Overcasting Technique
-		<ul>
-			<li>Naru can use points from her Well in order to fuel spells that normally cost points from her Pool. The effects vary by spell and are unknown until Naru first Overcasts a spell</li>
-		</ul>
-	</li>
-	<li>Infohazard Training
-		<ul>
-			<li>Naru gets a <span class="stat">+6 LRN</span> bonus when attempting to avoid Infohazards</li>
-			<li>If such a check comes up during Research, Naru rolls twice and takes the higher result</li>
-		</ul>
-	</li>
-	<li>Cognitohazard Training
-		<ul>
-			<li>Naru gets a <span class="stat">+6 SRT</span> bonus when trying to resist Cognitohazards</li>
-			<li>If such a check comes up during Research, Naru rolls twice and takes the higher result</li>
-		</ul>
-	</li>
-	<li>Warping Manifestation - The Upside-Down Lighthouse (Tier 1):
-		<ul>
-			<li>While using the <span class="trait">Decompression</span> trait in full Chaos Form, Naru may take up the same space as other creatures and objects (but not structures)</li>
-			<li>Other creatures are not hindered when moving through Naru</li>
-			<li>This ability is disabled if Naru is in the presence of a creature that has a higher tier Warping Manifestation ability</li>
-			<li>Primary Aspect: The Upside-Down Lighthouse (Rank 1)
-				<ul>
-					<li>Elements: <span class="element">Light</span>, <span class="element">Emotion</span></li>
-					<li>Imposition: The area is bathed in golden-yellow light. Those touched by this light begin to emit glowing particles of either gold, silver, blue, or red. Rotating twin beams of light shine forth from the center of Naru. (Understandings 2/3)
-						<ul>
-							<li>Brilliant Defiance:
-								<ul>
-									<li>Light originating from Naru's central mass provides enough illumination to see clearly throughout the entire area in the scene, though shadows cast by objects that block this light are darker than usual</li>
-									<li>At the beginning of each round, all creatures in the scene gain a number of <span class="stack">Courage</span> stacks equal to Naru's Warping Manifestation Tier. This counts as the <span class="trait">Courage Generation</span> trait</li>
-									<li>Whenever <span class="stack">Courage</span> stacks would be removed from any creature due to succeeding at a <span class="stat">SRT</span> check, remove only half of the stacks instead of all (rounded up)</li>
-									<li>Whenever an ally would use <span class="stack">Courage</span> stacks to pay for the cost of a spell or innate ability, halve the number of <span class="stack">Courage</span> stacks required to pay the cost (rounded up)</li>
-									<li>This is an <span class="element">Eldritch (Light, Emotion)</span> effect</li>
-								</ul>
-							</li>
-							<li>Hope's Touch:
-								<ul>
-									<li>When any ally is illuminated by light from your Imposition, they have a high chance to gain one of the following special Buffs at random. (Gold Lights being the most rare, Blue Lights being the most common.) Each ally can only benefit from this ability once per Scene. This is an <span class="element">Eldritch (Light, Emotion)</span> effect
-										<ul>
-											<li>Golden Lights of the Champion: This creature's <span class="stat">OCBT</span> rolls have their results multiplied by 1.1 This buff can be expended as a Brief Action in order to spend all <span class="stack">Courage</span> stacks and gain 1 <span class="stack">Age</span> stack for every 2 spent (rounded down)</li>
-											<li>Silver Lights of the Defender: This creature's <span class="stat">DCBT</span> rolls have their results multiplied by 1.2 This buff can be expended as a Reaction to an enemy's attack against at least one ally within Short range. If used this way, this creature spends all <span class="stack">Courage</span> stacks and, for every 5 <span class="stack">Courage</span> spent, can have an ally within Short range ignore the attack entirely.</li>
-											<li>Blue Lights of the Healer: This creature's <span class="stat">SRT</span> rolls have their results multiplied by 1.2 This buff can be expended as a Combat Action in order to spend all <span class="stack">Courage</span> stacks and heal 1 minor damage from an ally in Short range for every 3 spent.</li>
-										</ul>
-									</li>
-									<li>When any enemy is illuminated by light from your Imposition, they have a slight chance to gain the following Debuff. Each enemy can only be affected by this ability once per scene. This is an <span class="element">Eldritch (Light, Emotion)</span> effect.
-										<ul>
-											<li>Red Lights of the Hunted: This creature gets <span class="stat">-1 DCBT</span> for every <span class="stack">Courage</span> stack it has. If this creature has had this Debuff for at least one full round, it can dismiss it to deal 1 moderate damage to itself and exchange all <span class="stack">Courage</span> stacks for <span class="stack">Wither</span> stacks. The damage is an <span class="element">Emotion</span> effect.</li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</li>
-	<li>Stance Change II:
-		<ul>
-			<li>Twice per round as a brief action, Naru can decrease either her <span class="stat">OCBT</span> or <span class="stat">DCBT</span> by up to 2 to increase the other <span class="stat">CBT</span> stat by the same amount.</li>
-		</ul>
-	</li>
-	<li>White Dwarf Style I:
-		<ul>
-			<li>If in Chaos Form, while Stance Change has boosted Naru's <span class="stat">DCBT</span> 5 or more above its base, she gains the <span class="trait">Aura Generation 3</span> trait.</li>
-			<li>If in Chaos Form, while Stance Change has boosted Naru's <span class="stat">DCBT</span> 12 or more above its base, Naru is considered to have the <span class="trait">Counterattack</span> trait against enemies that hit her with Melee attacks.</li>
-		</ul>
-	</li>
+	<li>Chaos Form<ul>
+		<li>Naru can shift into Chaos Form at will. While in Chaos form, Naru gains the following:<ul>
+			<li>50% of <span class='stat'>LRN</span> to <span class='stat'>CBT</span></li>
+			<li>The <span class="trait">Hover</span>, <span class="trait">Compression</span>, and <span class="trait">Decompression</span> traits</li>
+			<li>Basic attack changes to <span class='element'>Eldritch (Bludgeoning)</span></li>
+			<li>Their melee attacks become short range</li>
+			<li>Cognitohazard: Anyone who sees them in chaos form must succeed at increasingly difficult <span class='stat'>SRT</span> checks (Starts at DC 6 and increases by 6 each round spent in chaos form.) or be dealt 1 moderate horror. This is a <span class='element'>Mental</span> effect.</li>
+		</ul></li>
+		<li>Naru can enter a lesser version of their Chaos Form by only partially transforming. While in partial chaos form, Naru gains the following:<ul>
+			<li>25% of your <span class='stat'>LRN</span> to <span class='stat'>CBT</span></li>
+			<li>Cognitohazard: Anyone who sees them in partial chaos form must succeed at increasingly difficult <span class='stat'>SRT</span> checks (Starts at DC 3 and increases by 3 each round spent in partial chaos form.) or be dealt 1 minor horror. This is a <span class='element'>Mental</span> effect.</li>
+		</ul></li>
+		<li>While in full or partial Chaos Form, Naru can take a <span class='stat'>-3 CBT</span> penalty for 1 full round in order to gain the <span class="trait">Double Attack</span> trait for 1 round</li>
+		<li>While in full Chaos Form, Naru can take a <span class='stat'>-6 CBT</span> penalty for 1 full round in order to gain the <span class="trait">Triple Attack</span> trait for 1 round</li>
+		<li>While in full Chaos Form, Naru can spend <span class='stat'>5 MP</span> in order to gain the <span class="trait">Double Action</span> trait for 1 full round</li>
+	</ul></li>
+	<li>Dungeon Nexus Master<ul>
+		<li>Naru constantly knows everything that goes on in and around her dungeon (This trumps all forms of stealth and illusion)</li>
+		<li><span class='stat'>+1 MP</span> and <span class='stat'>+1 MW</span> for every floor in the dungeon</li>
+		<li>Her Mana Well refills completely after a good night's rest</li>
+		<li>If she dies, she will be respawned at Naru's Nexus after one week</li>
+		<li>Granted <span class="trait">Drain Resistance</span></li>
+		<li>Granted immunity to any effect that would target her material or cognitive souls</li>
+	</ul></li>
+	<li>Soul Storage Technique<ul>
+		<li>Naru can store anything in your soul that can fit through the size and shape of a star seed (i.e. material soul)</li>
+	</ul></li>
+	<li>Overcasting Technique<ul>
+		<li>Naru can use points from her Well in order to fuel spells that normally cost points from her Pool. The effects vary by spell and are unknown until Naru first Overcasts a spell</li>
+	</ul></li>
+	<li>Infohazard Training<ul>
+		<li>Naru gets a <span class='stat'>+6 LRN</span> bonus when attempting to avoid Infohazards</li>
+		<li>If such a check comes up during Research, Naru rolls twice and takes the higher result</li>
+	</ul></li>
+	<li>Cognitohazard Training<ul>
+		<li>Naru gets a <span class='stat'>+6 SRT</span> bonus when trying to resist Cognitohazards</li>
+		<li>If such a check comes up during Research, Naru rolls twice and takes the higher result</li>
+	</ul></li>
+	<li>Warping Manifestation - The Upside-Down Lighthouse (Tier 2):<ul>
+		<li>While using the <span class="trait">Decompression</span> trait in full Chaos Form, Naru may take up the same space as other creatures and objects (but not structures)</li>
+		<li>Other creatures are not hindered when moving through Naru</li>
+		<li>This ability is disabled if Naru is in the presence of a creature that has a higher tier Warping Manifestation ability</li>
+		<li>Primary Aspect: The Upside-Down Lighthouse (Rank 2)<ul>
+			<li>Elements: <span class='element'>Light</span>, <span class='element'>Emotion</span></li>
+			<li>Imposition: The area is bathed in golden-yellow light. Those touched by this light begin to emit glowing particles of either gold, silver, blue, or red. Rotating twin beams of light shine forth from the center of Naru. (Understandings 2/3)<ul>
+				<li>Brilliant Defiance:<ul>
+					<li>Light originating from Naru's central mass provides enough illumination to see clearly throughout the entire area in the scene, though shadows cast by objects that block this light are darker than usual</li>
+					<li>At the beginning of each round, all creatures in the scene gain a number of <span class='stack'>Courage</span> stacks equal to Naru's Warping Manifestation Tier. This counts as the <span class="trait">Courage Generation</span> trait</li>
+					<li>Whenever <span class='stack'>Courage</span> stacks would be removed from any creature due to succeeding at a <span class='stat'>SRT</span> check, remove only half of the stacks instead of all (rounded up)</li>
+					<li>Whenever an ally would use <span class='stack'>Courage</span> stacks to pay for the cost of a spell or innate ability, halve the number of <span class='stack'>Courage</span> stacks required to pay the cost (rounded up)</li>
+					<li>This is an <span class='element'>Eldritch (Light, Emotion)</span> effect</li>
+				</ul></li>
+				<li>Hope's Touch II:<ul>
+					<li>When any ally is illuminated by light from your Imposition, they have a high chance to gain one of the following special Buffs at random. (Gold Lights being the most rare, Blue Lights being the most common.) Each ally can only benefit from this ability once per Scene. This is an <span class='element'>Eldritch (Light, Emotion)</span> effect<ul>
+						<li>Golden Lights of the Champion: This creature's <span class='stat'>OCBT</span> rolls have their results multiplied by 1.1 This buff can be expended as a Brief Action in order to spend all <span class='stack'>Courage</span> stacks and gain 1 <span class='stack'>Age</span> stack for every 2 spent (rounded down)</li>
+						<li>Silver Lights of the Defender: This creature's <span class='stat'>DCBT</span> rolls have their results multiplied by 1.2 This buff can be expended as a Reaction to an enemy's attack against at least one ally within Short range. If used this way, this creature spends all <span class='stack'>Courage</span> stacks and, for every 5 <span class='stack'>Courage</span> spent, can have an ally within Short range ignore the attack entirely.</li>
+						<li>Blue Lights of the Healer: This creature's <span class='stat'>SRT</span> rolls have their results multiplied by 1.2 This buff can be expended as a Combat Action in order to spend all <span class='stack'>Courage</span> stacks and heal 1 minor damage from an ally in Short range for every 3 spent.</li>
+					</ul></li>
+					<li>Once per round, as a Combat Action costing <span class='stat'>1 MP</span> or a Brief Action costing <span class='stat'>3 MP</span>, Naru can give an ally within her light her choice of one of the above special buffs and a number of <span class='stack'>Courage</span> stacks equal to twice Naru's Warping Manifestation Tier</li>
+					<li>When any enemy is illuminated by light from your Imposition, they have a slight chance to gain the following debuff. Each enemy can only be affected by this ability once per scene. This is an <span class='element'>Eldritch (Light, Emotion)</span> effect<ul>
+						<li>Red Lights of the Hunted: This creature gets <span class='stat'>-1 DCBT</span> for every <span class='stack'>Courage</span> stack it has. If this creature has had this debuff for at least one full round, it can dismiss it to deal 1 moderate damage to itself and exchange all <span class='stack'>Courage</span> stacks for <span class='stack'>Wither</span> stacks. The damage is an <span class='element'>Emotion</span> effect.</li>
+					</ul></li>
+				</ul></li>
+				<li>The Rumbling in the Distance</li>
+				<li>The Shaking Nearby</li>
+				<li>Rocks Fall, Things Die</li>
+			</ul></li>
+			<li>Special: The <span class='element'>Light</span> and <span class='element'>Emotion</span> sub-types are added to the Focus Manifestation spell. The attack of the Focus Manifestation spell becomes an Area of Effect attack centered on the original target of the spell going out to Extended Melee range</li>
+		</ul></li>
+	</ul></li>
+	<li>Stance Change II:<ul>
+		<li>Twice per round as a brief action, Naru can decrease either her <span class='stat'>OCBT</span> or <span class='stat'>DCBT</span> by up to 2 to increase the other <span class='stat'>CBT</span> stat by the same amount.</li>
+	</ul></li>
+	<li>White Dwarf Style I:<ul>
+		<li>If in Chaos Form, while Stance Change has boosted Naru's <span class='stat'>DCBT</span> 5 or more above its base, she gains the <span class="trait">Aura Generation 3</span> trait.</li>
+		<li>If in Chaos Form, while Stance Change has boosted Naru's <span class='stat'>DCBT</span> 12 or more above its base, Naru is considered to have the <span class="trait">Counterattack</span> trait against enemies that hit her with Melee attacks.</li>
+	</ul></li>
 </ul>
 </details>
 <script>document.write(ch_spellbook("Naru Osaka"));</script>
@@ -614,12 +585,10 @@ function ch_traits(name){
 	<script>
 		document.write(character_params("Tomoyo Daidouji"));
 	</script>
-	<tr>
-		<td colspan="3">Sparkling Riptide</td>
+	<tr><td colspan="3">Sparkling Riptide</td>
 		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+5</td>
 	</tr>
-	<tr >
-		<td colspan="3">Celestial Custodian Uniform</td>
+	<tr><td colspan="3">Celestial Custodian Uniform</td>
 		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+3</td>
 	</tr>
 	</table>
@@ -650,55 +619,47 @@ function ch_traits(name){
 
 <details><summary>Special Abilities</summary>
 <ul>
-	<li>Mark of the Comet
-		<ul>
-			<li>Tomoyo and any creatures she summons, manifests, or bonds to can add any of the following sub-types to their attacks: <span class="element">Heat</span>, <span class="element">Cold</span>, <span class="element">Water</span>, and <span class="element">Death</span></li>
-			<li>As a combat action, Tomoyo can give any ally in Medium range 6 stacks of <span class="stack">Aura</span>. This is a <span class="element">Death</span> and <span class="element">Cold</span> effect</li>
-		</ul>
-	</li>
-	<li>Contracted of [Nexus currently unnamed]
-		<ul>
-			<li>This contract was Tomoyo's awakening</li>
-			<li><span class="stat">+1 MP</span> and <span class="stat">+1 MW</span></li>
-			<li>Her Mana Well refills completely after a good night's rest</li>
-			<li>If she dies, she will be respawned at Naru's Nexus after one week</li>
-			<li>Granted immunity to any effect that would target her material or cognitive souls</li>
-			<li>Linked Floor: Floor 1 (Unnamed), Abomination Theme
-			<ul>
-				<li>Tier 1 Attunement: <span class="trait">Mental Immunity</span>, <span class="stat">+2 LRN</span>, Contractee counts as an Abomination while in the dungeon</li>
-				<li>Tier 2 Attunement: <span class="stat">+1 LRN</span>, <span class="stat">+3 CBT</span>, <span class="trait">Breathless</span>, <span class="trait">Critical Hit Immunity</span></li>
-				<li>Tier 3 Attunement: 5/5 Weeks, 2/3 Floors Drilled</li>
-			</ul>
-			</li>
-		</ul>
-	</li>
-	<li>Soul Storage Technique
-		<ul>
-			<li>Tomoyo can store anything in your soul that can fit through the size and shape of a Star Seed (i.e. material soul)</li>
-		</ul>
-	</li>
-	<li>Overcasting Technique
-		<ul>
-			<li>Tomoyo can use points from her Well in order to fuel spells that normally cost points from your Pool. The effects vary by spell and are unknown until she first Overcasts a spell</li>
-		</ul>
-	</li>
-	<li>Infohazard Training
-		<ul>
-			<li>Tomoyo gets a <span class="stat">+6 LRN</span> bonus when attempting to avoid Infohazards</li>
-			<li>If such a check comes up during Research, Tomoyo rolls twice and takes the higher result</li>
-		</ul>
-	</li>
-	<li>Cognitohazard Training
-		<ul>
-			<li>Tomoyo gets a <span class="stat">+6 SRT</span> bonus when trying to resist Cognitohazards</li>
-			<li>If such a check comes up during Research, Tomoyo rolls twice and takes the higher result</li>
-		</ul>
-	</li>
-	<li>Element Elimination
-		<ul>
-			<li>While crafting, Tomoyo can eliminate any unwanted elemental properties of materials she uses. Eliminated properties will not show up in the final product</li>
-		</ul>
-	</li>
+	<li>Mark of the Comet<ul>
+		<li>Tomoyo and any creatures she summons, manifests, or bonds to can add any of the following sub-types to their attacks: <span class='element'>Heat</span>, <span class='element'>Cold</span>, <span class='element'>Water</span>, and <span class='element'>Death</span></li>
+		<li>As a combat action, Tomoyo can give any ally in Medium range 6 stacks of <span class='stack'>Aura</span>. This is a <span class='element'>Death</span> and <span class='element'>Cold</span> effect</li>
+	</ul></li>
+	<li>Contracted of [Nexus currently unnamed]<ul>
+		<li>This contract was Tomoyo's awakening</li>
+		<li><span class='stat'>+1 MP</span> and <span class='stat'>+1 MW</span></li>
+		<li>Her Mana Well refills completely after a good night's rest</li>
+		<li>If she dies, she will be respawned at Naru's Nexus after one week</li>
+		<li>Granted immunity to any effect that would target her material or cognitive souls</li>
+		<li>Linked Floor: Floor 1 (Unnamed), Abomination Theme<ul>
+			<li>Tier 1 Attunement: <span class="trait">Mental Immunity</span>, <span class='stat'>+2 LRN</span>, Contractee counts as an Abomination while in the dungeon</li>
+			<li>Tier 2 Attunement: <span class='stat'>+1 LRN</span>, <span class='stat'>+3 CBT</span>, <span class="trait">Breathless</span>, <span class="trait">Critical Hit Immunity</span></li>
+			<li>Tier 3 Attunement: <span class='stat'>+1 MP</span>, <span class='stat'>+1 MW</span>, <span class='stat'>+1 CBT</span>, <span class='trait'>Temporal Absorption</span>, Cosmic Aura, ???</li>
+		</ul></li>
+	</ul></li>
+	<li>Soul Storage Technique<ul>
+		<li>Tomoyo can store anything in your soul that can fit through the size and shape of a Star Seed (i.e. material soul)</li>
+	</ul></li>
+	<li>Overcasting Technique<ul>
+		<li>Tomoyo can use points from her Well in order to fuel spells that normally cost points from your Pool. The effects vary by spell and are unknown until she first Overcasts a spell</li>
+	</ul></li>
+	<li>Infohazard Training<ul>
+		<li>Tomoyo gets a <span class='stat'>+6 LRN</span> bonus when attempting to avoid Infohazards</li>
+		<li>If such a check comes up during Research, Tomoyo rolls twice and takes the higher result</li>
+	</ul></li>
+	<li>Cognitohazard Training<ul>
+		<li>Tomoyo gets a <span class='stat'>+6 SRT</span> bonus when trying to resist Cognitohazards</li>
+		<li>If such a check comes up during Research, Tomoyo rolls twice and takes the higher result</li>
+	</ul></li>
+	<li>Element Elimination<ul>
+		<li>While crafting, Tomoyo can eliminate any unwanted elemental properties of materials she uses. Eliminated properties will not show up in the final product</li>
+	</ul></li>
+	<li>Cosmic Aura<ul>
+		<li>At the beginning of her turn, if Tomoyo does not have either the <span class='buff'>Warp</span> or <span class='buff'>Ward</span> buffs, she gains the missing buff(s)</li>
+		<li>Tomoyo can have up to two additional copies of the <span class='buff'>Warp</span> and <span class='buff'>Ward</span> buffs. Additional copies of these buffs are only half as strong</li>
+		<li>Tomoyo can change the Type of any attack that originates within Medium range of her (Whether it came from herself, an ally, or an opponent.) to an <span class='element'>Eldritch</span> attack. Sub-types are unchanged</li>
+		<li>Whenever Tomoyo casts an <span class='element'>Eldritch</span> spell, she gains 1 stack of <span class='stack'>Age</span> immediately after</li>
+		<li>Tomoyo lights up like a beacon to characters with <span class='trait'>Eldritch Sensing</span>. They cannot differentiate her from any <span class='element'>Eldritch</span> spells or effects she calls upon or anything else Eldritch that might be near her</li>
+		<li>This is an <span class='element'>Eldritch</span> effect</li>
+	</ul></li>
 </ul>
 </details>
 
@@ -756,13 +717,17 @@ function ch_traits(name){
 		<li>Nene gains +5 to any roll made to investigate a Rumor. This bonus is added before her Specialty multiplier is applied</li>
 	</ul></li>
 	<li>Mermaid's Curse<ul>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
+		<li>This Contract was Nene's Awakening</li>
+		<li>Nene always knows the general direction Hanako is in, as well as how healthy he is</li>
+		<li>Nene and Hanako can share senses and communicate telepathically from any distance. (They have not figured out how to do this yet)</li>
+		<li>Nene can instantly teleport her spouse to her side for the cost of <span class='stat'>1 MW</span> for every 10 AU Hanako is crossing (Rounded up)</li>
+		<li>Nene always ignores the <span class='trait'>Incorporeal</span> trait</li>
+		<li>Whenever Nene gets wet, she grows fish scales (Thus gaining the <span class='trait'>Scales</span> trait). Nene sheds these scales when she dries off. Her scales are not naturally worth anything in this state</li>
+		<li>Whenever she is fully immersed in water, Nene transforms into a small fish. While in this form, Nene gains the following:<ul>
+			<li>A significant decrease in size</li>
+			<li><span class='stat'>+4 ING</span></li>
+			<li>The <span class='trait'>Scales</span>, <span class='trait'>Water Breathing</span>, and <span class='trait'>Mobile</span> traits</li>
+		</ul></li>
 	</ul></li>
 	<li>Kannagi<ul>
 		<li>Nene is treated as having Affinity for any spell she pays for with damage</li>
@@ -774,25 +739,29 @@ function ch_traits(name){
 		<li>The Narrative will occasionally conspire to kill Nene off</li>
 	</ul></li>
 	<li>Infohazard training<ul>
-		<li></li>
+		<li>Nene gets a +6 bonus to <span class='stat'>LRN</span> when attempting to avoid Infohazards</li>
 		<li>If such a check comes up during Research, she rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Cognitohazard training<ul>
-		<li></li>
+		<li>Nene gets a +6 bonus to <span class='stat'>SRT</span> when trying to resist Cognitohazards</li>
 		<li>If such a check comes up during Research, she rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Battle Couple II (Hanako-kun)<ul>
-		<li>When fighting beside Hanako-kun, Nene adds 20% of his <span class="stat">MRT</span> to her <span class="stat">CBT</span></li>
+		<li>When fighting beside Hanako-kun, Nene adds 20% of his <span class='stat'>MRT</span> to her <span class='stat'>CBT</span></li>
 	</ul></li>
 	<li>Disaster Mitigation<ul>
-		<li>When casting a <span class="element">Calamity</span> spell, Nene can exclude one creature from the spell's effects for every <span class="stat">3 LRN</span> she has</li>
+		<li>When casting a <span class='element'>Calamity</span> spell, Nene can exclude one creature from the spell's effects for every <span class='stat'>3 LRN</span> she has</li>
 	</ul></li>
 	<li>Contracted of [Nexus currently unnamed]<ul>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
+		<li><span class='stat'>+1 MP</span>, <span class='stat'>+1 MW</span></li>
+		<li>Her Mana Well refills completely after a good night's rest</li>
+		<li>If she dies, she will be respawned at Naru's Nexus after one week</li>
+		<li>She is immune to any effect that would target her material or cognitive souls</li>
+		<li>Linked Floor: Floor 2 (Unnamed), Land-Based Arthropod Theme<ul>
+			<li>Tier 1 Attunement: <span class='trait'>Low-Light Vision</span>, <span class='stat'>+3 MRT</span>, Contractee counts as a Land-Based Arthropod while in the dungeon</li>
+			<li>Tier 2 Attunement: 2/3 Weeks, 1/1 Floors drilled</li>
+			<li>Tier 3 Attunement: 2/5 Weeks, 2/3 Floors drilled</li>
+		</ul></li>
 	</ul></li>
 </ul>
 </details>
@@ -808,16 +777,13 @@ function ch_traits(name){
 <script>
 	document.write(character_params("Sakura Mamiya"));
 </script>
-<tr>
-	<td colspan="3">Shinigami Scythe (Tipping Point)</td>
+<tr><td colspan="3">Shinigami Scythe (Tipping Point)</td>
 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan='2'>+4</td>
 </tr>
-<tr>
-	<td colspan="3">Cloak of Psychpomp</td>
+<tr><td colspan="3">Cloak of Psychpomp</td>
 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+1</td>
 </tr>
-<tr>
-	<td colspan="3">Celestial Custodian Uniform</td>
+<tr><td colspan="3">Celestial Custodian Uniform</td>
 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+3</td>
 </tr>
 </table>
@@ -850,37 +816,37 @@ function ch_traits(name){
 <details><summary>Special Abilities</summary>
 <ul>
 	<li>Unfazed<ul>
-		<li>Sakura is immune to mundane mental effects and cannot be intimidated, demoralized, or inspired​</li>
-		<li>Additionally, she can ignore up to one stack of Death-Shock</li>
+		<li>Sakura is immune to mundane mental effects and cannot be intimidated, demoralized, or inspired</li>
+		<li>Additionally, she can ignore up to one stack of <span class='stack'>Death-Shock</span></li>
 	</ul></li>
 	<li>Soul-Storage Technique<ul>
 		<li>Sakura can store anything in her soul that fits through the size and shape of a Star Seed (i.e. material soul)</li>
 	</ul></li>
 	<li>Reaper of Curses<ul>
-		<li>Sakura can automactically dispel any Curse effect she touches. This costs 2 Well</li>
+		<li>Sakura can automactically dispel any <span class='element'>Curse</span> effect she touches. This costs <span class='stat'>2 MW</span></li>
 	</ul></li>
 	<li>Overcasting Technique<ul>
 		<li>You can use points from your Well in order to fuel spells that normally cost points from your Pool. The effects vary by spell and are unknown until you first Overcast a spell</li>
 	</ul></li>
-	<li>Tethered to the Near Shore (DIVINE BOON: Ame-No-Uzume)<ul>
-		<li>Whenever Sakura takes damage (Even if she just loses Shields.), she heals 1 Minor Wound immediately after. This is a Divine (Spirit, Healing) effect</li>
-		<li>Whenever Sakura damages an Undead creature, she immediately deals 1 extra Minor Damage to it. This is a Divine (Spirit, Life) effect</li>
+	<li>Tethered to the Near Shore (DIVINE BOON: <span class='god'>Ame-No-Uzume</span>)<ul>
+		<li>Whenever Sakura takes damage (Even if she just loses Shields.), she heals 1 Minor Wound immediately after. This is a <span class='element'>Divine (Spirit, Healing)</span> effect</li>
+		<li>Whenever Sakura damages an <span class='trait'>Undead</span> creature, she immediately deals 1 extra Minor Damage to it. This is a <span class='element'>Divine (Spirit, Life)</span> effect</li>
 	</ul></li>
 	<li>Stilness Reading<ul>
 		<li>Mamiya can make herself Fatigued (-4 to all rolls) for the rest of a scene in order to attempt a Stillness Reading. This requires a few minutes of uninterrupted concentration</li>
-		<li>If these requirements are met, Mamiya then makes a Spirituality check. The higher the result, the better she'll be able to see the image given to her by Stillness. It should be noted that visions given by this ability are focused solely on things that are Ending in some way. This is a Magical (Silence) effect</li>
+		<li>If these requirements are met, Mamiya then makes a <span class='stat'>SRT</span> check. The higher the result, the better she'll be able to see the image given to her by Stillness. It should be noted that visions given by this ability are focused solely on things that are Ending in some way. This is a <span class='element'>Magical (Silence)</span> effect</li>
 	</ul></li>
 	<li>Cognitohazard Training<ul>
-		<li>Mamiya gets a +6 bonus to Spirituality when trying to resist Cognitohazards</li>
+		<li>Mamiya gets a +6 bonus to <span class='stat'>SRT</span> when trying to resist Cognitohazards</li>
 		<li>If such a check comes up during Research, she rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Contracted to [Nexus curently unnamed]<ul>
-		<li>+1 to Mana Pool and Well</li>
+		<li><span class='stat'>+1 MP</span>, <span class='stat'>+1 MW</span></li>
 		<li>Her Mana Well refills completely after a good night's rest.</li>
 		<li>If she dies, she will be respawned at Naru's Nexus after one week</li>
 		<li>She is immune to any effect that would target her material or cognitive souls</li>
 		<li>Linked Floor:<ul>
-			<li>Tier 1 Attunement: Heat Absorption, Cold Vulnerability, +2 Stewardship, Contractee gains the Scalding Infusion</li>
+			<li>Tier 1 Attunement: <span class='trait'>Heat Absorption</span>, <span class='trait'>Cold Vulnerability</span>, <span class='stat'>+2 STW</span>, Contractee gains the Scalding Infusion</li>
 			<li>Tier 2 Attunement: 0/3 Weeks, 1/1 Floors Drilled</li>
 			<li>Tier 2 Attunement: 0/5 Weeks, 1/3 Floors Drilled</li>
 		</ul></li>
@@ -898,16 +864,13 @@ function ch_traits(name){
 <script>
 	document.write(character_params("Sakura Kinomoto"));
 </script>
-<tr>
-	<td colspan="3">Sealing Stuff</td>
+<tr><td colspan="3">Sealing Stuff</td>
 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+2</td>	<td>+3</td>	<td></td>
 </tr>
-<tr>
-	<td colspan="3">Lesser Deranged Athame</td>
+<tr><td colspan="3">Lesser Deranged Athame</td>
 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+1</td>	<td></td>
 </tr>
-<tr>
-	<td colspan="3">Celestial Custodian Uniform</td>
+<tr><td colspan="3">Celestial Custodian Uniform</td>
 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+3</td>
 </tr>
 </table>
@@ -922,13 +885,11 @@ function ch_traits(name){
 	<p>Age: 12</p>
 	<p>Favoured by: <span class="sun">The Sun</span> and <span class="moon">the Moon</span></p>
 	<p>Affiliations: Celestial Custodian Clan (<span class="rank">Public Relations</span>)</p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
 	<li>English (Passable)</li>
 	<li>Mandarin (Poor)</li>
-</ul>
-</details>
+</ul></details>
 
 <script>document.write(ch_traits("Sakura Kinomoto"));</script>
 </td>
@@ -943,7 +904,7 @@ function ch_traits(name){
 		<li>The total contract cost for all Clow Cards bound to Sakura is equal to the largest soul cost among her bound cards</li>
 	</ul></li>
 	<li>Celestial Eyes<ul>
-		<li>As a combat action with a cost of 2 Pool, Sakura can determine the Vulnerability, Resistance, Immunity, Absorption, and Reflection traits of one target she can see. This ability does not work if neither the Sun or Moon are currently in the sky or while Sakura has at least 1 stack of Blind</li>
+		<li>As a combat action with a cost of <span class='stat'>2 MP</span>, Sakura can determine the Vulnerability, Resistance, Immunity, Absorption, and Reflection traits of one target she can see. This ability does not work if neither the <span class='sun'>Sun</span> or <span class='moon'>Moon</span> are currently in the sky or while Sakura has at least 1 stack of <span class='stack'>Blind</span></li>
 	</ul></li>
 	<li>Rookie Inscryber<ul>
 		<li>Sakura has the ability to Craft cards. She currently requires an empty/blank card in order to do so</li>
@@ -955,29 +916,29 @@ function ch_traits(name){
 		<li>You can use points from your Well in order to fuel spells that normally cost points from your Pool. The effects vary by spell and are unknown until you first Overcast a spell</li>
 	</ul></li>
 	<li>Cognitohazard Training<ul>
-		<li>Sakura gets a +6 bonus to Spirituality when trying to resist Cognitohazards</li>
+		<li>Sakura gets a +6 bonus to <span class='stat'>SRT</span> when trying to resist Cognitohazards</li>
 		<li>If such a check comes up during Research, she rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Expanded Summon I<ul>
-		<li>Sakura can manifest up to 2 creatures with one casting of the 'Manifest Card' spell. Said creatures are summoned one after another in rapid sequence</li>
+		<li>Sakura can manifest up to 2 creatures with one casting of the <span class='spell'>Manifest Card</span> spell. Said creatures are summoned one after another in rapid sequence</li>
 	</ul></li>
 	<li>Contracted of [Nexus currently unnamed]<ul>
-		<li>+1 to Mana Pool and Well</li>
+		<li><span class='stat'>+1 MP</span>, <span class='stat'>+1 MW</span></li>
 		<li>Her Mana Well refills completely after a good night's rest</li>
 		<li>If she dies, she will be respawned at Naru's Nexus after one week</li>
 		<li>She is immune to any effect that would target her material or cognitive souls</li>
 		<li>Linked Floor:<ul>
-			<li>Tier 1 Attunement: Water Breathing, +2 Intrigue, Contractee can gain an additional Mutation. Said Mutation must be of the Mummified type</li>
+			<li>Tier 1 Attunement: <span class='trait'>Water Breathing</span>, <span class='stat'>+2 ING</span>, Contractee can gain an additional Mutation. Said Mutation must be of the Mummified type</li>
 			<li>Tier 2 Attunement: 0/3 Weeks, 0/1 Floors Drilled</li>
 			<li>Tier 3 Attunement: 0/5 Weeks, 0/3 Floors Drilled.</li>
 		</ul></li>
 	</ul></li>
 	<li>Vision Overstimulation (Minor Insanity Drawback)<ul>
-		<li>Sakura Saw too much at once. She now catches Sight of impossible obscurities at the slightest trigger</li>
+		<li>Sakura saw too much at once. She now catches Sight of impossible obscurities at the slightest trigger</li>
 		<li>-6 penalty to Initiative and Perception checks</li>
 		<li>-1 to all other rolls</li>
 		<li>Additional -1 to all rolls for each moderate sanity she is missing</li>
-		<li>These maluses are doubled if Sakura was not able to get a good night's sleep the night before or if she has 1 or more stacks of Agony</li>
+		<li>These maluses are doubled if Sakura was not able to get a good night's sleep the night before or if she has 1 or more stacks of <span class='stack'>Agony</span></li>
 		<li>If Sakura loses all of her sanity, she does not gain another Insanity Drawback. Instead, this Drawback progresses to Moderate stage</li>
 	</ul></li>
 </ul>
@@ -1012,16 +973,13 @@ function ch_traits(name){
 <script>
 	document.write(character_params("Rinne Rokudo"));
 </script>
-<tr>
-	<td colspan="3">Haori of Underworld</td>
+<tr><td colspan="3">Haori of Underworld</td>
 	<td></td>	<td></td>	<td></td>	<td>+2</td>	<td></td>	<td></td>	<td colspan="2"></td>
 </tr>
-<tr>
-	<td colspan="3">Shinigami Scythe</td>
+<tr><td colspan="3">Shinigami Scythe</td>
 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+7</td>	<td>+5</td>
 </tr>
-<tr>
-	<td colspan="3">Celestial Custodian Uniform</td>
+<tr><td colspan="3">Celestial Custodian Uniform</td>
 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+3</td>
 </tr>
 </table>
@@ -1055,22 +1013,22 @@ function ch_traits(name){
 		<li>While investigating a Festering Rumor, Rinne can multiply the roll result by 1.2. If he does, the roll result of his next attempt investigating a Rumor is multiplied by 0.8.</li>
 	</ul></li>
 	<li>Infohazard Training<ul>
-		<li>Rinne gets a +6 bonus to Learning when attempting to avoid Infohazards</li>
+		<li>Rinne gets a +6 bonus to <span class='stat'>LRN</span> when attempting to avoid Infohazards</li>
 		<li>If such a check comes up during Research, Rinne rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Cognitohazard Training<ul>
-		<li>Rinne gets a +6 bonus to Spirituality when trying to resist Cognitohazards</li>
+		<li>Rinne gets a +6 bonus to <span class='stat'>SRT</span> when trying to resist Cognitohazards</li>
 		<li>If such a check comes up during Research, he rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Reaping Wind Technique I<ul>
-		<li>While weilding a Shinigami Scythe, Rinne can spend 1 Pool in order to change the range of an attack he makes with it to Short. If he does, he add the Air sub-type to the attack</li>
+		<li>While weilding a Shinigami Scythe, Rinne can spend <span class='stat'>1 MP</span> in order to change the range of an attack he makes with it to Short. If he does, he add the <span class='element'>Air</span> sub-type to the attack</li>
 	</ul></li>
 	<li>Flash Step I<ul>
 		<li>As a Brief Action, Rinne can become Fatigued (-4 to all rolls) for 1 full round in order to move any unobstructed distance in Short range</li>
 	</ul></li>
 	<li>Phantom Stabs (Minor Injury Drawback)<ul>
-		<li>-3 Diplomacy</li>
-		<li>The first time in a scene that Rinne takes damage, he gains 2 stacks 1 stack of Bleed. This is an Ectoplasm effect</li>
+		<li><span class='stat'>-3 DPL</span></li>
+		<li>The first time in a scene that Rinne takes damage, he gains 1 stack of <span class='stack'>Bleed</span>. This is an <span class='element'>Ectoplasm</span> effect</li>
 		<li>This Drawback will remove itself if Rinne does not gain another Injury Drawback for 1 week</li>
 	</ul></li>
 </ul>
@@ -1124,11 +1082,11 @@ function ch_traits(name){
 		<li>Syaoran can store anything in his soul that fits through the size and shape of a Star Seed (i.e. material soul)</li>
 	</ul></li>
 	<li>Infohazard Training<ul>
-		<li>Syaoran gets a +6 bonus to Learning when attempting to avoid Infohazards</li>
+		<li>Syaoran gets a +6 bonus to <span class='stat'>LRN</span> when attempting to avoid Infohazards</li>
 		<li>If such a check comes up during Research, Syaoran rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Cognitohazard Training<ul>
-		<li>Syoaran gets a +6 bonus to Spirituality when trying to resist Cognitohazards</li>
+		<li>Syoaran gets a +6 bonus to <span class='stat'>SRT</span> when trying to resist Cognitohazards</li>
 		<li>If such a check comes up during Research, he rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Burst of Inspiration<ul>
@@ -1137,9 +1095,9 @@ function ch_traits(name){
 	<li>Connections of Magic<ul>
 		<li>When Researching a spellbook, whenever Syaoran learns a new spell, he add 1d6 research progress to another random spellbook topic that has not benefited from this ability this turn</li>
 	</ul></li>
-	<li>Rainbow Serpent's Eye (DIVINE BOON: Quetzalcoatl)<ul>
-		<li>Syaoran gains the Heat Senses and Low-Light Vision traits</li>
-		<li>Syaoran's left eye is notably changed into that of a snake's whose iris contains all seven colors of the rainbow. When seeing with this eye, he automatically knows if any creature seen has any Vulnerability, Resistance, Immunity, Absorption, Reflection, Affinity, or Internalized Element traits relating to Fire, Acid, Electricity, Wood, Water, Air, or Light. He also knows if any of those elements are present in any seen spells or environmental effects. If Syaoran sees a spell cast that has at least two sub-types of Fire, Acid, Electricity, Wood, Water, Air, or Light and no sub-types that don't match any of those elements, he can spend 2 Well to immediately learn the seen spell as a Reaction. If the spell is a Divine spell, the Metaphysical Weight is changed to Quetzalcoatl. This is a Divine (Information) effect</li>
+	<li>Rainbow Serpent's Eye (DIVINE BOON: <span class='god'>Quetzalcoatl</span>)<ul>
+		<li>Syaoran gains the <span class='trait'>Heat Senses</span> and <span class='trait'>Low-Light Vision</span> traits</li>
+		<li>Syaoran's left eye is notably changed into that of a snake's whose iris contains all seven colors of the rainbow. When seeing with this eye, he automatically knows if any creature seen has any Vulnerability, Resistance, Immunity, Absorption, Reflection, Affinity, or Internalized Element traits relating to <span class='element'>Fire</span>, <span class='element'>Acid</span>, <span class='element'>Electricity</span>, <span class='element'>Wood</span>, <span class='element'>Water</span>, <span class='element'>Air</span>, or <span class='element'>Light</span>. He also knows if any of those elements are present in any seen spells or environmental effects. If Syaoran sees a spell cast that has at least two sub-types of <span class='element'>Fire</span>, <span class='element'>Acid</span>, <span class='element'>Electricity</span>, <span class='element'>Wood</span>, <span class='element'>Water</span>, <span class='element'>Air</span>, or <span class='element'>Light</span> and no sub-types that don't match any of those elements, he can spend <span class='stat'>2 MW</span> to immediately learn the seen spell as a Reaction. If the spell is a <span class='element'>Divine</span> spell, the Metaphysical Weight is changed to <span class='weight god'>Quetzalcoatl</span>. This is a <span class='element'>Divine (Information)</span> effect</li>
 		<li>This Boon can be inherited</li>
 	</ul></li>
 </ul>
@@ -1188,22 +1146,24 @@ function ch_traits(name){
 <details><summary>Special Abilities</summary>
 <ul>
 	<li>Sun Lion Form<ul>
-		<li></li>
+		<li>Locked until the Light, <span class='familiar'>Firey</span>, and Earthy Clow Cards are recovered</li>
 	</ul></li>
 	<li>Solar Guardian of the Clow<ul>
-		<li></li>
+		<li>Kerberos is unaffected by the abilities and attacks of the Light, <span class='familiar'>Firey</span>, and Earthy Clow Cards and any cards under their jurisdiction</li>
 	</ul></li>
 	<li>Soul Storage Technique<ul>
-		<li></li>
+		<li>Kerberos can store anything in his soul that fits through the size and shape of a Star Seed (i.e. material soul)</li>
 	</ul></li>
 	<li>Infohazard Training<ul>
-		<li></li>
+		<li>Kerberos gets a +6 bonus to <span class='stat'>LRN</span> when attempting to avoid Infohazards</li>
+		<li>If such a check comes up during Research, Kerberos rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Cognitohazard Training<ul>
-		<li></li>
+		<li>Kerberos gets a +6 bonus to <span class='stat'>SRT</span> when trying to resist Cognitohazards</li>
+		<li>If such a check comes up during Research, he rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Burst of Inspiration<ul>
-		<li></li>
+		<li>If Kero rolls a natural 12 while Researching, he adds a crit bonus d20 to the roll. The extra progress from the d20 cannot Overflow into other research topics</li>
 	</ul></li>
 </ul>
 </details>
@@ -1215,9 +1175,12 @@ function ch_traits(name){
 <tr class="invis"><td><h2 id="Rokumon">Rokumon</h2></td>
 <td rowspan="2">
 <table>
-<script>
-	document.write(character_params("Rokumon"));
-</script>
+	<script>
+		document.write(character_params("Rokumon"));
+	</script>
+	<tr><td colspan="3">Demon Cat Head</td>
+		<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+4</td>	<td></td>
+	</tr>
 </table>
 </td>
 <td rowspan="2">
@@ -1241,16 +1204,27 @@ function ch_traits(name){
 <details><summary>Special Abilities</summary>
 <ul>
 	<li>Black Cat<ul>
-		<li></li>
+		<li>Black Cats are capable of using Shinigami Tools</li>
+		<li>Black Cats can ignore the <span class='trait'>Incorporeal</span> trait of <span class='trait'>Undead</span> creatures</li>
+		<li>A Black Cat can enter and exit the Spirit World freely</li>
+		<li>Black Cats always know where to find the equipment of their chosen <span class='trait'>Shinigami</span> companions</li>
 	</ul></li>
 	<li>Cursed Demon Cat Head<ul>
-		<li></li>
+		<li>Rokumon can transform into a Demon Cat Head as a brief action. While transformed, Rokumon gains the following:<ul>
+			<li><span class='stat'>+4 OCBT</span></li>
+			<li>Movement of 'Smooth Flight' and the <span class='trait'>Hover</span> trait</li>
+			<li>The ability to add the <span class='element'>Curse</span> sub-type to any of his melee attacks</li>
+			<li>The <span class='trait'>Mountable</span> trait</li>
+			<li>The amount of space he takes up increases by a considerable amount</li>
+			<li>Once per round, when Rokumon deals damage to an enemy with an attack he added the <span class='element'>Curse</span> sub-type to, he heals 1 minor wound from himself. This is a <span class='element'>Magical (Curse, Drain, Spirit)</span> effect</li>
+		</ul></li>
 	</ul></li>
 	<li>Soul Storage Technique<ul>
-		<li></li>
+		<li>Rokumon can store anything in his soul that fits through the size and shape of a Star Seed (i.e. material soul)</li>
 	</ul></li>
 	<li>Cognitohazard Training<ul>
-		<li></li>
+		<li>Rokumon gets a +6 bonus to <span class='stat'>SRT</span> when trying to resist Cognitohazards</li>
+		<li>If such a check comes up during Research, he rolls twice and takes the higher result</li>
 	</ul></li>
 </ul>
 </details>
@@ -1295,25 +1269,29 @@ function ch_traits(name){
 <details><summary>Special Abilities</summary>
 <ul>
 	<li>Stance Change III<ul>
-		<li></li>
+		<li>Up to three times per round as a brief action, Meiling can decrease either her <span class='stat'>OCBT</span> or <span class='stat'>DCBT</span> by up to 3 to increase the other Combat stat by the same amount</li>
 	</ul></li>
 	<li>Soul Storage Technique<ul>
-		<li></li>
+		<li>Meiling can store anything in her soul that fits through the size and shape of a Star Seed (i.e. material soul)</li>
 	</ul></li>
 	<li>Apprenticeship Bond (The Supreme Dojo Master of Eternal Darkness)<ul>
-		<li></li>
+		<li>This contract was Meiling's Awakening</li>
+		<li>Meiling and the Dojo Master constantly know how healthy and in what general direction each other are</li>
+		<li>Meiling learns things taught by the Dojo Master more easily</li>
 	</ul></li>
 	<li>Overcasting Technique<ul>
-		<li></li>
+		<li>You can use points from your Well in order to fuel spells that normally cost points from your Pool. The effects vary by spell and are unknown until you first Overcast a spell</li>
 	</ul></li>
 	<li>Cognitohazard Training<ul>
-		<li></li>
+		<li>Meiling gets a +6 bonus to <span class='stat'>SRT</span> when trying to resist Cognitohazards</li>
+		<li>If such a check comes up during Research, she rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Flash Step I<ul>
-		<li></li>
+		<li>As a Brief Action, Meiling can become Fatigued (-4 to all rolls) for 1 full round in order to move any unobstructed distance in Short range</li>
 	</ul></li>
 	<li>Setting Twilight Style I<ul>
-		<li></li>
+		<li>While Stance Change has boosted Meiling's <span class='stat'>OCBT</span> 3 or more above its base, Meiling applies 1 stack of <span class='stack'>Peril</span> to any foe she hits with an unarmed attack, even if she did not deal any damage</li>
+		<li>While Stance Change has boosted Meiling's <span class='stat'>OCBT</span> 15 or more above its base, Meiling applies the <span class='debuff'>Armor Break</span> debuff to any foe she hits with an unarmed attack, even if she did not deal any damage</li>
 	</ul></li>
 </ul>
 </details>
@@ -1329,12 +1307,10 @@ function ch_traits(name){
 <script>
 	document.write(character_params("Rui Saionji"));
 </script>
-<tr>
-	<td colspan="3">Celestial Dreamer Uniform</td>
+<tr><td colspan="3">Celestial Dreamer Uniform</td>
 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+2</td>	<td colspan="2"></td>
 </tr>
-<tr>
-	<td colspan="3">Basic Wand</td>
+<tr><td colspan="3">Basic Wand</td>
 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+2</td>	<td></td>
 </tr>
 </table>
@@ -1349,16 +1325,14 @@ function ch_traits(name){
 	<p>Age: 16</p>
 	<p>Favoured by: Altjira</p>
 	<p>Affiliations: Selestial Custodian Clan (<span class="rank">Secretary</span>)</p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
 	<li>Ulthar (Esoteric)</li>
 	<li>English (Decent)</li>
 	<li>Aklo (Poor)</li>
 	<li>French (Poor)</li>
 	<li>Russian (Poor)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits("Rui Saionji"));</script>
 </td>
 </tr>
@@ -1368,19 +1342,29 @@ function ch_traits(name){
 <details><summary>Special Abilities</summary>
 <ul>
 	<li>Cleric of Altjira II<ul>
-		<li></li>
+		<li>A good night's sleep heals Rui's Sanity completely</li>
+		<li>Rui can add the <span class='element'>Dream</span> sub-type to any of her attacks</li>
+		<li>Rui will automatically know if another character is a <span class='trait'>Lucid Dreamer</span> or a <span class='trait'>Dream Walker</span></li>
+		<li>Rui's mere presence reduces the difficulty of any Rituals or checks involving <span class='god'>Altjira</span></li>
+		<li>Rui no longer needs a ritual in order to create Holy Water or Blessed Oil</li>
+		<li>Rui can spend <span class='stat'>1 MW</span> in order to gain the <span class='trait'>Dream Walker</span> trait for 1 day</li>
+		<li>As a Combat Action costing <span class='stat'>3 MP</span>, Rui can manifest a copy of Altjira's Divine Instrument (The Ribbon of Altjira). This counts against her summon limit</li>
 	</ul></li>
 	<li>Thalassophobia (Mild Insanity Drawback)<ul>
-		<li></li>
+		<li>Rui is deathly afraid of deep bodies of water and will normally refuse to go near them</li>
+		<li>If she does approach such a body of water, she automatically gains the <span class='debuff'>Terror</span> debuff. If removed, this debuff is automatically reapplied if she can still see a deep body of water</li>
+		<li>Additionally, while nearby such a body of water, her <span class='stat'>SRT</span> and <span class='stat'>CBT</span> roll results are divided by 2 and Rui takes 1 minor horror every 1-5 minutes (Depending on how close she is to the very deep parts)</li>
 	</ul></li>
 	<li>Soul Storage Technique<ul>
-		<li></li>
+		<li>Rui can store anything in her soul that can fit through the size and shape of a Star Seed (i.e. material soul)</li>
 	</ul></li>
 	<li>Cognitohazard Training<ul>
-		<li></li>
+		<li>Rui gets a +6 bonus to <span class='stat'>SRT</span> when trying to resist Cognitohazards</li>
+		<li>If such a check comes up during Research, she rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Ritual Boosting<ul>
-		<li></li>
+		<li>If Rui is the Primary Caster of a ritual, she adds +5 to the result</li>
+		<li>If Rui is a Secondary Caster in a ritual, she adds 1d8 to the result</li>
 	</ul></li>
 </ul>
 </details>
@@ -1429,22 +1413,26 @@ function ch_traits(name){
 <details><summary>Special Abilities</summary>
 <ul>
 	<li>Algophobia (Mild Insanity Drawback)<ul>
-		<li></li>
+		<li>Kaede is deathly afraid of pain and will do her best to avoid or mitigate it at all times</li>
+		<li>Whenever Kaede feels pain, she gains the <span class='debuff'>Terror</span> debuff (If she did not already have it.) and takes 1 Minor Horror</li>
+		<li>Whether or not a given attack or effect is painful is determined by the QM</li>
 	</ul></li>
 	<li>Contractor<ul>
-		<li></li>
+		<li>The amount of Soul Kaede has available for Contracts is equal to 3 times her Well</li>
 	</ul></li>
 	<li>Cognitohazard Training<ul>
-		<li></li>
+		<li>Kaede gets a +6 bonus to <span class='stat'>SRT</span> when trying to resist Cognitohazards</li>
+		<li>If such a check comes up during Research, she rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Steady Position<ul>
-		<li></li>
+		<li>While wielding a <span class='item'>Tower Shield</span>, as long as Kaede has not moved for one full round, she cannot be knocked back or knocked prone</li>
 	</ul></li>
 	<li>Brace for Impact<ul>
-		<li></li>
+		<li>While wielding a <span class='item'>Tower Shield</span>, Kaede is considered to have <span class='trait'>Damage Resistance</span> against <span class='element'>Bludgeoning</span>, <span class='element'>Piercing</span>, and <span class='element'>Slashing</span> attacks that she is aware of and can react to</li>
 	</ul></li>
-	<li>Seven-Colored Wings (DIVINE BOON: Quetzalcoatl)<ul>
-		<li></li>
+	<li>Seven-Colored Wings (DIVINE BOON: <span class='god'>Quetzalcoatl</span>)<ul>
+		<li>Kaede gains the <span class='trait'>Air Resistance</span> and <span class='trait'>Light Resistance</span> traits</li>
+		<li>Kaede can sprout large powerful feathered wings at will. (This will cause her outfit to tear if there are no openings to accommodate the wings.) While the wings are active, her Movement is changed to 'Powerful Flight.' Kaede additionally gains <span class='stat'>+7 DCBT</span> against <span class='element'>Fire</span>, <span class='element'>Acid</span>, <span class='element'>Electricity</span>, <span class='element'>Wood</span>, <span class='element'>Water</span>, <span class='element'>Air</span>, and <span class='element'>Light</span> attacks during this time. This is a <span class='element'>Divine</span> effect</li>
 	</ul></li>
 </ul>
 </details>
@@ -1495,16 +1483,24 @@ function ch_traits(name){
 <details><summary>Special Abilities</summary>
 <ul>
 	<li>Tethered<ul>
-		<li></li>
+		<li>Hanako cannot leave the campus of the Kamome Gakuen school unless summoned by Nene through the effect of their Marriage Bond</li>
+		<li>If summoned by Nene, he must remain within Medium range of her</li>
+		<li>If Hanako loses all his health, he respawns at the school about a day later</li>
 	</ul></li>
 	<li>Mystery No. 7<ul>
-		<li></li>
+		<li>Hanako has a place of power called a Boundary in the school he is tethered to</li>
+		<li>Within his boundary, Hanako can freely manipulate reality to a certain extent</li>
+		<li>As a Brief Action costing <span class='stat'>1 MP</span>, Hanako can place a charm on a creature that protects them from most attacks and effects of other creatures tied to the school. This is a <span class='element'>Magical (Spirit. Protection)</span> effect</li>
+		<li>As a Combat Action costing <span class='stat'>1 MW</span>, Hanako can cause a creature he is touching to fall asleep. This requires a successful Contested <span class='stat'>SRT</span> check. Hanako must be within the school to use this effect. This is a <span class='element'>Magical (Spirit, Dream)</span> effect</li>
+		<li>Once per scene while not in combat, Hanako can spend <span class='stat'>2 MW</span> to erase some memories of a character he is touching. This requires a successful Contested <span class='stat'>SRT</span> check. He can only erase memories that took place within the school he is bound to. Hanako must be in the school to use this effect. This is a <span class='element'>Magical (Spirit, Mental)</span> effect</li>
 	</ul></li>
 	<li>Mermaid's "Curse" (Marriage Bond between Nene and "Hanako-kun")<ul>
-		<li></li>
+		<li>Hanako always knows the general direction Nene is in, as well as how healthy she is</li>
+		<li>Nene and Hanako can share senses and communicate telepathically from any distance. (They have not figured out how to do this yet)</li>
+		<li>Hanako can instantly teleport his spouse to his side for the cost of <span class='stat'>1 MW</span> for every 10 AU Nene is crossing (Rounded up). (Hanako cannot use this due to being Tethered)</li>
 	</ul></li>
 	<li>Battle Couple II (Nene Yashiro<ul>
-		<li></li>
+		<li>When fighting beside Nene, Hanako adds 20% of her <span class='stat'>MRT</span> to his <span class='stat'>CBT</span></li>
 	</ul>)</li>
 </ul>
 </details>
@@ -1520,6 +1516,9 @@ function ch_traits(name){
 <script>
 	document.write(character_params("Necreph"));
 </script>
+<tr><td colspan="3">Sah Form</td>
+	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+14</td>	<td colspan='2'>-35</td>
+</tr>
 </table>
 </td>
 <td rowspan="2">
@@ -1529,7 +1528,7 @@ function ch_traits(name){
 <td>
 	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-191#post-108446339">Source</a></p>
 	<p>Age: ???</p>
-	<p>Attack Type: <span class="element">Physical (Slashing)</span></p><hr>
+	<p>Attack Type: <span class='element'>Physical (Slashing)</span></p><hr>
 <details><summary>Known languages</summary>
 <ul>
 	<li>Egyptian (Fluent)</li>
@@ -1546,25 +1545,52 @@ function ch_traits(name){
 <details><summary>Special Abilities</summary>
 <ul>
 	<li>Tethered<ul>
-		<li></li>
+		<li>Necreph cannot leave the boundaries of the structure he is bound to unless he is within Medium range of his Ankh Relic (Very Long range if in Sah Form)</li>
+		<li>While outside said structure, Necreph cannot go beyond Medium range of his Relic (Very Long range if in Sah Form)</li>
+		<li>Necreph is unable to hold, touch, or carry his own Relic. This is a <span class='element'>Divine (Order)</span> effect</li>
 	</ul></li>
 	<li>Sah Form<ul>
-		<li></li>
+		<li>If not being observed, Necreph can change to or from Sah Form at will. Necreph automatically enters Sah Form if forced out of the range of his Tether (See above)</li>
+		<li>While in Sah Form, Necreph loses his Mejai's Strike and Don't Look at Me! Abilities while gaining the following:<ul>
+			<li>The range of his Tether increased to Very Long</li>
+			<li><span class='stat'>-35 CBT</span></li>
+			<li><span class='stat'>+14 SRT</span></li>
+			<li>The inability to be damaged</li>
+			<li>The inability to directly attack other creatures</li>
+			<li>The <span class='trait'>Incorporeal</span> trait</li>
+			<li>The ability to gain or lose the <span class='trait'>Invisible</span> trait at will</li>
+			<li>If Necreph passes through a mundane object while in Sah Form, he can choose to shatter it</li>
+		</ul></li>
 	</ul></li>
 	<li>Blind Sense<ul>
-		<li></li>
+		<li>Necreph can see perfectly fine even in complete darkness</li>
+		<li>Necreph does not have working eyes and is thus immune to Gaze Attacks and other sight-based Cognitohazards. He also cannot gain <span class='stack'>Blind</span> stacks</li>
+		<li>Cover cannot prevent Necreph from seeing other creatures</li>
 	</ul></li>
 	<li>Mejai's Strike<ul>
-		<li></li>
+		<li>Necreph's basic attack ignores the <span class='trait'>Incorporeal</span> trait</li>
+		<li>Against an <span class='triat'>Undead</span> creature, Necreph's basic attack ignores <span class='trait'>Physical Resistance</span> and treats <span class='trait'>Physical Immunity</span> as <span class='trait'>Physical Resistance</span></li>
+		<li>If Necreph damages a creature with his basic attack, that creature must succeed at a Contested <span class='stat'>SRT</span> check or die instantly. If the creature maximum health is more than 1 lethal wound, the creature instead takes 1 lethal damage. This is a <span class='element'>Silence</span> effect</li>
 	</ul></li>
 	<li>The Shadow<ul>
-		<li></li>
+		<li>As a Brief Action, Necreph can teleport anywhere within range of his tether. This is an <span class='element'>Eldritch (Darkness, Spatial)</span> effect</li>
+		<li>Necreph can add the <span class='element'>Darkness</span> sub-type to any of his attacks</li>
+		<li>Once per round, as a Brief Action costing <span class='stat'>1 MP</span>, Necreph can extinguish all fire-based light sources and temporarily disrupt all electricity-based light sources in the scene. The electric light sources return to normal after 1 round. This is a <span class='element'>Magical (Darkness)</span> effect</li>
 	</ul></li>
 	<li>Don't Look at Me<ul>
-		<li></li>
+		<li>Whenever an intelligent creature catches sight of Necreph, he must succeed at a DC 10<span class='stat'>SRT</span>check or immediately teleport to and attack that creature. Necreph does not use a Combat Action when attacking in this way</li>
+		<li>Necreph must make an additional check each round if the creature continues to keep him in sight. The DC for these checks increases by 10 for each consecutive round</li>
+		<li>While Necreph is illuminated by a light source, all the above DCs are doubled</li>
+		<li>Necreph can choose to intentionally fail these checks</li>
 	</ul></li>
 	<li>Severe Apathy (Moderate Insanity Drawback)<ul>
-		<li></li>
+		<li>Necreph does not have a Sanity track while possessing this drawback</li>
+		<li>Necreph cannot improve his stats or gain new traits or abilities while possessing this drawback</li>
+		<li>On all non-Combat rolls, Necreph rolls a d10 instead of a d12. He does not get to roll any crit bonus dice on such rolls</li>
+		<li>Necreph rolls a critical fail die on 1-2 instead of just 1. If he gains the Doom debuff, this range increases to 1-4</li>
+		<li>Necreph cannot gain <span class='stack'>Courage</span> stacks or the <span class='buff'>Glory</span> buff while possessing this drawback</li>
+		<li>Necreph is unaffected by both the <span class='trait'>Hope-Bringer</span> and <span class='trait'>Cerebus Knight</span> traits</li>
+		<li>If Necreph performs Research, the roll result is reduced by 8</li>
 	</ul></li>
 </ul>
 </details>
@@ -1580,8 +1606,7 @@ function ch_traits(name){
 <script>
 	document.write(character_params("Julia Thiazi"));
 </script>
-<tr>
-	<th colspan="3">Standard Keeper Uniform</th>
+<tr><td colspan="3">Standard Keeper Uniform</td>
 	<td></td>	<td>+2</td>	<td>+2</td>	<td></td>	<td></td>	<td></td>	<td colspan="2"></td>
 </tr>
 </table>
@@ -1595,13 +1620,11 @@ function ch_traits(name){
 	<p>Age: 17</p>
 	<p>Favoured by: <span class="body">Earth's Body (The World Tree)</span></p>
 	<p>Affiliations: Monster Sanctuary</p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Sanctuary (Fluent)</li>
 	<li>Draconic (Passable)</li>
 	<li>Aklo (Poor)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits("Julia Thiazi"));</script>
 
 </td>
@@ -1610,16 +1633,23 @@ function ch_traits(name){
 <tr class="invis">
 <td colspan="3">
 
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Monster Keeper<ul>
-		<li></li>
+		<li>A Monster Keeper can bond with any number of familiars, provided that said familiars were either raised from birth by the Keeper or passed down through their family</li>
+		<li>A Monster Keeper cannot bond with Familiars that do not meet the above criteria</li>
+		<li>A Monster Keeper cannot gain Hybrid Bonds or Personas</li>
+		<li>This ability is treated as a Contract that binds up 5 Soul</li>
 	</ul></li>
 	<li>Future: Senshi of Earth's Body I<ul>
-		<li></li>
+		<li>Julia will be able to transform into Senshi Form as a brief action. While transformed, she will gain the following:<ul>
+			<li><span class='stat'>+6 CBT</span></li>
+			<li>Her base <span class='stat'>CBT</span> doubled</li>
+			<li><span class='trait'>Physical Resistance</span> and <span class='trait'>Magical Resistance</span></li>
+			<li>The ability to change her basic attack to a melee <span class='element'>Magical (Wood)</span> attack</li>
+			<li>A glamour that prevents those who did not witness her transform from determining her secret identity</li>
+		</ul></li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 
 <script>document.write(ch_spellbook("Julia Thiazi"));</script>
 </td></tr>
@@ -1632,8 +1662,7 @@ function ch_traits(name){
 <script>
 	document.write(character_params("Usagi Tsukino"));
 </script>
-<tr>
-	<td colspan="3">Senshi Form</td>
+<tr><td colspan="3">Senshi Form</td>
 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+12</td>
 </tr>
 </table>
@@ -1647,37 +1676,41 @@ function ch_traits(name){
 	<p>Age: 14</p>
 	<p>Favoured by: <span class="moon">The Moon</span></p>
 	<p>Affiliations: Inner Senshi</p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
 	<li>English (Poor)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits("Usagi Tsukino"));</script>
 </td>
 </tr>
 
 <tr class="invis">
 <td colspan="3">
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Senshi of Moon I<ul>
-		<li></li>
+		<li>Usagi can transform into Senshi Form as a brief action. While transformed, Usagi gains the following:<ul>
+			<li><span class='stat'>+5 CBT</span></li>
+			<li>50% of her <span class='stat'>SRT</span> added to her <span class='stat'>CBT</span></li>
+			<li><span class='trait'>Physical Resistance></span> and <span class='trait'>Magical Resistance</span></li>
+			<li>The ability to change her basic attack to a short ranged <span class='element'>Magical (Purification)</span> attack</li>
+			<li>A glamour that prevents those who did not witness her transform from determining her secret identity</li>
+		</ul></li>
 	</ul></li>
 	<li>Nexus Master of The Moon<ul>
-		<li></li>
+		<li>???</li>
 	</ul></li>
 	<li>Medical Training I<ul>
-		<li></li>
+		<li>Usagi gains a +4 bonus to any roll needed when providing medical attention</li>
+		<li>If Usagi needs to make a check to avoid doing something (i.e. to avoid vomiting, hesitating, going into shock, etc.) while attempting to provide medical attention, she rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Cognitohazard Training<ul>
-		<li></li>
+		<li>Usagi gets a +6 bonus to <span class='stat'>SRT</span> when trying to resist Cognitohazards</li>
+		<li>If such a check comes up during Research, she rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Healing Transformation<ul>
-		<li></li>
+		<li>When Usagi transforms, all allies in Short range Heal 1 minor damage. This is a <span class='element'>Magical (Purification, Healing)</span> effect</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_spellbook("Usagi Tsukino"));</script>
 
 </td></tr>
@@ -1690,8 +1723,7 @@ function ch_traits(name){
 <script>
 	document.write(character_params("Ami Mizuno"));
 </script>
-<tr>
-	<td colspan="3">Senshi Form</td>
+<tr><td colspan="3">Senshi Form</td>
 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+7</td>
 </tr>
 </table>
@@ -1721,25 +1753,31 @@ function ch_traits(name){
 
 <tr class="invis">
 <td colspan="3">
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Senshi of Mercury<ul>
-		<li></li>
+		<li>Ami can transform into Senshi Form as a brief action. While transformed, Ami gains the following:<ul>
+			<li><span class='stat'>+3 CBT</span></li>
+			<li>20% of her <span class='stat'>LRN</span> added to her <span class='stat'>CBT</span></li>
+			<li><span class='trait'>Physical Resistance</span> and <span class='trait'>Magical Resistance</span></li>
+			<li>The ability to change her basic attack to a short ranged <span class='element'>Magical (Cold)</span> attack</li>
+			<li>A glamour that prevents those who did not witness her transform from determining her secret identity</li>
+		</ul></li>
 	</ul></li>
 	<li>Nexus Master of Mercury<ul>
-		<li></li>
+		<li>???</li>
 	</ul></li>
 	<li>Infohazard Training<ul>
-		<li></li>
+		<li>Ami gets a +6 bonus to <span class='stat'>LRN</span> when attempting to avoid Infohazards</li>
+		<li>If such a check comes up during Research, Ami rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Cognitohazard Training<ul>
-		<li></li>
+		<li>Ami gets a +6 bonus to <span class='stat'>SRT</span> when trying to resist Cognitohazards</li>
+		<li>If such a check comes up during Research, she rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Chilling Transformation<ul>
-		<li></li>
+		<li>When Ami transforms, she can apply the <span class='debuff'>Chill</span> debuff to a single enemy in Short range. This is a <span class='element'>Cold</span> effect</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_spellbook("Ami Mizuno"));</script>
 
 </td></tr>
@@ -1783,25 +1821,35 @@ function ch_traits(name){
 <details><summary>Special Abilities</summary>
 <ul>
 	<li>Fire Reading<ul>
-		<li></li>
+		<li>Rei can spend <span class='stat'>3 MP</span> in order to attempt a Fire Reading. This requires a few minutes of uninterrupted concentration and access to a source of open flame</li>
+		<li>If these requirements are met, Rei then makes a<span class='stat'>SRT</span>check. The higher the result, the easier it will be to correctly interpret what the flames are telling her. This is <span class='element'>Magical (Prophecy, Fire)</span> effect</li>
 	</ul></li>
 	<li>Senshi of Mars I<ul>
-		<li></li>
+		<li>Rei can transform into Senshi Form as a brief action. While transformed, Rei gains the following:<ul>
+			<li><span class='stat'>+4 CBT</span></li>
+			<li>50% of her <span class='stat'>SRT</span> added to her <span class='stat'>CBT</span></li>
+			<li><span class='trait'>Physical Resistance</span> and <span class='trait'>Magical Resistance</span></li>
+			<li>The ability to change her basic attack to a short ranged <span class='element'>Magical (Fire)</span> attack</li>
+			<li>A glamour that prevents those who did not witness her transform from determining her secret identity</li>
+		</ul></li>
 	</ul></li>
 	<li>Nexus Master of Mars<ul>
-		<li></li>
+		<li>???</li>
 	</ul></li>
 	<li>Infohazard Training<ul>
-		<li></li>
+		<li>Rei gets a +6 bonus to <span class='stat'>LRN</span> when attempting to avoid Infohazards</li>
+		<li>If such a check comes up during Research, Rei rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Cognitohazard Training<ul>
-		<li></li>
+		<li>Rei gets a +6 bonus to <span class='stat'>SRT</span> when trying to resist Cognitohazards</li>
+		<li>If such a check comes up during Research, she rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Ritual Boosting<ul>
-		<li></li>
+		<li>If Rei is the Primary Caster of a ritual, she adds +5 to the result</li>
+		<li>If Rei is a Secondary Caster in a ritual, she adds 1d8 to the result</li>
 	</ul></li>
 	<li>Burning Transformation<ul>
-		<li></li>
+		<li>When Rei transforms, she can apply the <span class='debuff'>Burn</span> debuff to a single enemy in Short range. This is a <span class='element'>Fire</span> effect</li>
 	</ul></li>
 </ul>
 </details>
@@ -1817,8 +1865,7 @@ function ch_traits(name){
 <script>
 	document.write(character_params("Makoto Kino"));
 </script>
-<tr>
-	<td colspan="3">Senshi Form</td>
+<tr><td colspan="3">Senshi Form</td>
 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td colspan="2">+14</td>
 </tr>
 </table>
@@ -1845,28 +1892,34 @@ function ch_traits(name){
 
 <tr class="invis">
 <td colspan="3">
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Senshi of Jupiter I<ul>
-		<li></li>
+		<li>Makoto can transform into Senshi Form as a brief action. While transformed, Makoto gains the following<ul>
+			<li><span class='stat'>+6 CBT</span></li>
+			<li>50% of her <span class='stat'>MRT</span> added to her <span class='stat'>CBT</span></li>
+			<li><span class='trait'>Physical Resistance</span> and <span class='trait'>Magical Resistance</span></li>
+			<li>The ability to change her basic attack to a Short ranged <span class='element'>Magical (Electricity)</span> attack</li>
+			<li>A glamour that prevents those who did not witness her transform from determining her secret identity</li>
+		</ul></li>
 	</ul></li>
 	<li>Nexus Master of Jupiter<ul>
-		<li></li>
+		<li>???</li>
 	</ul></li>
 	<li>Intimidation<ul>
-		<li></li>
+		<li>As a Combat Action, Makoto can attempt to intimidate an enemy. This requires a successful Contested <span class='stat'>SRT</span> check. If she succeeds, the chosen enemy loses all <span class='stack'>Courage</span> stacks and gains 3 stacks of <span class='stack'>Wither</span></li>
+		<li>This ability cannot be used against creatures with animal instincts</li>
 	</ul></li>
 	<li>Cognitohazard Training<ul>
-		<li></li>
+		<li>Makoto gets a +6 bonus to <span class='stat'>SRT</span> when trying to resist Cognitohazards</li>
+		<li>If such a check comes up during Research, she rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Flash Step I<ul>
-		<li></li>
+		<li>As a Brief Action, Makoto can become Fatigued (-4 to all rolls) for 1 full round in order to move any unobstructed distance in Short range</li>
 	</ul></li>
 	<li>Stance Change I<ul>
-		<li></li>
+		<li>Once per round as a brief action, Makoto can decrease either her <span class='stat'>OCBT</span> or <span class='stat'>DCBT</span> by 1 to increase the other Combat stat by the same amount</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_spellbook("Makoto Kino"));</script>
 
 </td></tr>
@@ -1888,12 +1941,10 @@ function ch_traits(name){
 <td>
 	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-94#post-99067919">Source</a></p>
 	<p>Age: 14</p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
 	<li>English (Decent)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits("Yumiko Yumi"));</script>
 
 </td>
@@ -1928,12 +1979,10 @@ function ch_traits(name){
 	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-270#post-117273350">Source</a></p>
 	<p>Age: 14</p>
 	<p>Favoured by: Eris</p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
 	<li>English (Poor)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits("Kuri Kumiko"));</script>
 
 </td>
@@ -1942,19 +1991,20 @@ function ch_traits(name){
 <tr class="invis">
 <td colspan="3">
 
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Followed by Chaos<ul>
-		<li></li>
+		<li>Kuri's <span class='trait'>Preparation</span> and <span class='trait'>Malediction</span> traits also activate during non-combat scenes</li>
+		<li><span class='buff'>Glory</span> buffs and <span class='debuff'>Doom</span> debuffs on Kuri affect all rolls she makes</li>
+		<li><span class='buff'>Glory</span> and <span class='debuff'>Doom</span> cannot be removed or stolen from Kuri</li>
+		<li>If Kuri gains an additional copy of either <span class='buff'>Glory</span> or <span class='debuff'>Doom</span>, she gains a copy of its opposite as well. (Additional copies are only half as strong)</li>
 	</ul></li>
 	<li>Two-Faced Luck<ul>
-		<li></li>
+		<li>On all Luck rolls, Kuri rolls three times and discards the middle result. The other two results both occur</li>
 	</ul></li>
 	<li>Smuggling Training<ul>
-		<li></li>
+		<li>Kuri gains a +6 bonus to rolls made when attempting to lie about or hide an object she has been (or previously was) tasked with delivering</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_spellbook("Kuri Kumiko"));</script>
 
 </td></tr>
@@ -1976,11 +2026,9 @@ function ch_traits(name){
 <td>
 	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-72#post-96982301">Source</a></p>
 	<p>Age: 10</p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits("Shingo Tsukino"));</script>
 </td>
 </tr>
@@ -2031,7 +2079,7 @@ function ch_traits(name){
 <details><summary>Special Abilities</summary>
 <ul>
 	<li>Unexpected Entrance<ul>
-		<li></li>
+		<li>Gurio can enter a scene without any narrative justification</li>
 	</ul></li>
 </ul>
 </details>
@@ -2046,8 +2094,7 @@ function ch_traits(name){
 <script>
 	document.write(character_params("Chiaki"));
 </script>
-<tr>
-	<td colspan="3">Standard Issue Handgun</td>
+<tr><td colspan="3">Standard Issue Handgun</td>
 	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td>+5</td>	<td></td>
 </tr>
 </table>
@@ -2060,12 +2107,10 @@ function ch_traits(name){
 	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-72#post-96983348">Source</a></p>
 	<p>Age: 12</p>
 	<p>Affiliations: Direct Attack</p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
 	<li>English (Passable)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits("Chiaki"));</script>
 
 </td>
@@ -2073,16 +2118,14 @@ function ch_traits(name){
 
 <tr class="invis">
 <td colspan="3">
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Line it Up<ul>
-		<li></li>
+		<li>Chiaki can spend her entire combat action aiming. If she does, then the next <span class='stat'>OCBT</span> roll she makes with a projectile weapon is treated as a natural 10. This effect is discarded if Chiaki's next combat action does not use it</li>
 	</ul></li>
 	<li>Lycoris Training I<ul>
-		<li></li>
+		<li>Chiaki gets +3 to her <span class='stat'>MRT</span>, <span class='stat'>ING</span>, and <span class='stat'>SRT</span> while in combat</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 
 <script>document.write(ch_spellbook("Chiaki"));</script>
 </td></tr>
@@ -2110,17 +2153,13 @@ function ch_traits(name){
 	<p>Age: 15</p>
 	<p>Favoured by: <span class="mind">Earth's Mind (Velvet Room)</span></p>
 	<p>Affiliations: Phantasm Seekers (<span class="rank">Clan Leader</span>)</p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
 	<li>English (Decent)</li>
-</ul>
-</details>
-<details><summary>Reputations</summary>
-	<ul>
-		<li>Commander on the Battlefield (Active)</li>
-	</ul>
-</details>
+</ul></details>
+<details><summary>Reputations</summary><ul>
+	<li>Commander on the Battlefield (Active)</li>
+</ul></details>
 <script>document.write(ch_traits("Nanako Dojima"));</script>
 
 </td>
@@ -2128,31 +2167,41 @@ function ch_traits(name){
 
 <tr class="invis">
 <td colspan="3">
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Jury-Rigged Wildcard (The Warden)<ul>
-		<li></li>
+		<li>Nanako is capable of having more than one Persona. Any Personas that are not based on her own cognitive shadow are referred to as Recruits</li>
+		<li>Nanako can only recruit cognitive shadows with a soul bonding cost of 1. She can hold a number of Recruits in her soul equal to 2 plus her Social Link rank with Yaldabaoth (Currently a total of 5)</li>
+		<li>Nanako is not limited to one Persona or Recruit at a time. She can summon multiple Recruits in a single combat action and Recruits can act on their own</li>
+		<li>When summoning Personas in the real world, Nanako can spend 2 minor health/sanity in place of <span class='stat'>1 MW</span>. Damage and Horror she takes this way cannot be regained during the scene</li>
+		<li>This ability counts as a contract with the <span class='mind'>Velvet Room</span> that takes up 2 soul</li>
 	</ul></li>
 	<li>Future: Senshi of Earth's Mind I<ul>
-		<li></li>
+		<li>Nanako will be able to transform into Senshi Form as a brief action. While transformed, she will gain the following:<ul>
+			<li><span class='stat'>+4 CBT</span></li>
+			<li>100% of her <span class='stat'>STW</span> added to her <span class='stat'>MRT</span></li>
+			<li><span class='trait'>Physical Resistance</span> and <span class='trait'>Magical Resistance</span></li>
+			<li>The ability to change any of her Recruits' basic attacks to a medium ranged <span class='element'>Magical (Mental)</span> attack</li>
+			<li>A glamour that prevents those who did not witness her transform from determining her secret identity</li>
+		</ul></li>
 	</ul></li>
 	<li>Infohazard Training<ul>
-		<li></li>
+		<li>Nanako gets a +6 bonus to <span class='stat'>LRN</span> when attempting to avoid Infohazards</li>
+		<li>If such a check comes up during Research, Nanako rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Cognitohazard Training<ul>
-		<li></li>
+		<li>Nanako gets a +6 bonus to <span class='stat'>SRT</span> when trying to resist Cognitohazards</li>
+		<li>If such a check comes up during Research, she rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Cognitive Enhancement I<ul>
-		<li></li>
+		<li>Nanako gains a +1 bonus to <span class='stat'>SRT</span> for each friendly persona in Short range (To a Maximum of +5)</li>
 	</ul></li>
 	<li>Quick Summon<ul>
-		<li></li>
+		<li>Nanako can become Fatigued (-4 to all rolls.) for 1 full round in order to cast a spell or use an ability that summons/manifests creatures as a Brief Action. She must still pay any costs the spell or Ability requires</li>
 	</ul></li>
 	<li>Cognintive Catch<ul>
-		<li></li>
+		<li>As a Brief Action, Nanako can toss any handheld object to one of her Personas in Medium Range. Said Persona will never fail to catch the object. This ability's range is extended to Long while in the Cognitive Realm</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 
 <script>document.write(ch_spellbook("Nanako Dojima"));</script>
 </td></tr>
@@ -2175,13 +2224,11 @@ function ch_traits(name){
 	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-103#post-99711224">Source</a></p>
 	<p>Age: Complicated (Second Life)</p>
 	<p>Affiliations: Phantasm Seekers, The Phantom Thieves of Hearts</p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
 	<li>English (Fluent)</li>
 	<li>Necril (Esoteric)</li>
-</ul>
-</details>
+</ul></details>
 
 <script>document.write(ch_traits("Morgana"));</script>
 
@@ -2190,22 +2237,26 @@ function ch_traits(name){
 
 <tr class="invis">
 <td colspan="3">
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Being of Hope<ul>
-		<li></li>
+		<li>While Morgana is in the scene, all allies are treated as having Resistance against <span class='element'>Emotion</span> effects that are based on negative emotions</li>
+		<li>Morgana may change any attack he makes to a <span class='element'>Divine</span> attack. If he does, he adds the <span class='element'>Emotion</span> sub-type to it</li>
 	</ul></li>
 	<li>Cognitive Form<ul>
-		<li></li>
+		<li>While in the Cognitive Realm, Morgana automatically shifts into the form of a small vaguely humanoid cat. While transformed, he gains the following:<ul>
+			<li><span class='stat'>+9 CBT</span></li>
+			<li>The <span class='trait'>Mobile</span> and <span class='trait'>Hyper-Awareness</span> traits</li>
+			<li>The ability to shift back and forth between this and the form of a bus that carries people inside of it. Morgana cannot attack while he is a bus</li>
+		</ul></li>
 	</ul></li>
 	<li>Not my Journey<ul>
-		<li></li>
+		<li>Morgana's personas have been temporarily sealed for reasons he is not able to share</li>
 	</ul></li>
 	<li>Infohazard Training<ul>
-		<li></li>
+		<li>Morgana gets a +6 bonus to <span class='stat'>LRN</span> when attempting to avoid Infohazards</li>
+		<li>If such a check comes up during Research, Morgana rolls twice and takes the higher result</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 
 <script>document.write(ch_spellbook("Morgana"));</script>
 </td></tr>
@@ -2228,12 +2279,10 @@ function ch_traits(name){
 	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-270#post-117277574">Source</a></p>
 	<p>Age: 17</p>
 	<p>Affiliations: Phantasm Seekers (<span class="rank">Trainer</span>)</p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
 	<li>English (Decent)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits("Tsukasa Shishio"));</script>
 
 </td>
@@ -2242,37 +2291,39 @@ function ch_traits(name){
 <tr class="invis">
 <td colspan="3">
 
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Mind over Pain<ul>
-		<li></li>
+		<li>Tsukasa ignores all non-damaging and non-environmental debuffs, harmful stacks, and harmful effects acquired during combat until after combat</li>
+		<li>Tsukasa cannot take horror during combat</li>
 	</ul></li>
 	<li>Stance Change IV<ul>
-		<li></li>
+		<li>Up to four times per round as a brief action, Tsukasa can decrease either his OCBT or DCBT by up to 4 to increase the other Combat stat by the same amount</li>
 	</ul></li>
 	<li>Infohazard Training<ul>
-		<li></li>
+		<li>Tsukasa gets a +6 bonus to <span class='stat'>LRN</span> when attempting to avoid Infohazards</li>
+		<li>If such a check comes up during Research, he rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Cognitohazard Training<ul>
-		<li></li>
+		<li>Tsukasa gets a +6 bonus to <span class='stat'>SRT</span> when trying to resist Cognitohazards</li>
+		<li>If such a check comes up during Research, he rolls twice and takes the higher result</li>
 	</ul></li>
 	<li>Wood Boost II<ul>
-		<li></li>
+		<li>Whenever Bagheera uses a <span class='element'>Wood</span> special attack, Tsukasa can spend <span class='stat'>1 MP</span> in order to gain <span class='stack'>6 Aura</span> stacks. This is a <span class='element'>Magical (Wood)</span> effect</li>
 	</ul></li>
 	<li>Caged Beast Style I<ul>
-		<li></li>
+		<li>While Stance Change has boosted Tsukasa's <span class='stat'>OCBT</span> 8 or more above its base, Tsukasa deals an extra minor damage to any opponent he damages with an unarmed attack</li>
+		<li>While Stance Change has boosted Tsukasa's <span class='stat'>DCBT</span> 8 or more above its base, Tsukasa may make an unarmed attack once per round as a Brief Action</li>
 	</ul></li>
 	<li>Quick Summon<ul>
-		<li></li>
+		<li>Tsukasa can become Fatigued (-4 to all rolls.) for 1 full round in order to cast a spell or use an ability that summons/manifests creatures as a Brief Action. He must still pay any costs the spell or Ability requires</li>
 	</ul></li>
 	<li>Cognitive Catch<ul>
-		<li></li>
+		<li>As a Brief Action, Tsukasa can toss any handheld object to his Persona if it is within Medium Range. Said Persona will never fail to catch the object. This ability's range is extended to Long while in the Cognitive Realm</li>
 	</ul></li>
 	<li>Flash Step I<ul>
-		<li></li>
+		<li>As a Brief Action, Tsukasa can become Fatigued (-4 to all rolls) for 1 full round in order to move any unobstructed distance in Short range</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_spellbook("Tsukasa Shishio"));</script>
 
 </td></tr>
@@ -2294,19 +2345,15 @@ function ch_traits(name){
 <td>
 	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-175#post-106929968">Source</a></p>
 	<p>Age: 15</p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
 	<li>English (Decent)</li>
-</ul>
-</details>
-<details><summary>Reputations</summary>
-	<ul>
-		<li>The Greediest Man in the World! (Active)</li>
-		<li>Greed is Justice! (Active)</li>
-		<li>Can't Give Up (Active)</li>
-	</ul>
-</details>
+</ul></details>
+<details><summary>Reputations</summary><ul>
+	<li>The Greediest Man in the World! (Active)</li>
+	<li>Greed is Justice! (Active)</li>
+	<li>Can't Give Up (Active)</li>
+</ul></details>
 <script>document.write(ch_traits("Ryusui Nanami"));</script>
 
 </td>
@@ -2334,35 +2381,31 @@ function ch_traits(name){
 <td>
 	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-175#post-106930256">Source</a></p>
 	<p>Age: 15</p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
 	<li>English (Fluent)</li>
 	<li>Latin (Passable)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits("Senku Ishigami"));</script>
 </td>
 </tr>
 
 <tr class="invis">
 <td colspan="3">
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Head for Numbers<ul>
-		<li></li>
+		<li>Senku automatically succeeds at any check involving math, equations, or counting</li>
 	</ul></li>
 	<li>Scientific Progress<ul>
-		<li></li>
+		<li>If Senku ever fails a <span class='stat'>LRN</span> check, the check's DC is permanently reduced by his result</li>
 	</ul></li>
 	<li>Fragile (Drawback)<ul>
-		<li></li>
+		<li>Senku begins all scenes with the <span class='debuff'>Weakness</span> and <span class='debuff'>Armor Break</span> debuffs. If either of these are removed, they are reapplied immediately</li>
 	</ul></li>
 	<li>Abysmal Luck (Drawback)<ul>
-		<li></li>
+		<li>On all Luck rolls, Senku rolls three times and takes the worst result</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_spellbook("Senku Ishigami"));</script>
 </td></tr>
 </table>
@@ -2385,12 +2428,10 @@ function ch_traits(name){
 	<p>Age: 11</p>
 	<p>Favoured by: <span class="soul">Earth's Soul (The Hundred Acre Wood)</span></p><hr>
 	
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>English (Fluent)</li>
 	<li>Soulspeech (Esoteric)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits("Madeline Robin"));</script>
 
 </td>
@@ -2398,16 +2439,20 @@ function ch_traits(name){
 
 <tr class="invis">
 <td colspan="3">
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Future: Senshi of Earth's Soul I<ul>
-		<li></li>
+		<li>Madeline will be able to transform into Senshi Form as a brief action. While transformed, she will gain the following:<ul>
+			<li><span class='stat'>+3 CBT</span></li>
+			<li>100% of her <span class='stat'>SRT</span> added to her <span class='stat'>DCBT</span></li>
+			<li><span class='trait'>Physical Resistance</span> and <span class='trait'>Magical Resistance</span></li>
+			<li>The ability to change her basic attack to a melee <span class='element'>Magical (Spirit)</span> attack</li>
+			<li>A glamour that prevents those who did not witness her transform from determining her secret identity</li>
+		</ul></li>
 	</ul></li>
 	<li>Nexus Master of Hundred Acre Wood<ul>
-		<li></li>
+		<li>???</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 
 <script>document.write(ch_spellbook("Madeline Robin"));</script>
 </td></tr>
@@ -2442,13 +2487,11 @@ function ch_traits(name){
 <tr class="invis">
 <td colspan="3">
 
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Think Think Think<ul>
-		<li></li>
+		<li>Pooh gets +5 to <span class='stat'>DPL</span>, <span class='stat'>STW</span>, and <span class='stat'>LRN</span> when attempting to find a solution to a problem he is experiencing</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 
 <script>document.write(ch_spellbook("Pooh Bear"));</script>
 </td></tr>
@@ -2470,11 +2513,9 @@ function ch_traits(name){
 <td>
 	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-176#post-106947323">Source</a></p>
 	<p>Age: I'm afraid I don't remember</p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Soulspeech (Esoteric)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits("Piglet"));</script>
 
 </td>
@@ -2483,16 +2524,14 @@ function ch_traits(name){
 <tr class="invis">
 <td colspan="3">
 
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Braver Than you Believe<ul>
-		<li></li>
+		<li>On all <span class='stat'>SRT</span> checks, Piglet rolls twice and keeps the higher result</li>
 	</ul></li>
 	<li>Jury-Rigger<ul>
-		<li></li>
+		<li>Piglet can create and repair machines using common household objects. Said machines typically operate on cartoon physics. These break immediately after the round or scene they are used</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 
 <script>document.write(ch_spellbook("Piglet"));</script>
 </td></tr>
@@ -2521,14 +2560,12 @@ function ch_traits(name){
 	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-293#post-120326556">Source</a></p>
 	<p>Age: 37</p>
 	<p>Favored by: Sedna</p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
 	<li>English (Fluent)</li>
 	<li>Aklo (Fluent)</li>
 	<li>Mandarin (Passable)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits("Dojo Master"));</script>
 
 </td>
@@ -2537,28 +2574,28 @@ function ch_traits(name){
 <tr class="invis">
 <td colspan="3">
 
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Stance Change II<ul>
-		<li></li>
+		<li>Up to twice per round as a brief action, the Dojo Master can decrease either his <span class='stat'>OCBT</span> or <span class='stat'>DCBT</span> by up to 2 to increase the other Combat stat by the same amount</li>
 	</ul></li>
 	<li>Hungry Void Style II<ul>
-		<li></li>
+		<li>While Stance Change has boosted the Dojo Master's <span class='stat'>OCBT</span> above its base, the Dojo Master may spend <span class='stack'>2 Age</span> stacks to deal an additional minor damage after he damages an opponent with an unarmed attack. This damage is an <span class='element'>Eldritch (Void)</span> effect</li>
+		<li>While Stance Change has boosted the Dojo Master's <span class='stat'>DCBT</span> above its base, the Dojo Master may spend <span class='stack'>2 Age</span> stacks to take one less minor damage from an attack or effect. This is an <span class='element'>Eldritch (Void)</span> effect</li>
 	</ul></li>
 	<li>Sucker Punch<ul>
-		<li></li>
+		<li>Once per round as a Brief Action, the Dojo Master may attempt a Contested <span class='stat'>ING</span> check against an opponent within Melee range. If he succeeds, he can immediately make a Basic Attack against that opponent</li>
 	</ul></li>
 	<li>Magic Misdirection<ul>
-		<li></li>
+		<li>If the Dojo Master attempts to use Sucker Punch immediately after casting a spell, he gains a +8 Bonus for that ability's Contested <span class='stat'>ING</span> check</li>
 	</ul></li>
 	<li>Living on the Edge<ul>
-		<li></li>
+		<li>While the Dojo Master has 3 or more stacks of <span class='stack'>Peril</span>, he gains +2 to all stats</li>
 	</ul></li>
 	<li>Apprenticeship Bond (Meiling Li)<ul>
-		<li></li>
+		<li>Meiling and the Dojo Master constantly know how healthy and in what general direction each other are</li>
+		<li>Meiling learns things taught by the Dojo Master more easily</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_spellbook("Dojo Master"));</script>
 
 </td></tr>
@@ -2590,11 +2627,9 @@ function ch_traits(name){
 <td>
 	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-287#post-119582378">Source</a></p>
 	<p>Age: He was old when the Moon Kingdom fell</p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits("Atoning Tragedy"));</script>
 
 </td>
@@ -2603,16 +2638,14 @@ function ch_traits(name){
 <tr class="invis">
 <td colspan="3">
 
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Six-Armed<ul>
-		<li></li>
+		<li>Atoning Tragedy has six arms</li>
 	</ul></li>
 	<li>The Road Best Traveled (Divine Boon: Vertraag)<ul>
-		<li></li>
+		<li>Once per day, as a Brief Action costing <span class='stat'>5 MW</span>, Atoning Tragedy can force the next full round to take place 6 different times and select the outcome he likes most to be what actually happened. Only Atoning Tragedy and creatures who have <span class='trait'>Temporal Immunity</span>, <span class='trait'>Temporal Reflection</span>, or <span class='trait'>Temporal Absorption</span> will remember the rounds that didn't take place. This is an <span class='element'>Eldritch (Temporal, Weird)</span> effect</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 
 <script>document.write(ch_spellbook("Atoning Tragedy"));</script>
 
@@ -2635,11 +2668,9 @@ function ch_traits(name){
 <td>
 	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-114#post-101071647">Source</a></p>
 	<p>Age: Unknown</p><hr>
-<details><summary>Reputations</summary>
-<ul>
+<details><summary>Reputations</summary><ul>
 	<li>Father to His Youma (Active)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits("Jadeite"));</script>
 
 </td>
@@ -2647,14 +2678,24 @@ function ch_traits(name){
 
 <tr class="invis">
 <td colspan="3">
-<details><summary>Special Abilities</summary>
-<ul>
-	<li>Blessing of Metalia</li>
-	<li>Soul Storage Technique</li>
-	<li>Overcasting Technique</li>
-	<li>Natural Telekinetic</li>
-</ul>
-</details>
+<details><summary>Special Abilities</summary><ul>
+	<li>Blessing of Metalia<ul>
+		<li>Jadeite's health track has an additional Lethal Wound</li>
+		<li>Twice per day, if not in combat, Jadeite can teleport to any unwarded location on the planet. This is an <span class='element'>Eldritch (Spatial)</span> effect</li>
+		<li>As a combat action, Jadeite can attempt to steal Life Energy from a creature in melee range. This requires a successful Contested <span class='stat'>SRT</span> check. If successful, he steals <span class='stat'>1 MW</span> from them. This is an <span class='element'>Eldritch (Drain)</span> effect</li>
+	</ul></li>
+	<li>Soul Storage Technique<ul>
+		<li>Jadeite can store anything in his soul that fits through the size and shape of a Star Seed (i.e. material soul)</li>
+	</ul></li>
+	<li>Overcasting Technique<ul>
+		<li>Jadeite can use points from his Well in order to fuel spells that normally cost points from his Pool</li>
+	</ul></li>
+	<li>Natural Telekinetic<ul>
+		<li>Jadeite's <span class='element'>Force</span> spells cost 1 less <span class='stat'>MP</span> or <span class='stat'>MW</span> (To a minimum of 0 for <span class='stat'>MP</span> and a minimum of 1 for <span class='stat'>MW</span>)</li>
+		<li>When casting <span class='element'>Force</span> spells, Jadeite can ignore cover and any creatures he does not want to hit</li>
+		<li>Jadeite can change the type of his <span class='element'>Magical (Force)</span> spells and attacks to <span class='element'>Physical</span>. If he does, he adds the <span class='element'>Mental</span> sub-type</li>
+	</ul></li>
+</ul></details>
 
 <script>document.write(ch_spellbook("Jadeite"));</script>
 </td></tr>
@@ -2684,14 +2725,30 @@ function ch_traits(name){
 <tr class="invis">
 <td colspan="3">
 
-<details><summary>Special Abilities</summary>
-<ul>
-	<li>Hopeless, I Defied Him</li>
-	<li>Torturous Chords</li>
-	<li>Rage Against the Heavens</li>
-	<li>Draped in Mistery</li>
-</ul>
-</details>
+<details><summary>Special Abilities</summary><ul>
+	<li>Hopeless, I Defied Him<ul>
+		<li>The Organist's Basic Attack deals Horror instead of Damage</li>
+		<li>If The Organist's Basic Attack fails to deal Horror to a creature, that creature takes 1 Minor Horror. The Horror is a <span class='element'>Yellow</span> effect</li>
+		<li>As a Combat Action costing <span class='stat'>1 MW</span>, The Organist can attempt to give a creature within Earshot range the <span class='trait'>Yellow Vulnerability</span> trait until the end of the day. This requires a successful Contested <span class='stat'>SRT</span> check. The Organist gains a +4 bonus on this check for each time he has failed it this scene. This is an <span class='element'>Eldritch (Yellow)</span> effect</li>
+	</ul></li>
+	<li>Torturous Chords<ul>
+		<li>Music played by The Organist at an organ can he heard throughout the entire city</li>
+		<li>While The Organist's music is playing, all <span class='trait'>Hope-Bringer</span> traits and <span class='stack'>Courage</span> stacks are disabled. Additionally, all Spells and Effects made by creatures unaligned with Hastur that cost <span class='stat'>MP</span> or <span class='stat'>MW</span> cost 1 additional <span class='stat'>MP</span> or <span class='stat'>MW</span></li>
+		<li>When The Organist enters combat for the first time in a scene, his music plays for 3 rounds</li>
+		<li>This is an <span class='element'>Eldritch (Sound, Yellow)</span> effect</li>
+	</ul></li>
+	<li>Rage Against the Heavens<ul>
+		<li>The Organist is considered Vulnerable to the effects of any Spells whose Metaphysical Weights are Deities</li>
+		<li>Whenever such a Spell is cast or the effect of a Divine Boon is triggered within sight of The Organist, he immediately gains <span class='stack'>1 Age</span> stack</li>
+		<li>Whenever an effect from a Cleric ability is triggered within sight of The Organist, he immediately gains <span class='stack'>2 Age</span> stacks</li>
+		<li>The first time in a scene that a Divine Instrument is summoned within sight of The Organist, he immediately gains <span class='stack'>10 Age</span> stacks</li>
+	</ul></li>
+	<li>Draped in Mistery<ul>
+		<li>The Organist can only exist during the hours of night. When the sun rises, he folds into shadows and vanishes</li>
+		<li>If The Organist is not defeated before sunrise, he Heals all damage and regains all Well</li>
+		<li>As a Brief Action costing <span class='stat'>1 MP</span>, The Organist can teleport to any shadowy place within Line of Sight. This is an <span class='element'>Eldritch (Darkness, Yellow)</span> effect</li>
+	</ul></li>
+</ul></details>
 
 <script>document.write(ch_spellbook("The Organist of Notre Dame"));</script>
 </td></tr>
@@ -2712,11 +2769,9 @@ function ch_traits(name){
 <tr class="invis">
 <td>
 	<p><a href="">Source</a></p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits("Jeeves"));</script>
 
 </td>
@@ -2725,11 +2780,9 @@ function ch_traits(name){
 <tr class="invis">
 <td colspan="3">
 
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li></li>
-</ul>
-</details>
+</ul></details>
 
 <script>document.write(ch_spellbook("Jeeves"));</script>
 
@@ -2752,11 +2805,9 @@ function ch_traits(name){
 <td>
 	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-298#post-121206216">Source</a></p>
 	<hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits("The Smiling Fog"));</script>
 
 </td>
@@ -2765,8 +2816,7 @@ function ch_traits(name){
 <tr class="invis">
 <td colspan="3">
 
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Fog of Death<ul>
 		<li>Creatures that breathe in The Smiling Fog must succeed at a Contested <span class='stat'>SRT</span> check or die immediately. If they continue to breathe in the fog, they must reattempt the check every round. The Smiling Fog gets a +4 bonus to this check for every round the creature has spent breathing him in. This is an <span class='element'>Eldritch (Air, Water, Death)</span> effect</li>
 		<li>Creatures with the <span class='trait'>Shinigami</span> trait are immune to this effect</li>
@@ -2780,8 +2830,7 @@ function ch_traits(name){
 		<li>While The Smiling Fog is connected to at least one puppeted corpse, he cannot be killed</li>
 		<li>If all of his puppeted corpses are gone, The Smiling Fog immediately dies</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 
 <script>document.write(ch_spellbook("The Smiling Fog"));</script>
 
@@ -2814,8 +2863,7 @@ function ch_traits(name){
 <tr class="invis">
 <td colspan="3">
 
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Don't Blink<ul>
 		<li>While an intelligent creature is observing a member of the Fossilized Mob, that member cannot move. Other members of the Fossilized Mob do not trigger this effect</li>
 		<li>While unobserved, members of the Fossilized Mob can move at up to three times the speed of sound. They only produce shockwaves from this movement if they wish to</li>
@@ -2824,8 +2872,7 @@ function ch_traits(name){
 		<li>If a member of the Fossilized Mob has one of their Vulnerability traits triggered, they lose all Health and shatter immediately</li>
 		<li>If a member's shattered pieces are all pieced back together, that member is immediately Revived at full Health</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 
 <script>document.write(ch_spellbook("Fossilized Mob Member"));</script>
 
@@ -2849,11 +2896,9 @@ function ch_traits(name){
 <td>
 	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-306#post-121482567">Source</a></p>
 	<hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits("The Playful Ball"));</script>
 
 </td>
@@ -2862,10 +2907,9 @@ function ch_traits(name){
 <tr class="invis">
 <td colspan="3">
 
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>The Ball is Harmless<ul>
-		<li>Cognitohazard: Creatures who see the ball or [Redacted] must succeed at a Contested <span class='stat'>SRT</span> Check or be convinced the ball is harmless. Anyone convinced the ball is harmless who gets within Medium range of the ball or [Redacted] must succeed at another Contested <span class='stat'>SRT</span> check or become enthralled by the ball. Those enthralled can receive mental nudges from the ball to do things, which frequently includes playing with the ball. This is an <span class='element'>Eldritch (Mental, Dream)</span> effect</li>
+		<li>Cognitohazard: Creatures who see the ball or [Redacted] must succeed at a Contested <span class='stat'>SRT</span> check or be convinced the ball is harmless. Anyone convinced the ball is harmless who gets within Medium range of the ball or [Redacted] must succeed at another Contested <span class='stat'>SRT</span> check or become enthralled by the ball. Those enthralled can receive mental nudges from the ball to do things, which frequently includes playing with the ball. This is an <span class='element'>Eldritch (Mental, Dream)</span> effect</li>
 	</ul></li>
 	<li>[Redacted]<ul>
 		<li>At will, the ball or [Redacted] can [Redacted], causing an enthralled creature to vanish [Redacted]. This is a [Redacted] effect</li>
@@ -2874,8 +2918,7 @@ function ch_traits(name){
 	<li>[Redacted]<ul>
 		<li>[Redacted due to The Playful Ball's status as a puzzle boss]</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 
 <script>document.write(ch_spellbook("The Playful Ball"));</script>
 
@@ -2907,8 +2950,7 @@ function ch_traits(name){
 <tr class="invis">
 <td colspan="3">
 
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Shadow Realm<ul>
 		<li>The Dueling Beast has access to a shadowy pocket realm that travels with him wherever he moves in the real world. Outside of this shadow realm, he cannot be harmed or harm others in any way. Inside of the shadow realm, his <span class='trait'>Incorporeal</span> and <span class='trait'>Invisible</span> traits are disabled</li>
 		<li>Once per scene as a Brief Action, The Dueling Beast can pull both himself and a chosen opponent into his shadow realm. This requires a successful Contested <span class='stat'>SRT</span> Check. If he succeeds, neither the Dueling Beast nor his opponent can leave until one or the other is defeated</li>
@@ -2924,8 +2966,7 @@ function ch_traits(name){
 	<li>Respawn<ul>
 		<li>The Dueling Beast sometimes returns to life even if killed. The Narrative decides when this triggers</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 
 <script>document.write(ch_spellbook("The Duelling Beast"));</script>
 
@@ -2957,19 +2998,17 @@ function ch_traits(name){
 <tr class="invis">
 <td colspan="3">
 
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li>Eyeless<ul>
 		<li>Nightgaunts ignore Gaze Attacks</li>
 	</ul></li>
 	<li>Shrouding Blood<ul>
-		<li>Whenever an Elder Nightgaunt takes any amount of direct damage to its health, it Shields for that same amount. This is an <span class="element">Eldritch (Darkness)</span> effect</li>
+		<li>Whenever an Elder Nightgaunt takes any amount of direct damage to its health, it Shields for that same amount. This is an <span class='element'>Eldritch (Darkness)</span> effect</li>
 	</ul></li>
 	<li>Carry Off<ul>
 		<li>A Nightgaunt can carry anything that is equal to or smaller than it in size. It does not need to worry about weight or mass. This is an <span class='element'>Eldritch (Momentum)</span> effect</li>
 	</ul></li>
-</ul>
-</details>
+</ul></details>
 
 <script>document.write(ch_spellbook("Elder Nightgaunt"));</script>
 
@@ -2994,11 +3033,9 @@ function ch_traits(name){
 <td>
 	<p><a href="">Source</a></p>
 	<p>Age: </p><hr>
-<details><summary>Known languages</summary>
-<ul>
+<details><summary>Known languages</summary><ul>
 	<li>Japanese (Fluent)</li>
-</ul>
-</details>
+</ul></details>
 <script>document.write(ch_traits(""));</script>
 
 </td>
@@ -3007,11 +3044,9 @@ function ch_traits(name){
 <tr class="invis">
 <td colspan="3">
 
-<details><summary>Special Abilities</summary>
-<ul>
+<details><summary>Special Abilities</summary><ul>
 	<li></li>
-</ul>
-</details>
+</ul></details>
 
 <script>document.write(ch_spellbook(""));</script>
 

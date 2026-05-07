@@ -121,7 +121,21 @@ function character_params(name){
 			if (Object.keys(cr).includes("cbt")){
 				html += '<td colspan="2">' + cr.cbt + '</td>';
 			}else{
-				html += '<td colspan="2"></td>';
+				if (Object.keys(cr).includes("ocbt")){
+					html += '<td>' + cr.ocbt + '</td>';
+					if (Object.keys(cr).includes("dcbt")){
+						html += '<td>' + cr.dcbt + '</td>';
+					}else{
+						html += '<td></td>'
+					}
+				}else{
+					if (Object.keys(cr).includes("dcbt")){
+						html += '<td></td><td>' + cr.dcbt + '</td>';
+					}else{
+						html += '<td colspan="2"></td>';
+					}
+				}
+				
 			}
 			html += '</tr>';
 		}
@@ -2890,7 +2904,7 @@ function ch_traits(name){
 </table>
 </td>
 <td rowspan="2">
-	<span><img src="img/" alt="image of " ></span>
+	<span><img src="img/The_Playful_Ball.png" alt="image of " ></span>
 </td></tr>
 <tr class="invis">
 <td>
@@ -2974,6 +2988,46 @@ function ch_traits(name){
 </td></tr>
 </table>
 
+<hr><table>		<!--The Soldier in the Plane-->
+<tr class="invis"><td><h2 id="The_Soldier_in _the_Plane">The Soldier in the Plane</h2></td>
+<td rowspan="2">
+<table>
+<script>
+	document.write(character_params("The Soldier in the Plane"));
+</script>
+</table>
+</td>
+<td rowspan="2">
+	<span><img src="img/" alt="image of " ></span>
+</td></tr>
+<tr class="invis">
+<td>
+	<p><a href="https://forums.spacebattles.com/threads/narus-secret-dungeon-a-sailor-moon-dungeon-core-quest.1091151/page-311#post-121794303">Source</a></p>
+	<hr>
+
+<script>document.write(ch_traits("The Soldier in the Plane"));</script>
+
+</td>
+</tr>
+
+<tr class="invis">
+<td colspan="3">
+
+<details><summary>Special Abilities</summary><ul>
+	<li>Kamikaze<ul>
+		<li>Whenever The Soldier in the Plane runs into an unwarded solid structure, both it and the structure are destroyed in a violent explosion. This is an <span class='element'>Eldritch (Heat, Momentum)</span> effect</li>
+	</ul></li>
+	<li>Rapid Repair<ul>
+		<li>After the above ability is triggered, The Soldier in the Plane repairs itself to full health over the course of one full round. It cannot be damaged while repairing itself. This is an <span class='element'>Eldritch (Healing, Transmutation, Metal)</span> effect</li>
+	</ul></li>
+</ul></details>
+
+<script>document.write(ch_spellbook("The Soldier in the Plane"));</script>
+
+
+</td></tr>
+</table>
+
 <hr><table>		<!--Elder Nightgaunt-->
 <tr class="invis"><td><h2 id="Elder_Nightgaunt">Elder Nightgaunt</h2></td>
 <td rowspan="2">
@@ -2984,7 +3038,7 @@ function ch_traits(name){
 </table>
 </td>
 <td rowspan="2">
-	<span><img src="img/" alt="image of " ></span>
+	<span><img src="img/" ></span>
 </td></tr>
 <tr class="invis">
 <td>

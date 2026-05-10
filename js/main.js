@@ -115,44 +115,72 @@ function createTraitHTML(name){
 		"Definition": "",
 	}
 	let defin = "";
-	if (name.slice(-8) == "Immunity"){
-		defin = "The creature is unaffected by attacks and harmful effects of the given type or subtype";
-		html += defin.replace("given type or subtype", name.slice(0, -9));
-		return html;
-	}
-	if (name.slice(-10) == "Resistance"){
-		defin = "The creature takes less damage from attacks and harmful effects of the given type or subtype";
-		html += defin.replace("given type or subtype", name.slice(0, -11));
-		return html;
-	}
-	if (name.slice(-10) == "Reflection"){
-		defin = "Attacks and harmful effects of the given type or subtype are reflected back onto the creature that initiated them";
-		html += defin.replace("given type or subtype", name.slice(0, -11));
-		return html;
-	}
-	if (name.slice(-10) == "Absorption"){
-		defin = "Attacks and harmful effects of the given type or subtype heal this creature instead of their normal effect";
-		html += defin.replace("given type or subtype", name.slice(0, -11));
+	if (name.slice(0, 9) == "Specialty"){
+		defin = "All positive roll results that fall under the listed specialty are multiplied by 2";
+		html += defin.replace("the listed specialty", name.slice(11, -1) + " specialty");
 		return html;
 	}
 	if (name.slice(-13) == "Vulnerability"){
 		defin = "The creature takes more damage from attacks and effects of the given type or subtype";
-		html += defin.replace("given type or subtype", name.slice(0, -14));
+		if (basic_elements.indexOf(name.slice(0, -14)) != -1){
+			html += defin.replace("given type or subtype", "<span class='element'>" + name.slice(0, -14) + "</span>");
+		}else{
+			html += defin.replace("given type or subtype", name.slice(0, -14));
+		}
+		return html;
+	}
+	if (name.slice(-10) == "Reflection"){
+		defin = "Attacks and harmful effects of the given type or subtype are reflected back onto the creature that initiated them";
+		if (basic_elements.indexOf(name.slice(0, -11)) != -1){
+			html += defin.replace("given type or subtype", "<span class='element'>" + name.slice(0, -11) + "</span>");
+		}else{
+			html += defin.replace("given type or subtype", name.slice(0, -11));
+		}
+		return html;
+	}
+	if (name.slice(-10) == "Absorption"){
+		defin = "Attacks and harmful effects of the given type or subtype heal this creature instead of their normal effect";
+		if (basic_elements.indexOf(name.slice(0, -11)) != -1){
+			html += defin.replace("given type or subtype", "<span class='element'>" + name.slice(0, -11) + "</span>");
+		}else{
+			html += defin.replace("given type or subtype", name.slice(0, -11));
+		}
+		return html;
+	}
+	if (name.slice(-8) == "Immunity"){
+		defin = "The creature is unaffected by attacks and harmful effects of the given type or subtype";
+		if (basic_elements.indexOf(name.slice(0, -9)) != -1){
+			html += defin.replace("given type or subtype", "<span class='element'>" + name.slice(0, -9) + "</span>");
+		}else{
+			html += defin.replace("given type or subtype", name.slice(0, -9));
+		}
+		return html;
+	}
+	if (name.slice(-10) == "Resistance"){
+		defin = "The creature takes less damage from attacks and harmful effects of the given type or subtype";
+		if (basic_elements.indexOf(name.slice(0, -11)) != -1){
+			html += defin.replace("given type or subtype", "<span class='element'>" + name.slice(0, -11) + "</span>");
+		}else{
+			html += defin.replace("given type or subtype", name.slice(0, -11));
+		}
 		return html;
 	}
 	if (name.slice(-8) == "Affinity"){
 		defin = "Spells that this character casts that have the same subtype as their affinity are more powerful. The character can also learn spells that fall under their affinity 75% faster";
-		html += defin.replace("the same subtype as their affinity", name.slice(0, -9) + " subtype");
+		if (name.slice(0, -9) in basic_elements){
+			html += defin.replace("the same subtype as their affinity", "<span class='element'>" + name.slice(0, -9) + "</span> subtype");
+		}else{
+			html += defin.replace("the same subtype as their affinity", name.slice(0, -9) + "subtype");
+		}
 		return html;
 	}
 	if (name.slice(0, 8) == "Critical"){
 		defin = "Spells and attacks that have the same subtype reach crit easier";
-		html += defin.replace("the same subtype", name.slice(9) + " subtype");
-		return html;
-	}
-	if (name.slice(0, 9) == "Specialty"){
-		defin = "All positive roll results that fall under the listed specialty are multiplied by 2";
-		html += defin.replace("the listed specialty", name.slice(11, -1) + " specialty");
+		if (name.slice(9) in basic_elements){
+			html += defin.replace("the same subtype", "<span class='element'>" + name.slice(9) + "</span> subtype");
+		}else{
+			html += defin.replace("the same subtype", name.slice(9) + "subtype");
+		}
 		return html;
 	}
 	if (name.slice(0, 12) == "Fast Healing"){	
@@ -205,17 +233,17 @@ function createTraitHTML(name){
 		html += defin.replace("specified Element", name.slice(14));
 		return html;
 	}
-	if (name.slice(0, 14) == "Total Defense"){
+	if (name.slice(0, 13) == "Total Defense"){
 		defin = "The first X times this creature would take damage during a scene, it instead does not";
 		html += defin.replace("X times", name.slice(15) + " times");
 		return html;
 	}
-	if (name.slice(0, 13) == "Death Throes"){
+	if (name.slice(0, 12) == "Death Throes"){
 		defin = "When this creature dies, it performs the listed attack immediately at no cost";
-		html += defin.replace("the listed attack", name.slice(15, -1));
+		html += defin.replace("the listed attack", name.slice(14, -1));
 		return html;
 	}
-	if (name.slice(0, 8) == "Evasion"){
+	if (name.slice(0, 7) == "Evasion"){
 		defin = "Attacks against this creature have a chance to miss equal to 10%";
 		html += defin.replace("10%", name.slice(9) + "0%");
 		return html;

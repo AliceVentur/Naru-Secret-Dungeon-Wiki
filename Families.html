@@ -45,7 +45,7 @@ li {
 #abominations{
   background-color: var(--abominations);
 }
-#land_arthropods{
+#land-based_arthropods{
   background-color: var(--land_arthropods);
 }
 #incorporeal_undead{
@@ -58,6 +58,81 @@ li {
 
 </style>
 <script src="./js/data.js" lang="javascript"></script>
+<script>
+function minion_chart(name){
+	let html = "";
+	for (var cr of creatures) {
+		if (cr.name == name) {
+			let stat_list = ["mp", "mrt", "dpl", "stw", "ing", "lrn", "srt", "cbt", "ocbt", "dcbt"];
+			
+			let num = 1;
+			for (var st of stat_list){
+				num += Object.keys(cr).includes(st);
+			}
+			
+			html += "<li><details>"
+			html += "<summary><span class='familiar'>" + name + "</span></summary>";
+			html += "<table><tr>";
+			html += "<td style='width: 70px;'>" + translate_hp(cr.hp, 1) + "</td>";
+			html += "<td style='width: 170px;' rowspan=" + num + ">";
+			
+			for  (var t_tr of traits2[name]){
+				html += "<li><span class='trait'>";
+				if (!Number.isSafeInteger(t_tr[0])){
+					html += t_tr[0];
+					if (t_tr.length > 1){
+						html += " (" + t_tr[1] + ")";
+					}
+				}else if (t_tr[0] == 0){
+					html += "Specialty (" + t_tr[1] + ")";
+				}else if (t_tr[0] < 7){
+					if (Number.isSafeInteger(t_tr[1])){
+						html += basic_elements[t_tr[1]];
+					}else{
+						html += t_tr[1];
+					}
+					if (t_tr[0] == 1){
+						html += " Vulnerability";
+					}else if(t_tr[0] == 2){
+						html += " Reflection";
+					}else if(t_tr[0] == 3){
+						html += " Absorption";
+					}else if(t_tr[0] == 4){
+						html += " Immunity";
+					}else if(t_tr[0] == 5){
+						html += " Resistance";
+					}else if(t_tr[0] == 6){
+						html += " Affinity";
+					}
+				}else if(t_tr[0] < 9){
+					if (t_tr[0] == 7){
+						html += "Critical "
+					}else if (t_tr[0] == 8){
+						html += "Internalized "
+					}
+					if (Number.isSafeInteger(t_tr[1])){
+						html += basic_elements[t_tr[1]];
+					}else{
+						html += t_tr[1];
+					}
+				}
+				html += "</span></li>";
+			}
+			html += "</td>";
+			
+			html += "<td rowspan=" + num + "></td>";
+			
+			for (var st of stat_list){
+				if (Object.keys(cr).includes(st)){
+					html += "</tr><tr><td><span class='stat'>" +  st.toUpperCase() + "</span>: " + cr[st] + "</td>";
+				}
+			}
+			html += "</tr></table></details></li>";
+		}
+	}
+	return html;
+}
+</script>
 </head>
 
 <body>

@@ -368,7 +368,7 @@ const creatures = [
 	{name: "The Duelling Beast", type: "Enemy", hp: 1, mp: 5, mw: 5, mrt: 18, ing: 18, srt: 30, elems: [1, 5, 16, 56]},
 	{name: "The Soldier in the Plane", type: "Enemy", hp: 2, mp: 0, mw: "NA", mrt: 32, ing: 2, srt: 12, ocbt: 0, dcbt: 26},
 	{name: "The Daughter of Birds", type: "Villain", hp: 1.5, mp: 5, mw: 8, mrt: 16, dpl: 9, stw: 18, ing: 19, lrn: 5, srt: 27, cbt: 20, elems: [2, 5]},
-	{name: "The Unassuming Onryo", type: "Villain", hp: 1, mp, 5, mw, 5, mrt: 12, ing: 22, srt: 4, cbt: 6, elems: [1, 6, 23], range: "Extended Melee"},
+	{name: "The Unassuming Onryo", type: "Villain", hp: 1, mp: 5, mw: 5, mrt: 12, ing: 22, srt: 4, cbt: 6, elems: [1, 6, 23], range: "Extended Melee"},
 	{name: "Suki", type: "Character", cbt: 10},
 	{name: "Shoma", type: "Character", hp: 1, mrt: 5, cbt: 8},
 	{name: "Mamoru Chiba", type: "Character", hp: 1},
@@ -376,7 +376,7 @@ const creatures = [
 	{name: "Luna", type: "Characters", hp: 1},
 	{name: "Artemis", type: "Characters", hp: 1},
 	{name: "Jiemba", type: "Characters", hp: 1, mp: 3, mw: 8, srt: 16, cbt: 9},
-	{name: "Jeeves", type: "Characters", hp: 3, mrt: 11, dcbt: 10},
+	{name: "Jeeves", type: "Villain", hp: 3, mrt: 11, dcbt: 10},
 	{name: "Drum-Grum", type: "Villain", hp: 1, mrt: 5, srt: 17, dcbt: 10, ocbt: 16},
 	{name: "Everest", type: "Villain", hp: 1, mrt: 12, srt: 13, cbt: 18},
 	{name: "Eiraithial", type: "Villain", hp: 1,  mrt: 20, srt: 10, cbt: 7},
@@ -1055,9 +1055,9 @@ const spells = [
 	{name: "Audiovisual Illusion", cost: "See Effect", bonus: "+4 ING", elem: [1, 31, 34, 48], weight: "Deception", range: "See Effect", time: "Concentration", user: ["Jadeite"], effect: "Manifests an audiovisual illusion determined by the caster and in an Area of Effect radius originating from the caster. Short range radius costs <span class='stat'>1 MP</span>, Medium costs <span class='stat'>2 MP</span>, Long costs <span class='stat'>4 MP</span>, Very Long costs <span class='stat'>6 MP</span>, and Local range costs <span class='stat'>10 MP</span>"},
 	{name: "Autopsy", cost: "2 MP", bonus: "NA", elem: [1, 17, 32], weight: "Concept of Death", range: "Touched Corpse", time: "Instant", user: ["Naru Osaka", "Nene Yashiro"], effect: "Gives the caster all available mundane information about how the target died"},
 	{name: "Avalon Mists", cost: "", bonus: "", elem: [], weight: "Soul of the Earth", range: "", time: "", user: [], effect: ""},
-	{name: "Beckon Spirit Orb", cost: "1 MW", bonus: "NA", elem: [1, 17, 50], weight: "The Comet", range: "Short", time: "Until <span class='familiar'>Spirit Orb</span> is killed or dismissed", user: ["Tomoyo Daidouji"], effect: "Summons a <span class='familiar'>Spirit Orb</span> somewhere within range. A <span class='familiar'>Spirit Orb</span> takes up a summoning slot"},
 	
 	{name: "Banish the Dark", cost: "3 MP", bonus: "+8 SRT", elem: [1, 25, 34], weight: "The Sun", range: "Medium", time: "Instant", user: ["Kerberos"], effect: "The caster can banish any unnatural darkness within range. This may require a Contested <span class='stat'>SRT</span> check depending on the circumstances"},
+	{name: "Beckon Spirit Orb", cost: "1 MW", bonus: "NA", elem: [1, 17, 50], weight: "The Comet", range: "Short", time: "Until <span class='familiar'>Spirit Orb</span> is killed or dismissed", user: ["Tomoyo Daidouji"], effect: "Summons a <span class='familiar'>Spirit Orb</span> somewhere within range. A <span class='familiar'>Spirit Orb</span> takes up a summoning slot"},
 	{name: "Blazar Jet", cost: "2 MP", bonus: "+2 CBT", elem: [1, 35, 54], weight: "Black Holes", range: "See Effect", time: "1 Attack", user: ["Dojo Master"], effect: "Produces a <span class='element'>Physical (Energy, Matter)</span> attack with a Range of Long"},
 	{name: "Blazar Jet", cost: "2 MW", bonus: "+10 CBT", elem: [1, 35, 54], weight: "Black Holes", range: "See Effect", time: "1 Attack", user: ["Dojo Master"], over: "", effect: "Produces a <span class='element'>Physical (Energy, Matter)</span> attack with a Range of Long"},
 	{name: "Blink", cost: "1 MP", bonus: "NA", elem: [1, 49], weight: "Concept of Escape", range: "See Effect", time: "Instant. Can be cast as a Reaction", user: ["Syaoran Li"], effect: "The caster can teleport to any spot within Short range"},
@@ -1288,8 +1288,9 @@ function translate_hp(hp, mode = 0){
 	
 }
 
-function sorting_by_param(arr, param = "name", order = "True"){
+function sorting_by_param(arr, param = "name", order = (1 == 1)){
 	let par_list = Array();
+	
 	for (var el of arr){
 		if (!par_list.includes(el[param])){
 			par_list.push(el[param]);
@@ -1298,7 +1299,7 @@ function sorting_by_param(arr, param = "name", order = "True"){
 	
 	par_list.sort();
 	
-	if (order != "True"){
+	if (order){
 		par_list.reverse();
 	}
 	let copy_arr = Array();
@@ -1316,12 +1317,21 @@ function sorting_by_param(arr, param = "name", order = "True"){
 	return copy_arr;
 }
 
-function filtering_by_param(arr, param, value){
+function filtering_by_param(arr, param, value, mode = 1){
 	let copy_arr = Array();
+	if (value.length == 0){
+		return arr;
+	}
 	for (var el of arr){
 		if (Object.keys(el).includes(param)){
-			if (value.every( (v) => el[param].includes(v) ) ){
-				copy_arr.push(el);
+			if (mode == 1){
+				if (value.every( (v) => el[param].includes(v) ) ){
+					copy_arr.push(el);
+				}
+			}else{
+				if (value.some( (v) => el[param].includes(v) ) ){
+					copy_arr.push(el);
+				}
 			}
 		}
 	}

@@ -4,11 +4,9 @@
 <title>Spellbook</title>
 <link rel="stylesheet" href="./css/style.css" />
 <style>
-  
-  
 td, th{
   text-align: center;
-  padding: 10px 0;
+  
 }
 
 td:last-child{
@@ -25,230 +23,78 @@ td:last-child{
 </style>
 <script src="./js/data.js" lang="javascript"></script>
 <script>
-header = ["name", "Cost", "bonus", "elem", "weight", "time", "effect", "user"];
+header = ["name", "cost", "bonus", "elem", "weight", "range", "time", "effect", "user"];
 
-function spellbook_copy(){
-	const root = document.querySelector("tbody");
+function elem_option_list(){
+	let html = "<br><form name='elemForm'><select id='select_elem' name='elems' multiple size='1'>";
 	
-	let page = sorting_param(spells, "weight");
-	for (var p of page){
-		let tarr = Array();
-		
-		for (var sp of spells){
-			if (sp["weight"] == p){
-				tarr.push(sp);
-			}
-		}
-		let tname = sorting_param(tarr, "name");
-		for (var n of tname){
-			let gr_sp = Array();
-			for (var sp of tarr){
-				if (sp["name"] == n){
-					gr_sp.push(sp);
-				}
-			}
-			
-			for (var sp of gr_sp){
-				const row = document.createElement('tr');
-				header.forEach((h) => {
-					const cell = document.createElement('td');
-					if (Object.keys(sp).includes(h)){
-						let text = "";
-						if (h == "name"){
-							text = sp.name;
-							if (Object.keys(sp).includes("aff")){
-								text += " - <span class='element'>" + sp.aff + "</span> Affinity";
-							}
-							if (Object.keys(sp).includes("over")){
-								if (sp.over){
-									text += " (Overcast: " + sp.over + ")";
-								}else{
-									text += " (Overcast)";
-								}
-							}
-							
-						}else if (h == "cost"){
-							if (["MP", "MW", "HP"].includes(sp.cost.split(" ")[1])){
-								if (sp.cost.slice(-2) == "HP"){
-									text = "<span>" + translate_hp(sp.cost.slice(0, -3), 2) + "</span>";
-								}else{
-									text = "<span class='stat'>" + sp.cost + "</span>";
-								}
-							}
-						}else if (h == "bonus"){
-							if (["MRT", "DPL", "STW", "ING", "LRN", "SRT", "CBT", "OCBT", "DCBT"].includes(sp.bonus.split(" ")[1])){
-								text = "<span class='stat'>" + sp.bonus + "</span>";
-							}else{
-								text = sp.bonus;
-							}
-						}else if (h == "elem"){
-							if (sp.elem.length > 0){
-								text = "<span class='element'>" + basic_elements[sp.elem[0]];
-								if (sp.elem.length > 1){
-									text += " (" + sp.elem.slice(1).map((el) => basic_elements[el]).join(", ") + ")";
-								}
-								text += "</span>";
-							}
-						}else if (h == "weight"){
-							text = "<span class='weight'>" + sp.weight + "</span>";
-						}else if ((h == "range")|(h == "time")|(h == "effect")){
-							text = sp[h];
-						}else if (h == "user"){
-							text = sp.user.map((us) => "<a href='Characters.html#" + us.replaceAll(" ", "_") + "' class='character'>" + us + "</a>").join("<br>");
-						}
-						cell.appendChild(document.createTextNode(text));
-					}
-					row.appendChild(cell);
-				})
-				root.appendChild(row);
-			}
+	let el_set = new Set();
+	for (var p of spells){
+		if (Object.keys(p).includes("elem")){
+			el_set = el_set.union(new Set(p.elem))
 		}
 	}
+	
+	let i = 1;
+	html +="<optgroup label='Types'>";
+	while (i<4){
+		if (el_set.has(i)){
+			html += "<option value=" + i + ">" + basic_elements[i]+ "</option>";
+		}
+		i += 1;
+	}
+	html += "</optgroup>";
+	
+	i = 7
+	html +="<optgroup label='Subtypes'>";
+	while (i< basic_elements.length){
+		if (el_set.has(i)){
+			html += "<option value=" + i + ">" + basic_elements[i] + "</option>";
+		}
+		i += 1;
+	}
+	html += "</optgroup>";
+	
+	html += "</select></form>"
+	return html;
 }
 
-		
-
-function spellbook(){
-	
-	let html = "";
-	let page = sorting_param(spells, "weight");
-	
-	for (var p of page){
-		let tarr = Array();
-		
-		for (var sp of spells){
-			if (sp["weight"] == p){
-				tarr.push(sp);
-			}
-		}
-		let tname = sorting_param(tarr, "name");
-		for (var n of tname){
-			let gr_sp = Array();
-			for (var sp of tarr){
-				if (sp["name"] == n){
-					gr_sp.push(sp);
-				}
-			}
-			
-			for (var sp of gr_sp){
-				html += "<tr>";
-				if (Object.keys(sp).includes("name")){
-					html += "<td>" + sp.name;
-					if (Object.keys(sp).includes("aff")){
-						html += " - <span class='element'>" + sp.aff + "</span> Affinity";
-					}
-					if (Object.keys(sp).includes("over")){
-						if (sp.over){
-							html += " (Overcast: " + sp.over + ")";
-						}else{
-							html += " (Overcast)";
-						}
-					}
-					html += "</td>";
-				}else{
-					html += "<td></td>";
-				}
-				if (Object.keys(sp).includes("cost")){
-					html += "<td>";
-							
-					if (["MP", "MW", "HP"].includes(sp.cost.split(" ")[1])){
-						if (sp.cost.slice(-2) == "HP"){
-							html += "<span>" + translate_hp(sp.cost.slice(0, -3), 2) + "</span></td>";
-						}else{
-							html += "<span class='stat'>" + sp.cost + "</span></td>";
-						}
-					}else{
-						html += sp.cost + "</td>";
-					}
-				}else{
-					html += "<td></td>";
-				}
-				if (Object.keys(sp).includes("bonus")){
-					if (similar(gr_sp, "bonus") == 0){
-						if (!Object.keys(sp).includes("aff")&!Object.keys(sp).includes("over")){
-							html += "<td rowspan='" + gr_sp.length + "'>";
-							
-							if (["MRT", "DPL", "STW", "ING", "LRN", "SRT", "CBT", "OCBT", "DCBT"].includes(sp.bonus.split(" ")[1])){
-								html += "<span class='stat'>" + sp.bonus + "</span></td>";
-							}else{
-								html += sp.bonus + "</td>";
-							}
-						}
-					}else{
-						html += "<td>";
-						if (["MRT", "DPL", "STW", "ING", "LRN", "SRT", "CBT", "OCBT", "DCBT"].includes(sp.bonus.split(" ")[1])){
-							html += "<span class='stat'>" + sp.bonus + "</span></td>";
-						}else{
-							html += sp.bonus + "</td>";
-						}
-					}
-				}else{
-					html += "<td></td>";
-				}
-				if (Object.keys(sp).includes("elem")){
-					if (!Object.keys(sp).includes("aff")&!Object.keys(sp).includes("over")){
-						if (sp.elem.length > 0){
-							html += "<td rowspan='" + gr_sp.length + "' class='element'>" + basic_elements[sp.elem[0]];
-							if (sp.elem.length > 1){
-								html += " (" + sp.elem.slice(1).map((el) => basic_elements[el]).join(", ") + ")";
-							}
-							html += "</td>"
-						}else{
-							html += "<td></td>";
-						}
-					}
-				}else{
-					html += "<td></td>";
-				}
-				if (Object.keys(sp).includes("weight")){
-					if (!Object.keys(sp).includes("aff")&!Object.keys(sp).includes("over")){
-						html += "<td rowspan='" + gr_sp.length + "' class='weight'>" + sp.weight + "</td>";
-					}
-				}else{
-					html += "<td></td>";
-				}
-				if (Object.keys(sp).includes("range")){
-					if (similar(gr_sp, "range") == 0){
-						if (!Object.keys(sp).includes("aff")&!Object.keys(sp).includes("over")){
-							html += "<td rowspan='" + gr_sp.length + "'>" + sp.range + "</td>";
-						}
-					}else{
-						html += "<td>" + sp.range + "</td>";
-					}
-				}else{
-					html += "<td></td>";
-				}
-				if (Object.keys(sp).includes("time")){
-					if (similar(gr_sp, "time") == 0){
-						if (!Object.keys(sp).includes("aff")&!Object.keys(sp).includes("over")){
-							html += "<td rowspan='" + gr_sp.length + "'>" + sp.time + "</td>";
-						}
-					}else{
-						html += "<td>" + sp.time + "</td>";
-					}
-				}else{
-					html += "<td></td>";
-				}
-				if (Object.keys(sp).includes("effect")){
-					if (similar(gr_sp, "effect") == 0){
-						if (!Object.keys(sp).includes("aff")&!Object.keys(sp).includes("over")){
-							html += "<td rowspan='" + gr_sp.length + "'>" + sp.effect + "</td>";
-						}
-					}else{
-						html += "<td>" + sp.effect + "</td>";
-					}
-				}else{
-					html += "<td></td>";
-				}
-				if (Object.keys(sp).includes("user")){
-					html += "<td>" + sp.user.map((us) => "<a href='Characters.html#" + us.replaceAll(" ", "_") + "' class='character'>" + us + "</a>").join("<br>") + "</td>";
-				}else{
-					html += "<td></td>";
-				}
-				html+= "</tr>"
-			}
+function user_option_list(){
+	let html = "<br><form name='userForm'><select id='select_user' name='users' multiple size='1'>";
+	let us_set = new Set();
+	for (var p of spells){
+		if (Object.keys(p).includes("user")){
+			us_set = us_set.union(new Set(p.user))
 		}
 	}
+	html +="<optgroup label='Characters'>";
+	for (var us of creatures){
+		if ((us.type == "Characters")&(us_set.has(us.name))){
+			html += "<option value='" + us.name + "'>" + us.name + "</option>";
+		}
+	}
+	html += "</optgroup>";
+	
+	html +="<optgroup label='Villains'>";
+	for (var us of creatures){
+		if ((us.type == "Villain")&(us_set.has(us.name))){
+			html += "<option value='" + us.name + "'>" + us.name + "</option>";
+		}
+	}
+	html += "</optgroup>";
+	
+	
+	html += "</select></form>"
+	return html;
+}
+
+function weight_buttons(){
+	let html = "<form name='weightForm'><input type='button' id='w_button' value='▼' /></form>";
+	return html;
+}
+
+function name_buttons(){
+	let html = "<form name='nameForm'><input type='button' id='n_button' value='■' /></form>";
 	return html;
 }
 </script>
@@ -269,12 +115,18 @@ function spellbook(){
 <div>
 <table>
 <thead class="prime">
-<tr><th>Spell Name</th>	
-	<th>Cost</th>	<th>Bonus</th>	<th>Type</th> <th>Metaphysical Weight</th>	<th>Range</th>	<th>Duration</th>	<th>Effect</th>	<th>User</th>
+<tr><th>Spell Name<script>document.write(name_buttons())</script></th>	
+	<th>Cost</th>
+	<th>Bonus</th>
+	<th>Type<script>document.write(elem_option_list())</script></th>
+	<th>Metaphysical Weight<script>document.write(weight_buttons())</script></th>
+	<th>Range</th>
+	<th>Duration</th>
+	<th>Effect</th>
+	<th>User<script>document.write(user_option_list())</script></th>
 </tr>
 </thead>
 <tbody>
-<script>document.write(spellbook());</script>
 </tbody>
 </table>
 
@@ -283,6 +135,205 @@ function spellbook(){
 </div>
 
 <script src="./js/main.js" lang="javascript"></script>
+<script>
+const search = {};
+search["elems"] = document.elemForm.elems;
+search["users"] = document.userForm.users;
+search["weight"] = document.getElementById("w_button");
+search["name"] = document.getElementById("n_button");
+
+cur_search = {"elems": [], "users": [], "sort": "+weight"}
+const root = document.querySelector("tbody");
+
+tableCreation();
+function update_nButton() {
+	if (search["name"].value === "▼"){
+		search["name"].value = "▲";
+		search["weight"].value = "■";
+		cur_search["sort"] = "-name";
+	}else{
+		search["name"].value = "▼";
+		search["weight"].value = "■";
+		cur_search["sort"] = "+name";
+	}
+	
+	tableCreation();
+}
+
+function update_wButton() {
+	if (search["weight"].value === "▼") {
+		search["weight"].value = "▲";
+		search["name"].value = "■";
+		cur_search["sort"] = "-weight";
+	} else	{
+		search["weight"].value = "▼";
+		search["name"].value = "■";
+		cur_search["sort"] = "+weight";
+	}
+	
+	tableCreation();
+}
+
+function changeOption_el(){
+	const options = search["elems"].selectedOptions;
+	
+	let optionList = [];
+	if (options.length != 0){
+		for (let i = 0; i < options.length; i++) {      // for each option ...    
+			optionList.push(parseInt(options[i].value));
+		}
+		cur_search["elems"] = optionList;
+	}
+	tableCreation();
+}
+
+function changeOption_us(){
+	const options = search["users"].selectedOptions;
+	
+	let optionList = [];
+	if (options.length != 0){
+		for (let i = 0; i < options.length; i++) {      // for each option ...    
+			optionList.push(options[i].value);
+		}
+		cur_search["users"] = optionList;
+	}
+	tableCreation();
+}
+
+function tableCreation(){
+    // удаляем ранее выбранные элементы
+    while (root.firstChild) { 
+        root.removeChild(root.firstChild);  
+    }
+	let page = spells;
+	page = filtering_by_param(page, "elem", cur_search["elems"], 2);
+    page = filtering_by_param(page, "user", cur_search["users"], 2);
+	
+	page = sorting_by_param(page, cur_search["sort"].slice(1), cur_search["sort"][0] == "-");
+	
+	for (var p of page){
+		let tr = document.createElement("tr");
+		for (var h of header){
+			let td = document.createElement("td");
+			let text = '';
+			
+			if (h == 'name'){
+				text += p.name;
+				if (Object.keys(p).includes("aff")){
+					text += " - <span class='element'>" + p.aff + "</span> Affinity";
+				}
+				if (Object.keys(p).includes("over")){
+					if (p.over){
+						text += " (Overcast: " + p.over + ")";
+					}else{
+						text += " (Overcast)";
+					}
+				}
+			}
+			else if ((h == 'cost') & (Object.keys(p).includes("cost"))){
+				if (["MP", "MW", "HP"].includes(p.cost.split(" ")[1])){
+					if (p.cost.slice(-2) == "HP"){
+						text += translate_hp(p.cost.slice(0, -3), 2);
+					}else{
+						text += "<span class='stat'>" + p.cost + "</span>";
+					}
+				}else{
+					text += p.cost;
+				}
+			}
+			else if ((h == 'bonus') & (Object.keys(p).includes("bonus"))){
+				if (["MRT", "DPL", "STW", "ING", "LRN", "SRT", "CBT", "OCBT", "DCBT"].includes(p.bonus.split(" ")[1])){
+					text += "<span class='stat'>" + p.bonus + "</span>";
+				}else{
+					text += p.bonus;
+				}
+			}
+			else if ((h == "elem") & (Object.keys(p).includes("elem"))){
+				text += "<span class='element'>"
+				if (p.elem.length > 0){
+					if (cur_search["elems"].includes(p.elem[0])){
+						text += "<span style='background-color:yellow' class='element'>" + basic_elements[p.elem[0]] + "</span>";
+					}else{
+						text += "<span class='element'>" + basic_elements[p.elem[0]] + "</span>";
+					}
+				}
+				if (p.elem.length > 1){
+					text += " (";
+					if (cur_search["elems"].includes(p.elem[1])){
+						text += "<span style='background-color:yellow' class='element'>" + basic_elements[p.elem[1]] + "</span>";
+					}else{
+						text += "<span class='element'>" + basic_elements[p.elem[1]] + "</span>";
+					}
+					for (var el of p.elem.slice(2)){
+						if (cur_search["elems"].includes(el)){
+							text += ", <span style='background-color:yellow' class='element'>" + basic_elements[el] + "</span>";
+						}else{
+							text += ", <span class='element'>" + basic_elements[el] + "</span>"
+						}
+					}
+					text += ")";
+				}
+				text +="</span>";
+			}
+			else if ((h == "weight") & (Object.keys(p).includes("weight"))){
+				text += "<span class='weight'>"
+				if (p.weight == "The Sun"){
+					text += "<span class='sun'>" + p.weight + "</span>";
+				}else if (p.weight == "Mercury"){
+					text += "<span class='mercury'>" + p.weight + "</span>";
+				}else if (p.weight == "Venus"){
+					text += "<span class='venus'>" + p.weight + "</span>";
+				}else if (p.weight == "The Moon"){
+					text += "<span class='moon'>" + p.weight + "</span>";
+				}else if (p.weight == "The Moon and Mars"){
+					text += "<span class='moon'>The Moon</span> and <span class='mars'>Mars</span>";
+				}else if (p.weight == "Mars"){
+					text += "<span class='mars'>" + p.weight + "</span>";
+				}else if (p.weight == "Jupiter"){
+					text += "<span class='jupiter'>" + p.weight + "</span>";
+				}else if (p.weight == "Saturn"){
+					text += "<span class='saturn'>" + p.weight + "</span>";
+				}else if (p.weight == "Soul of the Earth"){
+					text += "<span class='soul'>" + p.weight + "</span>";
+				}else if (p.weight == "Heart of the Earth"){
+					text += "<span class='heart'>" + p.weight + "</span>";
+				}else if (p.weight == "Body of the Earth"){
+					text += "<span class='body'>" + p.weight + "</span>";
+				}else if (p.weight == "Mind of the Earth"){
+					text += "<span class='mind'>" + p.weight + "</span>";
+				}else if ((p.weight == "Anubis")|(p.weight == "Altjira")|(p.weight == "Yog-Sothoth")|(p.weight == "Jehovah")){
+					text += "<span class='god'>" + p.weight + "</span>";
+				}else{
+					text += p.weight;
+				}
+				text += "</span>";
+			}
+			else if ((h == 'range') & (Object.keys(p).includes("range"))){
+				text += p.range;
+			}
+			else if ((h == 'time') & (Object.keys(p).includes("time"))){
+				text += p.time;
+			}
+			else if ((h == 'effect') & (Object.keys(p).includes("effect"))){
+				text += p.effect;
+			}
+			else if ((h == 'user') & (Object.keys(p).includes("user"))){
+				text += p.user.map((us) => "<a href='Characters.html#" + us.replaceAll(" ", "_") + "' class='character'>" + us + "</a>").join("<br>");
+			}
+			
+			tr.appendChild(td);
+			td.insertAdjacentHTML('afterbegin', text);
+		}
+		root.appendChild(tr);
+	}
+	
+}
+
+search["elems"].addEventListener("change", changeOption_el);
+search["users"].addEventListener("change", changeOption_us);
+search["name"].addEventListener("click", update_nButton);
+search["weight"].addEventListener("click", update_wButton);
+</script>
 
 </body>
 </html>

@@ -59,6 +59,15 @@ li {
 </style>
 <script src="./js/data.js" lang="javascript"></script>
 <script>
+function family_list(name){
+	let html = "";
+	for (var cr of creatures) {
+		if ((cr.type == name) & !(Object.keys(cr).includes("src"))) {
+			html += minion_chart(cr.name);
+		}
+	}
+	return html;
+}
 function minion_chart(name){
 	let html = "";
 	for (var cr of creatures) {
@@ -76,7 +85,7 @@ function minion_chart(name){
 			html += "<td style='width: 70px;'>" + translate_hp(cr.hp, 1) + "</td>";
 			html += "<td style='width: 170px;' rowspan=" + num + ">";
 			
-			for  (var t_tr of traits2[name]){
+			for  (var t_tr of owned_traits[name]){
 				html += "<li><span class='trait'>";
 				if (!Number.isSafeInteger(t_tr[0])){
 					html += t_tr[0];
@@ -84,7 +93,7 @@ function minion_chart(name){
 						html += " (" + t_tr[1] + ")";
 					}
 				}else if (t_tr[0] == 0){
-					html += "Specialty (" + t_tr[1] + ")";
+					html += traits2[0][t_tr[1]];
 				}else if (t_tr[0] < 7){
 					if (Number.isSafeInteger(t_tr[1])){
 						html += basic_elements[t_tr[1]];
@@ -115,6 +124,8 @@ function minion_chart(name){
 					}else{
 						html += t_tr[1];
 					}
+				}else{
+					html += "Specialty (" + t_tr[1] + ")";
 				}
 				html += "</span></li>";
 			}
@@ -181,6 +192,7 @@ function minion_chart(name){
 <details><summary>Not Researched Families</summary>
 <ul>
 	<li><a href="#altered_beasts">Altered Beasts</a> (<span>Progress: Stage I Minions - 1/36</span>)</li>
+	<li><a href="#altered_humanoids">Altered Humanoids</a> (<span>Progress: Stage I Minions - 0/36</span>)</li>
 	<li><a href="#blighted_creatures">Blighted Creatures</a> </li>
 	<li><a href="#carnivorous_plants">Carnivorous Plants</a> (<span>Progress: Stage I Minions - 0/25</span>)</li>
 	<li><a href="#deep_sea_beasts">Deep Sea Beasts</a> (<span>Progress: Stage I Minions - 0/42</span>)</li>
@@ -192,6 +204,7 @@ function minion_chart(name){
 	<li><a href="#medium_mammals">Medium Mammals</a> (<span>Progress: Stage I Minions - 0/25</span>)</li>
 	<li><a href="#mindless_undead">Mindless Undead</a> (<span>Progress: Stage I Minions - 0/15</span>)</li>
 	<li><a href="#mollusks">Mollusks</a> (<span>Progress: Stage I Minions - 0/3</span>)</li>
+	<li><a href="#possessed_constructs">Possessed Constructs</a> (<span>Progress: Stage I Minions - 0/36</span>)</li>
 	<li><a href="#saltwater_fish">Saltwater Fish</a> (<span>Progress: Stage I Minions - 0/30</span>)</li>
 	<li><a href="#small_birds">Small Birds</a> (<span>Progress: Stage I Minions - 0/30</span>)</li>
 	<li><a href="#spirit_beasts">Spirit Beasts</a></li>
@@ -419,6 +432,7 @@ function minion_chart(name){
 <tr class="minions"><td colspan="10">
 <details><summary>Known Minions</summary>
 <ul>
+	<script>document.write(family_list("Flowers"));</script>
 	<li><details><summary><span class="familiar">Dim Sunflower</span></summary>
 	<span class="descr">A short and dull sunflower with an abnormally large blossom</span>
 	<p>Traits: <span class="trait">Fire Vulnerability</span>, <span class="trait">Light Absorption</span></p>
@@ -1159,6 +1173,7 @@ function minion_chart(name){
 
 
 <tr><td id="altered_beasts">Altered Beasts</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="altered_beasts">Altered Humanoids</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr><td id="blighted_creatures">Blighted Creatures</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr><td id="carnivorous_plants">Carnivorous Plants</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr><td id="deep_sea_beasts">Deep Sea Beasts</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
@@ -1170,6 +1185,7 @@ function minion_chart(name){
 <tr><td id="medium_mammals">Medium Mammals</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr><td id="mindless_undead">Mindless Undead</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr><td id="mollusks">Mollusks</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="altered_beasts">Possessed Constructs</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr><td id="saltwater_fish">Saltwater Fish</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr><td id="small_birds">Small Birds</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr><td id="spirit_beasts">Spirit Beasts</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>

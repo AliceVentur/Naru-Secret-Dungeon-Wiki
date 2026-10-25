@@ -6,7 +6,14 @@
 <style>
 td, th{
   text-align: center;
-  
+  vertical-align: middle;
+}
+th{
+  padding: 10px 0;
+}
+
+form{
+  margin: 0;
 }
 
 td:last-child{
@@ -26,7 +33,7 @@ td:last-child{
 header = ["name", "cost", "bonus", "elem", "weight", "range", "time", "effect", "user"];
 
 function elem_option_list(){
-	let html = "<br><form name='elemForm'><select id='select_elem' name='elems' multiple size='1'>";
+	let html = "<br><div><form name='elemForm'><select id='select_elem' name='elems' multiple size='1'>";
 	
 	let el_set = new Set();
 	for (var p of spells){
@@ -55,7 +62,7 @@ function elem_option_list(){
 	}
 	html += "</optgroup>";
 	
-	html += "</select></form>"
+	html += "</select></form></div>"
 	return html;
 }
 
@@ -89,12 +96,12 @@ function user_option_list(){
 }
 
 function weight_buttons(){
-	let html = "<form name='weightForm'><input type='button' id='w_button' value='▼' /></form>";
+	let html = "<input type='button' id='w_button' value='▼' />";
 	return html;
 }
 
 function name_buttons(){
-	let html = "<form name='nameForm'><input type='button' id='n_button' value='■' /></form>";
+	let html = "<input type='button' id='n_button' value='■' />";
 	return html;
 }
 </script>
@@ -115,11 +122,11 @@ function name_buttons(){
 <div>
 <table>
 <thead class="prime">
-<tr><th>Spell Name<script>document.write(name_buttons())</script></th>	
+<tr><th style="min-width: 110px;">Spell Name <script>document.write(name_buttons())</script></th>	
 	<th>Cost</th>
 	<th>Bonus</th>
 	<th>Type<script>document.write(elem_option_list())</script></th>
-	<th>Metaphysical Weight<script>document.write(weight_buttons())</script></th>
+	<th>Metaphysical Weight <script>document.write(weight_buttons())</script></th>
 	<th>Range</th>
 	<th>Duration</th>
 	<th>Effect</th>
@@ -183,6 +190,8 @@ function changeOption_el(){
 			optionList.push(parseInt(options[i].value));
 		}
 		cur_search["elems"] = optionList;
+	}else{
+		cur_search["elems"] = [];
 	}
 	tableCreation();
 }
@@ -196,6 +205,8 @@ function changeOption_us(){
 			optionList.push(options[i].value);
 		}
 		cur_search["users"] = optionList;
+	}else{
+		cur_search["users"] = [];
 	}
 	tableCreation();
 }

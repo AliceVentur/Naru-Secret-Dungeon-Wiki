@@ -22,6 +22,8 @@
   --mars: #BB0000;
   --jupiter: #CC8800;
 }
+
+
 body {
   background-image: none;
   background-color: var(--background);
@@ -31,6 +33,7 @@ body> div{
   margin: auto;
   width: 85%;
   background-color: var(--ground);
+  padding: 0 0 20px 0;
 }
 
 nav > table{
@@ -114,11 +117,13 @@ details{
   width: 35%;
 }
 
-.descr {
+blockquote{
   font-style: italic;
   text-align: right;
   padding: 0 10px;
+  margin: 10px;
 }
+
 a.character {
   font-style: italic;
 }
@@ -235,7 +240,6 @@ a.family {
   border-bottom: 1px dotted black; /* Add dots under the hoverable text */
   cursor: pointer;
   background-color: #98EDE7;
-  position: relative;
   
 }
 .familiar{
@@ -288,7 +292,7 @@ a.spoiler {
   width: 200px;
   margin: 0px auto;
   background-color: white;
-  color: black;
+  color: #fffffff;
   text-align: center;
   padding: 50px 0;
   border-radius: 6px;

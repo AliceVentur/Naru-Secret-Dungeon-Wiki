@@ -67,7 +67,7 @@ div > hr{
 <script src="./js/data.js" lang="javascript"></script>
 <script>
 function character_params(name){
-	let html = "<tr><th class='stat'>MP</th><th class='stat'>MW</th><th>HP</th><th class='stat' rowspan='2'>MRT</th><th class='stat' rowspan='2'>DPL</th><th class='stat' rowspan='2'>STW</th><th class='stat' rowspan='2'>ING</th><th class='stat' rowspan='2'>LRN</th><th class='stat' rowspan='2'>SRT</th><th class='stat' colspan='2'>CBT</th></tr><tr>";
+	let html = "<tr><th><abbr title='"+basic_stats['MP']+"'>MP</abbr></th><th><abbr title='"+basic_stats['MW']+"'>MW</abbr></th><th><abbr title='"+basic_stats['HP']+"'>HP</abbr></th><th rowspan='2'><abbr title='"+basic_stats['MRT']+"'>MRT</abbr></th><th rowspan='2'><abbr title='"+basic_stats['DPL']+"'>DPL</abbr></th><th rowspan='2'><abbr title='"+basic_stats['STW']+"'>STW</abbr></th><th rowspan='2'><abbr title='"+basic_stats['ING']+"'>ING</abbr></th><th rowspan='2'><abbr title='"+basic_stats['LRN']+"'>LRN</abbr></th><th rowspan='2'><abbr title='"+basic_stats['SRT']+"'>SRT</abbr></th><th colspan='2'><abbr title='"+basic_stats['CBT']+"'>CBT</abbr></th></tr><tr>";
 	
 	for (var cr of creatures) {
 		if (cr.name == name) {
@@ -86,7 +86,7 @@ function character_params(name){
 			}else{
 				html += '<td></td>';
 			}
-			html += "<th class='stat'>O</th><th class='stat'>D</th></tr>";
+			html += "<th><abbr title='"+basic_stats['OCBT']+"'>O</abbr></th><th><abbr title='"+basic_stats['DCBT']+"'>D</abbr></th></tr>";
 			html += '<tr><th colspan="3">Base</th>';
 			if (Object.keys(cr).includes("mrt")){
 				html += '<td>' + cr.mrt + '</td>';
@@ -176,111 +176,98 @@ function spellbook_copy(name){
 function ch_spellbook(name){
 	let tarr = Array();
 	
-	for (var sp of spells){
-		if (sp.user.includes(name)){
-			tarr.push(sp);
-		}
-	}
-	if (tarr.length == 0){
+	let page = spells;
+	page = filtering_by_param(page, "user", Array(name));
+	
+	if (page.length == 0){
 		return "";
 	}
 	
 	let html = "<details><summary>Spells</summary><table><thead><tr><th>Spell Name</th><th>Cost</th>	<th>Bonus</th>	<th>Type</th> <th>Metaphysical Weight</th>	<th>Range</th>	<th>Duration</th>	<th>Effect</th></tr></thead>";
 	
-	let tname = sorting_param(tarr, "name");
-	for (var n of tname){
-		let gr_sp = Array();
-		for (var sp of tarr){
-			if (sp["name"] == n){
-				gr_sp.push(sp);
+	page = sorting_by_param(page, "name");
+	for (var p of page){
+		html += "<tr>";
+		html += "<td>" + p.name;
+		if (Object.keys(p).includes("aff")){
+			html += " - <span class='element'>" + p.aff + "</span> Affinity";
+		}
+		if (Object.keys(p).includes("over")){
+			if (p.over){
+				html += " (Overcast: " + p.over + ")";
+			}else{
+				html += " (Overcast)";
 			}
 		}
-			
-		for (var sp of gr_sp){
-			html += "<tr>";
-			if (Object.keys(sp).includes("name")){
-				html += "<td>" + sp.name;
-				if (Object.keys(sp).includes("aff")){
-					html += " - <span class='element'>" + sp.aff + "</span> Affinity";
-				}
-				if (Object.keys(sp).includes("over")){
-					if (sp.over){
-						html += " (Overcast: " + sp.over + ")";
-					}else{
-						html += " (Overcast)";
-					}
-				}
-				html += "</td>";
-			}else{
-				html += "<td></td>";
-			}
-			if (Object.keys(sp).includes("cost")){
-				html += "<td>";
+		html += "</td>";
+		if (Object.keys(p).includes("cost")){
+			html += "<td>";
 							
-				if (["MP", "MW", "HP"].includes(sp.cost.split(" ")[1])){
-					if (sp.cost.slice(-2) == "HP"){
-						html += "<span>" + translate_hp(sp.cost.slice(0, -3), 2) + "</span></td>";
-					}else{
-						html += "<span class='stat'>" + sp.cost + "</span></td>";
-					}
+			if (["MP", "MW", "HP"].includes(p.cost.split(" ")[1])){
+				if (p.cost.slice(-2) == "HP"){
+					html += "<span>" + translate_hp(p.cost.slice(0, -3), 2) + "</span></td>";
 				}else{
-					html += sp.cost + "</td>";
+					html += "<span class='stat'>" + p.cost + "</span></td>";
 				}
 			}else{
-				html += "<td></td>";
+				html += p.cost + "</td>";
 			}
-			if (Object.keys(sp).includes("bonus")){
-				html += "<td>";
-				if (["MRT", "DPL", "STW", "ING", "LRN", "SRT", "CBT", "OCBT", "DCBT"].includes(sp.bonus.split(" ")[1])){
-					html += "<span class='stat'>" + sp.bonus + "</span></td>";
-				}else{
-					html += sp.bonus + "</td>";
-				}
-			}else{
-				html += "<td></td>";
-			}
-			if (Object.keys(sp).includes("elem")){
-				if (sp.elem.length > 0){
-					html += "<td class='element'>" + basic_elements[sp.elem[0]];
-					if (sp.elem.length > 1){
-						html += " (" + sp.elem.slice(1).map((el) => basic_elements[el]).join(", ") + ")";
-					}
-					html += "</td>"
-				}else{
-					html += "<td></td>";
-				}
-			}else{
-				html += "<td></td>";
-			}
-			if (Object.keys(sp).includes("weight")){
-				html += "<td class='weight'>" + sp.weight + "</td>";
-			}else{
-				html += "<td></td>";
-			}
-			if (Object.keys(sp).includes("range")){
-				html += "<td>" + sp.range + "</td>";
-			}else{
-				html += "<td></td>";
-			}
-			if (Object.keys(sp).includes("time")){
-				html += "<td>" + sp.time + "</td>";
-			}else{
-				html += "<td></td>";
-			}
-			if (Object.keys(sp).includes("effect")){
-				html += "<td>" + sp.effect + "</td>";
-			}else{
-				html += "<td></td>";
-			}
-			html+= "</tr>"
+		}else{
+			html += "<td></td>";
 		}
+		if (Object.keys(p).includes("bonus")){
+			html += "<td>";
+			if (["MRT", "DPL", "STW", "ING", "LRN", "SRT", "CBT", "OCBT", "DCBT"].includes(p.bonus.split(" ")[1])){
+				html += "<span class='stat'>" + p.bonus + "</span></td>";
+			}else{
+				html += p.bonus + "</td>";
+			}
+		}else{
+			html += "<td></td>";
+		}
+		if (Object.keys(p).includes("elem")){
+			if (p.elem.length > 0){
+				html += "<td rowspan='1" + "' class='element'>" + basic_elements[p.elem[0]];
+				if (p.elem.length > 1){
+					html += " (" + p.elem.slice(1).map((el) => basic_elements[el]).join(", ") + ")";
+				}
+				html += "</td>"
+			}else{
+				html += "<td></td>";
+			}
+		}else{
+			html += "<td></td>";
+		}
+		if (Object.keys(p).includes("weight")){
+			html += "<td rowspan='1" + "' class='weight'>" + p.weight + "</td>";
+		}else{
+			html += "<td></td>";
+		}
+		if (Object.keys(p).includes("range")){
+			html += "<td rowspan='1" + "'>" + p.range + "</td>";
+		}else{
+			html += "<td></td>";
+		}
+		if (Object.keys(p).includes("time")){
+			html += "<td rowspan='1" + "'>" + p.time + "</td>";
+		}else{
+			html += "<td></td>";
+		}
+		if (Object.keys(p).includes("effect")){
+			html += "<td rowspan='1" + "'>" + p.effect + "</td>";
+		}else{
+			html += "<td></td>";
+		}
+		html+= "</tr>"
 	}
+	
 	html += "</table></details>";
 	return html;
 }
 
 function ch_traits(name){
-	let tarr = traits2[name];
+	let tarr = owned_traits[name];
+	
 	if (tarr.length == 0){
 		return "";
 	}
@@ -294,7 +281,7 @@ function ch_traits(name){
 				html += " (" + t_tr[1] + ")";
 			}
 		}else if (t_tr[0] == 0){
-			html += "Specialty (" + t_tr[1] + ")";
+			html += traits2[0][t_tr[1]];
 		}else if (t_tr[0] < 7){
 			if (Number.isSafeInteger(t_tr[1])){
 				html += basic_elements[t_tr[1]];
@@ -325,6 +312,8 @@ function ch_traits(name){
 			}else{
 				html += t_tr[1];
 			}
+		}else{
+			html += "Specialty (" + t_tr[1] + ")";
 		}
 		html += "</span></li>";
 	}
@@ -342,8 +331,7 @@ function ch_traits(name){
 </table>
 </header>
 
-<nav>
-<h1>Characters</h1>
+<nav><h1>Characters</h1>
 <table><tr>
 <td style="width:50%; vertical-align: top; padding: 1% 5%;"><h3>Organisations</h3>
 <details><summary>Celestial Custodian Clan</summary><ul>

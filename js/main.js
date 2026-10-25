@@ -262,7 +262,7 @@ function createFamiliarHTML(name){
 	let html = '';
 	for (var cr of creatures) {
 		if (cr.name == name) {
-			html += '<tr><th>Type</th><td>' + cr.type + '</td></tr>';
+			html += '<tr><th>Type</th><td>' + types[cr.type] + '</td></tr>';
 			if (Object.keys(cr).includes("hp")){
 				html += '<tr><th class="stat">Health</th><td>' + translate_hp(cr.hp, 2) + '</td></tr>';
 //				if (cr.hp.slice(0, 2) == "1 "){
@@ -298,8 +298,12 @@ function createFamiliarHTML(name){
 			if (Object.keys(cr).includes("cbt")){
 				html += '<tr><th class="stat">CBT</th><td>' + cr.cbt + '</td></tr>';
 			}else{
-				html += '<tr><th class="stat">OCBT</th><td>' + cr.ocbt + '</td></tr>';
-				html += '<tr><th class="stat">DCBT</th><td>' + cr.dcbt + '</td></tr>';
+				if (Object.keys(cr).includes("ocbt")){
+					html += '<tr><th class="stat">OCBT</th><td>' + cr.ocbt + '</td></tr>';
+				}
+				if (Object.keys(cr).includes("dcbt")){
+					html += '<tr><th class="stat">DCBT</th><td>' + cr.dcbt + '</td></tr>';
+				}
 			}
 			
 		}

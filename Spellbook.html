@@ -320,7 +320,11 @@ function tableCreation(){
 				text += "</span>";
 			}
 			else if ((h == 'range') & (Object.keys(p).includes("range"))){
-				text += p.range;
+				if (!Number.isSafeInteger(p.range)){
+					text += p.range;
+				}else{
+					text += range[p.range];
+				}
 			}
 			else if ((h == 'time') & (Object.keys(p).includes("time"))){
 				text += p.time;

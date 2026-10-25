@@ -182,15 +182,17 @@ function minion_chart(name){
 	<li><a href="#fey">Fey</a></li>
 	<li><a href="#forgotten_terrors">Forgotten Terrors</a> (<span>Progress: Stage I Minions - 0/65</span>)</li>
 	<li><a href="#guardian_beasts">Guardian Beasts</a></li>
-	<li><a href="#guardian_undead">Guardian Undead</a> (<span>Progress: Stage I Minions - 0/30</span>)</li>
+	<li><a href="#guardian_undead">Guardian Undead</a> (<span>Progress: Stage I Minions - 0/25</span>)</li>
 	<li><a href="#humanoid_yokai">Humanoid Yokai</a> (<span>Progress: Stage I Minions - 0/32</span>)</li>
+	<li><a href="#large_ancient_reptiles">Large Ancient Reptiles</a> (<span>Progress: Stage I Minions - 0/45</span>)</li>
 	<li><a href="#large_reptiles">Large Reptiles</a></li>
-	<li><a href="#nature_spirits">Nature Spirits</a> (<span>Progress: Stage I Minions - 0/50</span>)</li>
+	<li><a href="#nature_spirits">Nature Spirits</a> (<span>Progress: Stage I Minions - 0/45</span>)</li>
 	<li><a href="#object_yokai">Object Yokai</a></li>
 </ul>
 </details>
 <details><summary>Not Researched Families</summary>
 <ul>
+	<li><a href="#abyssal_beasts">Abyssal Beasts</a> (<span>Progress: Stage I Minions - 0/50</span>)</li>
 	<li><a href="#altered_beasts">Altered Beasts</a> (<span>Progress: Stage I Minions - 1/36</span>)</li>
 	<li><a href="#altered_humanoids">Altered Humanoids</a> (<span>Progress: Stage I Minions - 0/36</span>)</li>
 	<li><a href="#blighted_creatures">Blighted Creatures</a> </li>
@@ -200,15 +202,20 @@ function minion_chart(name){
 	<li><a href="#freshwater_fish">Freshwater Fish</a> (<span>Progress: Stage I Minions - 0/10</span>)</li>
 	<li><a href="#fungi">Fungi</a> (<span>Progress: Stage I Minions - 0/27</span>)</li>
 	<li><a href="#grasses">Grasses, Bushes and Ferns</a> (<span>Progress: Stage I Minions - 0/22</span>)</li>
-	<li><a href="#large_ancient_reptiles">Large Ancient Reptiles</a> (<span>Progress: Stage I Minions - 0/45</span>)</li>
-	<li><a href="#medium_mammals">Medium Mammals</a> (<span>Progress: Stage I Minions - 0/25</span>)</li>
-	<li><a href="#mindless_undead">Mindless Undead</a> (<span>Progress: Stage I Minions - 0/15</span>)</li>
+	<li><a href="#large_birds">Large Birds</a> </li>
+	<li><a href="#large_mammals">Large Mammals</a> </li>
+	<li><a href="#medium_birds">Medium Birds</a> (<span>Progress: Stage I Minions - 0/35</span>)</li>
+	<li><a href="#medium_mammals">Medium Mammals</a> (<span>Progress: Stage I Minions - 0/20</span>)</li>
+	<li><a href="#medium_reptiles">Medium Reptiles</a> </li>
+	<li><a href="#mindless_undead">Mindless Undead</a> (<span>Progress: Stage I Minions - 0/10</span>)</li>
 	<li><a href="#mollusks">Mollusks</a> (<span>Progress: Stage I Minions - 0/3</span>)</li>
 	<li><a href="#possessed_constructs">Possessed Constructs</a> (<span>Progress: Stage I Minions - 0/36</span>)</li>
 	<li><a href="#saltwater_fish">Saltwater Fish</a> (<span>Progress: Stage I Minions - 0/30</span>)</li>
 	<li><a href="#small_birds">Small Birds</a> (<span>Progress: Stage I Minions - 0/30</span>)</li>
 	<li><a href="#spirit_beasts">Spirit Beasts</a></li>
+	<li><a href="#succulents">Succulents</a></li>
 	<li><a href="#territory_spirits">Territory Spirits</a></li>
+	<li><a href="#vengeful_undead">Vengeful Undead</a></li>
 </ul>
 </details>
 </td></tr></table>
@@ -1129,19 +1136,19 @@ function minion_chart(name){
 
 
 <tr><td id="amphibians">Amphibians</td>
-<td>Common</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td></td>	<td>Prone to mutations</td>	<td>Require freshwater for moisture<br>Mostly Carnivores</td>	</tr>
+<td>Common</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td><span class="familiar">Warty Toad</span></td>	<td>Prone to mutations</td>	<td>Require freshwater for moisture<br>Mostly Carnivores</td>	</tr>
 <tr><td id="ancient_dark_beasts">Ancient Dark Beasts</td>
 <td>Mythic</td>	<td>High</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Slow</td>	<td><span class="familiar">Lesser Nox Serpent</span></td>	<td>Very Stealthy</td>	<td><span class="trait">Purification Vulnerability</span> and/or <span class="trait">Light Vulnerability</span><br>Not found in the wild</td>	</tr>
 <tr><td id="leng_beasts">Beasts of Leng</td>
 <td>Mythic</td>	<td>Very High</td>	<td>Average</td>	<td>Average</td>	<td>High</td>	<td>Slow</td>	<td></td>	<td><span class="trait">Mental Immunity</span><br><span class="trait">Poison Immunity</span><br><span class="trait">Cold Immunity</span></td>	<td><span class="trait">Order Vulnerability</span></td>	</tr>
 <tr><td id="beast_yokai">Beast Yokai</td>
-<td>Rare</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td></td>	<td>Immense variety</td>	<td>None</td>
+<td>Rare</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td><span class="familiar">Lesser Gyokuto</span></td>	<td>Immense variety</td>	<td>None</td>
 </tr>
 <tr><td id="cnidarians">Cnidarians</td>
 <td>Uncommon</td>	<td>Low</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Fast</td>	<td><span class="familiar">Sturdy Coral</span></td>	<td>Counterattacks<br>Higher <span class="stat">DCBT</span><br>Regeneration</td>	<td>Unaware<br>Saltwater dependent</td>
 </tr>
 <tr><td id="crustaceans">Crustaceans</td>
-<td>Uncommon</td>	<td>Average</td>	<td>Average</td>	<td>Low</td>	<td>Average</td>	<td>Slow</td>	<td></td>	<td>Higher defenses</td>	<td>Require moisture to survive</td>
+<td>Uncommon</td>	<td>Average</td>	<td>Average</td>	<td>Low</td>	<td>Average</td>	<td>Slow</td>	<td><span class="familiar">Hermit Crab</span></td>	<td>Higher defenses</td>	<td>Require moisture to survive</td>
 </tr>
 <tr><td id="dragons">Dragons</td>
 	<td>Legendary</td>	<td>Extremely High</td>	<td>High</td>	<td>High</td>	<td>High</td>	<td>Slow</td>	<td><span class="familiar">Wyrmling</span></td>	<td>Breath weapons and/or magic</td>	<td>Many are Carnivores</td>
@@ -1150,46 +1157,55 @@ function minion_chart(name){
 	<td>Very Rare</td>	<td>Average</td>	<td>Average</td>	<td>Low</td>	<td>Average</td>	<td>Slow</td>	<td></td>	<td>Order Magic</td>	<td><span class="trait">Order Vulnerability</span></td>
 </tr>
 <tr><td id="forgotten_terrors">Forgotten Terrors</td>
-	<td>Mythic</td>	<td>High</td>	<td>Extremely High</td>	<td>Very Low</td>	<td>Low</td>	<td>Slow</td>	<td></td>	<td>Apply lots of <span class="stack">Peril</span> Stacks</td>	<td>Rely on <span class="stack">Peril</span> Stacks to actually harm things<br>No basic attacks</td>
+	<td>Mythic</td>	<td>High</td>	<td>Extremely High</td>	<td>Very Low</td>	<td>Low</td>	<td>Slow</td>	<td><span class="familiar">Soft Whisper</span></td>	<td>Apply lots of <span class="stack">Peril</span> Stacks</td>	<td>Rely on <span class="stack">Peril</span> Stacks to actually harm things<br>No basic attacks</td>
 </tr>
 <tr><td id="guardian_beasts">Guardian Beasts</td>
 	<td>Legendary</td>	<td>High</td>	<td>High</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td></td>	<td>Difficult to distract</td>	<td>Tendency to stay in a small area<br>Territorial</td>
 </tr>
 <tr><td id="guardian_undead">Guardian Undead</td>
-	<td>Legendary</td>	<td>Very high</td>	<td>High</td>	<td>Average</td>	<td>Average</td>	<td>Slow</td>	<td></td>	<td>Magic Abilities and/or Curses<br>Difficult to distract</td>	<td>Tendency to stay in small area<br>Cannot be mutated</td>
+	<td>Legendary</td>	<td>Very high</td>	<td>High</td>	<td>Average</td>	<td>Average</td>	<td>Slow</td>	<td><span class="familiar">Mummified Servant</span></td>	<td>Magic Abilities and/or Curses<br>Difficult to distract</td>	<td>Tendency to stay in small area<br>Cannot be mutated</td>
 </tr>
 <tr><td id="humanoid_yokai">Humanoid Yokai</td>
 	<td>Rare</td>	<td>Average</td>	<td>High</td>	<td>High</td>	<td>Very Low</td>	<td>Average</td>	<td><span class="familiar">Nopperabo</span></td>	<td>Smarter than most families</td>	<td>Many are emovores<br>Many only scare their targets</td>
+</tr>
+<tr><td id="large_ancient_reptiles">Large Ancient Reptiles</td>
+	<td>Extinct</td>	<td>Very High</td>	<td>Average</td>	<td>High</td>	<td>High</td>	<td>Average</td>	<td><span class="familiar">Lesser Ceratopsid</span></td>	<td>High Health<br>Easy to gain Elemental Mutations</td>	<td>Slow<br>Big targets</td>
 </tr>
 <tr><td id="large_reptiles">Large Reptiles</td>
 	<td>Very Rare</td>	<td>High</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Slow</td>	<td></td>	<td><span class="trait">Scales</span></td>	<td>Big targets</td>
 </tr>
 <tr><td id="nature_spirits">Nature Spirits</td>
-	<td>Legendary</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td></td>	<td>Increased power when near a spource of their element</td>	<td>All will have Vulnerability traits</td>
+	<td>Legendary</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td>Average</td>	<td><span class="familiar">Small Pebble</span></td>	<td>Increased power when near a spource of their element</td>	<td>All will have Vulnerability traits</td>
 </tr>
 <tr><td id="object_yokai">Object Yokai</td>
 	<td>Rare</td>	<td>Average</td>	<td>Low</td>	<td>Average</td>	<td>Average</td>	<td>Slow</td>	<td></td>	<td><span class="trait">Breathless</span><br>Immense variety</td>	<td>None</td>
 </tr>
 
 
-<tr><td id="altered_beasts">Altered Beasts</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr><td id="altered_beasts">Altered Humanoids</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="abyssal_beasts">Abyssal Beasts</td>	<td>Legendary</td>	<td>High or higher</td>	<td></td>	<td>Low or lower</td>	<td></td>	<td></td>	<td><span class="familiar">Lesser Hellhound</span></td>	<td></td>	<td></td></tr>
+<tr><td id="altered_beasts">Altered Beasts</td>	<td>Very Rare</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td><span class="familiar">Two-Part Chimera</span></td>	<td></td>	<td></td>	</tr>
+<tr><td id="altered_humanoids">Altered Humanoids</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr><td id="blighted_creatures">Blighted Creatures</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr><td id="carnivorous_plants">Carnivorous Plants</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr><td id="deep_sea_beasts">Deep Sea Beasts</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="carnivorous_plants">Carnivorous Plants</td>	<td>Very Rare</td>	<td>High or higher</td>	<td></td>	<td>Low or lower</td>	<td></td>	<td></td>	<td><span class="familiar">Lesser Butterwort</span></td>	<td></td>	<td></td>	</tr>
+<tr><td id="deep_sea_beasts">Deep Sea Beasts</td>	<td>Legendary</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td><span class="familiar">Lesser Tube Worm</span></td>	<td></td>	<td></td>	</tr>
 <tr><td id="dream_beasts">Dream Beasts</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr><td id="freshwater_fish">Freshwater Fish</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr><td id="fungi">Fungi</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr><td id="grasses">Grasses, Bushes and Ferns</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr><td id="large_ancient_reptiles">Large Ancient Reptiles</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr><td id="medium_mammals">Medium Mammals</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr><td id="mindless_undead">Mindless Undead</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr><td id="mollusks">Mollusks</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr><td id="altered_beasts">Possessed Constructs</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr><td id="saltwater_fish">Saltwater Fish</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr><td id="small_birds">Small Birds</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="freshwater_fish">Freshwater Fish</td>	<td>Common</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td><span class="familiar">Neon Tetra</span></td>	<td></td>	<td></td>	</tr>
+<tr><td id="fungi">Fungi</td>	<td>Uncommon</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td><span class="familiar">Brown Mushroom</span></td>	<td></td>	<td></td>	</tr>
+<tr><td id="grasses">Grasses, Bushes and Ferns</td>	<td>Common</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td><span class="familiar">Berry Bush</span></td>	<td></td>	<td></td>	</tr>
+<tr><td id="large_birds">Large Birds</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="large_mammals">Large Mammals</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="medium_birds">Medium Birds</td>	<td>Uncommon</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="medium_mammals">Medium Mammals</td>	<td>Uncommon</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td><span class="familiar">Tricky Coyote</span></td>	<td></td>	<td></td>	</tr>
+<tr><td id="medium_reptiles">Medium Reptiles</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="mindless_undead">Mindless Undead</td>	<td>Rare</td>	<td>Average</td>	<td></td>	<td>Low or lower</td>	<td></td>	<td></td>	<td><span class="familiar">Creaky Skeleton</span></td>	<td></td>	<td></td>	</tr>
+<tr><td id="mollusks">Mollusks</td>	<td>Uncommon</td>	<td>Average</td>	<td></td>	<td>Low or lower</td>	<td></td>	<td></td>	<td><span class="familiar">Small Clam</span></td>	<td></td>	<td></td>	</tr>
+<tr><td id="possessed constructs">Possessed Constructs</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="saltwater_fish">Saltwater Fish</td>	<td>Uncommon</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td><span class="familiar">Dim Angelfish</span></td>	<td></td>	<td></td>	</tr>
+<tr><td id="small_birds">Small Birds</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td><span class="familiar">Tasty Chicken</span></td>	<td></td>	<td></td>	</tr>
 <tr><td id="spirit_beasts">Spirit Beasts</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr><td id="territory_spirits">Territory Spirits</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr><td id="succulents">Succulents</td>	<td>Rare</td>	<td>Average</td>	<td></td>	<td>Low or lower</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>
+<tr><td id="territory_spirits">Territory Spirits</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>
+<tr><td id="vengeful_undead">Vengeful Undead</td>	<td>Very Rare</td>	<td>Average</td>	<td></td>	<td>Low or lower</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 
 <tr></tr>
 <tr><td colspan="10">

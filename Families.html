@@ -1199,7 +1199,7 @@ function minion_chart(name){
 		el = basic_elements[i];
 		let li = Array();
 		for (var cr of creatures){
-			if (!["Clow Cards", "Dinosaur Cards", "Familiars", "Nightmares", "Characters", "Other"].includes(cr.type)){
+			if (![0, 1, 2, 3, 4, 5, 6, 7].includes(cr.type)){
 				if (Object.keys(cr).includes("elem")){
 					let arr = cr.elem;
 					if (arr.includes(i)){
@@ -1210,11 +1210,18 @@ function minion_chart(name){
 		}
 		if (li.length > 0){
 			document.write("<li><span class='element'>" + el  + "</span> Elemental Biome:<ul>");
-			let arr = sorting_param(li, "type");
+			let arr = Array();
+			for (var m of li){
+				if (!arr.includes(types[m.type])){
+					arr.push(types[m.type]);
+				}
+			}		
+			arr.sort();
+			console.log(arr);
 			for (var t of arr){
 				let tarr = Array();
 				for (var minion of li){
-					if (minion.type == t){
+					if (types[minion.type] == t){
 						tarr.push(minion.name);
 					}
 				}
